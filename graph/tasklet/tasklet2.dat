@@ -1,0 +1,1152 @@
+Nov  4 22:26:56 gpu-225 kernel: [   29.622522] nvidia 0000:01:00.0: irq 51 for MSI/MSI-X
+Nov  4 22:26:57 gpu-225 kernel: [   30.164591] irq_time: 30164589931,irq_time: 30214597107,30214603724
+Nov  4 22:26:57 gpu-225 kernel: [   30.222818] NVRM: Your system is not currently configured to drive a VGA console
+Nov  4 22:26:57 gpu-225 kernel: [   30.222821] NVRM: on the primary VGA device. The NVIDIA Linux graphics driver
+Nov  4 22:26:57 gpu-225 kernel: [   30.222822] NVRM: requires the use of a text-mode VGA console. Use of other console
+Nov  4 22:26:57 gpu-225 kernel: [   30.222823] NVRM: drivers including, but not limited to, vesafb, may result in
+Nov  4 22:26:57 gpu-225 kernel: [   30.222824] NVRM: corruption and stability problems, and is not supported.
+Nov  4 22:26:57 gpu-225 kernel: [   30.222877] irq_time: 30222876962,30222886570
+Nov  4 22:26:57 gpu-225 kernel: [   30.252760] irq_time: 30252759332,30252765765
+Nov  4 22:26:57 gpu-225 kernel: [   30.267285] irq_time: 30267283544,30267300511
+Nov  4 22:26:57 gpu-225 kernel: [   30.267381] irq_time: 30267380930,30267391102
+Nov  4 22:26:57 gpu-225 kernel: [   30.307491] irq_time: 30307490775,30307497050
+Nov  4 22:26:57 gpu-225 kernel: [   30.308403] irq_time: 30308401695,30308414400
+Nov  4 22:26:57 gpu-225 kernel: [   30.309690] nvidia 0000:02:00.0: irq 52 for MSI/MSI-X
+Nov  4 22:26:57 gpu-225 kernel: [   30.452871] irq_time: 30452870240,30452952944
+Nov  4 22:26:58 gpu-225 kernel: [   30.653124] irq_time: 30653123530,30653132518
+Nov  4 22:26:58 gpu-225 kernel: [   30.894369] irq_time: 30894369035,30894375343
+Nov  4 22:26:58 gpu-225 kernel: [   31.011992] 31011990881
+Nov  4 22:26:58 gpu-225 NetworkManager[1466]: <info> (eth0): device state change: ip-config -> secondaries (reason 'none') [70 90 0]
+Nov  4 22:26:58 gpu-225 NetworkManager[1466]: <info> Activation (eth0) Stage 5 of 5 (IPv4 Commit) complete.
+Nov  4 22:26:58 gpu-225 NetworkManager[1466]: <info> (eth0): device state change: secondaries -> activated (reason 'none') [90 100 0]
+Nov  4 22:26:58 gpu-225 kernel: [   31.032932] 31032929833
+Nov  4 22:26:58 gpu-225 kernel: [   31.033212] 31033212346
+Nov  4 22:26:58 gpu-225 kernel: [   31.048173] irq_time: 31048171337,31048190480
+Nov  4 22:26:58 gpu-225 kernel: [   31.050647] irq_time: 31050645209,31050664777
+Nov  4 22:26:58 gpu-225 kernel: [   31.053191] irq_time: 31053189314,31053209201
+Nov  4 22:26:58 gpu-225 acpid: client connected from 1492[0:0]
+Nov  4 22:26:58 gpu-225 acpid: 1 client rule loaded
+Nov  4 22:26:58 gpu-225 kernel: [   31.057527] irq_time: 31057527380,31057534154
+Nov  4 22:26:58 gpu-225 kernel: [   31.062542] irq_time: 31062541251,31062556741
+Nov  4 22:26:58 gpu-225 kernel: [   31.062638] irq_time: 31062638455,31062648420
+Nov  4 22:26:58 gpu-225 kernel: [   31.063330] irq_time: 31063330364,31063334940
+Nov  4 22:26:58 gpu-225 kernel: [   31.064377] irq_time: 31064377376,31064388639
+Nov  4 22:26:58 gpu-225 NetworkManager[1466]: <info> NetworkManager state is now CONNECTED_GLOBAL
+Nov  4 22:26:58 gpu-225 NetworkManager[1466]: <info> Policy set 'Wired connection 1' (eth0) as default for IPv4 routing and DNS.
+Nov  4 22:26:58 gpu-225 NetworkManager[1466]: <info> DNS: starting dnsmasq...
+Nov  4 22:26:58 gpu-225 NetworkManager[1466]: <warn> dnsmasq not available on the bus, can't update servers.
+Nov  4 22:26:58 gpu-225 NetworkManager[1466]: <error> [1415107618.424925] [nm-dns-dnsmasq.c:396] update(): dnsmasq owner not found on bus: Could not get owner of name 'org.freedesktop.NetworkManager.dnsmasq': no such name
+Nov  4 22:26:58 gpu-225 NetworkManager[1466]: <warn> DNS: plugin dnsmasq update failed
+Nov  4 22:26:58 gpu-225 NetworkManager[1466]: <info> Writing DNS information to /sbin/resolvconf
+Nov  4 22:26:58 gpu-225 kernel: [   31.073443] irq_time: 31073442643,31073452227
+Nov  4 22:26:58 gpu-225 kernel: [   31.086195] 31086193952
+Nov  4 22:26:58 gpu-225 kernel: [   31.086354] 31086353784
+Nov  4 22:26:58 gpu-225 kernel: [   31.094469] irq_time: 31094468341,31094480030
+Nov  4 22:26:58 gpu-225 dnsmasq[1587]: started, version 2.68 cache disabled
+Nov  4 22:26:58 gpu-225 dnsmasq[1587]: compile time options: IPv6 GNU-getopt DBus i18n IDN DHCP DHCPv6 no-Lua TFTP conntrack ipset auth
+Nov  4 22:26:58 gpu-225 dnsmasq[1587]: DBus support enabled: connected to system bus
+Nov  4 22:26:58 gpu-225 dnsmasq[1587]: warning: no upstream servers configured
+Nov  4 22:26:58 gpu-225 kernel: [   31.137260] 31137257762
+Nov  4 22:26:58 gpu-225 kernel: [   31.146234] irq_time: 31146233345,31146258811
+Nov  4 22:26:58 gpu-225 kernel: [   31.146485] irq_time: 31146485044,31146495338
+Nov  4 22:26:58 gpu-225 kernel: [   31.182760] irq_time: 31182759114,31182793653
+Nov  4 22:26:58 gpu-225 kernel: [   31.197700] irq_time: 31197698952,31197745056
+Nov  4 22:26:58 gpu-225 kernel: [   31.219833] irq_time: 31219831306,31219851059
+Nov  4 22:26:58 gpu-225 kernel: [   31.219967] irq_time: 31219966426,31219976268
+Nov  4 22:26:58 gpu-225 kernel: [   31.294579] irq_time: 31294578690,31294588074
+Nov  4 22:26:58 gpu-225 kernel: [   31.337461] 31337459102
+Nov  4 22:26:58 gpu-225 kernel: [   31.494714] irq_time: 31494712326,31494732962
+Nov  4 22:26:58 gpu-225 avahi-daemon[1399]: Joining mDNS multicast group on interface eth0.IPv6 with address fe80::be5f:f4ff:fe23:6356.
+Nov  4 22:26:58 gpu-225 avahi-daemon[1399]: New relevant interface eth0.IPv6 for mDNS.
+Nov  4 22:26:58 gpu-225 avahi-daemon[1399]: Registering new address record for fe80::be5f:f4ff:fe23:6356 on eth0.*.
+Nov  4 22:26:58 gpu-225 kernel: [   31.537651] 31537648078
+Nov  4 22:26:59 gpu-225 kernel: [   31.694872] irq_time: 31694870719,31694892082
+Nov  4 22:26:59 gpu-225 kernel: [   31.737853] 31737851652
+Nov  4 22:26:59 gpu-225 NetworkManager[1466]: <info> Activation (eth0) successful, device activated.
+Nov  4 22:26:59 gpu-225 dbus[1293]: [system] Activating service name='org.freedesktop.nm_dispatcher' (using servicehelper)
+Nov  4 22:26:59 gpu-225 NetworkManager[1466]: <warn> dnsmasq appeared on DBus: :1.12
+Nov  4 22:26:59 gpu-225 NetworkManager[1466]: <info> Writing DNS information to /sbin/resolvconf
+Nov  4 22:26:59 gpu-225 dnsmasq[1587]: setting upstream servers from DBus
+Nov  4 22:26:59 gpu-225 dnsmasq[1587]: using nameserver 192.168.0.7#53
+Nov  4 22:26:59 gpu-225 kernel: [   31.895035] irq_time: 31895033321,31895064225
+Nov  4 22:26:59 gpu-225 dbus[1293]: [system] Successfully activated service 'org.freedesktop.nm_dispatcher'
+Nov  4 22:26:59 gpu-225 kernel: [   31.930897] 31930894843
+Nov  4 22:26:59 gpu-225 kernel: [   31.937788] 31937787598
+Nov  4 22:26:59 gpu-225 kernel: [   31.938037] 31938035094
+Nov  4 22:26:59 gpu-225 kernel: [   31.942662] 31942660520
+Nov  4 22:26:59 gpu-225 kernel: [   32.051145] irq_time: 32051142902,32051172468
+Nov  4 22:26:59 gpu-225 kernel: [   32.053688] irq_time: 32053686804,32053706660
+Nov  4 22:26:59 gpu-225 kernel: [   32.058002] irq_time: 32058000808,32058020620
+Nov  4 22:26:59 gpu-225 kernel: [   32.069913] irq_time: 32069912431,32069922209
+Nov  4 22:26:59 gpu-225 kernel: [   32.073635] irq_time: 32073634307,32073643951
+Nov  4 22:26:59 gpu-225 kernel: [   32.073929] irq_time: 32073928625,32073938236
+Nov  4 22:26:59 gpu-225 kernel: [   32.095213] irq_time: 32095211541,32095231475
+Nov  4 22:26:59 gpu-225 kernel: [   32.107833] cgroup: systemd-logind (1373) created nested cgroup for controller "memory" which has incomplete hierarchy support. Nested cgroups may change behavior in the future.
+Nov  4 22:26:59 gpu-225 kernel: [   32.107834] cgroup: "memory" requires setting use_hierarchy to 1 on the root
+Nov  4 22:26:59 gpu-225 kernel: [   32.138226] 32138224461
+Nov  4 22:26:59 gpu-225 kernel: [   32.295374] irq_time: 32295372469,32295394662
+Nov  4 22:26:59 gpu-225 kernel: [   32.338428] 32338426401
+Nov  4 22:26:59 gpu-225 kernel: [   32.495538] irq_time: 32495536798,32495558372
+Nov  4 22:26:59 gpu-225 kernel: [   32.538613] 32538611787
+Nov  4 22:27:00 gpu-225 kernel: [   32.695702] irq_time: 32695700561,32695720874
+Nov  4 22:27:00 gpu-225 kernel: [   32.738801] 32738799278
+Nov  4 22:27:00 gpu-225 kernel: [   32.895863] irq_time: 32895861313,32895888384
+Nov  4 22:27:00 gpu-225 kernel: [   32.931423] 32931421001
+Nov  4 22:27:00 gpu-225 kernel: [   32.938298] 32938296290
+Nov  4 22:27:00 gpu-225 kernel: [   32.938985] 32938983100
+Nov  4 22:27:00 gpu-225 kernel: [   32.943200] 32943198104
+Nov  4 22:27:00 gpu-225 kernel: [   32.954193] 32954191587
+Nov  4 22:27:00 gpu-225 kernel: [   33.051660] irq_time: 33051657992,33051679446
+Nov  4 22:27:00 gpu-225 kernel: [   33.054186] irq_time: 33054184089,33054203830
+Nov  4 22:27:00 gpu-225 kernel: [   33.058510] irq_time: 33058508629,33058528343
+Nov  4 22:27:00 gpu-225 kernel: [   33.074423] irq_time: 33074421971,33074441737
+Nov  4 22:27:00 gpu-225 kernel: [   33.096034] irq_time: 33096032558,33096053278
+Nov  4 22:27:00 gpu-225 kernel: [   33.139168] 33139166017
+Nov  4 22:27:00 gpu-225 kernel: [   33.296192] irq_time: 33296191585,33296203452
+Nov  4 22:27:00 gpu-225 kernel: [   33.339364] 33339362474
+Nov  4 22:27:00 gpu-225 kernel: [   33.496335] irq_time: 33496333243,33496357455
+Nov  4 22:27:00 gpu-225 kernel: [   33.539558] 33539556557
+Nov  4 22:27:01 gpu-225 kernel: [   33.696501] irq_time: 33696499553,33696520275
+Nov  4 22:27:01 gpu-225 kernel: [   33.739719] 33739718153
+Nov  4 22:27:01 gpu-225 kernel: [   33.896664] irq_time: 33896662331,33896694441
+Nov  4 22:27:01 gpu-225 kernel: [   33.931945] 33931943798
+Nov  4 22:27:01 gpu-225 kernel: [   33.938816] 33938814105
+Nov  4 22:27:01 gpu-225 kernel: [   33.939889] 33939887247
+Nov  4 22:27:01 gpu-225 kernel: [   33.943736] 33943734067
+Nov  4 22:27:01 gpu-225 kernel: [   34.052162] irq_time: 34052159933,34052179591
+Nov  4 22:27:01 gpu-225 kernel: [   34.054683] irq_time: 34054681757,34054701476
+Nov  4 22:27:01 gpu-225 kernel: [   34.058983] irq_time: 34058982748,34058992155
+Nov  4 22:27:01 gpu-225 kernel: [   34.059389] irq_time: 34059388492,34059397903
+Nov  4 22:27:01 gpu-225 kernel: [   34.070965] irq_time: 34070964962,34070974723
+Nov  4 22:27:01 gpu-225 kernel: [   34.074568] irq_time: 34074567365,34074577009
+Nov  4 22:27:01 gpu-225 kernel: [   34.074594] irq_time: 34074594447,34074599244
+Nov  4 22:27:01 gpu-225 kernel: [   34.074651] irq_time: 34074651098,34074655610
+Nov  4 22:27:01 gpu-225 kernel: [   34.074943] irq_time: 34074943030,34074952675
+Nov  4 22:27:01 gpu-225 kernel: [   34.096844] irq_time: 34096842009,34096861838
+Nov  4 22:27:01 gpu-225 kernel: [   34.140070] 34140068715
+Nov  4 22:27:01 gpu-225 kernel: [   34.297003] irq_time: 34297001222,34297021149
+Nov  4 22:27:01 gpu-225 kernel: [   34.340240] 34340239376
+Nov  4 22:27:01 gpu-225 kernel: [   34.497158] irq_time: 34497156389,34497177065
+Nov  4 22:27:01 gpu-225 kernel: [   34.540407] 34540405170
+Nov  4 22:27:02 gpu-225 kernel: [   34.697319] irq_time: 34697317472,34697337284
+Nov  4 22:27:02 gpu-225 kernel: [   34.740589] 34740587807
+Nov  4 22:27:02 gpu-225 kernel: [   34.897480] irq_time: 34897478322,34897497885
+Nov  4 22:27:02 gpu-225 kernel: [   34.932478] 34932476379
+Nov  4 22:27:02 gpu-225 kernel: [   34.939296] 34939295974
+Nov  4 22:27:02 gpu-225 kernel: [   34.940772] 34940769967
+Nov  4 22:27:02 gpu-225 kernel: [   34.944270] 34944268182
+Nov  4 22:27:02 gpu-225 kernel: [   34.955386] 34955383988
+Nov  4 22:27:02 gpu-225 kernel: [   35.052660] irq_time: 35052658884,35052679007
+Nov  4 22:27:02 gpu-225 kernel: [   35.055218] irq_time: 35055217636,35055227490
+Nov  4 22:27:02 gpu-225 kernel: [   35.059772] irq_time: 35059770896,35059790526
+Nov  4 22:27:02 gpu-225 kernel: [   35.075481] irq_time: 35075479151,35075498782
+Nov  4 22:27:02 gpu-225 kernel: [   35.097641] irq_time: 35097639009,35097658625
+Nov  4 22:27:02 gpu-225 kernel: [   35.140939] 35140938461
+Nov  4 22:27:02 gpu-225 kernel: [   35.297794] irq_time: 35297793628,35297810929
+Nov  4 22:27:02 gpu-225 kernel: [   35.341113] 35341111589
+Nov  4 22:27:02 gpu-225 kernel: [   35.497947] irq_time: 35497945023,35497965998
+Nov  4 22:27:02 gpu-225 kernel: [   35.541307] 35541305852
+Nov  4 22:27:03 gpu-225 kernel: [   35.698109] irq_time: 35698107843,35698128470
+Nov  4 22:27:03 gpu-225 kernel: [   35.741502] 35741499625
+Nov  4 22:27:03 gpu-225 kernel: [   35.898242] irq_time: 35898241022,35898262890
+Nov  4 22:27:03 gpu-225 kernel: [   35.932998] 35932996548
+Nov  4 22:27:03 gpu-225 kernel: [   35.939803] 35939801818
+Nov  4 22:27:03 gpu-225 kernel: [   35.941697] 35941695352
+Nov  4 22:27:03 gpu-225 kernel: [   35.944796] 35944795269
+Nov  4 22:27:03 gpu-225 kernel: [   36.053156] irq_time: 36053155079,36053168720
+Nov  4 22:27:03 gpu-225 kernel: [   36.055698] irq_time: 36055696273,36055715887
+Nov  4 22:27:03 gpu-225 kernel: [   36.060279] irq_time: 36060277057,36060296859
+Nov  4 22:27:03 gpu-225 kernel: [   36.072064] irq_time: 36072062467,36072082324
+Nov  4 22:27:03 gpu-225 kernel: [   36.075513] irq_time: 36075511011,36075530823
+Nov  4 22:27:03 gpu-225 kernel: [   36.075567] irq_time: 36075565999,36075574544
+Nov  4 22:27:03 gpu-225 kernel: [   36.075618] irq_time: 36075618345,36075622932
+Nov  4 22:27:03 gpu-225 kernel: [   36.076003] irq_time: 36076001471,36076021285
+Nov  4 22:27:03 gpu-225 kernel: [   36.098396] irq_time: 36098394244,36098414259
+Nov  4 22:27:03 gpu-225 kernel: [   36.141856] 36141855233
+Nov  4 22:27:03 gpu-225 kernel: [   36.298550] irq_time: 36298549177,36298572141
+Nov  4 22:27:03 gpu-225 kernel: [   36.342032] 36342030065
+Nov  4 22:27:03 gpu-225 kernel: [   36.498682] irq_time: 36498681384,36498705788
+Nov  4 22:27:03 gpu-225 kernel: [   36.542217] 36542215868
+Nov  4 22:27:04 gpu-225 dbus[1293]: [system] Activating service name='org.freedesktop.UPower' (using servicehelper)
+Nov  4 22:27:04 gpu-225 kernel: [   36.698817] irq_time: 36698816072,36698838800
+Nov  4 22:27:04 gpu-225 kernel: [   36.742397] 36742394881
+Nov  4 22:27:04 gpu-225 dbus[1293]: [system] Successfully activated service 'org.freedesktop.UPower'
+Nov  4 22:27:04 gpu-225 kernel: [   36.898975] irq_time: 36898973241,36899004541
+Nov  4 22:27:04 gpu-225 kernel: [   36.933520] 36933519460
+Nov  4 22:27:04 gpu-225 kernel: [   36.940308] 36940307920
+Nov  4 22:27:04 gpu-225 kernel: [   36.942586] 36942577967
+Nov  4 22:27:04 gpu-225 kernel: [   36.945294] 36945293562
+Nov  4 22:27:04 gpu-225 kernel: [   36.956537] 36956536552
+Nov  4 22:27:04 gpu-225 kernel: [   37.053643] irq_time: 37053641014,37053665807
+Nov  4 22:27:04 gpu-225 kernel: [   37.056170] irq_time: 37056169173,37056178835
+Nov  4 22:27:04 gpu-225 kernel: [   37.060779] irq_time: 37060778673,37060788535
+Nov  4 22:27:04 gpu-225 kernel: [   37.061176] irq_time: 37061175458,37061185340
+Nov  4 22:27:04 gpu-225 kernel: [   37.076526] irq_time: 37076524860,37076544964
+Nov  4 22:27:04 gpu-225 kernel: [   37.099153] irq_time: 37099151744,37099172234
+Nov  4 22:27:04 gpu-225 kernel: [   37.142757] 37142755199
+Nov  4 22:27:04 gpu-225 kernel: [   37.299286] irq_time: 37299285186,37299299701
+Nov  4 22:27:04 gpu-225 kernel: [   37.342952] 37342950431
+Nov  4 22:27:04 gpu-225 kernel: [   37.499434] irq_time: 37499432248,37499460042
+Nov  4 22:27:04 gpu-225 kernel: [   37.543143] 37543142120
+Nov  4 22:27:04 gpu-225 dbus[1293]: [system] Activating service name='org.freedesktop.systemd1' (using servicehelper)
+Nov  4 22:27:04 gpu-225 dbus[1293]: [system] Successfully activated service 'org.freedesktop.systemd1'
+Nov  4 22:27:05 gpu-225 kernel: [   37.699607] irq_time: 37699605470,37699636938
+Nov  4 22:27:05 gpu-225 kernel: [   37.743292] 37743291333
+Nov  4 22:27:05 gpu-225 anacron[2001]: Anacron 2.3 started on 2014-11-04
+Nov  4 22:27:05 gpu-225 anacron[2001]: Normal exit (0 jobs run)
+Nov  4 22:27:05 gpu-225 kernel: [   37.899757] irq_time: 37899757039,37899777967
+Nov  4 22:27:05 gpu-225 kernel: [   37.934037] 37934035065
+Nov  4 22:27:05 gpu-225 kernel: [   37.940800] 37940799668
+Nov  4 22:27:05 gpu-225 kernel: [   37.943457] 37943456655
+Nov  4 22:27:05 gpu-225 kernel: [   37.945795] 37945794752
+Nov  4 22:27:05 gpu-225 NetworkManager[1466]: <info> WiFi hardware radio set disabled
+Nov  4 22:27:05 gpu-225 kernel: [   38.054152] irq_time: 38054149585,38054179642
+Nov  4 22:27:05 gpu-225 kernel: [   38.056648] irq_time: 38056647615,38056657262
+Nov  4 22:27:05 gpu-225 kernel: [   38.061547] irq_time: 38061545190,38061565232
+Nov  4 22:27:05 gpu-225 kernel: [   38.062059] irq_time: 38062057073,38062076960
+Nov  4 22:27:05 gpu-225 kernel: [   38.076539] irq_time: 38076537262,38076557227
+Nov  4 22:27:05 gpu-225 kernel: [   38.076619] irq_time: 38076618002,irq_time: 38076660093,38076664423
+Nov  4 22:27:05 gpu-225 kernel: [   38.077033] irq_time: 38077032487,38077041943
+Nov  4 22:27:05 gpu-225 kernel: [   38.099909] irq_time: 38099908103,38099917988
+Nov  4 22:27:05 gpu-225 kernel: [   38.143614] 38143612556
+Nov  4 22:27:05 gpu-225 kernel: [   38.300047] irq_time: 38300045242,38300072321
+Nov  4 22:27:05 gpu-225 dbus[1293]: [system] Activating service name='org.freedesktop.RealtimeKit1' (using servicehelper)
+Nov  4 22:27:05 gpu-225 kernel: [   38.343789] 38343788286
+Nov  4 22:27:05 gpu-225 dbus[1293]: [system] Activating service name='org.freedesktop.ColorManager' (using servicehelper)
+Nov  4 22:27:05 gpu-225 dbus[1293]: [system] Successfully activated service 'org.freedesktop.RealtimeKit1'
+Nov  4 22:27:05 gpu-225 rtkit-daemon[2105]: Successfully called chroot.
+Nov  4 22:27:05 gpu-225 rtkit-daemon[2105]: Successfully dropped privileges.
+Nov  4 22:27:05 gpu-225 rtkit-daemon[2105]: Successfully limited resources.
+Nov  4 22:27:05 gpu-225 rtkit-daemon[2105]: Running.
+Nov  4 22:27:05 gpu-225 rtkit-daemon[2105]: Canary thread running.
+Nov  4 22:27:05 gpu-225 rtkit-daemon[2105]: Watchdog thread running.
+Nov  4 22:27:05 gpu-225 rtkit-daemon[2105]: Successfully made thread 2103 of process 2103 (n/a) owned by '112' high priority at nice level -11.
+Nov  4 22:27:05 gpu-225 rtkit-daemon[2105]: Supervising 1 threads of 1 processes of 1 users.
+Nov  4 22:27:05 gpu-225 kernel: [   38.500219] irq_time: 38500217130,38500248485
+Nov  4 22:27:05 gpu-225 kernel: [   38.543969] 38543967461
+Nov  4 22:27:05 gpu-225 colord: Using config file /etc/colord.conf
+Nov  4 22:27:06 gpu-225 kernel: [   38.700398] irq_time: 38700396666,38700421764
+Nov  4 22:27:06 gpu-225 colord: Using mapping database file /var/lib/colord/mapping.db
+Nov  4 22:27:06 gpu-225 kernel: [   38.744162] 38744160027
+Nov  4 22:27:06 gpu-225 kernel: [   38.900566] irq_time: 38900564833,38900584777
+Nov  4 22:27:06 gpu-225 colord: Using device database file /var/lib/colord/storage.db
+Nov  4 22:27:06 gpu-225 kernel: [   38.934569] 38934567124
+Nov  4 22:27:06 gpu-225 kernel: [   38.941302] 38941300355
+Nov  4 22:27:06 gpu-225 kernel: [   38.944347] 38944345441
+Nov  4 22:27:06 gpu-225 kernel: [   38.946307] 38946305860
+Nov  4 22:27:06 gpu-225 colord: plugin /usr/lib/x86_64-linux-gnu/colord-plugins/libcd_plugin_sane.so not loaded: plugin refused to load
+Nov  4 22:27:06 gpu-225 colord: loaded plugin libcd_plugin_camera.so
+Nov  4 22:27:06 gpu-225 kernel: [   39.054663] irq_time: 39054662317,39054683681
+Nov  4 22:27:06 gpu-225 kernel: [   39.057122] irq_time: 39057121482,39057131282
+Nov  4 22:27:06 gpu-225 kernel: [   39.062361] irq_time: 39062360778,39062370444
+Nov  4 22:27:06 gpu-225 kernel: [   39.062755] irq_time: 39062754920,39062764821
+Nov  4 22:27:06 gpu-225 colord: loaded plugin libcd_plugin_scanner.so
+Nov  4 22:27:06 gpu-225 colord: Daemon ready for requests
+Nov  4 22:27:06 gpu-225 dbus[1293]: [system] Successfully activated service 'org.freedesktop.ColorManager'
+Nov  4 22:27:06 gpu-225 kernel: [   39.077530] irq_time: 39077529443,39077543923
+Nov  4 22:27:06 gpu-225 kernel: [   39.100723] irq_time: 39100722882,39100732620
+Nov  4 22:27:06 gpu-225 kernel: [   39.144519] 39144518928
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-6ad6d63767ce0393245528ada92f1cb2
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-d4a7a2bd8ddaacf10e275e3db31d72b8
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-f64a1f19ce07290b35a752b00217b684
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-353a6bcabda00f04b6988f89126ce6f5
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-57f0d896250f6f98f77ca1b0d19019c0
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-72f5b1cba915b68ea75cc843e270df5a
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-523e494bc2f53c53d51d0758b07f4879
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-0383c34650771ce95ef93fe916867725
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-df7c0067b1eb9bcc9fc9b33bc3a797eb
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-654b99c87e67edb1c1cfb0dcb7fa9d04
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-ea421e3a65cfa796e2732ce36086e327
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-6a245ab2d8892e2e56232af93cd48b81
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-526fbc9bdf0d7156c553998d47a3b5fc
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-3a34aa6c3d1fb1ef63ff41e04ee00979
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-3bd2261b1125a0fd9ebf827a2d1bed84
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-a1d13bd5309e0f06ceda6f0d75367823
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-b0701c2ccf059287d0b067464df8bda9
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-2f1f11ecd613fe5551420fcaf5b11ff8
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-0720e7cdbc792b77c0740c39f325ef9e
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-c3e6382fa9b2d31b01b736f6f97aac3a
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-a10be98be58460669fcdc6946939b7cf
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-fb0ac62618f016ed9b92ce239258efa8
+Nov  4 22:27:06 gpu-225 kernel: [   39.300856] irq_time: 39300855509,39300866354
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-c227f46f246694ba9971f270cb61a0c1
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-d6490883a866e4059370e1de1d840283
+Nov  4 22:27:06 gpu-225 kernel: [   39.344684] 39344683061
+Nov  4 22:27:06 gpu-225 colord: Device added: xrandr-Eizo Nanao Corporation-EV2335W-60720121
+Nov  4 22:27:06 gpu-225 ntpdate[1719]: adjust time server 91.189.94.4 offset -0.076444 sec
+Nov  4 22:27:06 gpu-225 colord: Automatic metadata add icc-be697cc2e2c53f7b903f2fd98462d20a to xrandr-Eizo Nanao Corporation-EV2335W-60720121
+Nov  4 22:27:06 gpu-225 colord: Profile added: icc-be697cc2e2c53f7b903f2fd98462d20a
+Nov  4 22:27:06 gpu-225 kernel: [   39.500991] irq_time: 39500990643,39501013258
+Nov  4 22:27:06 gpu-225 kernel: [   39.544861] 39544859713
+Nov  4 22:27:07 gpu-225 kernel: [   39.701153] irq_time: 39701151124,39701170818
+Nov  4 22:27:07 gpu-225 kernel: [   39.745049] 39745047075
+Nov  4 22:27:07 gpu-225 kernel: [   39.901314] irq_time: 39901312242,39901331791
+Nov  4 22:27:07 gpu-225 kernel: [   39.935089] 39935087514
+Nov  4 22:27:07 gpu-225 kernel: [   39.941812] 39941810367
+Nov  4 22:27:07 gpu-225 kernel: [   39.945197] 39945196629
+Nov  4 22:27:07 gpu-225 kernel: [   39.946845] 39946843274
+Nov  4 22:27:07 gpu-225 kernel: [   40.055160] irq_time: 40055158135,40055177876
+Nov  4 22:27:07 gpu-225 kernel: [   40.057600] irq_time: 40057598331,40057618158
+Nov  4 22:27:07 gpu-225 kernel: [   40.063126] irq_time: 40063124278,40063144002
+Nov  4 22:27:07 gpu-225 kernel: [   40.063590] irq_time: 40063589841,40063599623
+Nov  4 22:27:07 gpu-225 kernel: [   40.078033] irq_time: 40078031604,40078051380
+Nov  4 22:27:07 gpu-225 kernel: [   40.101474] irq_time: 40101472746,40101492390
+Nov  4 22:27:07 gpu-225 kernel: [   40.145368] 40145366203
+Nov  4 22:27:07 gpu-225 kernel: [   40.301634] irq_time: 40301631949,40301651743
+Nov  4 22:27:07 gpu-225 kernel: [   40.345546] 40345544199
+Nov  4 22:27:07 gpu-225 kernel: [   40.501767] irq_time: 40501765236,40501784193
+Nov  4 22:27:07 gpu-225 kernel: [   40.545728] 40545726101
+Nov  4 22:27:08 gpu-225 kernel: [   40.701924] irq_time: 40701923018,40701942533
+Nov  4 22:27:08 gpu-225 kernel: [   40.745910] 40745908136
+Nov  4 22:27:08 gpu-225 kernel: [   40.902056] irq_time: 40902054931,40902073667
+Nov  4 22:27:08 gpu-225 kernel: [   40.935607] 40935605826
+Nov  4 22:27:08 gpu-225 kernel: [   40.942343] 40942341080
+Nov  4 22:27:08 gpu-225 kernel: [   40.946073] 40946072842
+Nov  4 22:27:08 gpu-225 kernel: [   40.947381] 40947379482
+Nov  4 22:27:08 gpu-225 rtkit-daemon[2105]: Successfully made thread 2125 of process 2103 (n/a) owned by '112' RT at priority 5.
+Nov  4 22:27:08 gpu-225 rtkit-daemon[2105]: Supervising 2 threads of 1 processes of 1 users.
+Nov  4 22:27:08 gpu-225 kernel: [   41.055658] irq_time: 41055656109,41055679272
+Nov  4 22:27:08 gpu-225 kernel: [   41.055867] irq_time: 41055866993,41055871758
+Nov  4 22:27:08 gpu-225 kernel: [   41.058098] irq_time: 41058096085,41058116443
+Nov  4 22:27:08 gpu-225 kernel: [   41.063946] irq_time: 41063944789,41063964538
+Nov  4 22:27:08 gpu-225 kernel: [   41.078556] irq_time: 41078554850,41078574598
+Nov  4 22:27:08 gpu-225 kernel: [   41.102213] irq_time: 41102211667,41102231374
+Nov  4 22:27:08 gpu-225 kernel: [   41.110584] irq_time: 41110582892,41110602686
+Nov  4 22:27:08 gpu-225 kernel: [   41.111853] irq_time: 41111852816,41111860636
+Nov  4 22:27:08 gpu-225 kernel: [   41.117824] irq_time: 41117822552,41117842280
+Nov  4 22:27:08 gpu-225 kernel: [   41.146238] 41146236193
+Nov  4 22:27:08 gpu-225 rtkit-daemon[2105]: Successfully made thread 2126 of process 2103 (n/a) owned by '112' RT at priority 5.
+Nov  4 22:27:08 gpu-225 rtkit-daemon[2105]: Supervising 3 threads of 1 processes of 1 users.
+Nov  4 22:27:08 gpu-225 rtkit-daemon[2105]: Successfully made thread 2127 of process 2103 (n/a) owned by '112' RT at priority 5.
+Nov  4 22:27:08 gpu-225 rtkit-daemon[2105]: Supervising 4 threads of 1 processes of 1 users.
+Nov  4 22:27:08 gpu-225 kernel: [   41.302373] irq_time: 41302370980,41302391238
+Nov  4 22:27:08 gpu-225 kernel: [   41.346422] 41346420354
+Nov  4 22:27:08 gpu-225 kernel: [   41.502534] irq_time: 41502532249,41502552183
+Nov  4 22:27:08 gpu-225 kernel: [   41.546608] 41546606340
+Nov  4 22:27:09 gpu-225 kernel: [   41.702694] irq_time: 41702692068,41702711910
+Nov  4 22:27:09 gpu-225 kernel: [   41.746790] 41746788393
+Nov  4 22:27:09 gpu-225 kernel: [   41.902854] irq_time: 41902851948,41902871725
+Nov  4 22:27:09 gpu-225 kernel: [   41.936126] 41936124028
+Nov  4 22:27:09 gpu-225 kernel: [   41.936414] 41936414538
+Nov  4 22:27:09 gpu-225 kernel: [   41.942859] 41942857718
+Nov  4 22:27:09 gpu-225 kernel: [   41.946972] 41946970029
+Nov  4 22:27:09 gpu-225 kernel: [   41.947916] 41947914543
+Nov  4 22:27:09 gpu-225 kernel: [   41.968745] 41968743832
+Nov  4 22:27:09 gpu-225 kernel: [   41.969982] 41969980702
+Nov  4 22:27:09 gpu-225 kernel: [   41.971749] 41971748912
+Nov  4 22:27:09 gpu-225 kernel: [   41.972039] 41972037388
+Nov  4 22:27:09 gpu-225 kernel: [   42.056161] irq_time: 42056159595,42056180127
+Nov  4 22:27:09 gpu-225 kernel: [   42.058596] irq_time: 42058594257,42058614152
+Nov  4 22:27:09 gpu-225 kernel: [   42.064452] irq_time: 42064450640,42064470561
+Nov  4 22:27:09 gpu-225 kernel: [   42.079080] irq_time: 42079078448,42079098370
+Nov  4 22:27:09 gpu-225 kernel: [   42.103014] irq_time: 42103012068,42103031845
+Nov  4 22:27:09 gpu-225 rtkit-daemon[2105]: Successfully made thread 2130 of process 2103 (n/a) owned by '112' RT at priority 5.
+Nov  4 22:27:09 gpu-225 rtkit-daemon[2105]: Supervising 5 threads of 1 processes of 1 users.
+Nov  4 22:27:09 gpu-225 kernel: [   42.147118] 42147118082
+Nov  4 22:27:09 gpu-225 rtkit-daemon[2105]: Successfully made thread 2132 of process 2132 (n/a) owned by '112' high priority at nice level -11.
+Nov  4 22:27:09 gpu-225 rtkit-daemon[2105]: Supervising 6 threads of 2 processes of 1 users.
+Nov  4 22:27:09 gpu-225 pulseaudio[2132]: [pulseaudio] pid.c: Daemon already running.
+Nov  4 22:27:09 gpu-225 kernel: [   42.303177] irq_time: 42303173274,42303204822
+Nov  4 22:27:09 gpu-225 kernel: [   42.347296] 42347293975
+Nov  4 22:27:09 gpu-225 kernel: [   42.503327] irq_time: 42503325778,42503352620
+Nov  4 22:27:09 gpu-225 kernel: [   42.547461] 42547460548
+Nov  4 22:27:10 gpu-225 kernel: [   42.703490] irq_time: 42703488982,42703510912
+Nov  4 22:27:10 gpu-225 kernel: [   42.747644] 42747642380
+Nov  4 22:27:10 gpu-225 kernel: [   42.903650] irq_time: 42903648175,42903670231
+Nov  4 22:27:10 gpu-225 kernel: [   42.936645] 42936642929
+Nov  4 22:27:10 gpu-225 kernel: [   42.943376] 42943374415
+Nov  4 22:27:10 gpu-225 kernel: [   42.947843] 42947841760
+Nov  4 22:27:10 gpu-225 kernel: [   42.948453] 42948451739
+Nov  4 22:27:10 gpu-225 kernel: [   43.056655] irq_time: 43056653641,43056673488
+Nov  4 22:27:10 gpu-225 kernel: [   43.059087] irq_time: 43059085442,43059105274
+Nov  4 22:27:10 gpu-225 kernel: [   43.064950] irq_time: 43064948323,43064968001
+Nov  4 22:27:10 gpu-225 kernel: [   43.079596] irq_time: 43079594675,43079614594
+Nov  4 22:27:10 gpu-225 kernel: [   43.103815] irq_time: 43103813873,43103833447
+Nov  4 22:27:10 gpu-225 kernel: [   43.148027] 43148025016
+Nov  4 22:27:10 gpu-225 kernel: [   43.303976] irq_time: 43303974508,43303994222
+Nov  4 22:27:10 gpu-225 kernel: [   43.348212] 43348210746
+Nov  4 22:27:10 gpu-225 kernel: [   43.504137] irq_time: 43504135701,43504155781
+Nov  4 22:27:10 gpu-225 kernel: [   43.548398] 43548396542
+Nov  4 22:27:11 gpu-225 kernel: [   43.704297] irq_time: 43704295437,43704315189
+Nov  4 22:27:11 gpu-225 kernel: [   43.748585] 43748582969
+Nov  4 22:27:11 gpu-225 kernel: [   43.790429] irq_time: 43790427402,43790447683
+Nov  4 22:27:11 gpu-225 kernel: [   43.791062] irq_time: 43791062051,43791067796
+Nov  4 22:27:11 gpu-225 kernel: [   43.791839] irq_time: 43791837034,43791856833
+Nov  4 22:27:11 gpu-225 kernel: [   43.792467] irq_time: 43792465147,43792485964
+Nov  4 22:27:11 gpu-225 kernel: [   43.796772] irq_time: 43796770003,43796790865
+Nov  4 22:27:11 gpu-225 kernel: [   43.904458] irq_time: 43904456726,43904477387
+Nov  4 22:27:11 gpu-225 kernel: [   43.937168] 43937166330
+Nov  4 22:27:11 gpu-225 kernel: [   43.943896] 43943894518
+Nov  4 22:27:11 gpu-225 kernel: [   43.948768] 43948766726
+Nov  4 22:27:11 gpu-225 kernel: [   43.948992] 43948992034
+Nov  4 22:27:11 gpu-225 kernel: [   44.057154] irq_time: 44057152606,44057173510
+Nov  4 22:27:11 gpu-225 kernel: [   44.059586] irq_time: 44059584367,44059605023
+Nov  4 22:27:11 gpu-225 kernel: [   44.065458] irq_time: 44065456344,44065477046
+Nov  4 22:27:11 gpu-225 kernel: [   44.080121] irq_time: 44080118905,44080139780
+Nov  4 22:27:11 gpu-225 kernel: [   44.104622] irq_time: 44104620020,44104640576
+Nov  4 22:27:11 gpu-225 kernel: [   44.148952] 44148950631
+Nov  4 22:27:11 gpu-225 kernel: [   44.304785] irq_time: 44304783437,44304804031
+Nov  4 22:27:11 gpu-225 kernel: [   44.349137] 44349134980
+Nov  4 22:27:11 gpu-225 kernel: [   44.504948] irq_time: 44504946661,44504967453
+Nov  4 22:27:11 gpu-225 kernel: [   44.549322] 44549320440
+Nov  4 22:27:12 gpu-225 kernel: [   44.705112] irq_time: 44705110574,44705131158
+Nov  4 22:27:12 gpu-225 kernel: [   44.749508] 44749506122
+Nov  4 22:27:12 gpu-225 kernel: [   44.905275] irq_time: 44905273983,44905294708
+Nov  4 22:27:12 gpu-225 kernel: [   44.937688] 44937686334
+Nov  4 22:27:12 gpu-225 kernel: [   44.944416] 44944414093
+Nov  4 22:27:12 gpu-225 kernel: [   44.949506] 44949504491
+Nov  4 22:27:12 gpu-225 kernel: [   44.949662] 44949661999
+Nov  4 22:27:12 gpu-225 kernel: [   45.057655] irq_time: 45057653402,45057674131
+Nov  4 22:27:12 gpu-225 kernel: [   45.060087] irq_time: 45060085763,45060106534
+Nov  4 22:27:12 gpu-225 kernel: [   45.065968] irq_time: 45065966579,45065987213
+Nov  4 22:27:12 gpu-225 kernel: [   45.080644] irq_time: 45080642461,45080663166
+Nov  4 22:27:12 gpu-225 kernel: [   45.105440] irq_time: 45105438355,45105458946
+Nov  4 22:27:12 gpu-225 kernel: [   45.149826] 45149824232
+Nov  4 22:27:12 gpu-225 kernel: [   45.305603] irq_time: 45305601547,45305622140
+Nov  4 22:27:12 gpu-225 kernel: [   45.350011] 45350009599
+Nov  4 22:27:12 gpu-225 kernel: [   45.505767] irq_time: 45505765024,45505785738
+Nov  4 22:27:12 gpu-225 kernel: [   45.550196] 45550194672
+Nov  4 22:27:13 gpu-225 kernel: [   45.705930] irq_time: 45705928826,45705949440
+Nov  4 22:27:13 gpu-225 kernel: [   45.750382] 45750380222
+Nov  4 22:27:13 gpu-225 kernel: [   45.906094] irq_time: 45906092577,45906113308
+Nov  4 22:27:13 gpu-225 kernel: [   45.938208] 45938206855
+Nov  4 22:27:13 gpu-225 kernel: [   45.944935] 45944933561
+Nov  4 22:27:13 gpu-225 kernel: [   45.950045] 45950043339
+Nov  4 22:27:13 gpu-225 kernel: [   45.950566] 45950564159
+Nov  4 22:27:13 gpu-225 kernel: [   46.058156] irq_time: 46058153906,46058174840
+Nov  4 22:27:13 gpu-225 kernel: [   46.060589] irq_time: 46060587176,46060607853
+Nov  4 22:27:13 gpu-225 kernel: [   46.066478] irq_time: 46066476709,46066497350
+Nov  4 22:27:13 gpu-225 kernel: [   46.081167] irq_time: 46081165917,46081186642
+Nov  4 22:27:13 gpu-225 kernel: [   46.106258] irq_time: 46106256004,46106276690
+Nov  4 22:27:13 gpu-225 kernel: [   46.150750] 46150748383
+Nov  4 22:27:13 gpu-225 kernel: [   46.306421] irq_time: 46306419458,46306440094
+Nov  4 22:27:13 gpu-225 kernel: [   46.350933] 46350931539
+Nov  4 22:27:13 gpu-225 kernel: [   46.469912] irq_time: 46469910929,46469931710
+Nov  4 22:27:13 gpu-225 kernel: [   46.470718] irq_time: 46470716282,46470737146
+Nov  4 22:27:13 gpu-225 kernel: [   46.472103] irq_time: 46472101555,46472122459
+Nov  4 22:27:13 gpu-225 kernel: [   46.476029] irq_time: 46476027355,46476048097
+Nov  4 22:27:13 gpu-225 kernel: [   46.506584] irq_time: 46506582905,46506603619
+Nov  4 22:27:13 gpu-225 kernel: [   46.551118] 46551116021
+Nov  4 22:27:14 gpu-225 kernel: [   46.706748] irq_time: 46706746144,46706766833
+Nov  4 22:27:14 gpu-225 kernel: [   46.751303] 46751301789
+Nov  4 22:27:14 gpu-225 kernel: [   46.906911] irq_time: 46906909483,46906930147
+Nov  4 22:27:14 gpu-225 kernel: [   46.938729] 46938727277
+Nov  4 22:27:14 gpu-225 kernel: [   46.945455] 46945453700
+Nov  4 22:27:14 gpu-225 kernel: [   46.950584] 46950582561
+Nov  4 22:27:14 gpu-225 kernel: [   46.951487] 46951485704
+Nov  4 22:27:14 gpu-225 kernel: [   47.058656] irq_time: 47058654589,47058675522
+Nov  4 22:27:14 gpu-225 kernel: [   47.061090] irq_time: 47061088652,47061109393
+Nov  4 22:27:14 gpu-225 kernel: [   47.066988] irq_time: 47066986602,47067007354
+Nov  4 22:27:14 gpu-225 kernel: [   47.081691] irq_time: 47081689098,47081709804
+Nov  4 22:27:14 gpu-225 kernel: [   47.107074] irq_time: 47107072827,47107093531
+Nov  4 22:27:14 gpu-225 kernel: [   47.151671] 47151669777
+Nov  4 22:27:14 gpu-225 kernel: [   47.307210] irq_time: 47307209032,47307225540
+Nov  4 22:27:14 gpu-225 kernel: [   47.351827] 47351825685
+Nov  4 22:27:14 gpu-225 kernel: [   47.507366] irq_time: 47507364149,47507384810
+Nov  4 22:27:14 gpu-225 kernel: [   47.552006] 47552003943
+Nov  4 22:27:15 gpu-225 kernel: [   47.707528] irq_time: 47707526889,47707548731
+Nov  4 22:27:15 gpu-225 kernel: [   47.752191] 47752189254
+Nov  4 22:27:15 gpu-225 kernel: [   47.907694] irq_time: 47907692334,47907712998
+Nov  4 22:27:15 gpu-225 kernel: [   47.939249] 47939247565
+Nov  4 22:27:15 gpu-225 kernel: [   47.945976] 47945974323
+Nov  4 22:27:15 gpu-225 kernel: [   47.951121] 47951119564
+Nov  4 22:27:15 gpu-225 kernel: [   47.952375] 47952373576
+Nov  4 22:27:15 gpu-225 kernel: [   48.059157] irq_time: 48059155341,48059176338
+Nov  4 22:27:15 gpu-225 kernel: [   48.061592] irq_time: 48061590439,48061611261
+Nov  4 22:27:15 gpu-225 kernel: [   48.067498] irq_time: 48067496973,48067517667
+Nov  4 22:27:15 gpu-225 kernel: [   48.082214] irq_time: 48082212240,48082233511
+Nov  4 22:27:15 gpu-225 kernel: [   48.107857] irq_time: 48107855856,48107877026
+Nov  4 22:27:15 gpu-225 kernel: [   48.152559] 48152557564
+Nov  4 22:27:15 gpu-225 kernel: [   48.307995] irq_time: 48307993585,48308009238
+Nov  4 22:27:15 gpu-225 kernel: [   48.352717] 48352715616
+Nov  4 22:27:15 gpu-225 kernel: [   48.508123] irq_time: 48508122095,48508139366
+Nov  4 22:27:15 gpu-225 kernel: [   48.552862] 48552861465
+Nov  4 22:27:16 gpu-225 kernel: [   48.708278] irq_time: 48708276266,48708296955
+Nov  4 22:27:16 gpu-225 kernel: [   48.753036] 48753034741
+Nov  4 22:27:16 gpu-225 kernel: [   48.908441] irq_time: 48908439755,48908460465
+Nov  4 22:27:16 gpu-225 kernel: [   48.939770] 48939768800
+Nov  4 22:27:16 gpu-225 kernel: [   48.946496] 48946494518
+Nov  4 22:27:16 gpu-225 kernel: [   48.951660] 48951658379
+Nov  4 22:27:16 gpu-225 kernel: [   48.953220] 48953218769
+Nov  4 22:27:16 gpu-225 kernel: [   49.059658] irq_time: 49059656140,49059677055
+Nov  4 22:27:16 gpu-225 kernel: [   49.062092] irq_time: 49062090629,49062111463
+Nov  4 22:27:16 gpu-225 kernel: [   49.068009] irq_time: 49068007840,49068028594
+Nov  4 22:27:16 gpu-225 kernel: [   49.082740] irq_time: 49082738955,49082759747
+Nov  4 22:27:16 gpu-225 kernel: [   49.108605] irq_time: 49108603333,49108624032
+Nov  4 22:27:16 gpu-225 kernel: [   49.153405] 49153403752
+Nov  4 22:27:16 gpu-225 kernel: [   49.308768] irq_time: 49308766850,49308787634
+Nov  4 22:27:16 gpu-225 kernel: [   49.353592] 49353589917
+Nov  4 22:27:16 gpu-225 kernel: [   49.508932] irq_time: 49508931001,49508951660
+Nov  4 22:27:16 gpu-225 kernel: [   49.553777] 49553775378
+Nov  4 22:27:17 gpu-225 kernel: [   49.709096] irq_time: 49709094441,49709115155
+Nov  4 22:27:17 gpu-225 kernel: [   49.753962] 49753960552
+Nov  4 22:27:17 gpu-225 kernel: [   49.909260] irq_time: 49909258058,49909278757
+Nov  4 22:27:17 gpu-225 kernel: [   49.940291] 49940289192
+Nov  4 22:27:17 gpu-225 kernel: [   49.947016] 49947014283
+Nov  4 22:27:17 gpu-225 kernel: [   49.952198] 49952196881
+Nov  4 22:27:17 gpu-225 kernel: [   49.954146] 49954144352
+Nov  4 22:27:17 gpu-225 NetworkManager[1466]: <info> (eth0): IP6 addrconf timed out or failed.
+Nov  4 22:27:17 gpu-225 NetworkManager[1466]: <info> Activation (eth0) Stage 4 of 5 (IPv6 Configure Timeout) scheduled...
+Nov  4 22:27:17 gpu-225 NetworkManager[1466]: <info> Activation (eth0) Stage 4 of 5 (IPv6 Configure Timeout) started...
+Nov  4 22:27:17 gpu-225 NetworkManager[1466]: <info> Activation (eth0) Stage 4 of 5 (IPv6 Configure Timeout) complete.
+Nov  4 22:27:17 gpu-225 kernel: [   50.060158] irq_time: 50060156714,50060177556
+Nov  4 22:27:17 gpu-225 kernel: [   50.062592] irq_time: 50062590701,50062611626
+Nov  4 22:27:17 gpu-225 kernel: [   50.068520] irq_time: 50068518308,50068539107
+Nov  4 22:27:17 gpu-225 kernel: [   50.083263] irq_time: 50083260982,50083281957
+Nov  4 22:27:17 gpu-225 kernel: [   50.109423] irq_time: 50109421475,50109442109
+Nov  4 22:27:17 gpu-225 kernel: [   50.154331] 50154329403
+Nov  4 22:27:17 gpu-225 kernel: [   50.309587] irq_time: 50309585145,50309605814
+Nov  4 22:27:17 gpu-225 kernel: [   50.354517] 50354515228
+Nov  4 22:27:17 gpu-225 kernel: [   50.509751] irq_time: 50509749592,50509770364
+Nov  4 22:27:17 gpu-225 kernel: [   50.554703] 50554700923
+Nov  4 22:27:18 gpu-225 kernel: [   50.709915] irq_time: 50709913352,50709933996
+Nov  4 22:27:18 gpu-225 kernel: [   50.754888] 50754886378
+Nov  4 22:27:18 gpu-225 kernel: [   50.910078] irq_time: 50910076777,50910097593
+Nov  4 22:27:18 gpu-225 kernel: [   50.940811] 50940809329
+Nov  4 22:27:18 gpu-225 kernel: [   50.947536] 50947533942
+Nov  4 22:27:18 gpu-225 kernel: [   50.952735] 50952733698
+Nov  4 22:27:18 gpu-225 kernel: [   50.955073] 50955071248
+Nov  4 22:27:18 gpu-225 kernel: [   51.060659] irq_time: 51060657388,51060678348
+Nov  4 22:27:18 gpu-225 kernel: [   51.063093] irq_time: 51063090909,51063111786
+Nov  4 22:27:18 gpu-225 kernel: [   51.069031] irq_time: 51069029177,51069049929
+Nov  4 22:27:18 gpu-225 kernel: [   51.083802] irq_time: 51083800061,51083821026
+Nov  4 22:27:18 gpu-225 kernel: [   51.110242] irq_time: 51110240352,51110261083
+Nov  4 22:27:18 gpu-225 kernel: [   51.155258] 51155256454
+Nov  4 22:27:18 gpu-225 kernel: [   51.310405] irq_time: 51310403941,51310424645
+Nov  4 22:27:18 gpu-225 kernel: [   51.355444] 51355442145
+Nov  4 22:27:18 gpu-225 kernel: [   51.510569] irq_time: 51510567674,51510588473
+Nov  4 22:27:18 gpu-225 kernel: [   51.555629] 51555627564
+Nov  4 22:27:19 gpu-225 kernel: [   51.710733] irq_time: 51710731720,51710752494
+Nov  4 22:27:19 gpu-225 kernel: [   51.755814] 51755812354
+Nov  4 22:27:19 gpu-225 kernel: [   51.910897] irq_time: 51910895415,51910916177
+Nov  4 22:27:19 gpu-225 kernel: [   51.941331] 51941329712
+Nov  4 22:27:19 gpu-225 kernel: [   51.948056] 51948053996
+Nov  4 22:27:19 gpu-225 kernel: [   51.953272] 51953270153
+Nov  4 22:27:19 gpu-225 kernel: [   51.955998] 51955996427
+Nov  4 22:27:19 gpu-225 kernel: [   52.061160] irq_time: 52061158408,52061181024
+Nov  4 22:27:19 gpu-225 kernel: [   52.063593] irq_time: 52063591132,52063611961
+Nov  4 22:27:19 gpu-225 kernel: [   52.069541] irq_time: 52069539312,52069560071
+Nov  4 22:27:19 gpu-225 kernel: [   52.084324] irq_time: 52084322045,52084342990
+Nov  4 22:27:19 gpu-225 kernel: [   52.111062] irq_time: 52111060030,52111080857
+Nov  4 22:27:19 gpu-225 kernel: [   52.156182] 52156180247
+Nov  4 22:27:19 gpu-225 kernel: [   52.311225] irq_time: 52311223978,52311244758
+Nov  4 22:27:19 gpu-225 kernel: [   52.356367] 52356365418
+Nov  4 22:27:19 gpu-225 kernel: [   52.504073] audit_printk_skb: 138 callbacks suppressed
+Nov  4 22:27:19 gpu-225 kernel: [   52.504075] audit: type=1400 audit(1415107639.835:70): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=2199 comm="apparmor_parser"
+Nov  4 22:27:19 gpu-225 kernel: [   52.504078] audit: type=1400 audit(1415107639.835:71): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=2199 comm="apparmor_parser"
+Nov  4 22:27:19 gpu-225 kernel: [   52.504347] audit: type=1400 audit(1415107639.835:72): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=2199 comm="apparmor_parser"
+Nov  4 22:27:19 gpu-225 kernel: [   52.511388] irq_time: 52511386653,52511417798
+Nov  4 22:27:19 gpu-225 kernel: [   52.556553] 52556551409
+Nov  4 22:27:20 gpu-225 kernel: [   52.711569] irq_time: 52711567254,52711587981
+Nov  4 22:27:20 gpu-225 kernel: [   52.756751] 52756749530
+Nov  4 22:27:20 gpu-225 kernel: [   52.911733] irq_time: 52911731596,52911752381
+Nov  4 22:27:20 gpu-225 kernel: [   52.941851] 52941849729
+Nov  4 22:27:20 gpu-225 kernel: [   52.948575] 52948573787
+Nov  4 22:27:20 gpu-225 kernel: [   52.953809] 52953807547
+Nov  4 22:27:20 gpu-225 kernel: [   52.956944] 52956942791
+Nov  4 22:27:20 gpu-225 kernel: [   53.061666] irq_time: 53061664531,53061687163
+Nov  4 22:27:20 gpu-225 kernel: [   53.064094] irq_time: 53064092439,53064113753
+Nov  4 22:27:20 gpu-225 kernel: [   53.070050] irq_time: 53070048301,53070069340
+Nov  4 22:27:20 gpu-225 kernel: [   53.084846] irq_time: 53084844669,53084865634
+Nov  4 22:27:20 gpu-225 kernel: [   53.111897] irq_time: 53111895397,53111916532
+Nov  4 22:27:20 gpu-225 kernel: [   53.157130] 53157128038
+Nov  4 22:27:20 gpu-225 kernel: [   53.312061] irq_time: 53312059383,53312080224
+Nov  4 22:27:20 gpu-225 kernel: [   53.357325] 53357323288
+Nov  4 22:27:20 gpu-225 kernel: [   53.512225] irq_time: 53512223973,53512245206
+Nov  4 22:27:20 gpu-225 kernel: [   53.557520] 53557518871
+Nov  4 22:27:21 gpu-225 kernel: [   53.712364] irq_time: 53712362535,53712383496
+Nov  4 22:27:21 gpu-225 kernel: [   53.757705] 53757703493
+Nov  4 22:27:21 gpu-225 kernel: [   53.912523] irq_time: 53912521820,53912542747
+Nov  4 22:27:21 gpu-225 kernel: [   53.942373] 53942371407
+Nov  4 22:27:21 gpu-225 kernel: [   53.949095] 53949093541
+Nov  4 22:27:21 gpu-225 kernel: [   53.954346] 53954344440
+Nov  4 22:27:21 gpu-225 kernel: [   53.957890] 53957888095
+Nov  4 22:27:21 gpu-225 kernel: [   54.062171] irq_time: 54062168945,54062190076
+Nov  4 22:27:21 gpu-225 kernel: [   54.064595] irq_time: 54064593500,54064614472
+Nov  4 22:27:21 gpu-225 kernel: [   54.070556] irq_time: 54070554766,54070575633
+Nov  4 22:27:21 gpu-225 kernel: [   54.085384] irq_time: 54085382462,54085403279
+Nov  4 22:27:21 gpu-225 kernel: [   54.112688] irq_time: 54112686001,54112714985
+Nov  4 22:27:21 gpu-225 kernel: [   54.158074] 54158072572
+Nov  4 22:27:21 gpu-225 kernel: [   54.312859] irq_time: 54312857718,54312878357
+Nov  4 22:27:21 gpu-225 kernel: [   54.358260] 54358258041
+Nov  4 22:27:21 gpu-225 kernel: [   54.513023] irq_time: 54513021709,54513042471
+Nov  4 22:27:21 gpu-225 kernel: [   54.558446] 54558444351
+Nov  4 22:27:22 gpu-225 kernel: [   54.713187] irq_time: 54713186036,54713206758
+Nov  4 22:27:22 gpu-225 kernel: [   54.758631] 54758629630
+Nov  4 22:27:22 gpu-225 kernel: [   54.913351] irq_time: 54913349744,54913370462
+Nov  4 22:27:22 gpu-225 kernel: [   54.942893] 54942891026
+Nov  4 22:27:22 gpu-225 kernel: [   54.949616] 54949614367
+Nov  4 22:27:22 gpu-225 kernel: [   54.954883] 54954881477
+Nov  4 22:27:22 gpu-225 kernel: [   54.958816] 54958814841
+Nov  4 22:27:22 gpu-225 kernel: [   55.062673] irq_time: 55062671640,55062692494
+Nov  4 22:27:22 gpu-225 kernel: [   55.065095] irq_time: 55065093847,55065114740
+Nov  4 22:27:22 gpu-225 kernel: [   55.071067] irq_time: 55071065552,55071086469
+Nov  4 22:27:22 gpu-225 kernel: [   55.085908] irq_time: 55085906668,55085927374
+Nov  4 22:27:22 gpu-225 kernel: [   55.113515] irq_time: 55113513441,55113539587
+Nov  4 22:27:22 gpu-225 kernel: [   55.159002] 55159000383
+Nov  4 22:27:22 gpu-225 kernel: [   55.313684] irq_time: 55313682353,55313703097
+Nov  4 22:27:22 gpu-225 kernel: [   55.359187] 55359185188
+Nov  4 22:27:22 gpu-225 kernel: [   55.513848] irq_time: 55513846168,55513866935
+Nov  4 22:27:22 gpu-225 kernel: [   55.559372] 55559370088
+Nov  4 22:27:23 gpu-225 kernel: [   55.714013] irq_time: 55714011711,55714032385
+Nov  4 22:27:23 gpu-225 kernel: [   55.759557] 55759555425
+Nov  4 22:27:23 gpu-225 kernel: [   55.914177] irq_time: 55914175549,55914196298
+Nov  4 22:27:23 gpu-225 kernel: [   55.943413] 55943410912
+Nov  4 22:27:23 gpu-225 kernel: [   55.950136] 55950134008
+Nov  4 22:27:23 gpu-225 kernel: [   55.955430] 55955428798
+Nov  4 22:27:23 gpu-225 kernel: [   55.959743] 55959741033
+Nov  4 22:27:23 gpu-225 kernel: [   56.063176] irq_time: 56063174177,56063194920
+Nov  4 22:27:23 gpu-225 kernel: [   56.065596] irq_time: 56065594055,56065614947
+Nov  4 22:27:23 gpu-225 kernel: [   56.071575] irq_time: 56071573804,56071594611
+Nov  4 22:27:23 gpu-225 kernel: [   56.086432] irq_time: 56086430088,56086450837
+Nov  4 22:27:23 gpu-225 kernel: [   56.114341] irq_time: 56114339182,56114359866
+Nov  4 22:27:23 gpu-225 kernel: [   56.159926] 56159924589
+Nov  4 22:27:23 gpu-225 kernel: [   56.314504] irq_time: 56314502754,56314523456
+Nov  4 22:27:23 gpu-225 kernel: [   56.360112] 56360110051
+Nov  4 22:27:23 gpu-225 kernel: [   56.514668] irq_time: 56514666454,56514687168
+Nov  4 22:27:23 gpu-225 kernel: [   56.560297] 56560295496
+Nov  4 22:27:24 gpu-225 kernel: [   56.714832] irq_time: 56714830294,56714850921
+Nov  4 22:27:24 gpu-225 kernel: [   56.760483] 56760481865
+Nov  4 22:27:24 gpu-225 kernel: [   56.914996] irq_time: 56914993987,56915014669
+Nov  4 22:27:24 gpu-225 kernel: [   56.943933] 56943930973
+Nov  4 22:27:24 gpu-225 kernel: [   56.950656] 56950654686
+Nov  4 22:27:24 gpu-225 kernel: [   56.955967] 56955965663
+Nov  4 22:27:24 gpu-225 kernel: [   56.960669] 56960667041
+Nov  4 22:27:24 gpu-225 kernel: [   57.063678] irq_time: 57063676301,57063697061
+Nov  4 22:27:24 gpu-225 kernel: [   57.066085] irq_time: 57066084212,57066094741
+Nov  4 22:27:24 gpu-225 kernel: [   57.072084] irq_time: 57072082322,57072103033
+Nov  4 22:27:24 gpu-225 kernel: [   57.086956] irq_time: 57086953958,57086974802
+Nov  4 22:27:24 gpu-225 kernel: [   57.115160] irq_time: 57115158477,57115179168
+Nov  4 22:27:24 gpu-225 kernel: [   57.160854] 57160852132
+Nov  4 22:27:24 gpu-225 kernel: [   57.315324] irq_time: 57315322064,57315342765
+Nov  4 22:27:24 gpu-225 kernel: [   57.361039] 57361037396
+Nov  4 22:27:24 gpu-225 kernel: [   57.515487] irq_time: 57515485852,57515506556
+Nov  4 22:27:24 gpu-225 kernel: [   57.561225] 57561223079
+Nov  4 22:27:25 gpu-225 kernel: [   57.715651] irq_time: 57715649740,57715670419
+Nov  4 22:27:25 gpu-225 kernel: [   57.761410] 57761408370
+Nov  4 22:27:25 gpu-225 kernel: [   57.915816] irq_time: 57915814049,57915834826
+Nov  4 22:27:25 gpu-225 kernel: [   57.944452] 57944450739
+Nov  4 22:27:25 gpu-225 kernel: [   57.951176] 57951174640
+Nov  4 22:27:25 gpu-225 kernel: [   57.956504] 57956502674
+Nov  4 22:27:25 gpu-225 kernel: [   57.961596] 57961594003
+Nov  4 22:27:25 gpu-225 kernel: [   58.064180] irq_time: 58064178414,58064199123
+Nov  4 22:27:25 gpu-225 kernel: [   58.066564] irq_time: 58066562821,58066583704
+Nov  4 22:27:25 gpu-225 kernel: [   58.072592] irq_time: 58072589992,58072610681
+Nov  4 22:27:25 gpu-225 kernel: [   58.087479] irq_time: 58087477622,58087498501
+Nov  4 22:27:25 gpu-225 kernel: [   58.115979] irq_time: 58115977815,58115998464
+Nov  4 22:27:25 gpu-225 kernel: [   58.161781] 58161779414
+Nov  4 22:27:25 gpu-225 kernel: [   58.316143] irq_time: 58316141495,58316162168
+Nov  4 22:27:25 gpu-225 kernel: [   58.361967] 58361965348
+Nov  4 22:27:25 gpu-225 kernel: [   58.516307] irq_time: 58516305483,58516326212
+Nov  4 22:27:25 gpu-225 kernel: [   58.562152] 58562150860
+Nov  4 22:27:26 gpu-225 kernel: [   58.716472] irq_time: 58716470409,58716491058
+Nov  4 22:27:26 gpu-225 kernel: [   58.762338] 58762336244
+Nov  4 22:27:26 gpu-225 kernel: [   58.916636] irq_time: 58916634234,58916654881
+Nov  4 22:27:26 gpu-225 kernel: [   58.944974] 58944972727
+Nov  4 22:27:26 gpu-225 kernel: [   58.951695] 58951693614
+Nov  4 22:27:26 gpu-225 kernel: [   58.957045] 58957043324
+Nov  4 22:27:26 gpu-225 kernel: [   58.962522] 58962520378
+Nov  4 22:27:26 gpu-225 kernel: [   59.064681] irq_time: 59064679552,59064700830
+Nov  4 22:27:26 gpu-225 kernel: [   59.067061] irq_time: 59067060774,59067071749
+Nov  4 22:27:26 gpu-225 kernel: [   59.073094] irq_time: 59073093650,59073104562
+Nov  4 22:27:26 gpu-225 kernel: [   59.087992] irq_time: 59087991281,59088002228
+Nov  4 22:27:26 gpu-225 kernel: [   59.116795] irq_time: 59116794463,59116805304
+Nov  4 22:27:26 gpu-225 kernel: [   59.162695] 59162694820
+Nov  4 22:27:26 gpu-225 dbus[1293]: [system] Activating service name='org.freedesktop.ConsoleKit' (using servicehelper)
+Nov  4 22:27:26 gpu-225 dbus[1293]: [system] Successfully activated service 'org.freedesktop.ConsoleKit'
+Nov  4 22:27:26 gpu-225 kernel: [   59.316908] irq_time: 59316907050,59316927113
+Nov  4 22:27:26 gpu-225 kernel: [   59.362824] 59362823764
+Nov  4 22:27:26 gpu-225 kernel: [   59.517059] irq_time: 59517057966,59517077958
+Nov  4 22:27:26 gpu-225 kernel: [   59.562979] 59562978948
+Nov  4 22:27:27 gpu-225 kernel: [   59.717216] irq_time: 59717214053,59717246519
+Nov  4 22:27:27 gpu-225 kernel: [   59.763152] 59763150122
+Nov  4 22:27:27 gpu-225 kernel: [   59.917399] irq_time: 59917397093,59917429489
+Nov  4 22:27:27 gpu-225 kernel: [   59.945505] 59945504848
+Nov  4 22:27:27 gpu-225 kernel: [   59.952214] 59952212247
+Nov  4 22:27:27 gpu-225 kernel: [   59.957582] 59957580342
+Nov  4 22:27:27 gpu-225 kernel: [   59.963350] 59963348595
+Nov  4 22:27:27 gpu-225 kernel: [   60.065185] irq_time: 60065183141,60065204357
+Nov  4 22:27:27 gpu-225 kernel: [   60.067542] irq_time: 60067540532,60067561369
+Nov  4 22:27:27 gpu-225 kernel: [   60.073581] irq_time: 60073579041,60073599878
+Nov  4 22:27:27 gpu-225 kernel: [   60.088495] irq_time: 60088493384,60088514266
+Nov  4 22:27:27 gpu-225 kernel: [   60.117580] irq_time: 60117578020,60117598955
+Nov  4 22:27:27 gpu-225 kernel: [   60.163526] 60163525289
+Nov  4 22:27:27 gpu-225 kernel: [   60.317742] irq_time: 60317740121,60317761783
+Nov  4 22:27:27 gpu-225 kernel: [   60.363684] 60363684075
+Nov  4 22:27:27 gpu-225 kernel: [   60.517893] irq_time: 60517892142,60517915714
+Nov  4 22:27:27 gpu-225 kernel: [   60.563864] 60563861494
+Nov  4 22:27:28 gpu-225 kernel: [   60.718050] irq_time: 60718049778,60718062033
+Nov  4 22:27:28 gpu-225 kernel: [   60.764063] 60764061781
+Nov  4 22:27:28 gpu-225 kernel: [   60.918193] irq_time: 60918191408,60918219928
+Nov  4 22:27:28 gpu-225 kernel: [   60.946024] 60946022260
+Nov  4 22:27:28 gpu-225 kernel: [   60.952733] 60952731754
+Nov  4 22:27:28 gpu-225 kernel: [   60.958122] 60958120622
+Nov  4 22:27:28 gpu-225 kernel: [   60.964249] 60964247647
+Nov  4 22:27:28 gpu-225 kernel: [   61.065687] irq_time: 61065684766,61065707578
+Nov  4 22:27:28 gpu-225 kernel: [   61.068042] irq_time: 61068040735,61068061652
+Nov  4 22:27:28 gpu-225 kernel: [   61.074096] irq_time: 61074094443,61074115272
+Nov  4 22:27:28 gpu-225 kernel: [   61.089022] irq_time: 61089020182,61089041021
+Nov  4 22:27:28 gpu-225 kernel: [   61.118368] irq_time: 61118366852,61118387582
+Nov  4 22:27:28 gpu-225 kernel: [   61.164433] 61164431906
+Nov  4 22:27:28 gpu-225 kernel: [   61.318527] irq_time: 61318526626,61318542995
+Nov  4 22:27:28 gpu-225 kernel: [   61.364609] 61364608118
+Nov  4 22:27:28 gpu-225 kernel: [   61.518680] irq_time: 61518678811,61518703024
+Nov  4 22:27:28 gpu-225 kernel: [   61.564783] 61564780917
+Nov  4 22:27:29 gpu-225 kernel: [   61.718857] irq_time: 61718855288,61718880788
+Nov  4 22:27:29 gpu-225 kernel: [   61.764980] 61764978791
+Nov  4 22:27:29 gpu-225 kernel: [   61.919027] irq_time: 61919025917,61919046606
+Nov  4 22:27:29 gpu-225 kernel: [   61.946541] 61946539720
+Nov  4 22:27:29 gpu-225 kernel: [   61.953253] 61953251651
+Nov  4 22:27:29 gpu-225 kernel: [   61.958660] 61958658775
+Nov  4 22:27:29 gpu-225 kernel: [   61.965175] 61965173649
+Nov  4 22:27:29 gpu-225 kernel: [   62.066192] irq_time: 62066190891,62066211791
+Nov  4 22:27:29 gpu-225 kernel: [   62.068544] irq_time: 62068542482,62068563281
+Nov  4 22:27:29 gpu-225 kernel: [   62.074606] irq_time: 62074604856,62074625786
+Nov  4 22:27:29 gpu-225 kernel: [   62.089551] irq_time: 62089549057,62089569962
+Nov  4 22:27:29 gpu-225 kernel: [   62.119191] irq_time: 62119189193,62119209920
+Nov  4 22:27:29 gpu-225 kernel: [   62.165361] 62165359494
+Nov  4 22:27:29 gpu-225 kernel: [   62.319354] irq_time: 62319352773,62319373427
+Nov  4 22:27:29 gpu-225 kernel: [   62.365547] 62365545006
+Nov  4 22:27:29 gpu-225 kernel: [   62.519518] irq_time: 62519516236,62519537153
+Nov  4 22:27:29 gpu-225 kernel: [   62.565732] 62565730418
+Nov  4 22:27:30 gpu-225 kernel: [   62.719682] irq_time: 62719680524,62719701154
+Nov  4 22:27:30 gpu-225 kernel: [   62.765916] 62765914807
+Nov  4 22:27:30 gpu-225 kernel: [   62.919846] irq_time: 62919844069,62919864848
+Nov  4 22:27:30 gpu-225 kernel: [   62.947062] 62947060469
+Nov  4 22:27:30 gpu-225 kernel: [   62.953773] 62953771248
+Nov  4 22:27:30 gpu-225 kernel: [   62.959198] 62959196380
+Nov  4 22:27:30 gpu-225 kernel: [   62.966102] 62966100294
+Nov  4 22:27:30 gpu-225 kernel: [   63.066695] irq_time: 63066693568,63066714327
+Nov  4 22:27:30 gpu-225 kernel: [   63.069046] irq_time: 63069044046,63069064877
+Nov  4 22:27:30 gpu-225 kernel: [   63.075117] irq_time: 63075115467,63075136331
+Nov  4 22:27:30 gpu-225 kernel: [   63.090077] irq_time: 63090075549,63090096444
+Nov  4 22:27:30 gpu-225 kernel: [   63.120009] irq_time: 63120007406,63120028157
+Nov  4 22:27:30 gpu-225 kernel: [   63.166287] 63166285410
+Nov  4 22:27:30 gpu-225 kernel: [   63.320172] irq_time: 63320170866,63320191572
+Nov  4 22:27:30 gpu-225 kernel: [   63.366472] 63366470829
+Nov  4 22:27:30 gpu-225 kernel: [   63.520336] irq_time: 63520334448,63520355242
+Nov  4 22:27:30 gpu-225 kernel: [   63.566645] 63566644845
+Nov  4 22:27:31 gpu-225 kernel: [   63.720500] irq_time: 63720498496,63720519117
+Nov  4 22:27:31 gpu-225 kernel: [   63.766813] 63766811761
+Nov  4 22:27:31 gpu-225 kernel: [   63.920664] irq_time: 63920662197,63920682883
+Nov  4 22:27:31 gpu-225 kernel: [   63.947582] 63947580784
+Nov  4 22:27:31 gpu-225 kernel: [   63.954293] 63954291842
+Nov  4 22:27:31 gpu-225 kernel: [   63.959735] 63959733140
+Nov  4 22:27:31 gpu-225 kernel: [   63.966999] 63966997279
+Nov  4 22:27:31 gpu-225 kernel: [   64.067198] irq_time: 64067196511,64067217283
+Nov  4 22:27:31 gpu-225 kernel: [   64.069547] irq_time: 64069545660,64069566331
+Nov  4 22:27:31 gpu-225 kernel: [   64.075623] irq_time: 64075621676,64075642570
+Nov  4 22:27:31 gpu-225 kernel: [   64.090599] irq_time: 64090597651,64090618576
+Nov  4 22:27:31 gpu-225 kernel: [   64.120828] irq_time: 64120826192,64120846776
+Nov  4 22:27:31 gpu-225 kernel: [   64.167183] 64167181241
+Nov  4 22:27:31 gpu-225 kernel: [   64.320991] irq_time: 64320989850,64321010524
+Nov  4 22:27:31 gpu-225 kernel: [   64.367368] 64367366555
+Nov  4 22:27:31 gpu-225 kernel: [   64.521155] irq_time: 64521153462,64521174131
+Nov  4 22:27:31 gpu-225 kernel: [   64.567553] 64567551501
+Nov  4 22:27:32 gpu-225 kernel: [   64.721319] irq_time: 64721317448,64721340082
+Nov  4 22:27:32 gpu-225 kernel: [   64.767740] 64767738254
+Nov  4 22:27:32 gpu-225 kernel: [   64.921486] irq_time: 64921484304,64921505028
+Nov  4 22:27:32 gpu-225 kernel: [   64.948103] 64948100983
+Nov  4 22:27:32 gpu-225 kernel: [   64.954813] 64954811795
+Nov  4 22:27:32 gpu-225 kernel: [   64.960271] 64960269862
+Nov  4 22:27:32 gpu-225 kernel: [   64.967926] 64967924117
+Nov  4 22:27:32 gpu-225 kernel: [   65.067700] irq_time: 65067698443,65067719263
+Nov  4 22:27:32 gpu-225 kernel: [   65.070049] irq_time: 65070047965,65070068719
+Nov  4 22:27:32 gpu-225 kernel: [   65.076129] irq_time: 65076127895,65076148829
+Nov  4 22:27:32 gpu-225 kernel: [   65.091122] irq_time: 65091120834,65091141626
+Nov  4 22:27:32 gpu-225 kernel: [   65.121650] irq_time: 65121648328,65121669082
+Nov  4 22:27:32 gpu-225 kernel: [   65.168110] 65168108834
+Nov  4 22:27:32 gpu-225 kernel: [   65.321813] irq_time: 65321811958,65321832699
+Nov  4 22:27:32 gpu-225 kernel: [   65.368296] 65368294733
+Nov  4 22:27:32 gpu-225 kernel: [   65.521978] irq_time: 65521976272,65521997043
+Nov  4 22:27:32 gpu-225 kernel: [   65.568482] 65568480157
+Nov  4 22:27:33 gpu-225 kernel: [   65.722142] irq_time: 65722140123,65722163749
+Nov  4 22:27:33 gpu-225 kernel: [   65.768668] 65768666135
+Nov  4 22:27:33 gpu-225 kernel: [   65.922309] irq_time: 65922308002,65922328803
+Nov  4 22:27:33 gpu-225 kernel: [   65.948623] 65948621689
+Nov  4 22:27:33 gpu-225 kernel: [   65.955334] 65955332820
+Nov  4 22:27:33 gpu-225 kernel: [   65.960809] 65960807339
+Nov  4 22:27:33 gpu-225 kernel: [   65.968863] 65968861414
+Nov  4 22:27:33 gpu-225 kernel: [   66.068202] irq_time: 66068200766,66068221473
+Nov  4 22:27:33 gpu-225 kernel: [   66.070560] irq_time: 66070558684,66070579654
+Nov  4 22:27:33 gpu-225 kernel: [   66.076637] irq_time: 66076635146,66076656066
+Nov  4 22:27:33 gpu-225 kernel: [   66.091648] irq_time: 66091646752,66091667561
+Nov  4 22:27:33 gpu-225 kernel: [   66.122474] irq_time: 66122472559,66122493213
+Nov  4 22:27:33 gpu-225 kernel: [   66.169047] 66169045184
+Nov  4 22:27:33 gpu-225 kernel: [   66.322637] irq_time: 66322635868,66322656625
+Nov  4 22:27:33 gpu-225 kernel: [   66.369233] 66369231019
+Nov  4 22:27:33 gpu-225 kernel: [   66.522802] irq_time: 66522800521,66522821175
+Nov  4 22:27:33 gpu-225 kernel: [   66.569418] 66569416354
+Nov  4 22:27:34 gpu-225 kernel: [   66.722966] irq_time: 66722964459,66722985110
+Nov  4 22:27:34 gpu-225 kernel: [   66.769603] 66769601509
+Nov  4 22:27:34 gpu-225 kernel: [   66.923130] irq_time: 66923128013,66923148730
+Nov  4 22:27:34 gpu-225 kernel: [   66.949143] 66949141849
+Nov  4 22:27:34 gpu-225 kernel: [   66.955854] 66955852521
+Nov  4 22:27:34 gpu-225 kernel: [   66.961348] 66961346054
+Nov  4 22:27:34 gpu-225 kernel: [   66.969779] 66969777285
+Nov  4 22:27:34 gpu-225 kernel: [   67.068703] irq_time: 67068701885,67068722681
+Nov  4 22:27:34 gpu-225 kernel: [   67.071060] irq_time: 67071058894,67071079811
+Nov  4 22:27:34 gpu-225 kernel: [   67.077143] irq_time: 67077141786,67077162651
+Nov  4 22:27:34 gpu-225 kernel: [   67.092173] irq_time: 67092171507,67092192306
+Nov  4 22:27:34 gpu-225 kernel: [   67.123293] irq_time: 67123291673,67123312423
+Nov  4 22:27:34 gpu-225 kernel: [   67.169965] 67169963053
+Nov  4 22:27:34 gpu-225 kernel: [   67.323457] irq_time: 67323455341,67323476000
+Nov  4 22:27:34 gpu-225 kernel: [   67.370150] 67370148836
+Nov  4 22:27:34 gpu-225 kernel: [   67.523620] irq_time: 67523617951,67523652051
+Nov  4 22:27:34 gpu-225 kernel: [   67.570345] 67570342508
+Nov  4 22:27:35 gpu-225 kernel: [   67.723779] irq_time: 67723776996,67723809946
+Nov  4 22:27:35 gpu-225 kernel: [   67.770511] 67770510075
+Nov  4 22:27:35 gpu-225 kernel: [   67.923960] irq_time: 67923958672,67923979407
+Nov  4 22:27:35 gpu-225 kernel: [   67.949665] 67949663151
+Nov  4 22:27:35 gpu-225 kernel: [   67.956374] 67956372327
+Nov  4 22:27:35 gpu-225 kernel: [   67.961888] 67961886649
+Nov  4 22:27:35 gpu-225 kernel: [   67.970691] 67970689343
+Nov  4 22:27:35 gpu-225 kernel: [   68.069206] irq_time: 68069204446,68069225330
+Nov  4 22:27:35 gpu-225 kernel: [   68.071561] irq_time: 68071559102,68071579984
+Nov  4 22:27:35 gpu-225 kernel: [   68.077649] irq_time: 68077647945,68077668828
+Nov  4 22:27:35 gpu-225 kernel: [   68.092696] irq_time: 68092694662,68092715486
+Nov  4 22:27:35 gpu-225 kernel: [   68.124124] irq_time: 68124122460,68124143091
+Nov  4 22:27:35 gpu-225 kernel: [   68.170875] 68170873151
+Nov  4 22:27:35 gpu-225 kernel: [   68.324287] irq_time: 68324285907,68324306631
+Nov  4 22:27:35 gpu-225 kernel: [   68.371061] 68371059139
+Nov  4 22:27:35 gpu-225 kernel: [   68.524451] irq_time: 68524449379,68524470071
+Nov  4 22:27:35 gpu-225 kernel: [   68.571247] 68571244972
+Nov  4 22:27:36 gpu-225 kernel: [   68.724615] irq_time: 68724613026,68724637135
+Nov  4 22:27:36 gpu-225 kernel: [   68.771432] 68771430329
+Nov  4 22:27:36 gpu-225 kernel: [   68.924781] irq_time: 68924779850,68924800632
+Nov  4 22:27:36 gpu-225 kernel: [   68.950185] 68950183572
+Nov  4 22:27:36 gpu-225 kernel: [   68.956895] 68956893622
+Nov  4 22:27:36 gpu-225 kernel: [   68.962427] 68962425199
+Nov  4 22:27:36 gpu-225 kernel: [   68.971616] 68971614499
+Nov  4 22:27:36 gpu-225 kernel: [   69.069709] irq_time: 69069707158,69069727884
+Nov  4 22:27:36 gpu-225 kernel: [   69.072057] irq_time: 69072056686,69072067555
+Nov  4 22:27:36 gpu-225 kernel: [   69.078160] irq_time: 69078158303,69078179238
+Nov  4 22:27:36 gpu-225 kernel: [   69.093230] irq_time: 69093228679,69093249666
+Nov  4 22:27:36 gpu-225 kernel: [   69.124941] irq_time: 69124940607,69124951429
+Nov  4 22:27:36 gpu-225 kernel: [   69.171801] 69171799623
+Nov  4 22:27:36 gpu-225 kernel: [   69.325083] irq_time: 69325080666,69325114809
+Nov  4 22:27:36 gpu-225 kernel: [   69.371992] 69371990578
+Nov  4 22:27:36 gpu-225 kernel: [   69.525275] irq_time: 69525273944,69525295442
+Nov  4 22:27:36 gpu-225 kernel: [   69.572195] 69572193848
+Nov  4 22:27:37 gpu-225 kernel: [   69.725442] irq_time: 69725440918,69725461945
+Nov  4 22:27:37 gpu-225 kernel: [   69.772393] 69772391228
+Nov  4 22:27:37 gpu-225 kernel: [   69.925607] irq_time: 69925605210,69925625979
+Nov  4 22:27:37 gpu-225 kernel: [   69.950705] 69950703378
+Nov  4 22:27:37 gpu-225 kernel: [   69.957416] 69957413904
+Nov  4 22:27:37 gpu-225 kernel: [   69.962966] 69962964633
+Nov  4 22:27:37 gpu-225 kernel: [   69.972577] 69972575243
+Nov  4 22:27:37 gpu-225 kernel: [   70.070211] irq_time: 70070209562,70070230426
+Nov  4 22:27:37 gpu-225 kernel: [   70.072538] irq_time: 70072535970,70072556875
+Nov  4 22:27:37 gpu-225 kernel: [   70.078671] irq_time: 70078669275,70078690275
+Nov  4 22:27:37 gpu-225 kernel: [   70.093752] irq_time: 70093750723,70093771648
+Nov  4 22:27:37 gpu-225 kernel: [   70.125771] irq_time: 70125769436,70125790087
+Nov  4 22:27:37 gpu-225 kernel: [   70.172762] 70172760565
+Nov  4 22:27:37 gpu-225 kernel: [   70.325934] irq_time: 70325932775,70325953567
+Nov  4 22:27:37 gpu-225 kernel: [   70.372948] 70372946002
+Nov  4 22:27:37 gpu-225 kernel: [   70.526098] irq_time: 70526096601,70526117347
+Nov  4 22:27:37 gpu-225 kernel: [   70.573132] 70573130739
+Nov  4 22:27:38 gpu-225 kernel: [   70.726262] irq_time: 70726260539,70726281273
+Nov  4 22:27:38 gpu-225 kernel: [   70.773317] 70773315406
+Nov  4 22:27:38 gpu-225 kernel: [   70.926426] irq_time: 70926424364,70926445046
+Nov  4 22:27:38 gpu-225 kernel: [   70.951226] 70951224412
+Nov  4 22:27:38 gpu-225 kernel: [   70.957935] 70957933510
+Nov  4 22:27:38 gpu-225 kernel: [   70.963504] 70963502238
+Nov  4 22:27:38 gpu-225 kernel: [   70.973501] 70973499687
+Nov  4 22:27:38 gpu-225 kernel: [   71.070714] irq_time: 71070712236,71070733020
+Nov  4 22:27:38 gpu-225 kernel: [   71.073038] irq_time: 71073036421,71073057356
+Nov  4 22:27:38 gpu-225 kernel: [   71.079183] irq_time: 71079181609,71079202333
+Nov  4 22:27:38 gpu-225 kernel: [   71.094280] irq_time: 71094278434,71094299225
+Nov  4 22:27:38 gpu-225 kernel: [   71.126589] irq_time: 71126587761,71126608613
+Nov  4 22:27:38 gpu-225 kernel: [   71.173686] 71173684793
+Nov  4 22:27:38 gpu-225 kernel: [   71.326753] irq_time: 71326751291,71326771957
+Nov  4 22:27:38 gpu-225 kernel: [   71.373873] 71373870920
+Nov  4 22:27:38 gpu-225 kernel: [   71.526915] irq_time: 71526913206,71526933993
+Nov  4 22:27:38 gpu-225 kernel: [   71.574058] 71574056470
+Nov  4 22:27:39 gpu-225 kernel: [   71.727078] irq_time: 71727076974,71727097776
+Nov  4 22:27:39 gpu-225 kernel: [   71.774243] 71774241824
+Nov  4 22:27:39 gpu-225 kernel: [   71.927243] irq_time: 71927241483,71927262268
+Nov  4 22:27:39 gpu-225 kernel: [   71.951746] 71951744885
+Nov  4 22:27:39 gpu-225 kernel: [   71.958455] 71958453747
+Nov  4 22:27:39 gpu-225 kernel: [   71.964041] 71964039597
+Nov  4 22:27:39 gpu-225 kernel: [   71.974428] 71974426112
+Nov  4 22:27:39 gpu-225 kernel: [   72.071216] irq_time: 72071214514,72071235346
+Nov  4 22:27:39 gpu-225 kernel: [   72.073540] irq_time: 72073538160,72073558867
+Nov  4 22:27:39 gpu-225 kernel: [   72.079691] irq_time: 72079689362,72079710193
+Nov  4 22:27:39 gpu-225 kernel: [   72.094803] irq_time: 72094801559,72094822366
+Nov  4 22:27:39 gpu-225 kernel: [   72.127406] irq_time: 72127405023,72127425627
+Nov  4 22:27:39 gpu-225 kernel: [   72.174611] 72174609386
+Nov  4 22:27:39 gpu-225 kernel: [   72.327570] irq_time: 72327568641,72327589460
+Nov  4 22:27:39 gpu-225 kernel: [   72.374796] 72374794512
+Nov  4 22:27:39 gpu-225 kernel: [   72.527732] irq_time: 72527730844,72527751631
+Nov  4 22:27:39 gpu-225 kernel: [   72.574981] 72574979793
+Nov  4 22:27:40 gpu-225 kernel: [   72.727896] irq_time: 72727894990,72727915795
+Nov  4 22:27:40 gpu-225 kernel: [   72.775167] 72775165110
+Nov  4 22:27:40 gpu-225 kernel: [   72.928061] irq_time: 72928059242,72928080026
+Nov  4 22:27:40 gpu-225 kernel: [   72.952267] 72952265092
+Nov  4 22:27:40 gpu-225 kernel: [   72.958975] 72958973713
+Nov  4 22:27:40 gpu-225 kernel: [   72.964579] 72964576971
+Nov  4 22:27:40 gpu-225 kernel: [   72.975360] 72975358253
+Nov  4 22:27:40 gpu-225 kernel: [   73.071713] irq_time: 73071712266,73071723816
+Nov  4 22:27:40 gpu-225 kernel: [   73.074041] irq_time: 73074039619,73074060300
+Nov  4 22:27:40 gpu-225 kernel: [   73.080199] irq_time: 73080196989,73080217733
+Nov  4 22:27:40 gpu-225 kernel: [   73.095326] irq_time: 73095324571,73095345310
+Nov  4 22:27:40 gpu-225 kernel: [   73.128225] irq_time: 73128223100,73128243822
+Nov  4 22:27:40 gpu-225 kernel: [   73.175545] 73175543765
+Nov  4 22:27:40 gpu-225 kernel: [   73.328390] irq_time: 73328388240,73328408883
+Nov  4 22:27:40 gpu-225 kernel: [   73.375731] 73375729771
+Nov  4 22:27:40 gpu-225 kernel: [   73.528553] irq_time: 73528551977,73528572689
+Nov  4 22:27:40 gpu-225 kernel: [   73.575917] 73575915308
+Nov  4 22:27:41 gpu-225 kernel: [   73.728718] irq_time: 73728716572,73728737314
+Nov  4 22:27:41 gpu-225 kernel: [   73.776103] 73776100956
+Nov  4 22:27:41 gpu-225 kernel: [   73.928882] irq_time: 73928880164,73928900906
+Nov  4 22:27:41 gpu-225 kernel: [   73.952787] 73952784989
+Nov  4 22:27:41 gpu-225 kernel: [   73.959495] 73959493657
+Nov  4 22:27:41 gpu-225 kernel: [   73.965116] 73965114059
+Nov  4 22:27:41 gpu-225 kernel: [   73.976287] 73976285465
+Nov  4 22:27:41 gpu-225 kernel: [   74.072195] irq_time: 74072193942,74072214666
+Nov  4 22:27:41 gpu-225 kernel: [   74.074543] irq_time: 74074540987,74074561839
+Nov  4 22:27:41 gpu-225 kernel: [   74.080707] irq_time: 74080706661,74080719979
+Nov  4 22:27:41 gpu-225 kernel: [   74.095848] irq_time: 74095846292,74095867209
+Nov  4 22:27:41 gpu-225 kernel: [   74.129041] irq_time: 74129040374,74129051177
+Nov  4 22:27:41 gpu-225 kernel: [   74.176473] 74176470897
+Nov  4 22:27:41 gpu-225 kernel: [   74.329184] irq_time: 74329182078,74329202862
+Nov  4 22:27:41 gpu-225 kernel: [   74.376659] 74376657471
+Nov  4 22:27:41 gpu-225 kernel: [   74.529347] irq_time: 74529345700,74529366432
+Nov  4 22:27:41 gpu-225 kernel: [   74.576845] 74576842911
+Nov  4 22:27:42 gpu-225 kernel: [   74.729511] irq_time: 74729509273,74729530019
+Nov  4 22:27:42 gpu-225 kernel: [   74.777030] 74777028150
+Nov  4 22:27:42 gpu-225 kernel: [   74.929675] irq_time: 74929673055,74929693712
+Nov  4 22:27:42 gpu-225 kernel: [   74.953307] 74953305363
+Nov  4 22:27:42 gpu-225 kernel: [   74.960015] 74960013098
+Nov  4 22:27:42 gpu-225 kernel: [   74.965653] 74965650929
+Nov  4 22:27:42 gpu-225 kernel: [   74.977214] 74977212296
+Nov  4 22:27:42 gpu-225 kernel: [   75.072698] irq_time: 75072696050,75072716849
+Nov  4 22:27:42 gpu-225 kernel: [   75.075043] irq_time: 75075041628,75075062548
+Nov  4 22:27:42 gpu-225 kernel: [   75.081197] irq_time: 75081195846,75081216695
+Nov  4 22:27:42 gpu-225 kernel: [   75.096373] irq_time: 75096371907,75096392674
+Nov  4 22:27:42 gpu-225 kernel: [   75.129838] irq_time: 75129836998,75129857652
+Nov  4 22:27:42 gpu-225 kernel: [   75.177399] 75177397532
+Nov  4 22:27:42 gpu-225 kernel: [   75.330002] irq_time: 75330000759,75330022273
+Nov  4 22:27:42 gpu-225 kernel: [   75.377585] 75377583014
+Nov  4 22:27:42 gpu-225 kernel: [   75.530169] irq_time: 75530167715,75530188477
+Nov  4 22:27:42 gpu-225 kernel: [   75.577780] 75577778661
+Nov  4 22:27:43 gpu-225 kernel: [   75.730333] irq_time: 75730331829,75730352575
+Nov  4 22:27:43 gpu-225 kernel: [   75.777965] 75777963669
+Nov  4 22:27:43 gpu-225 kernel: [   75.930497] irq_time: 75930495328,75930515975
+Nov  4 22:27:43 gpu-225 kernel: [   75.953826] 75953824234
+Nov  4 22:27:43 gpu-225 kernel: [   75.960535] 75960533387
+Nov  4 22:27:43 gpu-225 kernel: [   75.966190] 75966188328
+Nov  4 22:27:43 gpu-225 kernel: [   75.978151] 75978148914
+Nov  4 22:27:43 gpu-225 kernel: [   76.073198] irq_time: 76073196505,76073217392
+Nov  4 22:27:43 gpu-225 kernel: [   76.075544] irq_time: 76075541941,76075562941
+Nov  4 22:27:43 gpu-225 kernel: [   76.081705] irq_time: 76081703519,76081724325
+Nov  4 22:27:43 gpu-225 kernel: [   76.096897] irq_time: 76096895315,76096916092
+Nov  4 22:27:43 gpu-225 kernel: [   76.130660] irq_time: 76130658936,76130679662
+Nov  4 22:27:43 gpu-225 kernel: [   76.178334] 76178332703
+Nov  4 22:27:43 gpu-225 kernel: [   76.330824] irq_time: 76330822405,76330843036
+Nov  4 22:27:43 gpu-225 kernel: [   76.378520] 76378518421
+Nov  4 22:27:43 gpu-225 kernel: [   76.530987] irq_time: 76530985973,76531006656
+Nov  4 22:27:43 gpu-225 kernel: [   76.578714] 76578712559
+Nov  4 22:27:44 gpu-225 kernel: [   76.731151] irq_time: 76731149520,76731170224
+Nov  4 22:27:44 gpu-225 kernel: [   76.778887] 76778886814
+Nov  4 22:27:44 gpu-225 kernel: [   76.931313] irq_time: 76931311605,76931336052
+Nov  4 22:27:44 gpu-225 kernel: [   76.954346] 76954344722
+Nov  4 22:27:44 gpu-225 kernel: [   76.961055] 76961053123
+Nov  4 22:27:44 gpu-225 kernel: [   76.966728] 76966726719
+Nov  4 22:27:44 gpu-225 kernel: [   76.979055] 76979053308
+Nov  4 22:27:44 gpu-225 kernel: [   77.073699] irq_time: 77073697205,77073718196
+Nov  4 22:27:44 gpu-225 kernel: [   77.076044] irq_time: 77076042277,77076063184
+Nov  4 22:27:44 gpu-225 kernel: [   77.082212] irq_time: 77082210778,77082231441
+Nov  4 22:27:44 gpu-225 kernel: [   77.097422] irq_time: 77097420476,77097441210
+Nov  4 22:27:44 gpu-225 kernel: [   77.131483] irq_time: 77131481081,77131501737
+Nov  4 22:27:44 gpu-225 kernel: [   77.179240] 77179238369
+Nov  4 22:27:44 gpu-225 kernel: [   77.331646] irq_time: 77331644937,77331665696
+Nov  4 22:27:44 gpu-225 kernel: [   77.379426] 77379424069
+Nov  4 22:27:44 gpu-225 kernel: [   77.531811] irq_time: 77531809760,77531830539
+Nov  4 22:27:44 gpu-225 kernel: [   77.579612] 77579609922
+Nov  4 22:27:45 gpu-225 kernel: [   77.731971] irq_time: 77731970894,77731984625
+Nov  4 22:27:45 gpu-225 kernel: [   77.779799] 77779796969
+Nov  4 22:27:45 gpu-225 kernel: [   77.932117] irq_time: 77932115070,77932135801
+Nov  4 22:27:45 gpu-225 kernel: [   77.954870] 77954868675
+Nov  4 22:27:45 gpu-225 kernel: [   77.961575] 77961573368
+Nov  4 22:27:45 gpu-225 kernel: [   77.967267] 77967265350
+Nov  4 22:27:45 gpu-225 kernel: [   77.979994] 77979992385
+Nov  4 22:27:45 gpu-225 kernel: [   78.074202] irq_time: 78074200621,78074221453
+Nov  4 22:27:45 gpu-225 kernel: [   78.076544] irq_time: 78076542412,78076563369
+Nov  4 22:27:45 gpu-225 kernel: [   78.082720] irq_time: 78082718323,78082739092
+Nov  4 22:27:45 gpu-225 kernel: [   78.097945] irq_time: 78097943551,78097964468
+Nov  4 22:27:45 gpu-225 kernel: [   78.132280] irq_time: 78132278700,78132299381
+Nov  4 22:27:45 gpu-225 kernel: [   78.180179] 78180177097
+Nov  4 22:27:45 gpu-225 kernel: [   78.332443] irq_time: 78332441991,78332462663
+Nov  4 22:27:45 gpu-225 kernel: [   78.380364] 78380362256
+Nov  4 22:27:45 gpu-225 kernel: [   78.532607] irq_time: 78532605381,78532626120
+Nov  4 22:27:45 gpu-225 kernel: [   78.580538] 78580536277
+Nov  4 22:27:46 gpu-225 kernel: [   78.732757] irq_time: 78732755542,78732772165
+Nov  4 22:27:46 gpu-225 kernel: [   78.780706] 78780705577
+Nov  4 22:27:46 gpu-225 kernel: [   78.932897] irq_time: 78932896432,78932911666
+Nov  4 22:27:46 gpu-225 kernel: [   78.955372] 78955371189
+Nov  4 22:27:46 gpu-225 kernel: [   78.962076] 78962075471
+Nov  4 22:27:46 gpu-225 kernel: [   78.967786] 78967785569
+Nov  4 22:27:46 gpu-225 kernel: [   78.980865] 78980864005
+Nov  4 22:27:46 gpu-225 kernel: [   79.074689] irq_time: 79074688693,79074703829
+Nov  4 22:27:46 gpu-225 kernel: [   79.077031] irq_time: 79077030303,79077045141
+Nov  4 22:27:46 gpu-225 kernel: [   79.083217] irq_time: 79083216643,79083231363
+Nov  4 22:27:46 gpu-225 kernel: [   79.098460] irq_time: 79098459070,79098473653
+Nov  4 22:27:46 gpu-225 kernel: [   79.133035] irq_time: 79133034151,79133048869
+Nov  4 22:27:46 gpu-225 kernel: [   79.181023] 79181021968
+Nov  4 22:27:46 gpu-225 kernel: [   79.333172] irq_time: 79333171181,79333186398
+Nov  4 22:27:46 gpu-225 kernel: [   79.381181] 79381180544
+Nov  4 22:27:46 gpu-225 kernel: [   79.533311] irq_time: 79533309941,79533324641
+Nov  4 22:27:46 gpu-225 kernel: [   79.581339] 79581338205
+Nov  4 22:27:47 gpu-225 kernel: [   79.733448] irq_time: 79733447487,79733462290
+Nov  4 22:27:47 gpu-225 kernel: [   79.781496] 79781495502
+Nov  4 22:27:47 gpu-225 kernel: [   79.933585] irq_time: 79933584793,79933599578
+Nov  4 22:27:47 gpu-225 kernel: [   79.955866] 79955865621
+Nov  4 22:27:47 gpu-225 kernel: [   79.962570] 79962569597
+Nov  4 22:27:47 gpu-225 kernel: [   79.968293] 79968292044
+Nov  4 22:27:47 gpu-225 kernel: [   79.981653] 79981652845
+Nov  4 22:27:47 gpu-225 kernel: [   80.075166] irq_time: 80075165925,80075180746
+Nov  4 22:27:47 gpu-225 kernel: [   80.077507] irq_time: 80077506743,80077521621
+Nov  4 22:27:47 gpu-225 kernel: [   80.083700] irq_time: 80083699105,80083713612
+Nov  4 22:27:47 gpu-225 kernel: [   80.098974] irq_time: 80098972817,80098993686
+Nov  4 22:27:47 gpu-225 kernel: [   80.133737] irq_time: 80133735578,80133756317
+Nov  4 22:27:47 gpu-225 kernel: [   80.181828] 80181826876
+Nov  4 22:27:47 gpu-225 kernel: [   80.333902] irq_time: 80333900040,80333920668
+Nov  4 22:27:47 gpu-225 kernel: [   80.382014] 80382012453
+Nov  4 22:27:47 gpu-225 kernel: [   80.534065] irq_time: 80534063647,80534084333
+Nov  4 22:27:47 gpu-225 kernel: [   80.582200] 80582198058
+Nov  4 22:27:48 gpu-225 kernel: [   80.734229] irq_time: 80734227031,80734247766
+Nov  4 22:27:48 gpu-225 kernel: [   80.782385] 80782383691
+Nov  4 22:27:48 gpu-225 kernel: [   80.934392] irq_time: 80934390887,80934411656
+Nov  4 22:27:48 gpu-225 kernel: [   80.956379] 80956377748
+Nov  4 22:27:48 gpu-225 kernel: [   80.963083] 80963081148
+Nov  4 22:27:48 gpu-225 kernel: [   80.968816] 80968814833
+Nov  4 22:27:48 gpu-225 kernel: [   80.982571] 80982569188
+Nov  4 22:27:48 gpu-225 kernel: [   81.075658] irq_time: 81075656534,81075677386
+Nov  4 22:27:48 gpu-225 kernel: [   81.077997] irq_time: 81077995542,81078016487
+Nov  4 22:27:48 gpu-225 kernel: [   81.084196] irq_time: 81084194135,81084214907
+Nov  4 22:27:48 gpu-225 kernel: [   81.099498] irq_time: 81099496040,81099516867
+Nov  4 22:27:48 gpu-225 kernel: [   81.134556] irq_time: 81134554650,81134575413
+Nov  4 22:27:48 gpu-225 kernel: [   81.182757] 81182755439
+Nov  4 22:27:48 gpu-225 kernel: [   81.334719] irq_time: 81334717222,81334738991
+Nov  4 22:27:48 gpu-225 kernel: [   81.382943] 81382941187
+Nov  4 22:27:48 gpu-225 kernel: [   81.534885] irq_time: 81534883334,81534904095
+Nov  4 22:27:48 gpu-225 kernel: [   81.583138] 81583135927
+Nov  4 22:27:49 gpu-225 kernel: [   81.735049] irq_time: 81735047555,81735068312
+Nov  4 22:27:49 gpu-225 kernel: [   81.783323] 81783321551
+Nov  4 22:27:49 gpu-225 kernel: [   81.935213] irq_time: 81935211019,81935231796
+Nov  4 22:27:49 gpu-225 kernel: [   81.956901] 81956899494
+Nov  4 22:27:49 gpu-225 kernel: [   81.963603] 81963601225
+Nov  4 22:27:49 gpu-225 kernel: [   81.969356] 81969354235
+Nov  4 22:27:49 gpu-225 kernel: [   81.983508] 81983506675
+Nov  4 22:27:49 gpu-225 kernel: [   82.076159] irq_time: 82076157108,82076178050
+Nov  4 22:27:49 gpu-225 kernel: [   82.078499] irq_time: 82078497179,82078517968
+Nov  4 22:27:49 gpu-225 kernel: [   82.084703] irq_time: 82084701666,82084722364
+Nov  4 22:27:49 gpu-225 kernel: [   82.100021] irq_time: 82100019318,82100040060
+Nov  4 22:27:49 gpu-225 kernel: [   82.135376] irq_time: 82135374712,82135395376
+Nov  4 22:27:49 gpu-225 kernel: [   82.183695] 82183693160
+Nov  4 22:27:49 gpu-225 kernel: [   82.335540] irq_time: 82335538367,82335559101
+Nov  4 22:27:49 gpu-225 kernel: [   82.383885] 82383883212
+Nov  4 22:27:49 gpu-225 kernel: [   82.535704] irq_time: 82535702095,82535722874
+Nov  4 22:27:49 gpu-225 kernel: [   82.584071] 82584068904
+Nov  4 22:27:50 gpu-225 kernel: [   82.735876] irq_time: 82735874238,82735894799
+Nov  4 22:27:50 gpu-225 kernel: [   82.784256] 82784254670
+Nov  4 22:27:50 gpu-225 kernel: [   82.936039] irq_time: 82936037930,82936058622
+Nov  4 22:27:50 gpu-225 kernel: [   82.957422] 82957419970
+Nov  4 22:27:50 gpu-225 kernel: [   82.964124] 82964122074
+Nov  4 22:27:50 gpu-225 kernel: [   82.969895] 82969893334
+Nov  4 22:27:50 gpu-225 kernel: [   82.984442] 82984439986
+Nov  4 22:27:50 gpu-225 kernel: [   83.076661] irq_time: 83076659338,83076680185
+Nov  4 22:27:50 gpu-225 kernel: [   83.078998] irq_time: 83078995968,83079016927
+Nov  4 22:27:50 gpu-225 kernel: [   83.085209] irq_time: 83085207899,83085228734
+Nov  4 22:27:50 gpu-225 kernel: [   83.100545] irq_time: 83100543536,83100564248
+Nov  4 22:27:50 gpu-225 kernel: [   83.136203] irq_time: 83136201342,83136222001
+Nov  4 22:27:50 gpu-225 kernel: [   83.184627] 83184625383
+Nov  4 22:27:50 gpu-225 kernel: [   83.336367] irq_time: 83336365155,83336386265
+Nov  4 22:27:50 gpu-225 kernel: [   83.384813] 83384811189
+Nov  4 22:27:50 gpu-225 kernel: [   83.536531] irq_time: 83536529865,83536550567
+Nov  4 22:27:50 gpu-225 kernel: [   83.585000] 83584998162
+Nov  4 22:27:51 gpu-225 kernel: [   83.736695] irq_time: 83736693641,83736714365
+Nov  4 22:27:51 gpu-225 kernel: [   83.785185] 83785183790
+Nov  4 22:27:51 gpu-225 kernel: [   83.936859] irq_time: 83936856987,83936877714
+Nov  4 22:27:51 gpu-225 kernel: [   83.957942] 83957940714
+Nov  4 22:27:51 gpu-225 kernel: [   83.964644] 83964642251
+Nov  4 22:27:51 gpu-225 kernel: [   83.970433] 83970431046
+Nov  4 22:27:51 gpu-225 kernel: [   83.985371] 83985369813
+Nov  4 22:27:51 gpu-225 kernel: [   84.077163] irq_time: 84077161411,84077182155
+Nov  4 22:27:51 gpu-225 kernel: [   84.079498] irq_time: 84079496153,84079517077
+Nov  4 22:27:51 gpu-225 kernel: [   84.085717] irq_time: 84085715585,84085736407
+Nov  4 22:27:51 gpu-225 kernel: [   84.101068] irq_time: 84101066571,84101087303
+Nov  4 22:27:51 gpu-225 kernel: [   84.137021] irq_time: 84137018963,84137039840
+Nov  4 22:27:51 gpu-225 kernel: [   84.185556] 84185554405
+Nov  4 22:27:51 gpu-225 kernel: [   84.337185] irq_time: 84337183641,84337204387
+Nov  4 22:27:51 gpu-225 kernel: [   84.385741] 84385739403
+Nov  4 22:27:51 gpu-225 kernel: [   84.537349] irq_time: 84537347295,84537367927
+Nov  4 22:27:51 gpu-225 kernel: [   84.585926] 84585924184
+Nov  4 22:27:52 gpu-225 kernel: [   84.737512] irq_time: 84737510863,84737531690
+Nov  4 22:27:52 gpu-225 kernel: [   84.786112] 84786110111
+Nov  4 22:27:52 gpu-225 kernel: [   84.937676] irq_time: 84937674398,84937695147
+Nov  4 22:27:52 gpu-225 kernel: [   84.958463] 84958461101
+Nov  4 22:27:52 gpu-225 kernel: [   84.965164] 84965162290
+Nov  4 22:27:52 gpu-225 kernel: [   84.970971] 84970969876
+Nov  4 22:27:52 gpu-225 kernel: [   84.986297] 84986295237
+Nov  4 22:27:52 gpu-225 kernel: [   85.077665] irq_time: 85077663446,85077684296
+Nov  4 22:27:52 gpu-225 kernel: [   85.079998] irq_time: 85079996360,85080017277
+Nov  4 22:27:52 gpu-225 kernel: [   85.086225] irq_time: 85086223727,85086244533
+Nov  4 22:27:52 gpu-225 kernel: [   85.101592] irq_time: 85101590531,85101611217
+Nov  4 22:27:52 gpu-225 kernel: [   85.137840] irq_time: 85137838115,85137858874
+Nov  4 22:27:52 gpu-225 kernel: [   85.186482] 85186480797
+Nov  4 22:27:52 gpu-225 kernel: [   85.338004] irq_time: 85338002171,85338022875
+Nov  4 22:27:52 gpu-225 kernel: [   85.386668] 85386666440
+Nov  4 22:27:52 gpu-225 kernel: [   85.538167] irq_time: 85538165859,85538186606
+Nov  4 22:27:52 gpu-225 kernel: [   85.586853] 85586851854
+Nov  4 22:27:53 gpu-225 kernel: [   85.738331] irq_time: 85738329376,85738350148
+Nov  4 22:27:53 gpu-225 kernel: [   85.787039] 85787036937
+Nov  4 22:27:53 gpu-225 kernel: [   85.938495] irq_time: 85938493813,85938514628
+Nov  4 22:27:53 gpu-225 kernel: [   85.958983] 85958981421
+Nov  4 22:27:53 gpu-225 kernel: [   85.965684] 85965682349
+Nov  4 22:27:53 gpu-225 kernel: [   85.971510] 85971508145
+Nov  4 22:27:53 gpu-225 kernel: [   85.987224] 85987222394
+Nov  4 22:27:53 gpu-225 kernel: [   86.078167] irq_time: 86078165609,86078186368
+Nov  4 22:27:53 gpu-225 kernel: [   86.080498] irq_time: 86080496558,86080517565
+Nov  4 22:27:53 gpu-225 kernel: [   86.086733] irq_time: 86086731716,86086752565
+Nov  4 22:27:53 gpu-225 kernel: [   86.102115] irq_time: 86102113643,86102134365
+Nov  4 22:27:53 gpu-225 kernel: [   86.138659] irq_time: 86138657631,86138678415
+Nov  4 22:27:53 gpu-225 kernel: [   86.187410] 86187408327
+Nov  4 22:27:53 gpu-225 kernel: [   86.338823] irq_time: 86338821246,86338842088
+Nov  4 22:27:53 gpu-225 kernel: [   86.387595] 86387593790
+Nov  4 22:27:53 gpu-225 kernel: [   86.538986] irq_time: 86538984898,86539005560
+Nov  4 22:27:53 gpu-225 kernel: [   86.587781] 86587779500
+Nov  4 22:27:54 gpu-225 kernel: [   86.739150] irq_time: 86739148736,86739169418
+Nov  4 22:27:54 gpu-225 kernel: [   86.787967] 86787965471
+Nov  4 22:27:54 gpu-225 kernel: [   86.939314] irq_time: 86939312093,86939332824
+Nov  4 22:27:54 gpu-225 kernel: [   86.959503] 86959501207
+Nov  4 22:27:54 gpu-225 kernel: [   86.966204] 86966202112
+Nov  4 22:27:54 gpu-225 kernel: [   86.972047] 86972045880
+Nov  4 22:27:54 gpu-225 kernel: [   86.988153] 86988151622
+Nov  4 22:27:54 gpu-225 kernel: [   87.078669] irq_time: 87078667644,87078688421
+Nov  4 22:27:54 gpu-225 kernel: [   87.080998] irq_time: 87080996818,87081017723
+Nov  4 22:27:54 gpu-225 kernel: [   87.087243] irq_time: 87087241920,87087262760
+Nov  4 22:27:54 gpu-225 kernel: [   87.102637] irq_time: 87102635367,87102656249
+Nov  4 22:27:54 gpu-225 kernel: [   87.139477] irq_time: 87139475688,87139496402
+Nov  4 22:27:54 gpu-225 kernel: [   87.188338] 87188336665
+Nov  4 22:27:54 gpu-225 kernel: [   87.339641] irq_time: 87339639237,87339659884
+Nov  4 22:27:54 gpu-225 kernel: [   87.388525] 87388523265
+Nov  4 22:27:54 gpu-225 kernel: [   87.539804] irq_time: 87539802867,87539823547
+Nov  4 22:27:54 gpu-225 kernel: [   87.588710] 87588708602
+Nov  4 22:27:55 gpu-225 kernel: [   87.739968] irq_time: 87739966583,87739987251
+Nov  4 22:27:55 gpu-225 kernel: [   87.788896] 87788894339
+Nov  4 22:27:55 gpu-225 kernel: [   87.940132] irq_time: 87940130135,87940150793
+Nov  4 22:27:55 gpu-225 kernel: [   87.960024] 87960022038
+Nov  4 22:27:55 gpu-225 kernel: [   87.966724] 87966722670
+Nov  4 22:27:55 gpu-225 kernel: [   87.972585] 87972583826
+Nov  4 22:27:55 gpu-225 kernel: [   87.989081] 87989079754
+Nov  4 22:27:55 gpu-225 kernel: [   88.079172] irq_time: 88079170211,88079190985
+Nov  4 22:27:55 gpu-225 kernel: [   88.081500] irq_time: 88081498372,88081519103
+Nov  4 22:27:55 gpu-225 kernel: [   88.087751] irq_time: 88087749812,88087770516
+Nov  4 22:27:55 gpu-225 kernel: [   88.103161] irq_time: 88103159330,88103180041
+Nov  4 22:27:55 gpu-225 kernel: [   88.140296] irq_time: 88140294522,88140315279
+Nov  4 22:27:55 gpu-225 kernel: [   88.189265] 88189263471
+Nov  4 22:27:55 gpu-225 kernel: [   88.340460] irq_time: 88340457976,88340478823
+Nov  4 22:27:55 gpu-225 kernel: [   88.389451] 88389449402
+Nov  4 22:27:55 gpu-225 kernel: [   88.540622] irq_time: 88540620613,88540647815

@@ -1,0 +1,1 @@
+BOOT_IMAGE=/vmlinuz-3.16.0 root=/dev/mapper/ubuntu--vg-root ro quiet splash crashkernel=384M-:128M vt.handoff=7
