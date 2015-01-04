@@ -1,4 +1,0 @@
-#x, NAME, avg, min, max
-0,"Raw ISR",30105,23685,33359
-1,"ISR Intercept",30352.5,23006,36169
-2,"ISR Intercept w/Func",30895.6,23655,36268
