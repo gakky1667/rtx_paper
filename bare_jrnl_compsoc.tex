@@ -1,4 +1,7 @@
 
+
+
+
 %% bare_jrnl_compsoc.tex
 %% V1.3
 %% 2007/01/11
@@ -51,9 +54,6 @@
 % The testflow support page is at:
 % http://www.michaelshell.org/tex/testflow/
 
-
-
-
 % Note that the a4paper option is mainly intended so that authors in
 % countries using A4 can easily print to A4 and see how their papers will
 % look in print - the typesetting of the document will not typically be
@@ -73,9 +73,14 @@
 % manually specify the path to it like:
 % \documentclass[12pt,journal,compsoc]{../sty/IEEEtran}
 
-
 %private 
 \usepackage{color}
+
+%
+\def\RED#1{{\color{red}#1}}%
+\def\TODO#1{TODO:\RED#1}
+\def\TS#1{\AddToContLine{lots}{#1}#1}%
+%
 
 
 
@@ -100,11 +105,6 @@
 % \ifCLASSINFOpdf conditional that works the same way.
 % When switching from latex to pdflatex and vice-versa, the compiler may
 % have to be run twice to clear warning/error messages.
-
-
-
-
-
 
 % *** CITATION PACKAGES ***
 %
@@ -139,10 +139,6 @@
 % package with the nocompress option which is supported by cite.sty v4.0
 % and later. Note also the use of a CLASSOPTION conditional provided by
 % IEEEtran.cls V1.7 and later.
-
-
-
-
 
 % *** GRAPHICS RELATED PACKAGES ***
 %
@@ -185,10 +181,6 @@
 % You can find documentation about the pdfTeX application at:
 % http://www.tug.org/applications/pdftex
 
-
-
-
-
 % *** MATH PACKAGES ***
 %
 %\usepackage[cmex10]{amsmath}
@@ -207,10 +199,6 @@
 % does. amsmath.sty is already installed on most LaTeX systems. The latest
 % version and documentation can be obtained at:
 % http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
-
-
-
-
 
 % *** SPECIALIZED LIST PACKAGES ***
 %
@@ -260,6 +248,8 @@
 % IEEEtran contains the IEEEeqnarray family of commands that can be used to
 % generate multiline equations as well as matrices, tables, etc., of high
 % quality.
+
+\usepackage{multirow}
 
 
 %\usepackage{eqparbox}
@@ -415,18 +405,18 @@
 
 
 \begin{document}
-\title{Bare Demo of IEEEtran.cls\\ for Computer Society Journals}
+\title{Loadable Real-Time Extension for CPU/GPU Resource Coordination}
 \author{
 Yusuke~Fujii,~\IEEEmembership{Member,~IEEE,}
 Takuya~Azumi,~\IEEEmembership{Member,~IEEE,}
 Nobuhiko~Nishio,~\IEEEmembership{Member,~IEEE,}
-Tuyoshi~Hamada, ~\IEEEmembership{Membed,~IEEE,}
+Tsuyoshi~Hamada, ~\IEEEmembership{Member,~IEEE,}
 Shinpei~Kato,~\IEEEmembership{Member,~IEEE,}
 \IEEEcompsocitemizethanks{
-\IEEEcompsocthanksitem Y. Fujii is with the College of Information Science and Engineering, Ritsumeikan University.
+\IEEEcompsocthanksitem Y. Fujii is with the Graduate School of Information Science and Engineering, Ritsumeikan University.
 \IEEEcompsocthanksitem T. Azumi is with the Graduate School of Information Science and Engineering, Osaka University.
-\IEEEcompsocthanksitem N. Nishio is with the Graduate School of Engineering Science, Ritsumeikan University.
-\IEEEcompsocthanksitem T. Hamada is with the , Nagasaki University.
+\IEEEcompsocthanksitem N. Nishio is with the College of Information Science and Engineering, Ritsumeikan University.
+\IEEEcompsocthanksitem T. Hamada is with the Advanced Computing Center, University of Nagasaki.
 \IEEEcompsocthanksitem S. Kato is with the School of Information Science, Nagoya University.
 }}
 
@@ -470,7 +460,8 @@ Shinpei~Kato,~\IEEEmembership{Member,~IEEE,}
 \IEEEcompsoctitleabstractindextext{%
 \begin{abstract}
 %\boldmath
-The abstract goes here.
+\input{abstract.tex}
+
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -570,8 +561,9 @@ The authors would like to thank...
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
 
-\bibliography{IEEEabrv,bib/paper}
+\bibliographystyle{IEEEtranBST/IEEEtran}
 
+\bibliography{bib/gpu_ap,bib/gpu_rm,bib/gpu,bib/os,bib/realtime}
 
 % biography section
 % 
@@ -584,23 +576,21 @@ The authors would like to thank...
 %\begin{biography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
 % or if you just want to reserve a space for a photo:
 
-\begin{IEEEbiography}{Michael Shell}
+\begin{IEEEbiography}{Yusuke Fujii}
 Biography text here.
 \end{IEEEbiography}
-
-% if you will not have a photo at all:
-\begin{IEEEbiographynophoto}{John Doe}
+\begin{IEEEbiography}{Takuya Azumi}
 Biography text here.
-\end{IEEEbiographynophoto}
-
-% insert where needed to balance the two columns on the last page with
-% biographies
-%\newpage
-
-\begin{IEEEbiographynophoto}{Jane Doe}
+\end{IEEEbiography}
+\begin{IEEEbiography}{Nobuhiko Nishio}
 Biography text here.
-\end{IEEEbiographynophoto}
-
+\end{IEEEbiography}
+\begin{IEEEbiography}{Tuyoshi Hamada}
+Biography text here.
+\end{IEEEbiography}
+\begin{IEEEbiography}{Shinpei Kato}
+Biography text here.
+\end{IEEEbiography}
 % You can push biographies down or up by placing
 % a \vfill before or after them. The appropriate
 % use of \vfill depends on what kind of text is
