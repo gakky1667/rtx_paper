@@ -1,0 +1,70 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: bare_jrnl_compsoc.aux
+The style file: IEEEtranBST/IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: bib/gpu_ap.bib
+Database file #2: bib/gpu_rm.bib
+Database file #3: bib/gpu.bib
+Database file #4: bib/os.bib
+Database file #5: bib/realtime.bib
+Warning--I didn't find a database entry for "kato:"
+Warning--I didn't find a database entry for "kato:loadable"
+Warning--I didn't find a database entry for "sched:dm"
+Warning--I didn't find a database entry for "gdev"
+Warning--I didn't find a database entry for "cbs"
+Warning--I didn't find a database entry for "tbs"
+Warning--I didn't find a database entry for "resch"
+-- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in elliott:explor14
+Warning--empty journal in sparc
+
+Done.
+You've used 32 entries,
+            4039 wiz_defined-function locations,
+            997 strings with 13554 characters,
+and the built_in function-call counts, 25351 in all, are:
+= -- 1946
+> -- 641
+< -- 195
++ -- 342
+- -- 114
+* -- 1211
+:= -- 3620
+add.period$ -- 80
+call.type$ -- 32
+change.case$ -- 33
+chr.to.int$ -- 465
+cite$ -- 34
+duplicate$ -- 1845
+empty$ -- 2245
+format.name$ -- 144
+if$ -- 5946
+int.to.chr$ -- 0
+int.to.str$ -- 32
+missing$ -- 333
+newline$ -- 121
+num.names$ -- 31
+pop$ -- 840
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 1954
+stack$ -- 0
+substring$ -- 1146
+swap$ -- 1445
+text.length$ -- 40
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 32
+warning$ -- 2
+while$ -- 122
+width$ -- 34
+write$ -- 318
+(There were 9 warnings)

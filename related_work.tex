@@ -1,1 +1,45 @@
-../linux-rtx/related_work.tex
+\section{Related Work}
+\textbf{Comparison of prior work}
+我々はこれまでいくつかのGPUの資源管理に関する研究\cite{kato:timegraph,kato:rtas2011,kato:rgem,kato:gdev}を行ってきた。
+TimeGraphはGPUに送信されるコマンドをスケジューリングすることでCUDAにかぎらず、OpenGLなど、
+全てのGPUを利用に関する資源管理を行っている。
+しかしながらGPUのコマンドは処理の実行だけでなく、データ転送、割込み処理登録などの処理時にも送信されており、
+本当にスケジューリングするべき単位でのスケジューリングには向いていないことがわかっている。
+そのため、RGEMはGPGPUに特化し、GPUカーネル実行単位でのスケジューリングを目指し、固定優先度でのスケジューリングを実現してる。
+加えて、データ転送のセグメント分けによってノンプリエンプティブな特性にもたらされるデメリットを最小限にし、
+レスポンスタイムの向上を目指している。
+GdevはRGEMの発展形であり、仮想GPUとResource ReservationによるQoS制御や、OS空間でのCUDA実行などを実現している。
+加えてデータ転送とカーネル実行をオーバラップさせることで実行時間自体の縮小を実現している。
+
+PTaskは\cite{ptask}
+
+Elliott et al. present GPUSync\cite{elliott2013gpusync,elliott:explor14}, robust tasklet handling, .
+GPUSyncではホストからGPUへのデータ転送開始から、GPUでの処理、GPUからホストへのデータ転送までをクリティカルセクションと設定し、
+runtimeへのアクセスはクリティカルセクションを区切りとして単一のアクセスとなるように調停を行っている。
+これによってクローズドソースなランタイムを利用しつつ、自身のGPU資源管理を実現可能としている。
+GPUSyncはアクセス調停の手法としてk-exclusion lockの拡張を利用している。
+加えて各GPUごとにResource ReservationによるQoS担保を行っており、各GPU間のP2P migrationも実現しており、MultipleGPUへの自動割り当ても行っている。
+
+Han et al. show GPU-SPARC\cite{sparc}.
+GPU-Sparc support to automatically split and run the GPU kernel concurrently over multi-GPU, and then they supported priority queue based scheduling.
+
+We show the table\ref{tab:comp:prior} that is result of comparing the Linux-RTXg and prior work.
+
+\begin{table*}[t]
+\begin{center}
+\caption{Linux-RTXG vs prior work}
+\label{tab:comp:prior}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|} \hline
+ & \multicolumn{2}{|l|}{CPU} & \multicolumn{2}{|l|}{GPU} & Budget & Data/Comp. & Auto GPU & Closed Src.& Kernel& \multirow{2}{*}{Configurable}\\ \cline{1-5}
+ & FP & EDF & FP & EDF & Enforcement & Ovlp. & Allocate & Compatible & Free & \\ \hline
+ RESCH& x & x &  &  & & & & & x & x \\ \hline
+ RGEM& & & x &  & & & & & x & \\ \hline
+ Gdev& & & x &  & x & x &  &  & &   \\ \hline
+ PTask& & & & & x & x & x & x & &   \\ \hline
+ GPUSync& x & x & x & & x & x & x & x & x &   \\ \hline
+ GPUSparc &  &  & x & & & x & & & & \\ \hline
+ Linux-RTXG & x & x & x &  & x & x & ▲ & x & x & x  \\ \hline
+\end{tabular}
+\end{center}
+\end{table*}
+

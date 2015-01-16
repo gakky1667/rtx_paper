@@ -1,1 +1,13 @@
-../linux-rtx/conclusion.tex
+\section{Conclusion}
+In this paper,
+we present linux real-time extension for cpu-gpu resouce coordination
+called linux-rtxg for cpu and gpu coordinated resource management.
+We focus on that are specifically not modify the kernel, worked for GPU resource management.
+GPUをよりリアルタイムにするために必要と考えた、GPUタスク（running on the CPU）のスケジューリング拡張、
+GPUカーネルのスケジューリング拡張について取り組んでおり、GPUの同期に用いられる割込みのtop-halfを傍聴することで実現した。
+今回実現したフレームワークは、ジョブ一個あたりのオーバヘッドは約x\%(sleepしている時間も含む)になり、taskあたりのオーバヘッドは約x\%に収まることを示した。
+加えて既存フレームワークであるGdevと同一アルゴリズムを用いて、割込み傍聴を用いたQoS Managementの性能を検証したところ、約x\%のオーバヘッドに収まることを示した。
+
+フレームワークとしては、GPUSparcなどでも用いられるカーネル分割による擬似プリエンプティブスケジューリングへの対応などのアプローチを統合することでより完成度を高めることができる。
+本フレームワークはリアルタイムGPUを実現するための基盤としてメリットを持っているが、リアルタイムGPUを完全に実現しているわけではない。
+今後本フレームワークを利用してどれだけの成果を得られるかが重要である。

@@ -1,14 +1,12 @@
 #TARGET = bare_conf_utf8
 TARGET = bare_jrnl_compsoc
 TEX = platex
-DATE=old/`date +'%y%m%d%_H:%M:%S'`
-
-patch_txt_exists := $(shell find -name $(TARGET).pdf)
+DATE = $(shell date +'%y%m%d_%H:%M:%S')
 
 
 all:
 	touch $(TARGET).pdf
-	mv $(TARGET).pdf $(DATE).pdf
+	mv $(TARGET).pdf old/$(DATE).pdf
 
 
 	$(TEX) $(TARGET)
