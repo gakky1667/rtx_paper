@@ -41,10 +41,8 @@ ISR Intercept w/Funcでも790nsのオーバヘッドである。
 
 
 \subsection{Independent generate sign for Synchronization overhead}
-\TODO{fenceについても}
-
-本稿では割込み立ち上げのためのオーバヘッドを測定する。
-割込みの立ち上げは同期を求めるタイミング(e.g. カーネルラウンチ後)にrtx\_nvrm\_notify()が呼び出す必要がある。
+本稿では同期用サイン生成のためのオーバヘッドを測定する。
+割込みの立ち上げは同期を求めるタイミング(e.g. カーネルラウンチ後)にrtx\_nvrm\_notify()を呼び出す必要がある。
 スケジューリングを行わないVanillaな状態ではこれらのAPIは必要ではないものであるため、これらのAPIにかかった時間はすべてオーバヘッドとなる。
 
 そのためこれらのオーバヘッドの計測を行う。
@@ -66,7 +64,7 @@ Notifyはカーネル実行後や非同期メモリコピー実行後のよう�
 
 Initializeは比較的時間がかかっているが、1プロセスにつき一度しか呼ばれないため、アプリケーション全体への影響は少ないと考えられる。
 Notifyに関してはそれほど時間がかかっておらず、同期待ちの間に実行されるべき処理なため、こちらもアプリケーション全体への影響は少ないと考えられる。
-
+FenceについてもNotifyと同様に平均で2000ns以下とほぼ誤差といってもよい程度の時間である。
 
 \subsection{Scheduling Overhead}\label{sec:eval:sched_overhead}
 
