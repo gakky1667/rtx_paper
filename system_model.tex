@@ -123,9 +123,19 @@ GPUSync identify the interrupt that is issued which kernel by callback pointer w
 \textbf{kernel free scheduler:}
 To achieve ”kernel free”,
 we must not to modify the kernel code and the device driver code.
-GPU スケジューラは次に実行するカーネルの 選択のために,
-現在実行中のカーネルの実行が終了したという通知を受け取る必要がある.この受 取には,API-driven と Interrupt-driven な方式が ある.RGEM ではこの API-driven を用いており, cuCtxSynchronize() などのランタイムによって 提供される API によってカーネルが同期された後 に,明示的にスケジューラを起動する API を発行 する.Gdev や TimeGraph では Interrupt-driven を利用しており,NOTIFY を利用する際に発行さ れる割込みをトリガーとしてスケジューラを起動 する.
-一般的に用いられる cuCtxSynchroniza() は当 該コンテキストで現在発行されている全てのカー ネルが終了したタイミングで同期する.したがっ て API-driven では一つの GPU コンテキストから は一度に一つのカーネルが発行される場合のみに 対応可能である.
-しかしながら,一つの GPU コンテキストから 連続して複数のカーネルが発行されるケースは, 多々発生すると考えられる. その影響から,カー ネル実行のレスポンスタイムが低下し,オーバラ ンの発生率を高める問題が発生する.
-Interrupt-driven では NOTIFY で用いられる割 込みを取得するため,各カーネル毎に同期が可能 であるため,スケジューリングを考えた場合には 有効であるが,割込みの取得のために,カーネル もしくはデバイスドライバ内の ISR を直接修正す る必要がある.
+GPU scheduler is required to receive notify the completion of GPU kernel, for selecton of next executing GPU kernel.
+It is realized by two methods that are API-driven method and Interrupt-driven method.
+The API-driven method is explicitly wakeup the scheduler after the synchronized by API such as $cuCtxSynchronize()$ is provided runtime in the RGEM.
+The Interrupt-driven method is wakeup by trigger of the interrupt which is issued by using NOTIFY in the Gdev and TimeGraph.
+General utilized $cuCtxSynchronize()$ synchronize completion of all GPU kernels, therefore, API driven is able to use when a GPU context have issued only single kernel.
+Thus if a GPU context issue multiple kernels, we must use the Interrupt-driven method for not to guarantee overrun due to reduction of the response time.
+
+%GPU スケジューラは次に実行するカーネルの 選択のために,
+%現在実行中のカーネルの実行が終了したという通知を受け取る必要がある.
+%この受 取には,API-driven と Interrupt-driven な方式が ある.RGEM ではこの API-driven を用いており, cuCtxSynchronize() などのランタイムによって 提供される API によってカーネルが同期された後 に,明示的にスケジューラを起動する API を発行 する.Gdev や TimeGraph では Interrupt-driven を利用しており,NOTIFY を利用する際に発行さ れる割込みをトリガーとしてスケジューラを起動 する.
+%一般的に用いられる cuCtxSynchroniza() は当 該コンテキストで現在発行されている全てのカー ネルが終了したタイミングで同期する.したがっ て API-driven では一つの GPU コンテキストから は一度に一つのカーネルが発行される場合のみに 対応可能である.
+%しかしながら,一つの GPU コンテキストから 連続して複数のカーネルが発行されるケースは, 多々発生すると考えられる. その影響から,カー ネル実行のレスポンスタイムが低下し,オーバラ ンの発生率を高める問題が発生する.
+The Interrupt-driven method can be synchronized for each kernel, it is required to modificate the kernel or the device driver's ISR.
 Gdev has been achieved independs synchronization mechanisms on the proprietary soft- ware, need to modify the kernel modification. The challenge is realize independs synchroniza- tion mechanisms by kernel free aproach.
+
+%Interrupt-driven では NOTIFY で用いられる割 込みを取得するため,各カーネル毎に同期が可能 であるため,スケジューリングを考えた場合には 有効であるが,割込みの取得のために,カーネル もしくはデバイスドライバ内の ISR を直接修正す る必要がある.
