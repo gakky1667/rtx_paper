@@ -1,9 +1,5 @@
 \section{Evaluation}
-我々の知る限り、カーネルやドライバを修正せずにGPU資源管理に取り組んだ例は無い。
-
-2014年では旧バージョンのマイナーアップデートも含め172個\footnote{kernel.orgで提供されるカーネルのうち2014年に更新されたファイルの数}のアップデートがリリースされている。
-汎用的なa
-
+We evaluate scheduling overhead and qos management performances.
 
 ・優先度スケジューリングの評価はしなくてよいのか
 
@@ -11,23 +7,19 @@
 
 ・実アプリで動かすとどうなるのか
 
-
-Linux-RTXGの優位性は
-
-加えて、カーネルやドライバを修正しないことによる優位性は既に先行研究\cite{resch}によって示されているため、
-
-
-本稿における評価では、本Linux-RTXGを利用した際のオーバヘッドを定量的に計測し、利用に伴ってどれだけのデメリットを含んでいるかを明記する。
+本稿における評価では、本Linux-RTXGを利用した際のオーバヘッドを定量的に計測し、利用に伴ってどれだけのデメリットを含んでいるかを提示する。
 定性的な評価としては関連する研究と保持する機能や特徴の差について次章でdiscussする。
 
 \subsection{Experimental Environment}
-本論文では次のマシンを用いて評価する。
-
-CPUはIntel Core i7 2600 3.40GHz、
-4GB*2のメモリ、GPUはGeForce GTX680を用いる。
-KernelはLinux kernel 3.16.0を用い、ディストリビューションはUbuntu 14.04である。
-CUDAコンパイラはNVCC v6.0.1、CUDAランタイムはcuda-6.0 or Gdev、GPUドライバはNVIDIA (331.62)、Nouveau (linux-3.16.0)を用いる。
-各ランタイム、ドライバは評価項目ごとに使い分ける。
+Our experiments are conducted with the Linux kernel 3.16.0 on NVIDIA Geforce GTX680 graphics card and 3.40GHz Intel Core i7 2600, which contains 8 cores (including the two hyper-threading cores) and 8GB main memory.
+GPU programs are written in CUDA and compiled by NVCC v6.0.1.
+GPU drivers are used NVIDIA driver 331.62 and Nouveau driver linux-3.16.0.
+CUDA libraries are used NVIDIA CUDA-6.0 and gdev.
+%CPUはIntel Core i7 2600 3.40GHz、
+%4GB*2のメモリ、GPUはGeForce GTX680を用いる。
+%KernelはLinux kernel 3.16.0を用い、ディストリビューションはUbuntu 14.04である。
+%CUDAコンパイラはNVCC v6.0.1、CUDAランタイムはcuda-6.0 or Gdev、GPUドライバはNVIDIA (331.62)、Nouveau (linux-3.16.0)を用いる。
+%各ランタイム、ドライバは評価項目ごとに使い分ける。
 
 \subsection{Interrupt intercept overhead}
 まずInterrupt interceptのオーバヘッドの測定を行う。
@@ -136,19 +128,29 @@ syncは発行されてから同期完了するまでの時間である。
 これらのタスクの実行中のGPU利用率を計測し、Gdevと同様のアルゴリズムを用いることで、今回提供するLinux−RTXGによるアプローチによってどれだけQoSマネージメントについてのパフォーマンスに影響するかを示す。
 Gdevを用いることから、両者ともデバイスドライバはNouveauドライバを用いる.
 
+
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{img/dummy}
-\caption{Task Isolation Performance on the Gdev management}
+\caption{Utilization of four tasks on the Linux-RTXG only priority scheduling. Each tasks are given different priorities.}
 \end{center}
-\label{fig:qos_gdev}
+\label{fig:qos_rtx}
 \end{figure}
+
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{img/rtx_qos.eps}
-\caption{Task Isolation Performance on the linux-RTXG Management}
+\caption{Utilization of four tasks on the Linux-RTXG resource reservation. Each tasks are given different priorities and all tasks are fairly given resources which is 25\%}
 \end{center}
 \label{fig:qos_rtx}
+\end{figure}
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{img/dummy}
+\caption{Utilization of four tasks on the Gdev resource resevation. All tasks are fairy given resources which is 25\%}
+\end{center}
+\label{fig:qos_gdev}
 \end{figure}
 
 Figure~\ref{fig:qos_gdev},\ref{fig:qos_rtx} show gpu usage on the qos management by gdev and linux-rtxg.

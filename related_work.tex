@@ -1,5 +1,12 @@
 \section{Related Work}\label{sec:relatedwork}
 \textbf{Comparison of prior work}
+
+
+$B2f!9$NCN$k8B$j!"%+!<%M%k$d%I%i%$%P$r=$@5$;$:$K(BGPU$B;q8;4IM}$K<h$jAH$s$@Nc$OL5$$!#(B
+2014$BG/$G$O5l%P!<%8%g%s$N%^%$%J!<%"%C%W%G!<%H$b4^$a(B172$B8D(B\footnote{kernel.org$B$GDs6!$5$l$k%+!<%M%k$N$&$A(B2014$BG/$K99?7$5$l$?%U%!%$%k$N?t(B}$B$N%"%C%W%G!<%H$,%j%j!<%9$5$l$F$$$k!#(B
+
+
+
 $B2f!9$O$3$l$^$G$$$/$D$+$N(BGPU$B$N;q8;4IM}$K4X$9$k8&5f(B\cite{kato:timegraph,kato:rtas2011,kato:rgem,kato:gdev}$B$r9T$C$F$-$?!#(B
 TimeGraph$B$O(BGPU$B$KAw?.$5$l$k%3%^%s%I$r%9%1%8%e!<%j%s%0$9$k$3$H$G(BCUDA$B$K$+$.$i$:!"(BOpenGL$B$J$I!"(B
 $BA4$F$N(BGPU$B$rMxMQ$K4X$9$k;q8;4IM}$r9T$C$F$$$k!#(B
@@ -11,9 +18,9 @@ TimeGraph$B$O(BGPU$B$KAw?.$5$l$k%3%^%s%I$r%9%1%8%e!<%j%s%0$9$k$3$H$G(BCUDA$
 Gdev$B$O(BRGEM$B$NH/E87A$G$"$j!"2>A[(BGPU$B$H(BResource Reservation$B$K$h$k(BQoS$B@)8f$d!"(BOS$B6u4V$G$N(BCUDA$B<B9T$J$I$r<B8=$7$F$$$k!#(B
 $B2C$($F%G!<%?E>Aw$H%+!<%M%k<B9T$r%*!<%P%i%C%W$5$;$k$3$H$G<B9T;~4V<+BN$N=L>.$r<B8=$7$F$$$k!#(B
 
-PTask$B$O(B\cite{ptask}
+PTask\cite{ptask} is an OS abstraction for GPU applications that optimizes data transfers and GPU scheduler.
 
-Elliott et al. present GPUSync\cite{elliott2013gpusync,elliott:explor14}, robust tasklet handling, .
+Elliott et al. present GPUSync\cite{elliott2013gpusync,elliott:explor14}.
 GPUSync$B$G$O%[%9%H$+$i(BGPU$B$X$N%G!<%?E>Aw3+;O$+$i!"(BGPU$B$G$N=hM}!"(BGPU$B$+$i%[%9%H$X$N%G!<%?E>Aw$^$G$r%/%j%F%#%+%k%;%/%7%g%s$H@_Dj$7!"(B
 runtime$B$X$N%"%/%;%9$O%/%j%F%#%+%k%;%/%7%g%s$r6h@Z$j$H$7$FC10l$N%"%/%;%9$H$J$k$h$&$KD4Dd$r9T$C$F$$$k!#(B
 $B$3$l$K$h$C$F%/%m!<%:%I%=!<%9$J%i%s%?%$%`$rMxMQ$7$D$D!"<+?H$N(BGPU$B;q8;4IM}$r<B8=2DG=$H$7$F$$$k!#(B
