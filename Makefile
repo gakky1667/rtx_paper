@@ -5,14 +5,14 @@ DATE = $(shell date +'%y%m%d_%H:%M:%S')
 
 
 all:
-	touch $(TARGET).pdf
-	mv $(TARGET).pdf old/$(DATE).pdf
+#	touch $(TARGET).pdf
+#	mv $(TARGET).pdf old/$(DATE).pdf
 
 
 	$(TEX) $(TARGET)
-	bibtex $(TARGET)
-	$(TEX) $(TARGET)
-	$(TEX) $(TARGET)
+#	bibtex $(TARGET)
+#	$(TEX) $(TARGET)
+#	$(TEX) $(TARGET)
 	dvipdfm $(TARGET).dvi
 	open $(TARGET).pdf
 

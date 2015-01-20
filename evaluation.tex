@@ -1,6 +1,22 @@
 \section{Evaluation}
-我々の知る限り、カーネルやドライバを修正しないという観点を意識してGPU資源管理に取り組んだ例は無い。
+我々の知る限り、カーネルやドライバを修正せずにGPU資源管理に取り組んだ例は無い。
+
+2014年では旧バージョンのマイナーアップデートも含め172個\footnote{kernel.orgで提供されるカーネルのうち2014年に更新されたファイルの数}のアップデートがリリースされている。
+汎用的なa
+
+
+・優先度スケジューリングの評価はしなくてよいのか
+
+・GPUSyncと比較しなくて良いのか
+
+・実アプリで動かすとどうなるのか
+
+
+Linux-RTXGの優位性は
+
 加えて、カーネルやドライバを修正しないことによる優位性は既に先行研究\cite{resch}によって示されているため、
+
+
 本稿における評価では、本Linux-RTXGを利用した際のオーバヘッドを定量的に計測し、利用に伴ってどれだけのデメリットを含んでいるかを明記する。
 定性的な評価としては関連する研究と保持する機能や特徴の差について次章でdiscussする。
 
@@ -129,7 +145,7 @@ Gdevを用いることから、両者ともデバイスドライバはNouveauド
 \end{figure}
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{img/dummy}
+\includegraphics[width=0.5\textwidth]{img/rtx_qos.eps}
 \caption{Task Isolation Performance on the linux-RTXG Management}
 \end{center}
 \label{fig:qos_rtx}
