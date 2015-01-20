@@ -11,7 +11,7 @@ GPUs performance has been demonstrated by these research.
 %ユーザインタラクティブなアプリケーション\cite{kato:rtas2011}、データベース\cite{bakkum:sql}まで多岐にわたっており、
 %ベンチマークsuit\cite{rodinia}に提供される。
 
-The past GPU applications shoud have been only "real-fast" since these were best-effort oriented.
+The past GPU applications should have been only "real-fast" since these were best-effort oriented.
 The recent GPU applications are required "real-time" and "real-fast" by the increasing real-time oriented application of targetting real-world.
 %in sysyem tight in the real-world. 
 %これまでのGPUアプリケーションはベストエフォートなアプリケーションが多く，ただ速ければよかった．
@@ -29,8 +29,8 @@ Therefore GPU runtime environments are required to have to support real-time.
 %加えて、近年ではサイバーフィジカルシステムなどリアルタイム性を要求するシステムにおいてもGPUの利用が望まれており、汎用システム向けだけでなく、リアルタイムシステム向けの資源管理が求められる。
 %我々はこれまでに、いくつかのGPU resource management に関する研究を進めてきた。
 We have already worked several research of GPU resource management.
-TimeGraph\cite{kato:timegraph} provides GPU scheeduling and reservation machanisms at the device driver level to queue and dispatch GPU commands based on task priorities.
-RGEM\cite{kato:rgem} provides GPU kernel scheduling and data transfering scheduling, Gdev\cite{kato:gdev} is applied resource reservation.
+TimeGraph\cite{kato:timegraph} provides GPU scheduling and reservation mechanisms at the device driver level to queue and dispatch GPU commands based on task priorities.
+RGEM\cite{kato:rgem} provides GPU kernel scheduling and data transferring scheduling, Gdev\cite{kato:gdev} is applied resource reservation.
 These work have weak point that is can not to provide fast supporting update architecture and full-funciton because these works is based on reverse engineering.
 %RGEM\cite{kato:rgem}、Gdev\cite{kato:gdev}ではGPGPUにフォーカスし、GPUで実行される単位であるカーネルとデータ転送をスケジューリングしている。
 %これらの研究はリバースエンジニアリングによって提供されており、アーキテクチャの更新や、全ての機能の提供が困難であるといったデメリットが存在している。
@@ -40,7 +40,7 @@ Some GPU functions are provided API, processing is issued to GPU via library and
 Thus if GPUs truly wants the real-time requirements,  there is a need to manage host side task as well as GPU resource management.
 %そのためリアルタイムを前提としたシステムにおいて、真にその要件を満たすためには、GPUのリソースマネージメントだけでなくホスト側のタスクについても管理してやる必要がある。
 We have confirmed the fact that a large amount of latency occur,
-when other tasks appropriative rsources in the host side at studies\cite{fujii:icpads2013} is evaluating the data transfer time between the host and the device.
+when other tasks appropriative resources in the host side at studies\cite{fujii:icpads2013} is evaluating the data transfer time between the host and the device.
 %我々がホストとデバイス間のデータ転送時間について\cite{fujii:icpads2013}評価した研究では、CPU側で他のタスクがリソースを専有していた場合、
 %多量のレイテンシが発生することが実際に確認できている。
 
@@ -58,7 +58,7 @@ Many of these modifications are to required installation using patch to user.
 %Gdevについても同様にデバイスドライバ自体の変更を必要としている。
 %これらの変更の多くはパッチを利用して、ユーザへインストレーションを要求する形が用いられるが、
 A big burden is given patch to both developer and user.
-Specifically, developers oblicgation that is maintenance of patch in order to catch up to the latest kernel release.
+Specifically, developers obligation that is maintenance of patch in order to catch up to the latest kernel release.
 However, software which is using basis in open source such as Linux are updated fast,
 in most cases, before developers to complete the porting work towards the latest kernel.
 
@@ -79,7 +79,7 @@ RESCH is not support GPU resource.
 %しかしながら、RESCHはGPUを保持するシステムのようなヘテロジニアスな環境には対応していない。
 
 \textbf{Contribution:}
-In this paper, we present linux real-time extension for cpu-gpu resouce coordination called linux-rtxg for cpu and gpu coordinated resource management, this extension is able to more easily re-configure the resource management policy and the installation.
+In this paper, we present linux real-time extension for cpu-gpu resource coordination called linux-rtxg for cpu and gpu coordinated resource management, this extension is able to more easily re-configure the resource management policy and the installation.
 Linux-RTXG's most contribution is to achieve real-time task scheduling on the using GPU environment while not kernel modification.
 %Linux-RTXGの最大きな貢献は、OS機能を持ちながら、OSから独立することで、既存のGPU資源管理に関する研究において考慮されていないカーネル編集に伴う開発者、ユーザへの負担をなくしたことである。
 
@@ -89,9 +89,9 @@ Linux-RTXG provide the CPU task scheduler, GPU kernel scheduler, GPU kernel rese
 
 \textbf{Organization}
 This rest of the paper is organized as follows.
-Section~\ref{sec:system_model} discuss the GPU real-time scheduling by kernel free aproach.
+Section~\ref{sec:system_model} discuss the GPU real-time scheduling by kernel free approach.
 Section~\ref{sec:design_imple} shows Linux-RTXG design and implementations, especially focus on GPU scheduling.
-Section~\ref{sec:evaluation} indicate Linux-RTXG's adovantages and dis-advantages,
+Section~\ref{sec:evaluation} indicate Linux-RTXG's advantages and dis-advantages,
 furthermore, demonstrate experimental results that are quantitative overheads and reservation performances.
 Section~\ref{sec:relatedwork} discusses related work.
 We provide our concluding remarks in Section~\ref{sec:conclusion}.

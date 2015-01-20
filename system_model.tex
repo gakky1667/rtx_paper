@@ -12,7 +12,7 @@ typically talking the following steps.
 (i) create GPU context (\textit{cuCtxCreate}), 
 (ii) allocate space to device memory (\textit{cuMemAlloc}), 
 (iii) The data and the GPU kernel are copied to the allocated device memory space from host memory (\textit{cuMemcpyHtoD}), 
-(iv) Launch the GPU kernele (\textit{cuLaunchGrid}), 
+(iv) Launch the GPU kernel (\textit{cuLaunchGrid}), 
 (v) The GPU task is synchronized to the GPU kernel (\textit{cuCtxSynchronize}), 
 (vi) The resultant data transfer to host memory from device memory (\textit{cuMemcpyDtoH}), 
 (vii) release allocated memory space and context (\textit{cuMemFree, cuModuleUnload, cuCtxDestroy}).
@@ -51,7 +51,7 @@ it is necessary to satisfy the two requirements similar to above multicore envir
 %Therefore, in the system of including GPU is 
 %そのためGPUが含まれるシステムにおいても，リアルタイムを実現するためには上記二点を達成できればよい．
 Our previous working only to scheduling GPU accesses.
-However, GPU kernel is driven by API is issued GPU task, to truly support  the real-time scheduling, it is need to schedule GPU task; therefore, for realized real-time GPU, framework need to have CPU's priority-based scheduler, GPU's priority-based schedulera and restrict GPU resource by resource reservation mechanisms.
+However, GPU kernel is driven by API is issued GPU task, to truly support  the real-time scheduling, it is need to schedule GPU task; therefore, for realized real-time GPU, framework need to have CPU's priority-based scheduler, GPU's priority-based scheduler and restrict GPU resource by resource reservation mechanisms.
 %我々がこれまで取り組んできたGPUリソースマネージメントに関する研究では，
 %GPUへのアクセスのみをスケジューリングしてきた．
 %しかしながらGPUカーネルはGPUタスクから発行されるAPIを起点に動作していることから，
@@ -64,9 +64,9 @@ Recently, GPUSync is to work the above interdependence of CPU scheduler and GPU 
 
 %しかし，GPUSyncは$LITMUS^RT$に依存しており，パッチによるインストレーションを必要とする．
 %Section~\ref{sec:intro}で述べたとおり，カーネルにパッチを当てる作業は大きな負担になる．
-GPUs have some problem on using realtime, except that scheduling mechanisms.
+GPUs have some problem on using real-time, except that scheduling mechanisms.
 %GPUのリアルタイム活用にはスケジューリングメカニズム以外の面でも多くの問題がある．
-GPUs runtime environments are blackbox mechanisms results from GPU environments are provided only GPU vendors and these environments are closed-source.
+GPUs runtime environments are black-box mechanisms results from GPU environments are provided only GPU vendors and these environments are closed-source.
 %まずGPUの実行環境がベンダーから提供されるのみであり，クローズドソースになっていることからブラックボックスであることである．
 TimeGraph, Gdev and RGEM are solved this problem by ensuring transparency using reverse engineering and open-source driver.
 %本問題についてはTIMEGRAPH，GDEV，RGEMではリバースエンジニアリングとオープンソースドライバによって透明性を確保している．
@@ -74,18 +74,17 @@ GPUSync is solved this problem too by GPU runtime resource management is disable
 %GPUSyncではランタイムドライバへのアクセスを単一に制限することで，ランタイムドライバが行う資源管理をスルーしている．
 
 The other problem occurs by non-preemptive GPU executions and non-preemptive data transfers.
-several researchs\cite{basaran:preemptive,sparc} realize implovement the responce time by preventing divides the kernel overrun.
+several researches\cite{basaran:preemptive,sparc} realize improvement  the response time by preventing divides the kernel overrun.
 %GPUの実行やデータ転送がノンプリエンプティブであることも大きな問題だ．いくつかの研究\cite{}ではカーネルを分割することで，
 %ノンプリエンプティブに起因するオーバランを防ぎ，レスポンスタイムの向上を実現している．
-
-As these core problems are headling to solve, however, real-time GPU is experimental-phase since have problem for practical realized.
+As these core problems are on the process of being resolved, however, real-time GPU is experimental-phase since have problem for practical realized.
 %このようにいくつかのコアな問題は解決に近づいているが，未だリアルタイムGPUは実験フェーズであり，実用化に向けるには問題が存在している．
-The most difficult problem is self-supension due to GPU is treated as a I/O device.
-GPU task to suspended themselfs until it receives the results from issuing the processing to GPU, referred to as self-suspension.
+The most difficult problem is self-suspending due to GPU is treated as a I/O device.
+GPU task to suspended themselves until it receives the results from issuing the processing to GPU, referred to as self-suspension.
 %GPUを完全にリアルタイムに扱うことができないもっとも困難な問題は，GPUがI/Oデバイスとして扱われることに起因する．
 %GPUに処理を発行し，結果を受け取るまでの間，発行したタスクは自らサスペンドする．
 The self-suspension has been proven as a cause the NP-HARD problem in previous work\cite{self-sus:1,self-sus:2},
-several researchs\cite{chattopadhyay2014limited, kim2013segment} are working on the scheduling analysis for self-suspension task, but it has not been solved yet to complete.
+several researches\cite{chattopadhyay2014limited, kim2013segment} are working on the scheduling analysis for self-suspension task, but it has not been solved yet to complete.
 
 Hence scheduling framework for the expansion and installation to aim in this study and easy is useful,
 it is argued that there is a demand.
@@ -101,13 +100,13 @@ The synchronization matters for GPU system such as heterogeneous platoform.
 GPU have two different synchronization techniques.
 The first techniques is memory map based synchronization which is called FENCE,
 it sends GPU commands after the command to take action,
-then GPUs microcontrollers will write the any value to memory-mapped space after action is completed.
+then GPU microcontrollers will write the any value to memory-mapped space after action is completed.
 GPU task monitors it mapped space value using such as polling,
 therefore task has an exclusive CPU resource,
 but response time will be the fastest.
 The other one techniques is interrupts based synchronization which is called NOTIFY,
 it sends GPU commands similar to FENCE,
-then GPUs microcontrollers will rise the interrupt and write any value to GPU I/O registers.
+then GPU microcontrollers will rise the interrupt and write any value to GPU I/O registers.
 GPU task is suspending until interrupt,
 therefore task is able to share the CPU resources with other tasks,
 but response time will be the slow. Detailed architecture is omitted in this paper,
@@ -115,7 +114,7 @@ it has been described in the previous documents\cite{kato:timegprah, kato:gdev, 
 
 Gdev use both techniques that are NOTIFY and FENCE for wakeup the waiting task,
 NOTIFY is used by scheduler, FENCE is used by kernel synchronization. 
-Gdev’s synchronization implementation is the addtional commands sends to GPU and the modification of device driver ’s interrupt handler.
+Gdev’s synchronization implementation is the additional commands sends to GPU and the modification of device driver’s interrupt handler.
 GPUSync use NOTIFY techniques by using tasklet intercept\cite{elliott2012robust} on the proprietary software.
 Tasklet is linux’s soft-irq implementation.
 GPUSync identify the interrupt that is issued which kernel by callback pointer with a tasklet.
@@ -123,7 +122,7 @@ GPUSync identify the interrupt that is issued which kernel by callback pointer w
 \textbf{kernel free scheduler:}
 To achieve ”kernel free”,
 we must not to modify the kernel code and the device driver code.
-GPU scheduler is required to receive notify the completion of GPU kernel, for selecton of next executing GPU kernel.
+GPU scheduler is required to receive notify the completion of GPU kernel, for selection of next executing GPU kernel.
 It is realized by two methods that are API-driven method and Interrupt-driven method.
 The API-driven method is explicitly wakeup the scheduler after the synchronized by API such as $cuCtxSynchronize()$ is provided runtime in the RGEM.
 The Interrupt-driven method is wakeup by trigger of the interrupt which is issued by using NOTIFY in the Gdev and TimeGraph.
@@ -135,7 +134,8 @@ Thus if a GPU context issue multiple kernels, we must use the Interrupt-driven m
 %この受 取には,API-driven と Interrupt-driven な方式が ある.RGEM ではこの API-driven を用いており, cuCtxSynchronize() などのランタイムによって 提供される API によってカーネルが同期された後 に,明示的にスケジューラを起動する API を発行 する.Gdev や TimeGraph では Interrupt-driven を利用しており,NOTIFY を利用する際に発行さ れる割込みをトリガーとしてスケジューラを起動 する.
 %一般的に用いられる cuCtxSynchroniza() は当 該コンテキストで現在発行されている全てのカー ネルが終了したタイミングで同期する.したがっ て API-driven では一つの GPU コンテキストから は一度に一つのカーネルが発行される場合のみに 対応可能である.
 %しかしながら,一つの GPU コンテキストから 連続して複数のカーネルが発行されるケースは, 多々発生すると考えられる. その影響から,カー ネル実行のレスポンスタイムが低下し,オーバラ ンの発生率を高める問題が発生する.
-The Interrupt-driven method can be synchronized for each kernel, it is required to modificate the kernel or the device driver's ISR.
-Gdev has been achieved independs synchronization mechanisms on the proprietary soft- ware, need to modify the kernel modification. The challenge is realize independs synchroniza- tion mechanisms by kernel free aproach.
+The Interrupt-driven method can be synchronized for each kernel, it is required to modification the kernel or the device driver's ISR.
+Gdev has been achieved independent synchronization mechanisms on the proprietary soft- ware, need to modify the kernel modification.
+The challenge is realize independent synchronization mechanisms by kernel free approach.
 
 %Interrupt-driven では NOTIFY で用いられる割 込みを取得するため,各カーネル毎に同期が可能 であるため,スケジューリングを考えた場合には 有効であるが,割込みの取得のために,カーネル もしくはデバイスドライバ内の ISR を直接修正す る必要がある.

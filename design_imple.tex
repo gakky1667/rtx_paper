@@ -51,7 +51,7 @@ rtx\_gpu\_close() & To release scheduling entity.\\ \hline
 Linux-RTXG is API-driven where the scheduler invoked only when computation requests are submitted.
 The basic APIs supported by Linux-RTXG are listed in Table~\ref{tab:rtx-api}.
 Some APIs have arguments and others do not.
-Linux-RTXG APIs are not modificated existing CUDA API to cope with proprietary software to be independent from the runtime.
+Linux-RTXG APIs are not modification existing CUDA API to cope with proprietary software to be independent from the runtime.
 However, user have to add Linux-RTXG api to existing CUDA application for using Linux-RTXG scheduler.
 
 The sample code of the using Linux-RTXG scheduler is shown in Figure~\ref{fig:sample},
@@ -104,7 +104,7 @@ Task goes to sleep until the wakeup by interrupt why task is not permitted issua
 %既にGPUでタスクが動いており、現在カーネル発行を許可されているタスクが自身でないため、割込みによって起床されるまでtask uninterruptible状態で自らスリープに入る。
 
 Once issued GPU kernel is finished,
-interrupt is awaken while interrupt intercepter wakeup the GPU scheduler, GPU scheduler wakeup the sleeping task. 
+interrupt is awaken while the interrupt intercepter wakeup the GPU scheduler, GPU scheduler wakeup the sleeping task. 
 The wake-up task issue the GPU kernel via CUDA API such as $cuLaunchGrid()$.
 After the GPU kernel issued, task register the NOTIFY for occurring the interrupt,
 and task to sleep until it occurs interrupt.
@@ -125,10 +125,10 @@ In Linux-RTXG, resources are distributed in this group.
 Figure~\ref{fig:scheduling} shows pseudo-code of scheduling mechanism.
 $on_arrival$ is called when the GPU task is requested GPU kernel launch issue.
 In $on_arrival$, GPU task to check whether the given execute permission to group of task itself, and then, check the se permit.
-If it has not executing permittion, GPU task is enqueued to wait\_queue and go to sleep,
-contrary to this, if it has executing permittion, GPU task go to launch issue.
+If it has not executing permission, GPU task is enqueued to wait\_queue and go to sleep,
+contrary to this, if it has executing permission, GPU task go to launch issue.
 
-$on_completion$ is called by the scheduler therad, when the GPU kernel is completion.
+$on_completion$ is called by the scheduler thread, when the GPU kernel is completion.
 In $on_completion$, scheduler thread pick up the next group, 
 %このグループに対して資源の配布 (スケジューリングスレッドによって一定周期で補充)を行い，
 %グループ毎に実行許可をスケジューリングポリシー (e.g. BAND, Credit)に従い与えていく.
@@ -168,8 +168,9 @@ In $on_completion$, scheduler thread pick up the next group,
 \end{figure}
 
 \subsection{GPU synchronization}
-Section~\ref{sec:system_model}で説明したruntime environmentに依存しない同期の実現と
-interrupt-drivenなスケジューラ起床を実現するために，kernel freeなまま同期に用いるinterruptを取得するinterrupt interceptを実装する．
+We present implementation of the interrupt intercept is to get the interrupt for kernel free interrupt handling for realized interrupt-driven wakeup the scheduler, and present implementation of independent synchronization mechanism, in Section~\ref{sec:system_model}.
+%で説明したruntime environmentに依存しない同期の実現と
+%interrupt-drivenなスケジューラ起床を実現するために，kernel freeなまま同期に用いるinterruptを取得するinterrupt interceptを実装する．
 
 Linux-RTXG is use the independent synchronization mechanisms as much as possible,
 it because we do not want using black-box resource management for to realized truly real-time resource environments.
@@ -197,7 +198,7 @@ Initialize processes for generating a context dedicated this method.
 These processes are including the create virtual address space and the allocate indirect buffer object for command sending and the create context object.
 The indirect buffer is an area for storing GPU commands
 
-GenSign processes send commands to the compute engine or the copy engine that are
+The Notify processes send commands to the compute engine or the copy engine that are
 %Initializeは、いわゆるコンテキストの生成に値する。Virtual Address Spaceやコマンド送信に用いるIndirect Bufferの確保、コンテキストオブジェクトの生成などを行う。
 %NotifyはComputeエンジンやCopyエンジンに向けて割込み発生、もしくはFENCE用に値の書き込みを行うコマンドを送信する。
 This independent generate sign for synchronization method is using reverse engineering.
@@ -217,7 +218,7 @@ Linux kernel have structure that holds the interrupt parameters called irq\_desc
 These structures have structures called irq\_action including the ISR callback pointer.
 irq\_desc is allocated to global memory space of the kernel, anyone is accessible from kernel space.
 Linux loadable kernel modules can get an irq\_desc for running in kernel, while also can get an callback pointer of ISR.
-We retain getting callback pointer of GPU device driver's ISR, and then we register interrupt intercept ISRs to kernel.
+We retain getting callback pointer of GPU device driver's ISR, and then we register interrupt interception ISRs to kernel.
 So, we get the to intercept interrupt by it ISR and then call retaining callback pointer, 
 %Linuxでは、割込み番号ごとにirq\_descという割込みのパラメータを保持する構造体を持っている。
 %この構造体にはISRの関数ポインタを含むirq\_actionという構造体がリストで接続されている。
@@ -228,7 +229,7 @@ So, we get the to intercept interrupt by it ISR and then call retaining callback
 %そして傍受用ISRで、事前に保持しておいたGPUドライバの割込みハンドラの関数コールバック関数として呼び出すことで、通常の割込みハンドリングを実行する。
 In addition, I/O registers are mapped to kernel memory space by device driver from the PCIe base address registers (BARs)\cite{fujii:icpads2013,kato2013zero}.
 Therefore Linux-RTXG remap the BAR0 to our allocated space by using $ioremap()$ when the ISR initizalize.
-The interrupt intercepter identify interrupt by read the mapped-space.
+The interrupt interception identify interrupt by read the mapped-space.
 
 %加えて我々のこれまでの研究\cite{fujii:icpads2013,kato2013zero}で、GPUのio registerはPCIeのBAR0によって指定されたアドレスから存在しておりカーネル空間にデバイスドライバによってマッピングされていることがわかっている。
 %そのためLinux-RTXGが傍受用ISRの初期化の際に$ioremap()$によってBAR０空間をマッピングしておき、傍受用ISRが呼び出された際にマッピングされたレジスタを読み込むことで、
