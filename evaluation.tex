@@ -1,8 +1,9 @@
 \section{Evaluation}
 We evaluate scheduling overhead and scheduling performance.
 
-Scheduling experiments are limited on the GPU scheduling since CPU scheduling performance is already experiments\cite{kato:resch},
-these are , , .
+Scheduling experiments are limited on the GPU scheduling since CPU scheduling performance is already experiments\cite{kato:resch}.
+
+In this paper, we experiments 
 
 本稿における評価では、本Linux-RTXGを利用した際のオーバヘッドを定量的に計測し、利用に伴ってどれだけのデメリットを含んでいるかを提示する。
 
@@ -45,25 +46,39 @@ We compare consumption time from the start ISR until ISR is completion, it consu
 \label{fig:irq_overhead}
 \end{figure}
 
-Figure \ref{irq_overhead}は上記設定で測定した結果である。
-Raw ISRは通常のルーチンで実行されるISR、ISR Interceptは割り込みを盗聴するのみ、
-ISR intercept w/Funcは盗聴した上でその割り込みが、いずれのカーネルに関連した割込みか識別しスケジューラを立ち上げる機能を実行した場合である。
-それぞれ1000回の測定で平均値を取り、最小値と最大値についてエラーバーで示している。
-この図から見て取れるように、オーバヘッドは確実に存在する。
-ISR Interceptだと247nsのオーバヘッドであり、
-ISR Intercept w/Funcでも790nsのオーバヘッドである。
-この数値は直感的に考えると小さくシステム自体に影響を及ぼすほどではないと考えられ、
-しかしその割込みが乱発することによる積み重ねによっては影響を与えることは、
-本手法のデメリットとして意識しなければならない。
+Figure~\ref{irq_overhead} shows results of mesurements in the above setting.
+%Figure \ref{irq_overhead}は上記設定で測定した結果である。
+Raw ISR is execute ISR in the normal routine, ISR Intercept is only intercept our approach,
+ISR intecept w/Func is interception and processing functions that are identify the ISR and wakeup the scheduler thread.
+These are showed the average times with error bar is indicate minimum and maximum.
 
+As a result, the overhead exist certainly.
+ISR Intercept has overhead that is about 247 nano seconds.
+ISR Intercept w/Func also has overhead that is about 790 nano seconds.
 
-\subsection{Independent generate sign for Synchronization overhead}
-本稿では同期用サイン生成のためのオーバヘッドを測定する。
-割込みの立ち上げは同期を求めるタイミング(e.g. カーネルラウンチ後)にrtx\_nvrm\_notify()を呼び出す必要がある。
-スケジューリングを行わないVanillaな状態ではこれらのAPIは必要ではないものであるため、これらのAPIにかかった時間はすべてオーバヘッドとなる。
+Intuitively, it value does not affect system since very small values,
+however, interrupt is occured frequently including such as timer interrupt, should be aware as disadvantages.
 
-そのためこれらのオーバヘッドの計測を行う。
-計測はAPIの呼び出しから戻るまでを測定する。
+%Raw ISRは通常のルーチンで実行されるISR、ISR Interceptは割り込みを盗聴するのみ、
+%ISR intercept w/Funcは盗聴した上でその割り込みが、いずれのカーネルに関連した割込みか識別しスケジューラを立ち上げる機能を実行した場合である。
+%それぞれ1000回の測定で平均値を取り、最小値と最大値についてエラーバーで示している。
+%この図から見て取れるように、オーバヘッドは確実に存在する。
+%ISR Interceptだと247nsのオーバヘッドであり、
+%ISR Intercept w/Funcでも790nsのオーバヘッドである。
+%この数値は直感的に考えると小さくシステム自体に影響を及ぼすほどではないと考えられ、
+%しかしその割込みが乱発することによる積み重ねによっては影響を与えることは、
+%本手法のデメリットとして意識しなければならない。
+
+\subsection{Independent Synchronization mechanism overhead}
+We evaluate the overhead according to using independent synchronization mechanism.
+The our method is need to call the $rtx\_nvrm\_notify()$ at the timing of requested synchronization (e.g. after the kernel launch issue). 
+%本稿では同期生成のためのオーバヘッドを測定する。
+%割込みの立ち上げは同期を求めるタイミング(e.g. カーネルラウンチ後)にrtx\_nvrm\_notify()を呼び出す必要がある。
+In vanilla environment, these api is not necessary, therefore, time the API consumed is overhead.
+%スケジューリングを行わないVanillaな状態ではこれらのAPIは必要ではないものであるため、これらのAPIにかかった時間はすべてオーバヘッドとなる。
+
+We measured overhead by measuring the API consumed time between API call and return.
+%そのためこれらのオーバヘッドの計測を行う。計測はAPIの呼び出しから戻るまでを測定する。
 
 \begin{figure}[!t]
 \begin{center}
@@ -73,10 +88,12 @@ ISR Intercept w/Funcでも790nsのオーバヘッドである。
 \end{center}
 \end{figure}
 
-結果をFigure \ref{fig:irq_rise_overhead}に示す。
+As a result indicate in Figure~\ref{fig:irq_rise_overhead}.
+%結果をFigure \ref{fig:irq_rise_overhead}に示す。
+Initialize is   at awaken a linux process.
 InitializeはIndirect Bufferはプロセスが立ち上がるたびに、
 コマンド送信用のIndirect Bufferの確保や各エンジンの登録のために呼び出される必要がある。
-Notifyはカーネル実行後や非同期メモリコピー実行後のような実際に割込みを発生させたいタイミングで呼び出される。
+Notifyはカーネル実行後や非同期メモリコピー実行後のような同期を発生させたいタイミングで呼び出される。
 これらはioctlシステムコールによってユーザ空間とカーネル空間をまたいでる影響か、実行時間のバラ付きが大きく出ている。
 
 Initializeは比較的時間がかかっているが、1プロセスにつき一度しか呼ばれないため、アプリケーション全体への影響は少ないと考えられる。
