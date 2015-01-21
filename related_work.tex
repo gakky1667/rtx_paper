@@ -1,34 +1,34 @@
 \section{Related Work}\label{sec:relatedwork}
-\textbf{Comparison of prior work}
+\textbf{Comparison of prior work:}
+RGEM and GPU-Sparc\cite{sparc} have GPU resource management with not modify the kernel and device drivers.
+However, these work use sycnhronizations that are depended proprietary-software.
+TimeGraph, Gdev, Ptask and GPUSync are realized independent synchronization mechanisms for modifying the kernel and devie drivers.
+To our knowledge, Linux-RTXG is the only real-time GPU framework using a synchronization mechanism that is independent of the runtime while it was not modificated the kernel and device drivers.
 
 
-我々の知る限り、カーネルやドライバを修正せずにGPU資源管理に取り組んだ例は無い。
-2014年では旧バージョンのマイナーアップデートも含め172個\footnote{kernel.orgで提供されるカーネルのうち2014年に更新されたファイルの数}のアップデートがリリースされている。
 
+%我々はこれまでいくつかのGPUの資源管理に関する研究\cite{kato:timegraph,kato:rtas2011,kato:rgem,kato:gdev}を行ってきた。
+%TimeGraphはGPUに送信されるコマンドをスケジューリングすることでCUDAにかぎらず、OpenGLなど、
+%全てのGPUを利用に関する資源管理を行っている。
+%しかしながらGPUのコマンドは処理の実行だけでなく、データ転送、割込み処理登録などの処理時にも送信されており、
+%本当にスケジューリングするべき単位でのスケジューリングには向いていないことがわかっている。
+%そのため、RGEMはGPGPUに特化し、GPUカーネル実行単位でのスケジューリングを目指し、固定優先度でのスケジューリングを実現してる。
+%加えて、データ転送のセグメント分けによってノンプリエンプティブな特性にもたらされるデメリットを最小限にし、
+%レスポンスタイムの向上を目指している。
+%GdevはRGEMの発展形であり、仮想GPUとResource ReservationによるQoS制御や、OS空間でのCUDA実行などを実現している。
+%加えてデータ転送とカーネル実行をオーバラップさせることで実行時間自体の縮小を実現している。
+%
+%PTask\cite{ptask} is an OS abstraction for GPU applications that optimizes data transfers and GPU scheduler.
+%
+%Elliott et al. present GPUSync\cite{elliott2013gpusync,elliott:explor14}.
+%GPUSyncではホストからGPUへのデータ転送開始から、GPUでの処理、GPUからホストへのデータ転送までをクリティカルセクションと設定し、
+%runtimeへのアクセスはクリティカルセクションを区切りとして単一のアクセスとなるように調停を行っている。
+%これによってクローズドソースなランタイムを利用しつつ、自身のGPU資源管理を実現可能としている。
+%GPUSyncはアクセス調停の手法としてk-exclusion lockの拡張を利用している。
+%加えて各GPUごとにResource ReservationによるQoS担保を行っており、各GPU間のP2P migrationも実現しており、MultipleGPUへの自動割り当ても行っている。
 
-
-我々はこれまでいくつかのGPUの資源管理に関する研究\cite{kato:timegraph,kato:rtas2011,kato:rgem,kato:gdev}を行ってきた。
-TimeGraphはGPUに送信されるコマンドをスケジューリングすることでCUDAにかぎらず、OpenGLなど、
-全てのGPUを利用に関する資源管理を行っている。
-しかしながらGPUのコマンドは処理の実行だけでなく、データ転送、割込み処理登録などの処理時にも送信されており、
-本当にスケジューリングするべき単位でのスケジューリングには向いていないことがわかっている。
-そのため、RGEMはGPGPUに特化し、GPUカーネル実行単位でのスケジューリングを目指し、固定優先度でのスケジューリングを実現してる。
-加えて、データ転送のセグメント分けによってノンプリエンプティブな特性にもたらされるデメリットを最小限にし、
-レスポンスタイムの向上を目指している。
-GdevはRGEMの発展形であり、仮想GPUとResource ReservationによるQoS制御や、OS空間でのCUDA実行などを実現している。
-加えてデータ転送とカーネル実行をオーバラップさせることで実行時間自体の縮小を実現している。
-
-PTask\cite{ptask} is an OS abstraction for GPU applications that optimizes data transfers and GPU scheduler.
-
-Elliott et al. present GPUSync\cite{elliott2013gpusync,elliott:explor14}.
-GPUSyncではホストからGPUへのデータ転送開始から、GPUでの処理、GPUからホストへのデータ転送までをクリティカルセクションと設定し、
-runtimeへのアクセスはクリティカルセクションを区切りとして単一のアクセスとなるように調停を行っている。
-これによってクローズドソースなランタイムを利用しつつ、自身のGPU資源管理を実現可能としている。
-GPUSyncはアクセス調停の手法としてk-exclusion lockの拡張を利用している。
-加えて各GPUごとにResource ReservationによるQoS担保を行っており、各GPU間のP2P migrationも実現しており、MultipleGPUへの自動割り当ても行っている。
-
-Han et al. show GPU-SPARC\cite{sparc}.
-GPU-Sparc support to automatically split and run the GPU kernel concurrently over multi-GPU, and then they supported priority queue based scheduling.
+%Han et al. show GPU-SPARC\cite{sparc}.
+%GPU-Sparc support to automatically split and run the GPU kernel concurrently over multi-GPU, and then they supported priority queue based scheduling.
 
 We show the table\ref{tab:comp:prior} that is result of comparing the Linux-RTXg and prior work.
 
@@ -40,7 +40,7 @@ We show the table\ref{tab:comp:prior} that is result of comparing the Linux-RTXg
  & \multicolumn{2}{|l|}{CPU} & \multicolumn{2}{|l|}{GPU} & Budget & Data/Comp. & Auto GPU & Closed Src.& Kernel& \multirow{2}{*}{Configurable}\\ \cline{1-5}
  & FP & EDF & FP & EDF & Enforcement & Ovlp. & Allocate & Compatible & Free & \\ \hline
  RESCH& x & x &  &  & & & & & x & x \\ \hline
- RGEM& & & x &  & & & & & x & \\ \hline
+ RGEM& & & x &  & & & & & x & x\\ \hline
  Gdev& & & x &  & x & x &  &  & &   \\ \hline
  PTask& & & & & x & x & x & x & &   \\ \hline
  GPUSync& x & x & x & & x & x & x & x & x &   \\ \hline

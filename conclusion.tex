@@ -1,13 +1,21 @@
 \section{Conclusion}\label{sec:conclusion}
 In this paper,
-we present linux real-time extension for cpu-gpu resouce coordination
-called linux-rtxg for cpu and gpu coordinated resource management.
+we present linux real-time extension for cpu-gpu resouce coordination is called Linux-RTXG for cpu and gpu coordinated resource management.
 We focus on that are specifically not modify the kernel, worked for GPU resource management.
-GPUをよりリアルタイムにするために必要と考えた、GPUタスク（running on the CPU）のスケジューリング拡張、
-GPUカーネルのスケジューリング拡張について取り組んでおり、GPUの同期に用いられる割込みのtop-halfを傍聴することで実現した。
-今回実現したフレームワークは、ジョブ一個あたりのオーバヘッドは約x\%(sleepしている時間も含む)になり、taskあたりのオーバヘッドは約x\%に収まることを示した。
-加えて既存フレームワークであるGdevと同一アルゴリズムを用いて、割込み傍聴を用いたQoS Managementの性能を検証したところ、約x\%のオーバヘッドに収まることを示した。
+Linux-RTXG present the CPU task scheduling, the GPU task sheduling and the GPU resource reservation mechanisms.
+The CPU task scheduling is based on RESCH.
+The GPU task scheduling provides prioritized scheduling by our synchronization mechanisms.
+Our synchronization mechanisms is not need to modify the kernel and device drivers, presented by intercept interrupt top-half ISRs.
 
-フレームワークとしては、GPUSparcなどでも用いられるカーネル分割による擬似プリエンプティブスケジューリングへの対応などのアプローチを統合することでより完成度を高めることができる。
-本フレームワークはリアルタイムGPUを実現するための基盤としてメリットを持っているが、リアルタイムGPUを完全に実現しているわけではない。
-今後本フレームワークを利用してどれだけの成果を得られるかが重要である。
+\TODO{評価結果について:}
+\TODO{overhead:}
+今回実現したフレームワークは、ジョブ一個あたりのオーバヘッドは約x\%(sleepしている時間も含む)になり、taskあたりのオーバヘッドは約x\%に収まることを示した。
+加えて既存フレームワークであるGdevと同一アルゴリズムを用いて、割込み傍聴を用いたQoS Managementの性能を検証し多少の性能低下で収まることを確認した。
+\TODO{qos management}
+
+\TODO{結果について終わり}
+
+The Basic frame of scheduling framework is already completion for realized real-time GPU.
+In the future work, Be addressed to improvement GPU execution (preemptive, p2p migration) is essensial matter in order to more real-time framework.
+%リアルタイムGPUを実現するための，スケジューリングフレームワークの基本フレームは既に完成した．
+%今後はGPUSyncやGPUSparcが着目しているその他GPU実行に関する改良(preemptive, p2p migration)などにも取り組むことでよりリアルタイムなGPUに近づくことができる．

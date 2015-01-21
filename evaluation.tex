@@ -59,6 +59,9 @@ ISR Intercept w/Func also has overhead that is about 790 nano seconds.
 Intuitively, it value does not affect system since very small values,
 however, interrupt is occured frequently including such as timer interrupt, should be aware as disadvantages.
 
+In addition, we measure the response time of the ISR (top-half) and the tasklet (bottom-half) in an environment with no load, it mesasurement result is shown in Figure~\ref{fig:bottomvstasklet}.
+
+
 %Raw ISRは通常のルーチンで実行されるISR、ISR Interceptは割り込みを盗聴するのみ、
 %ISR intercept w/Funcは盗聴した上でその割り込みが、いずれのカーネルに関連した割込みか識別しスケジューラを立ち上げる機能を実行した場合である。
 %それぞれ1000回の測定で平均値を取り、最小値と最大値についてエラーバーで示している。
@@ -88,15 +91,19 @@ We measured overhead by measuring the API consumed time between API call and ret
 \end{center}
 \end{figure}
 
-As a result indicate in Figure~\ref{fig:irq_rise_overhead}.
+As a result shown in Figure~\ref{fig:irq_rise_overhead}.
 %結果をFigure \ref{fig:irq_rise_overhead}に示す。
-Initialize is   at awaken a linux process.
-InitializeはIndirect Bufferはプロセスが立ち上がるたびに、
-コマンド送信用のIndirect Bufferの確保や各エンジンの登録のために呼び出される必要がある。
-Notifyはカーネル実行後や非同期メモリコピー実行後のような同期を発生させたいタイミングで呼び出される。
-これらはioctlシステムコールによってユーザ空間とカーネル空間をまたいでる影響か、実行時間のバラ付きが大きく出ている。
+Initialize is need to called the at awaken a linux process for allocating a indirect buffer and register several compute engine to the device driver.
+%InitializeはIndirect Bufferはプロセスが立ち上がるたびに、
+%コマンド送信用のIndirect Bufferの確保や各エンジンの登録のために呼び出される必要がある。
+Notify is called at timing of the need to synchronization such as after the kernel launch issues.
+%Notifyはカーネル実行後や非同期メモリコピー実行後のような同期を発生させたいタイミングで呼び出される。
+These methods execution time is variants occurred affected by ioctl system call.
+%これらはioctlシステムコールによってユーザ空間とカーネル空間をまたいでる影響か、実行時間のバラ付きが大きく出ている。
 
-Initializeは比較的時間がかかっているが、1プロセスにつき一度しか呼ばれないため、アプリケーション全体への影響は少ないと考えられる。
+Initialize average time is about 4 mill seconds, however, application is not affected too much because above characteristics is only called once.
+%Initializeは比較的時間がかかっているが、1プロセスにつき一度しか呼ばれないため、アプリケーション全体への影響は少ないと考えられる。
+Notify is 
 Notifyに関してはそれほど時間がかかっておらず、同期待ちの間に実行されるべき処理なため、こちらもアプリケーション全体への影響は少ないと考えられる。
 FenceについてもNotifyと同様に平均で2000ns以下とほぼ誤差といってもよい程度の時間である。
 
@@ -142,7 +149,7 @@ syncは発行されてから同期完了するまでの時間である。
 \end{figure}
 
 
-\subsection{QoS Management}
+\subsection{Performance of QoS management}
 
 次にGPUのバジェットエンフォースメントの性能を評価する。
 ここでは、今回同一アルゴリズムでQoSマネージメントを行っているGdevとの比較を行い、
@@ -154,13 +161,15 @@ syncは発行されてから同期完了するまでの時間である。
 これらのタスクの実行中のGPU利用率を計測し、Gdevと同様のアルゴリズムを用いることで、今回提供するLinux−RTXGによるアプローチによってどれだけQoSマネージメントについてのパフォーマンスに影響するかを示す。
 Gdevを用いることから、両者ともデバイスドライバはNouveauドライバを用いる.
 
+The first, we experiment the utilization using only priority scheduling, we prepare four diffenre priorities GPU task.
+It experiments result show in Figure~\ref{fig:rtx_prio}.
 
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{img/dummy}
 \caption{Utilization of four tasks on the Linux-RTXG only priority scheduling. Each tasks are given different priorities.}
 \end{center}
-\label{fig:qos_rtx}
+\label{fig:rtx_prio}
 \end{figure}
 
 \begin{figure}[t]
@@ -178,6 +187,7 @@ Gdevを用いることから、両者ともデバイスドライバはNouveauド
 \end{center}
 \label{fig:qos_gdev}
 \end{figure}
+
 
 Figure~\ref{fig:qos_gdev},\ref{fig:qos_rtx} show gpu usage on the qos management by gdev and linux-rtxg.
 \TODO{結果に合わせて記述}

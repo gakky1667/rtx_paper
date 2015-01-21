@@ -1,10 +1,10 @@
 Graphics processing units (GPUs) easily provide the benefits of high-performance computing.
-However, GPUs runtime environment is target to best-effort oriented application, these does not consider real-time.
-Previous work have contributed for real-time GPU, these have depends kernel.
+However, GPUs runtime environment is target to best-effort oriented application, and do not consider real-time.
+Previous work have contributed for real-time GPU, and depends kernel.
 Dependence on the kernel and the device driver gives the burden developers and users.
-We present Linux-RTXG which is realized cpu-gpu realtime extending framework while kernel free.
-Linux-RTXG have a CPU real-time scheduler, a GPU real-time scheduler and a GPU reservation mechanisms.
-To achieve kernel free framework, 
+We present Linux-RTXG which is realized CPU-GPU real-time extending framework without kernel modification.
+Linux-RTXG has a CPU real-time scheduler, a GPU real-time scheduler, and a GPU reservation mechanism.
+To achieve framework without kernel modification, 
 we presents interrupt intercept mechanisms and independent interrupt mechanisms and to solved currently linux kernel real-time scheduling problem.
 Our experimental result,
 we indicate overhead of GPU scheduling using Linux-RTXG framework,
