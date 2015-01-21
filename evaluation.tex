@@ -59,8 +59,13 @@ ISR Intercept w/Func also has overhead that is about 790 nano seconds.
 Intuitively, it value does not affect system since very small values,
 however, interrupt is occured frequently including such as timer interrupt, should be aware as disadvantages.
 
-In addition, we measure the response time of the ISR (top-half) and the tasklet (bottom-half) in an environment with no load, it mesasurement result is shown in Figure~\ref{fig:bottomvstasklet}.
+In addition, we evaluate comparing the response time of the ISR (top-half) and the tasklet (bottom-half) in an environment with noCPU load,
+it evaluate does measurement time until the responsible timing from the start of interrupt process which is $do\_IRQ$ function is called).
+it mesasurement result is shown in Figure~\ref{fig:bottomvstasklet}.
 
+GPUSync bypass the $tasklet\_schedule()$ if it function is called from the nvidia driver.
+The tasklet is generally called after the important procesing in ISR.
+It approach has robustness, but response is worse than ISR, it response can be seen from Figure~\ref{fig:bottomvstasklet}.
 
 %Raw ISRは通常のルーチンで実行されるISR、ISR Interceptは割り込みを盗聴するのみ、
 %ISR intercept w/Funcは盗聴した上でその割り込みが、いずれのカーネルに関連した割込みか識別しスケジューラを立ち上げる機能を実行した場合である。
@@ -92,23 +97,27 @@ We measured overhead by measuring the API consumed time between API call and ret
 \end{figure}
 
 As a result shown in Figure~\ref{fig:irq_rise_overhead}.
-%結果をFigure \ref{fig:irq_rise_overhead}に示す。
 Initialize is need to called the at awaken a linux process for allocating a indirect buffer and register several compute engine to the device driver.
+Notify and Fence areGPU command sending to GPU devices which called at timing of the need to synchronization such as after the kernel launch issues.
+These methods execution time is variants occurred affected by ioctl system call.
+%結果をFigure \ref{fig:irq_rise_overhead}に示す。
 %InitializeはIndirect Bufferはプロセスが立ち上がるたびに、
 %コマンド送信用のIndirect Bufferの確保や各エンジンの登録のために呼び出される必要がある。
-Notify is called at timing of the need to synchronization such as after the kernel launch issues.
 %Notifyはカーネル実行後や非同期メモリコピー実行後のような同期を発生させたいタイミングで呼び出される。
-These methods execution time is variants occurred affected by ioctl system call.
 %これらはioctlシステムコールによってユーザ空間とカーネル空間をまたいでる影響か、実行時間のバラ付きが大きく出ている。
 
 Initialize average time is about 4 mill seconds, however, application is not affected too much because above characteristics is only called once.
 %Initializeは比較的時間がかかっているが、1プロセスにつき一度しか呼ばれないため、アプリケーション全体への影響は少ないと考えられる。
-Notify is 
-Notifyに関してはそれほど時間がかかっておらず、同期待ちの間に実行されるべき処理なため、こちらもアプリケーション全体への影響は少ないと考えられる。
-FenceについてもNotifyと同様に平均で2000ns以下とほぼ誤差といってもよい程度の時間である。
+Notify is not takes much time that is about 3.5µs.
+Fence likewise be not takes much time that is about 2µs.
+Although may be not have to worry about for most applications,
+it is necessary to consider the overhead in a cycle of short application.
 
 \subsection{Scheduling Overhead}\label{sec:eval:sched_overhead}
-
+We will evaluate scheduling overhead by using Linux-RTXG scheduler.
+We prepared three applications that are "vanilla", "mutex", and "rtx" for mesurement overheads.
+The "rtx" application is scheduled by rtx.
+The "mutex" application  is limited to single kernel issue similar to 
 rtxでスケジューリングした場合のオーバヘッドを測定するために、"vanilla", "mutex", "rtx"の３種類のアプリケーションを用意した。
 全てに共通するのが、1個のアプリケーションに複数のタスクが存在しており、
 各タスクには１０個のジョブが含まれることである。1個のジョブはGPUへのデータ転送、GPUカーネル実行、GPUからのデータ転送を含んでいる。GPUカーネルは単純な行列の計算を行う。
