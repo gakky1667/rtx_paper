@@ -6,7 +6,6 @@ TimeGraph, Gdev, Ptask and GPUSync are realized independent synchronization mech
 To our knowledge, Linux-RTXG is the only real-time GPU framework using a synchronization mechanism that is independent of the runtime while it was not modificated the kernel and device drivers.
 
 
-
 %我々はこれまでいくつかのGPUの資源管理に関する研究\cite{kato:timegraph,kato:rtas2011,kato:rgem,kato:gdev}を行ってきた。
 %TimeGraphはGPUに送信されるコマンドをスケジューリングすることでCUDAにかぎらず、OpenGLなど、
 %全てのGPUを利用に関する資源管理を行っている。
@@ -36,16 +35,16 @@ We show the table\ref{tab:comp:prior} that is result of comparing the Linux-RTXg
 \begin{center}
 \caption{Linux-RTXG vs prior work}
 \label{tab:comp:prior}
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|} \hline
- & \multicolumn{2}{|l|}{CPU} & \multicolumn{2}{|l|}{GPU} & Budget & Data/Comp. & Auto GPU & Closed Src.& Kernel& \multirow{2}{*}{Configurable}\\ \cline{1-5}
- & FP & EDF & FP & EDF & Enforcement & Ovlp. & Allocate & Compatible & Free & \\ \hline
- RESCH& x & x &  &  & & & & & x & x \\ \hline
- RGEM& & & x &  & & & & & x & x\\ \hline
- Gdev& & & x &  & x & x &  &  & &   \\ \hline
- PTask& & & & & x & x & x & x & &   \\ \hline
- GPUSync& x & x & x & & x & x & x & x & x &   \\ \hline
- GPUSparc &  &  & x & & & x & & & & \\ \hline
- Linux-RTXG & x & x & x &  & x & x & ▲ & x & x & x  \\ \hline
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|} \hline
+ & \multicolumn{2}{|l|}{CPU} & \multicolumn{2}{|l|}{GPU} & Budget & Data/Comp. & Closed Src.& Kernel& OS & GPU Runtime \\ \cline{1-5}
+& FP & EDF & FP & EDF & Enforcement & Ovlp. & Compatible & Free & independent & independent \\ \hline
+ RESCH      & x & x &   & &   &   &   & x & x &   \\ \hline
+ RGEM       &   &   & x & &   &   &   & x & x &   \\ \hline
+ Gdev       &   &   & x & & x & x &   &   &   &   \\ \hline
+ PTask      &   &   &   & & x & x & x &   &   &   \\ \hline
+ GPUSync    & x & x & x & & x & x & x &   & x &   \\ \hline
+ GPUSparc   & ▲ &   & x & &   & x & x &   & x &   \\ \hline
+ Linux-RTXG & x & x & x & & x & x & ▲ & x & x & x \\ \hline
 \end{tabular}
 \end{center}
 \end{table*}

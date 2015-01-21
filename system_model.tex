@@ -1,14 +1,14 @@
 \section{System Model}\label{sec:system_model}
-In this section, we explain GPU task model on this paper while we discuss the gpu scheduling question and prior work.
-Next, we make available limitation for clearing the implementation of no patched gpu scheduling.
+In this section, we explain GPU task model on this paper while we discuss the GPU scheduling question and prior work.
+Next, we make available limitation for clearing the implementation of no patched GPU scheduling.
 This paper focus on a system composed of multiple GPU and multi-core CPU.
 
 \subsection{GPU Task Model}
-When using GPU in general-purpose way, CUDA and OpenCL can use much.
-In this paper, we only use CUDA, but it is possible the same approach even OpenCL.
+In case of  General Purpose GPU computing (GPGPU), CUDA and OpenCL are used to implement GPU applications.
+This paper focuses on CUDA, but it is possible to adapt the same approach to OpenCL.
 
-GPU applications use a set of the API supported by the system,
-typically talking the following steps.
+GPU applications use a set of the API supported by the runtime environment such as CUDA,
+typically GPU application taking the following steps.
 (i) create GPU context (\textit{cuCtxCreate}), 
 (ii) allocate space to device memory (\textit{cuMemAlloc}), 
 (iii) The data and the GPU kernel are copied to the allocated device memory space from host memory (\textit{cuMemcpyHtoD}), 

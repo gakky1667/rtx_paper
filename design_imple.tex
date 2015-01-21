@@ -1,7 +1,7 @@
 \section{Design and Implementation}\label{sec:design_imple}
 In this section, we present Linux-RTXG design and implementation.
 Linux-RTXG is an abbreviation of Linux Real-Time eXtension including GPU resouce management,
-which is no patched Linux real-time gpu scheduling framework.
+which is no patched Linux real-time GPU scheduling framework.
 
 We describe main contribution of the GPU scheduler and the integration to CPU scheduler in this paper,
 while CPU scheduling description is to minimize by Linux-RTXG is base RESCH.
@@ -27,7 +27,7 @@ it is using system call that is ioctl.
 The part of library included speciall method that is independent synchronization method.
 it method is used only on the nvidia driver.
 if system use nouveau driver, runtime must use part of gdev.
-Gdev can happen arbitary interrupt of gpu kernel in the user-space mode, and it have no need to be independent interrupt raised method.
+Gdev can happen arbitary interrupt of GPU kernel in the user-space mode, and it have no need to be independent interrupt raised method.
 
 Linux-RTXG loadable kernel module is positioned kernel-space.
 Thus, module can use kernel exported function.
@@ -56,7 +56,7 @@ However, user have to add Linux-RTXG api to existing CUDA application for using 
 
 The sample code of the using Linux-RTXG scheduler is shown in Figure~\ref{fig:sample},
 and to some extent omitted except GPU scheduling.
-The $gpu_task()$ is
+GPU tasks may be provided with a function by calling an Linux-RTXG's API at strategic points.
 
 \begin{figure}[t]
 \begin{center}
@@ -65,7 +65,7 @@ The $gpu_task()$ is
 {\scriptsize \verb|void gpu_task(){        |}\\
 {\scriptsize \verb| /* variable initialization  */        |}\\
 {\scriptsize \verb| /* calling RESCH API */        |}\\
-{\scriptsize \verb|  dev_id = rtx_device_advice(dev_id); |}\\
+{\scriptsize \verb|  dev_id = rtx_gpu_device_advice(dev_id); |}\\
 {\scriptsize \verb|  cuDeviceGet(&dev, dev\_id);           |}\\
 {\scriptsize \verb|  cuCtxCreate(&ctx, SYNC_FLAG, dev);    |}\\
 {\scriptsize \verb|  rtx_gpu_open(&handle, vdev_id);     |}\\
@@ -182,7 +182,7 @@ it because we do not want using black-box resource management for to realized tr
 \textbf{Independent synchronization mechanism from runtime}
 We present independent synchronization of NOTIFY and FENCE, these are the to occur interrupt for NOTIFY and the write the fence value by microcontroller.
 NVIDIA's proprietary software use ioctl interface to communication between kernel-space and user-space.
-These ioctl interfaces are provided drivers function such as device memory allocation, get the gpu information and memory mapping.
+These ioctl interfaces are provided drivers function such as device memory allocation, get the GPU information and memory mapping.
 Gdev build infrastructure that is able to execute on the NVIDIA's driver using these ioctl interfaces.
 
 We also use this ioctl interface similar to Gdev's command sending method for our method.
