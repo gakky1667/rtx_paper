@@ -1,19 +1,24 @@
-\section{Evaluation}
+\section{Evaluation}\label{sec:evaluation}
 We evaluate scheduling overhead and scheduling performance.
+Scheduling experiments are limited on the GPU scheduling since CPU scheduling performance is already experiments~\cite{kato:resch}.
+In this evaluation, we focus two point.
+The one is to indicate the Linux-RTXG disadvantages,
+the other one is QoS performance comparing prior work. 
 
-Scheduling experiments are limited on the GPU scheduling since CPU scheduling performance is already experiments\cite{kato:resch}.
+%本実験では２点にフォーカスし評価を行う．
+%まず一つ目は，本Linux-RTXGを利用した際のオーバヘッドを定量的に計測し、利用に伴ってどれだけのデメリットを含んでいるかを提示する
+%２つ目に，シンクロナイゼーション方式がカーネル編集を含まない方式でどの程度のパフォーマンス維持が可能であるかを示す．
 
-In this paper, we experiments 
-
-本稿における評価では、本Linux-RTXGを利用した際のオーバヘッドを定量的に計測し、利用に伴ってどれだけのデメリットを含んでいるかを提示する。
-
+GPU using Real-world oriented applications\cite{hirabayashi:cpsna2013,tokamak} are executed cyclic.
+%今回の評価用アプリケーションは周期的に実行されるため，リアル・ワールドのアプリケーションと同等の処理フローであるとし評価で用いる．
+This evaluation applications are equivalent to the real-world oriented applications
+because GPU applications characteristics are these application on the single GPU kernel.
+%GPUを利用するリアル・ワールドのアプリケーション\cite{hirabayashi,tokamak}ではGPUタスクの多くは周期的に実行される．
+We will discuss in the next chapter for the difference between the functions and features to hold to it with a qualitative evaluation.
+%定性的な評価としては関連する研究と保持する機能や特徴の差について次章でdiscussする。
 
 \TODO{GPUSyncと比較しなくて良いのか}
-\TODO{実アプリで動かすとどうなるのか}
 
-We will discuss in the next chapter for the difference between the functions and features to hold to it with a qualitative evaluation.
-
-%定性的な評価としては関連する研究と保持する機能や特徴の差について次章でdiscussする。
 
 \subsection{Experimental Environment}
 Our experiments are conducted with the Linux kernel 3.16.0 on NVIDIA Geforce GTX680 graphics card and 3.40GHz Intel Core i7 2600, which contains 8 cores (including the two hyper-threading cores) and 8GB main memory.
@@ -63,9 +68,18 @@ In addition, we evaluate comparing the response time of the ISR (top-half) and t
 it evaluate does measurement time until the responsible timing from the start of interrupt process which is $do\_IRQ$ function is called).
 it mesasurement result is shown in Figure~\ref{fig:bottomvstasklet}.
 
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.4\textwidth]{img/tasklet_vs_interrupt}
+\caption{Comparison of the response time of the interrupt top-half and bottom-half}
+\end{center}
+\label{fig:bottomvstasklet}
+\end{figure}
+
 GPUSync bypass the $tasklet\_schedule()$ if it function is called from the nvidia driver.
 The tasklet is generally called after the important procesing in ISR.
 It approach has robustness, but response is worse than ISR, it response can be seen from Figure~\ref{fig:bottomvstasklet}.
+
 
 %Raw ISRは通常のルーチンで実行されるISR、ISR Interceptは割り込みを盗聴するのみ、
 %ISR intercept w/Funcは盗聴した上でその割り込みが、いずれのカーネルに関連した割込みか識別しスケジューラを立ち上げる機能を実行した場合である。
@@ -114,24 +128,6 @@ Although may be not have to worry about for most applications,
 it is necessary to consider the overhead in a cycle of short application.
 
 \subsection{Scheduling Overhead}\label{sec:eval:sched_overhead}
-We will evaluate scheduling overhead by using Linux-RTXG scheduler.
-We prepared three applications that are "vanilla", "mutex", and "rtx" for mesurement overheads.
-The "rtx" application is scheduled by rtx.
-The "mutex" application  is limited to single kernel issue similar to 
-rtxでスケジューリングした場合のオーバヘッドを測定するために、"vanilla", "mutex", "rtx"の３種類のアプリケーションを用意した。
-全てに共通するのが、1個のアプリケーションに複数のタスクが存在しており、
-各タスクには１０個のジョブが含まれることである。1個のジョブはGPUへのデータ転送、GPUカーネル実行、GPUからのデータ転送を含んでいる。GPUカーネルは単純な行列の計算を行う。
-
-３種で異なる点として、まずmutexは同時にlaunchが発行されるのが1つに調停されるようにmutexを用いてロックしたバージョンである。
-そしてrtxはlinxu-rtxgを用いて実行したケースであり、
-vanillaはそれらの追加が無くスケジューリングや調停を一切行わないケースである。
-
-CPUのスケジューリングはlinux-rtxを用いたシンプルなFixed-priorityスケジューリング (LinuxのSCHED\_FIFOと同様のポリシー、ジョブ管理のみを行う)を用いる。
-GPU側のスケジューリングは、Gdevで提案されたBANDスケジューラ、Linux-RTXでの同期は全てNOTIFYを用いて行う。
-
-計測結果をFigure~\ref{fig:fp_overhead}に示す。
-アプリケーションに含まれるタスク数ごとにプロットしており、各ジョブ内のラウンチ要求から実行完了までにかかった時間の平均値を各処理毎に積み上げ式で示している。
-
 
 \begin{figure}[t]
 \begin{center}
@@ -141,14 +137,6 @@ GPU側のスケジューリングは、Gdevで提案されたBANDスケジュー
 \label{fig:fp_overhead}
 \end{figure}
 
-\TODO{結果について説明と、考察}
-
-launch\_adviceはrtx\_gpu\_launchによってGPU利用のためのリクエストを出してから、許可がでるまでを示しており、
-get\_mutexはmutexによってロックを獲得するまでの時間、
-launch、notifyはそれぞれコマンドを発行するまでにかかった時間で、
-syncは発行されてから同期完了するまでの時間である。
-全て、100回のアプリケーション実行（$number of tasks ☓$）
-
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{img/sum_task.eps}
@@ -157,21 +145,59 @@ syncは発行されてから同期完了するまでの時間である。
 \label{fig:fp_overhead}
 \end{figure}
 
+We will evaluate scheduling overhead by using Linux-RTXG scheduler.
+We prepared three applications that are "vanilla", "mutex", and "rtx" for mesurement overheads.
+These applications is based common application based on Gdev's microbenchmark which has GPU looping function.
+Changes are arranged to generate multiple GPU tasks by the fork.
+Each tasks have 10 jobs, a job is included GPU data transferring and a GPU kernel execution.
+
+The "rtx" application is scheduled by rtx.
+The "mutex" application  is limited to single kernel issue similar to scheduling environment.
+The "vanilla" application is not to change the base application.
+
+CPU scheduing policies is using the simple fixed-priority scheduling by Linux-RTXG similar to Linux's \textbf{SCHED\_FIFO} that difference is the presence or absence of the job management.
+GPU scheduling policies is fixed-priority scheduling with resrouce reservation witch is BAND scheduling policy.
+The synchronization is using NOTIFY of independent synchronization mechanism.
+
+We measured the average time in each part of each job of, 100 times GPU task execution (1000 jobs).
+As a result show in Figure~\ref{fig:fp_overhead}.
+%計測結果をFigure~\ref{fig:fp_overhead}に示す。
+%アプリケーションに含まれるタスク数ごとにプロットしており、各ジョブ内のラウンチ要求から実行完了までにかかった時間の平均値を各処理毎に積み上げ式で示している。
+The "launch\_advice" is time of until GPU kernel launch request is accept on the Linux-RTXG.
+The "mutex" is time to get the mutex lock.
+The "sync" is time of untile synchronizationed from issued the GPU kernel launch issue.
+
+
+
+%launch\_adviceはrtx\_gpu\_launchによってGPU利用のためのリクエストを出してから、許可がでるまでを示しており、
+%get\_mutexはmutexによってロックを獲得するまでの時間、
+%launch、notifyはそれぞれコマンドを発行するまでにかかった時間で、
+%syncは発行されてから同期完了するまでの時間である。
+%全て、100回のアプリケーション実行（$number of tasks ☓$)の平均値である．
+
+%rtxでスケジューリングした場合のオーバヘッドを測定するために、"vanilla", "mutex", "rtx"の３種類のアプリケーションを用意した。
+%全てに共通するのが、1個のアプリケーションに複数のタスクが存在しており、
+%各タスクには１０個のジョブが含まれることである。1個のジョブはGPUへのデータ転送、GPUカーネル実行、GPUからのデータ転送を含んでいる。GPUカーネルは単純な行列の計算を行う。
+%
+%３種で異なる点として、まずmutexは同時にlaunchが発行されるのが1つに調停されるようにmutexを用いてロックしたバージョンである。
+%そしてrtxはlinxu-rtxgを用いて実行したケースであり、
+%vanillaはそれらの追加が無くスケジューリングや調停を一切行わないケースである。
+
+
+%CPUのスケジューリングはlinux-rtxを用いたシンプルなFixed-priorityスケジューリング (LinuxのSCHED\_FIFOと同様のポリシー、ジョブ管理のみを行う)を用いる。
+%GPU側のスケジューリングは、Gdevで提案されたBANDスケジューラ、Linux-RTXでの同期は全てNOTIFYを用いて行う。
+
 
 \subsection{Performance of QoS management}
+Next experiments are evaluating QoS management performance.
+In this evaluate, we measure the utilization of each tasks on the several environments.
+Thereby, we indicates performance that is not falling by not modificate kernel.
 
-次にGPUのバジェットエンフォースメントの性能を評価する。
-ここでは、今回同一アルゴリズムでQoSマネージメントを行っているGdevとの比較を行い、
-パッチを利用しない実装においても、性能をほぼ落とすこと無くできていることを示す。
+%次にGPUのバジェットエンフォースメントの性能を評価する。
 
-比較対象は、本Linux-RTXGと同様のスケジューリングアルゴリズムが提供可能なGdevのモジュール版とで比較する。
-評価に用いるスケジューリングポリシーはBANDスケジューラを用いる。
-実験に利用するアプリケーションとして、\ref{sec:eval:sched_overhead}節で利用したものと同様のものでTaskを４つ生成し、各タスク毎に25\%のGPU利用権限を与える。
-これらのタスクの実行中のGPU利用率を計測し、Gdevと同様のアルゴリズムを用いることで、今回提供するLinux−RTXGによるアプローチによってどれだけQoSマネージメントについてのパフォーマンスに影響するかを示す。
-Gdevを用いることから、両者ともデバイスドライバはNouveauドライバを用いる.
-
-The first, we experiment the utilization using only priority scheduling, we prepare four diffenre priorities GPU task.
-It experiments result show in Figure~\ref{fig:rtx_prio}.
+The application utilizes the same as those used in the previous experiment.
+In the performing QoS management, tasks are four generated as a setting.
+Each tasks assigned to VGPU one by one, and each VGPU is provided a GPU resource 25\%.
 
 \begin{figure}[t]
 \begin{center}
@@ -196,12 +222,42 @@ It experiments result show in Figure~\ref{fig:rtx_prio}.
 \end{center}
 \label{fig:qos_gdev}
 \end{figure}
+The first, we experiment the utilization using only priority scheduling, we prepare four diffenre priorities GPU task.
+As a result is showed in Figure~\ref{fig:rtx_prio}.
+We can seen the the task has been used in order of priority in Figure~\ref{fig:rtx_prio}.
+
+The second, we demonstrate performance of Linux-RTXG QoS management by using NVIDIA's proprietary software.
+Maximum utilization is Minimam 
 
 
-Figure~\ref{fig:qos_gdev},\ref{fig:qos_rtx} show gpu usage on the qos management by gdev and linux-rtxg.
-\TODO{結果に合わせて記述}
+Next then, we demonstrate and compare the performance of the Linux-RTXG QoS management and the Gdev's QoS management by using Gdev's libray and Nouveau's open-source driver.
+Figure~\ref{fig:qos_rtx, fig:qos_rtx} show experimental results of each tasks utlization on the Linux-RTXG QoS management and the Gdev QoS management.
+
+A maximum utilization of Linux-RTXG is less than to x\%, while a minimum utilization of Linux-RTXG is more than to x\%.
+A maximum utilization of Gdev is less than to x\%, while a minimum utilization of Gdev is more than to x\%.
+Distribution of Linux-RTXG is \textbf{x}, the variance of Gdev is \textbf{x}.
+We can be seen that the performance is not nearly falling from the above results
+%Linux−RTXGの振幅は◯％以下であり，Nouveauの振幅は◯％以下である．
+%Linux-RTXGの分散は◯であり，Nouveauの分散は◯なことから，性能はほぼ落ちていないことがわかる．
+%最後に非周期タスクが存在する環境下においても，QoS Managementによってリソース制限がかかっていることを示すことで，
+
+Therefore, the synchronization mechanism of Linux-RTXG excluding kernel modification,
+it is show that possible scheduling without sacrificing performance.
+
+%つまり，Linux-RTXGのカーネル編集を除いたシンクロナイゼーションメカニズムにおいても，
+%性能を落とさずにスケジューリング可能なことを示せている．
 
 
-%%%
 
-Figure~\ref{} shows 
+%ここでは、今回同一アルゴリズムでQoSマネージメントを行っているGdevとの比較を行い、
+%パッチを利用しない実装においても、性能をほぼ落とすこと無くできていることを示す。
+
+%比較対象は、本Linux-RTXGと同様のスケジューリングアルゴリズムが提供可能なGdevのモジュール版とで比較する。
+%評価に用いるスケジューリングポリシーはBANDスケジューラを用いる。
+%実験に利用するアプリケーションとして、\ref{sec:eval:sched_overhead}節で利用したものと同様のものでTaskを４つ生成し、各タスク毎に25\%のGPU利用権限を与える。
+%これらのタスクの実行中のGPU利用率を計測し、Gdevと同様のアルゴリズムを用いることで、今回提供するLinux−RTXGによるアプローチによってどれだけQoSマネージメントについてのパフォーマンスに影響するかを示す。
+%Gdevを用いることから、両者ともデバイスドライバはNouveauドライバを用いる.
+
+
+
+

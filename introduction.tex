@@ -27,9 +27,10 @@ Therefore, GPU runtime environments are required to support real-time scheduling
 %綿密な資源管理機能が保証されておらず、汎目的利用は可能かもしれないが、Multitasking systemでは利用が困難であることから、GPU資源管理ソフトウェアが必要となっている。
 %加えて、近年ではサイバーフィジカルシステムなどリアルタイム性を要求するシステムにおいてもGPUの利用が望まれており、汎用システム向けだけでなく、リアルタイムシステム向けの資源管理が求められる。
 %我々はこれまでに、いくつかのGPU resource management に関する研究を進めてきた。
-We have already worked several research of GPU resource management.
+In our previous work,
+we showed how to support GPU resource management.
 TimeGraph~\cite{kato:timegraph} provides GPU scheduling and reservation mechanisms at the device driver level to queue and dispatch GPU commands based on task priorities.
-RGEM~\cite{kato:rgem} provides GPU kernel scheduling and data transferring scheduling,
+%RGEM~\cite{kato:rgem} provides GPU kernel scheduling and data transferring scheduling,
 Gdev~\cite{kato:gdev} is applied resource reservation.
 These work have weak point that can not to provide fast supporting update architecture and full-funciton because these work is based on reverse engineering.
 %RGEM~\cite{kato:rgem}、Gdev~\cite{kato:gdev}ではGPGPUにフォーカスし、GPUで実行される単位であるカーネルとデータ転送をスケジューリングしている。
@@ -88,9 +89,9 @@ Linux-RTXG provide the CPU task scheduler, GPU kernel scheduler, and GPU kernel 
 
 \textbf{Organization}
 This rest of the paper is organized as follows.
-Section~\ref{sec:system_model} discuss the GPU real-time scheduling by kernel free approach.
+Section~\ref{sec:system_model} discusses the GPU real-time scheduling by kernel free approach.
 Section~\ref{sec:design_imple} shows Linux-RTXG design and implementations, especially focus on GPU scheduling.
-Section~\ref{sec:evaluation} indicate Linux-RTXG's advantages and dis-advantages,
-furthermore, demonstrate experimental results that are quantitative overheads and reservation performances.
+Section~\ref{sec:evaluation} indicates Linux-RTXG's advantages and dis-advantages,
+furthermore, demonstrates experimental results that are quantitative overheads and reservation performances.
 Section~\ref{sec:relatedwork} discusses related work.
 We provide our concluding remarks in Section~\ref{sec:conclusion}.

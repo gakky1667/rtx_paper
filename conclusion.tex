@@ -7,14 +7,10 @@ The CPU task scheduling is based on RESCH.
 The GPU task scheduling provides prioritized scheduling by our synchronization mechanisms.
 Our synchronization mechanisms is not need to modify the kernel and device drivers, presented by intercept interrupt top-half ISRs.
 
-\TODO{評価結果について:}
-\TODO{overhead:}
-今回実現したフレームワークは、ジョブ一個あたりのオーバヘッドは約x\%(sleepしている時間も含む)になり、taskあたりのオーバヘッドは約x\%に収まることを示した。
-加えて既存フレームワークであるGdevと同一アルゴリズムを用いて、割込み傍聴を用いたQoS Managementの性能を検証し多少の性能低下で収まることを確認した。
-\TODO{qos management}
-
-\TODO{結果について終わり}
-
+We indicate unit of job overhead met within about x\%, and unit of task met overhead within x\%.
+In addition, we demonstrate that the QoS management performance whitout kernel modification by comparing the Linux-RTXG and the Gdev.
+%今回実現したフレームワークは、ジョブ一個あたりのオーバヘッドは約x\%(sleepしている時間も含む)になり、taskあたりのオーバヘッドは約x\%に収まることを示した。
+%加えて既存フレームワークであるGdevと同一アルゴリズムを用いて、割込み傍聴を用いたQoS Managementの性能を検証し多少の性能低下で収まることを確認した。
 The Basic frame of scheduling framework is already completion for realized real-time GPU.
 In the future work, Be addressed to improvement GPU execution (preemptive, p2p migration) is essensial matter in order to more real-time framework.
 %リアルタイムGPUを実現するための，スケジューリングフレームワークの基本フレームは既に完成した．

@@ -7,51 +7,56 @@ This paper focus on a system composed of multiple GPU and multi-core CPU.
 In case of  General Purpose GPU computing (GPGPU), CUDA and OpenCL are used to implement GPU applications.
 This paper focuses on CUDA, but it is possible to adapt the same approach to OpenCL.
 
-GPU applications use a set of the API supported by the runtime environment such as CUDA,
-typically GPU application taking the following steps.
-(i) create GPU context (\textit{cuCtxCreate}), 
-(ii) allocate space to device memory (\textit{cuMemAlloc}), 
-(iii) The data and the GPU kernel are copied to the allocated device memory space from host memory (\textit{cuMemcpyHtoD}), 
-(iv) Launch the GPU kernel (\textit{cuLaunchGrid}), 
-(v) The GPU task is synchronized to the GPU kernel (\textit{cuCtxSynchronize}), 
-(vi) The resultant data transfer to host memory from device memory (\textit{cuMemcpyDtoH}), 
-(vii) release allocated memory space and context (\textit{cuMemFree, cuModuleUnload, cuCtxDestroy}).
+We define a GPU task which is to execute the GPU using process,
+and a GPU kernel that is unit of processing to executed on the GPU side.
+GPU application enclosed multiple GPU tasks.
 
-We define a GPU task which is to execute the GPU using above API flow,
-and define a GPU kernel that is unit of processing to executed on the GPU side.
+GPUs are used a set of the API supported by the runtime environment such as CUDA,
+typically GPU application taking the following steps:
+(i) \textit{cuCtxCreate} creates a GPU context,
+(ii) \textit{cuMemAlloc} allocate spaces to device memory, 
+(iii) \textit{cuModuleLoad} and \textit{cuMemcpyHtoD} copie the data and the GPU kernel to the allocated device memory spaces from host memory spaces,
+(iv) \textit{cuLaunchGrid} launch the GPU kernel, 
+(v) \textit{cuCtxSynchronize} is to synchronize waiting kernel is completion, 
+(vi) \textit{cuMemcpyDtoH} transfer resultant datas to host memory from device memory, and
+(vii) \textit{cuMemFree}, \textit{cuModuleUnload}, and \textit{cuCtxDestroy} release allocated memory spaces and the GPU context.
+
 
 %我々は本稿においては、GPU実行が少しでも含まれるプロセスであり、ある事柄を成し遂げる一つの単位をアプリケーションとする。 (e.g. pedestrian detection application).
 %またこの一連の流れによってGPUを実行する1プロセスをGPUタスクとし、
 %GPU側で実行されるカーネルをGPUカーネルと定義する。
 
 \subsection{GPU Scheduling}
-A real-time OS (RTOS) is a lot of research\cite{spring, redline,itron,rk} has been conducted for a long time.
-In among them have also been many studies\cite{prk,rtai,yodaiken1999rtlinux,litmus,kato2009loadable} real-time OS, which is based on the Linux.
-%リアルタイムOSは古来より多くの研究\cite{spring,redline,itron,rk}が行われてきている。
-%LinuxをベースとしたリアルタイムOSとしても数多く研究\cite{prk,rtai,yodaiken1999rtlinux,litmus,kato:loadable}されている。
+A real-time OS (RTOS) is a lot of research~\cite{spring, redline,itron,rk} has been conducted for a long time.
+In among them have also been many studies~\cite{litmus,prk,rtai,yodaiken1999rtlinux,kato2009loadable} real-time OS, which is based on the Linux.
+%リアルタイムOSは古来より多くの研究~\cite{spring,redline,itron,rk}が行われてきている。
+%LinuxをベースとしたリアルタイムOSとしても数多く研究~\cite{prk,rtai,yodaiken1999rtlinux,litmus,kato:loadable}されている。
 %GPUを利用可能な環境はWindows, Mac OS, Linuxと限られており、リアルタイムという性質を追求するためにはLinuxの利用が最適であるため、今回我々はlinuxを利用する。
 OS available the GPU is limited to Windows, Mac OS and Linux,
 we selected Linux in order to achieve real-time on GPU environments.
 
-Requirement that the scheduler the minimum required in carrying to realize the real-time multi-core environment is the following two:
+In order to meet real-time constraints on shared resource environment such as multicore environment,
+there are two requirements of a scheduler as follows:
 %マルチコア環境でリアルタイムを実現するにあたりスケジューラが最低限必要とする要件は以下の2つである．
 \begin{itemize}
-\item To use resources according to order.
+\item To use resources according to specified order
 %.The mechanisms is resources that are available to the specified order
 %u指れた順番でリソースが利用可能なこと
 \item To limit the use of the shared resource
 \end{itemize}
-The basic approach to satisfy the first is priority-based scheduling (e.g. Rate-Monotonic\cite{sched:rm} and Earliest Deadline First\cite{sched:edf}) with technique to prevent priority inversion,
-and the second is resource reservation based scheduling (e.g. Constant Bandwidth Server\cite{rr:cbs}, Total Bandwidth Server\cite{rr:tbs2}).
+The previous work's basic approach to satisfy the first is priority-based scheduling (e.g. Rate-Monotonic~\cite{sched:rm} and Earliest Deadline First~\cite{sched:edf}) with technique to prevent priority inversion,
+and the second is resource reservation based scheduling (e.g. Constant Bandwidth Server~\cite{rr:cbs}, Total Bandwidth Server~\cite{rr:tbs2}).
 %これらを満たすための基本的なアプローチとして，一つ目は優先度ベースのスケジューリング (e.g. Rate-monotonic, Earliest deadline first)，
 %2つ目は，リソースリザベーションベースのスケジューリング (e.g. CBS, TBS, credit)が用いられる．
-The GPU to handle the data transfer bandwidth and the processing core as a shared resource,
-it is necessary to satisfy the two requirements similar to above multicore environment.
+GPUs are need to handle a data transfer bandwidth and a processing core as a shared resource,
+therefore, we satisfy the two requirements similar to above multicore environment.
 %GPUはデータ転送帯域，プロセッシングコアの2つを共有リソースとして扱う必要性があり，上記マルチコア環境と同様に2つの要件を満たす必要がある．
 %Therefore, in the system of including GPU is 
 %そのためGPUが含まれるシステムにおいても，リアルタイムを実現するためには上記二点を達成できればよい．
 Our previous working only to scheduling GPU accesses.
-However, GPU kernel is driven by API is issued GPU task, to truly support  the real-time scheduling, it is need to schedule GPU task; therefore, for realized real-time GPU, framework need to have CPU's priority-based scheduler, GPU's priority-based scheduler and restrict GPU resource by resource reservation mechanisms.
+However, GPU kernel is driven by API is issued a GPU task,
+to truly support  the real-time scheduling, it is need to schedule a GPU task;
+therefore, for realized real-time GPU, framework need to have CPU's priority-based scheduler, GPU's priority-based scheduler and restrict GPU resource by resource reservation mechanisms.
 %我々がこれまで取り組んできたGPUリソースマネージメントに関する研究では，
 %GPUへのアクセスのみをスケジューリングしてきた．
 %しかしながらGPUカーネルはGPUタスクから発行されるAPIを起点に動作していることから，
@@ -60,38 +65,36 @@ However, GPU kernel is driven by API is issued GPU task, to truly support  the r
 %CPUの優先度ベーススケジューラ，GPUの優先度ベーススケジューラ，リソースリザベーションによるGPUリソース制限である．
 Recently, GPUSync is to work the above interdependence of CPU scheduler and GPU scheduler.
 %最近ではGPUSyncが上記のCPUスケジューラとGPUスケジューラの相互依存について取り組んでいる．
-%GPUSync needs to install by patch because it depends to $LITMUS^RT$.
 
 %しかし，GPUSyncは$LITMUS^RT$に依存しており，パッチによるインストレーションを必要とする．
 %Section~\ref{sec:intro}で述べたとおり，カーネルにパッチを当てる作業は大きな負担になる．
-GPUs have some problem on using real-time, except that scheduling mechanisms.
+GPUs have some problems on using real-time environment, except  scheduling mechanisms.
+GPUs runtime environments are black-box mechanisms results from GPU environments are provided only GPU vendors, and these environments are closed-source.
+TimeGraph, Gdev, and RGEM are solve this problem by ensure transparency using reverse engineering and an open-source driver.
+GPUSync is solved closed-source compatible by GPU resource management that approaches are the interrupt handling and the runtime access to single.
 %GPUのリアルタイム活用にはスケジューリングメカニズム以外の面でも多くの問題がある．
-GPUs runtime environments are black-box mechanisms results from GPU environments are provided only GPU vendors and these environments are closed-source.
 %まずGPUの実行環境がベンダーから提供されるのみであり，クローズドソースになっていることからブラックボックスであることである．
-TimeGraph, Gdev and RGEM are solved this problem by ensuring transparency using reverse engineering and open-source driver.
 %本問題についてはTIMEGRAPH，GDEV，RGEMではリバースエンジニアリングとオープンソースドライバによって透明性を確保している．
-GPUSync is solved this problem too by GPU runtime resource management is disabled through the runtime access to single.
 %GPUSyncではランタイムドライバへのアクセスを単一に制限することで，ランタイムドライバが行う資源管理をスルーしている．
 
 The other problem occurs by non-preemptive GPU executions and non-preemptive data transfers.
-several researches\cite{basaran:preemptive,sparc} realize improvement  the response time by preventing divides the kernel overrun.
-%GPUの実行やデータ転送がノンプリエンプティブであることも大きな問題だ．いくつかの研究\cite{}ではカーネルを分割することで，
+Several researches~\cite{basaran:preemptive,sparc} realize improvement  the response time by preventing divides the kernel overrun.
+%GPUの実行やデータ転送がノンプリエンプティブであることも大きな問題だ．いくつかの研究~\cite{}ではカーネルを分割することで，
 %ノンプリエンプティブに起因するオーバランを防ぎ，レスポンスタイムの向上を実現している．
-As these core problems are on the process of being resolved, however, real-time GPU is experimental-phase since have problem for practical realized.
+%As these core problems are on the process of being resolved,
+However, real-time GPU is experimental-phase while have problem for practical realized.
 %このようにいくつかのコアな問題は解決に近づいているが，未だリアルタイムGPUは実験フェーズであり，実用化に向けるには問題が存在している．
-The most difficult problem is self-suspending due to GPU is treated as a I/O device.
-GPU task to suspended themselves until it receives the results from issuing the processing to GPU, referred to as self-suspension.
+The most difficult problem is self-suspending due to GPU is treated as an I/O device.
+GPU tasks suspend until it receives the results from issuing the processing to GPU, referred to as self-suspension.
 %GPUを完全にリアルタイムに扱うことができないもっとも困難な問題は，GPUがI/Oデバイスとして扱われることに起因する．
 %GPUに処理を発行し，結果を受け取るまでの間，発行したタスクは自らサスペンドする．
-The self-suspension has been proven as a cause the NP-HARD problem in previous work\cite{self-sus:1,self-sus:2},
-several researches\cite{chattopadhyay2014limited, kim2013segment} are working on the scheduling analysis for self-suspension task, but it has not been solved yet to complete.
+The self-suspension has been proven as a cause the NP-HARD problem in previous work~\cite{self-sus:1,self-sus:2},
+several researches~\cite{chattopadhyay2014limited,kim2013segment} are working on the scheduling analysis for self-suspension task, but it has not been solved yet to complete.
 
-Hence scheduling framework for the expansion and installation to aim in this study and easy is useful,
+Hence, scheduling framework for the expansion and installation to aim in this study and easy is useful,
 it is argued that there is a demand.
-
-%このself-suspensionはこれまでの研究\cite{self-sus:1,self-sus:2}でNP-HARDな問題を発生させるとして証明されており，
-%これまでも多くの研究が執り行われている\cite{chattopadhyay2014limited,kim2013segment}が，実用レベルでは未だ解決されていない問題である．
-
+%このself-suspensionはこれまでの研究~\cite{self-sus:1,self-sus:2}でNP-HARDな問題を発生させるとして証明されており，
+%これまでも多くの研究が執り行われている~\cite{chattopadhyay2014limited,kim2013segment}が，実用レベルでは未だ解決されていない問題である．
 %そのため本研究で目指すような拡張，インストールを容易とするスケジューリングフレームワーク実験レベル，実用レベルの両者において有用であり，需要が発生すると推測する．
 
 \textbf{GPU Synchronization:}
@@ -101,21 +104,21 @@ GPU have two different synchronization techniques.
 The first techniques is memory map based synchronization which is called FENCE,
 it sends GPU commands after the command to take action,
 then GPU microcontrollers will write the any value to memory-mapped space after action is completed.
-GPU task monitors it mapped space value using such as polling,
+A GPU task monitors it mapped space value using such as polling,
 therefore task has an exclusive CPU resource,
 but response time will be the fastest.
 The other one techniques is interrupts based synchronization which is called NOTIFY,
 it sends GPU commands similar to FENCE,
 then GPU microcontrollers will rise the interrupt and write any value to GPU I/O registers.
-GPU task is suspending until interrupt,
+A GPU task is suspending until interrupt,
 therefore task is able to share the CPU resources with other tasks,
 but response time will be the slow. Detailed architecture is omitted in this paper,
-it has been described in the previous documents\cite{kato:timegprah, kato:gdev, fujii:apsys2013}.
+it has been described in the previous documents~\cite{kato:timegraph, kato:gdev, fujii:apsys2013}.
 
 Gdev use both techniques that are NOTIFY and FENCE for wakeup the waiting task,
 NOTIFY is used by scheduler, FENCE is used by kernel synchronization. 
 Gdev’s synchronization implementation is the additional commands sends to GPU and the modification of device driver’s interrupt handler.
-GPUSync use NOTIFY techniques by using tasklet intercept\cite{elliott2012robust} on the proprietary software.
+GPUSync use NOTIFY techniques by using tasklet intercept~\cite{elliott2012robust} on the proprietary software.
 Tasklet is linux’s soft-irq implementation.
 GPUSync identify the interrupt that is issued which kernel by callback pointer with a tasklet.
 
@@ -138,4 +141,6 @@ The Interrupt-driven method can be synchronized for each kernel, it is required 
 Gdev has been achieved independent synchronization mechanisms on the proprietary soft- ware, need to modify the kernel modification.
 The challenge is realize independent synchronization mechanisms by kernel free approach.
 
+We define a GPU task which is to execute the GPU using above API flow,
+and define a GPU kernel that is unit of processing to executed on the GPU side.
 %Interrupt-driven では NOTIFY で用いられる割 込みを取得するため,各カーネル毎に同期が可能 であるため,スケジューリングを考えた場合には 有効であるが,割込みの取得のために,カーネル もしくはデバイスドライバ内の ISR を直接修正す る必要がある.

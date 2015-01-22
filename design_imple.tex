@@ -1,10 +1,10 @@
 \section{Design and Implementation}\label{sec:design_imple}
 In this section, we present Linux-RTXG design and implementation.
 Linux-RTXG is an abbreviation of Linux Real-Time eXtension including GPU resouce management,
-which is no patched Linux real-time GPU scheduling framework.
+which is Linux real-time GPU scheduling framework without kernel modification.
 
-We describe main contribution of the GPU scheduler and the integration to CPU scheduler in this paper,
-while CPU scheduling description is to minimize by Linux-RTXG is base RESCH.
+We describe the main contribution of the GPU scheduler and the integration to CPU scheduler in this paper,
+while CPU scheduling description is to minimize by Linux-RTXG is based RESCH.
 
 %Linux-RTXGはLinux Real-Time eXtension included GPU resource managementの略称であり、Linuxのリアルタイム拡張に加えてGPUのResourceマネージメントを行うためのフレームワークである。
 %Linux-RTXGはベースとしてRESCHを用いているため、CPUスケジューラに関する記述は最小限に抑え、
@@ -22,15 +22,15 @@ while CPU scheduling description is to minimize by Linux-RTXG is base RESCH.
 Figure~\ref{fig:overview} shows over-view of Linux-RTXG.
 Linux-RTXG is divided into two components that are loadable kernel module and library.
 Linux-RTXG library is interface of communicate between application and Linux-RTXG core component(kernel module).
-it is using system call that is ioctl.
+It interface is using system call that is ioctl.
 
-The part of library included speciall method that is independent synchronization method.
-it method is used only on the nvidia driver.
-if system use nouveau driver, runtime must use part of gdev.
+The part of the library included a method that is a independent synchronization method.
+The independent synchronization method is used only on the nvidia driver.
+If the system use nouveau driver, runtime must use part of gdev.
 Gdev can happen arbitary interrupt of GPU kernel in the user-space mode, and it have no need to be independent interrupt raised method.
 
 Linux-RTXG loadable kernel module is positioned kernel-space.
-Thus, module can use kernel exported function.
+Thus, module can use kernel exported functions.
 
 \subsection{GPU Scheduling}
 \begin{table*}[t]
@@ -51,12 +51,12 @@ rtx\_gpu\_close() & To release scheduling entity.\\ \hline
 Linux-RTXG is API-driven where the scheduler invoked only when computation requests are submitted.
 The basic APIs supported by Linux-RTXG are listed in Table~\ref{tab:rtx-api}.
 Some APIs have arguments and others do not.
-Linux-RTXG APIs are not modification existing CUDA API to cope with proprietary software to be independent from the runtime.
-However, user have to add Linux-RTXG api to existing CUDA application for using Linux-RTXG scheduler.
+Linux-RTXG does not modify the existing CUDA API to cope with proprietary software to be independent from the runtime.
+However, user have to add Linux-RTXG API to existing CUDA application for using Linux-RTXG scheduler.
 
 The sample code of the using Linux-RTXG scheduler is shown in Figure~\ref{fig:sample},
 and to some extent omitted except GPU scheduling.
-GPU tasks may be provided with a function by calling an Linux-RTXG's API at strategic points.
+GPU tasks may be provided with a function by calling Linux-RTXG's API at strategic points.
 
 \begin{figure}[t]
 \begin{center}
@@ -95,16 +95,16 @@ GPU tasks may be provided with a function by calling an Linux-RTXG's API at stra
 \end{figure}
 
 
-Figure~\ref{fig:controlflow} shows control flow of run the Figure\ref{fig:sample}'s sample code.
-The configure is the Kernel issue that is restricted to single kernel.
-User task (GPU Task) can be control the timing of GPU kernel execution by called $rtx_gpu_launch()$.
-Task goes to sleep until the wakeup by interrupt why task is not permitted issuance of GPU kernel due to already execute other task in the GPU.
+Figure~\ref{fig:controlflow} shows the control flow of run the Figure\ref{fig:sample}'s sample code.
+The configuration is the Kernel issue that is restricted to single kernel.
+User task (GPU Task) can control the timing of GPU kernel execution by calling $rtx_gpu_launch()$.
+The task goes to sleep until the wakeup by interrupt why the task is not permitted issuance of GPU kernel due to already execute other task in the GPU.
 %The configure is limited to one of  issuance of GPU kerlenel GPUカーネルの発行はひとつに制限されており、すでにGPUでタスクがうごいている状態とし、同期は割込みを用いたNOTIFYによって行うものとする。
 %ユーザタスクは$rtx_gpu_launch()$を呼び出すことで、GPUカーネル実行のタイミングをコントロールすることができる。
 %既にGPUでタスクが動いており、現在カーネル発行を許可されているタスクが自身でないため、割込みによって起床されるまでtask uninterruptible状態で自らスリープに入る。
 
 Once issued GPU kernel is finished,
-interrupt is awaken while the interrupt intercepter wakeup the GPU scheduler, GPU scheduler wakeup the sleeping task. 
+interrupt is awaken while the interrupt interceptor wakeup the GPU scheduler, GPU scheduler wakeup the sleeping task. 
 The wake-up task issue the GPU kernel via CUDA API such as $cuLaunchGrid()$.
 After the GPU kernel issued, task register the NOTIFY for occurring the interrupt,
 and task to sleep until it occurs interrupt.
@@ -123,10 +123,10 @@ Specifically, GPU kernel execution is associated to each scheduling entity while
 In Linux-RTXG, resources are distributed in this group.
 
 Figure~\ref{fig:scheduling} shows pseudo-code of scheduling mechanism.
-$on_arrival$ is called when the GPU task is requested GPU kernel launch issue.
-In $on_arrival$, GPU task to check whether the given execute permission to group of task itself, and then, check the se permit.
-If it has not executing permission, GPU task is enqueued to wait\_queue and go to sleep,
-contrary to this, if it has executing permission, GPU task go to launch issue.
+$on_arrival$ is called when a GPU task is requested GPU kernel launch issue.
+In $on_arrival$, a GPU task to check whether the given execute permission to group of task itself, and then, check the se permit.
+If it has not executing permission, a GPU task is enqueued to wait\_queue and go to sleep,
+contrary to this, if it has executing permission, a GPU task go to launch issue.
 
 $on_completion$ is called by the scheduler thread, when the GPU kernel is completion.
 In $on_completion$, scheduler thread pick up the next group, 
@@ -227,7 +227,7 @@ So, we get the to intercept interrupt by it ISR and then call retaining callback
 %Interrupt handlerの関数ポインタも取得可能である。
 %我々はこの取得した関数ポインタを保持し、我々の傍受用ISRをカーネルに登録する。
 %そして傍受用ISRで、事前に保持しておいたGPUドライバの割込みハンドラの関数コールバック関数として呼び出すことで、通常の割込みハンドリングを実行する。
-In addition, I/O registers are mapped to kernel memory space by device driver from the PCIe base address registers (BARs)\cite{fujii:icpads2013,kato2013zero}.
+In addition, I/O registers are mapped to kernel memory space by device driver from the PCIe base address registers (BARs)~\cite{fujii:icpads2013,kato2013zero}.
 Therefore Linux-RTXG remap the BAR0 to our allocated space by using $ioremap()$ when the ISR initizalize.
 The interrupt interception identify interrupt by read the mapped-space.
 
