@@ -14,23 +14,23 @@ while CPU scheduling description is to minimize by Linux-RTXG is based RESCH.
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.35\textwidth]{img/overview.pdf}
-\caption{Over view of the Linux-RTXG}
+\caption{Overview of the Linux-RTXG}
 \end{center}
 \label{fig:overview}
 \end{figure}
 
-Figure~\ref{fig:overview} shows over-view of Linux-RTXG.
-Linux-RTXG is divided into two components that are loadable kernel module and library.
-Linux-RTXG library is interface of communicate between application and Linux-RTXG core component(kernel module).
-It interface is using system call that is ioctl.
+Figure~\ref{fig:overview} shows an overview of Linux-RTXG.
+Linux-RTXG is divided into two parts: a Linux-RTXG core component (a loadable kernel module) and a Linux-RTXG libray.
+It core component have features are a CPU task scheduler, a GPU task scheduler, and a GPU resource reservation mechanism.
+These features use the kernel exported functions such as the $schedule()$, the $mod\_timer()$, the $wake\_up\_process()$ and $set\_cpus\_allowed\_ptr()$, they are implemented on the loadable kernel module, it kernel module is positioned kernel-space. 
 
-The part of the library included a method that is a independent synchronization method.
-The independent synchronization method is used only on the nvidia driver.
-If the system use nouveau driver, runtime must use part of gdev.
-Gdev can happen arbitary interrupt of GPU kernel in the user-space mode, and it have no need to be independent interrupt raised method.
+The Linux-RTXG library is interface to communicate between application and Linux-RTXG core component(kernel module).
+These interface are implemented using an ioctl system call, which is a standard way of communicating to a driver.
 
-Linux-RTXG loadable kernel module is positioned kernel-space.
-Thus, module can use kernel exported functions.
+The part of the library included a method that is an independent synchronization method.
+The independent synchronization method is used only on the Nvidia driver.
+If a GPU using system use Nouveau driver, GPU runtime must use part of Gdev.
+In that case, the GPU using system have not need the independent synchronization method because Gdev can manage arbitary interrupt of the GPU kernel in the user-space mode,
 
 \subsection{GPU Scheduling}
 \begin{table*}[t]
@@ -81,7 +81,7 @@ GPU tasks may be provided with a function by calling Linux-RTXG's API at strateg
 {\scriptsize \verb|}|}\\
 \hline\hline
 \end{tabular}
-\caption{sample code of using rtxg scheduler}
+\caption{sample code of using Linux-RTXG scheduler}
 \label{fig:sample}
 \end{center}
 \end{figure}
