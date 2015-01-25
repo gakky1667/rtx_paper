@@ -17,15 +17,15 @@
 \end{center}
 \end{table*}
 
-RGEM and GPU-Sparc~\cite{sparc} have GPU resource management with not modify the kernel and device drivers.
-However, these work use sycnhronizations that are depended proprietary-software.
-TimeGraph, Gdev, Ptask and GPUSync are realized independent synchronization mechanisms for modifying the kernel and devie drivers.
+RGEM and GPU-Sparc~\cite{sparc} have GPU resource management without modification of the kernel and device drivers.
+However, synchronization mechanism of these work depends on proprietary-software.
+TimeGraph, Gdev, Ptask, and GPUSync are realized independent synchronization mechanisms for modifying the kernel and devie drivers.
 To our knowledge, Linux-RTXG is the only real-time GPU framework using a synchronization mechanism that is independent of the runtime while it was not modificated the kernel and device drivers.
 
-We show the table\ref{tab:comp:prior} that is result of comparing the Linux-RTXg and prior work.
-GPUSync mention that GPU task dependent to CPUs scheduling, it support CPU scheduling policies that are the Fixed-Priority scheduling and the EDF scheduling.
-GPUSparc have setting of scheduling priorities that is linux scheduling policies of $SCHED\_FIFO$.
-They exsisting researchs support to FP scheduling, but not support EDF.
+Table~\ref{tab:comp:prior} shows that result of comparing the Linux-RTXG and prior work.
+GPUSync mentioned that GPU task dependent to CPUs scheduling, and supports CPU scheduling policies that are the Fixed-Priority scheduling and the EDF scheduling.
+GPUSparc have setting of scheduling priorities that is Linux scheduling policies of $SCHED\_FIFO$.
+All exsisting researchs support to FP scheduling, but not support EDF.
 %GPUSyncはCPU and GPU間の依存についても言及している，
 %CPUスケジューリングとして，Fixed-priorityとEDFの両方に対応している．
 %GPUSparcはスケジューリングポリシーをSCHED\_FIFOとして設定する機構を備えており，
@@ -37,12 +37,12 @@ Specially, Linux-RTXG's contribution is meet to both GPU runtime independent and
 %Linux-RTXGは今回上げたGPUのEDF以外の項目を満たしている．
 %特にLinux-RTXGの貢献はGPUruntimeとOSからindependentの両者を満たしていることである．
 
-The more-depth resource management would require the datail executing mechanisms in the black-box GPU stack.
-Menychtas et al. present inferring interraction in the black-box GPU stack\cite{menychtas2013enabling}.
-We present imfomation of GPU microcontrollers\cite{fujii:apsys2013} and open-source GPGPU runtime\cite{kato:gdev}.
-GPUSync is present details verification information on the proprietary runtime mechanisms.
-Nouveau projects are present open-source GPU driver\cite{nouveau}.
-These works are very importnant, and we will also views of the further development of resource management their researchs.
+The more-depth resource management would require the detail executing mechanisms in the black-box GPU stack.
+Menychtas et al. present enabling GPU using OS research by inferring interaction in the black-box GPU stack~\cite{menychtas2013enabling}.
+We present information of GPU microcontrollers~\cite{fujii:apsys2013} and an open-source GPGPU runtime~\cite{kato:gdev}.
+GPUSync presents details verification information on the proprietary runtime mechanisms.
+Nouveau project provides an open-source GPU driver~\cite{nouveau}.
+These works are very important, and we will also views of the further development of resource management their researches.
 
 %In order to more growth the GPU as a powerful device,
 %The challenges are efficiency compler, efficiency runtime, efficiency system such as treatment PCI.

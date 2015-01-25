@@ -1,17 +1,17 @@
 \section{Conclusion}\label{sec:conclusion}
-In this paper,
-we present linux real-time extension for cpu-gpu resouce coordination is called Linux-RTXG for cpu and gpu coordinated resource management.
+This paper has presented Linux real-time extension for CPU-GPU resouce coordination is called Linux-RTXG for CPUs and GPUs coordinated resource management.
 We focus on that are specifically not modify the kernel, worked for GPU resource management.
-Linux-RTXG present the CPU task scheduling, the GPU task sheduling and the GPU resource reservation mechanisms.
+Linux-RTXG presented the CPU task scheduling, the GPU task sheduling and the GPU resource reservation mechanisms.
 The CPU task scheduling is based on RESCH.
 The GPU task scheduling provides prioritized scheduling by our synchronization mechanisms.
-Our synchronization mechanisms is not need to modify the kernel and device drivers, presented by intercept interrupt top-half ISRs.
+Our synchronization mechanisms are not need to modify the kernel and device drivers, presented by intercept interrupt top-half ISRs.
 
-We indicate unit of job overhead met within about x\%, and unit of task met overhead within x\%.
-In addition, we demonstrate that the QoS management performance whitout kernel modification by comparing the Linux-RTXG and the Gdev.
+We indicated a unit of job overhead met within about x\%, and unit of task met overhead within x\%.
+In addition, we the evaluations demonstrated that the QoS management performance whitout kernel modification by comparing Linux-RTXG and Gdev.
 %今回実現したフレームワークは、ジョブ一個あたりのオーバヘッドは約x\%(sleepしている時間も含む)になり、taskあたりのオーバヘッドは約x\%に収まることを示した。
 %加えて既存フレームワークであるGdevと同一アルゴリズムを用いて、割込み傍聴を用いたQoS Managementの性能を検証し多少の性能低下で収まることを確認した。
-The Basic frame of scheduling framework is already completion for realized real-time GPU.
-In the future work, Be addressed to improvement GPU execution (preemptive, p2p migration) is essensial matter in order to more real-time framework.
+The basic scheduling framework has already completed to realized real-time GPU computing.
+Future work will address  GPU execution such as preemption, and p2p migration to
+deal with more complex real-time problems.
 %リアルタイムGPUを実現するための，スケジューリングフレームワークの基本フレームは既に完成した．
 %今後はGPUSyncやGPUSparcが着目しているその他GPU実行に関する改良(preemptive, p2p migration)などにも取り組むことでよりリアルタイムなGPUに近づくことができる．

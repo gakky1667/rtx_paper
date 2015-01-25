@@ -1,9 +1,9 @@
 \section{Evaluation}\label{sec:evaluation}
 We evaluate scheduling overhead and scheduling performance.
-Scheduling experiments are limited on the GPU scheduling since CPU scheduling performance is already experiments~\cite{kato:resch}.
+Scheduling experiments are limited on the GPU scheduling since CPU scheduling performance is already experiments~\cite{kato2009loadable}.
 In this evaluation, we focus two point.
-The one is to indicate the Linux-RTXG disadvantages,
-the other one is QoS performance comparing prior work. 
+The one is to indicate the Linux-RTXG disadvantages.
+The other one is demonstrating QoS performance.
 
 %本実験では２点にフォーカスし評価を行う．
 %まず一つ目は，本Linux-RTXGを利用した際のオーバヘッドを定量的に計測し、利用に伴ってどれだけのデメリットを含んでいるかを提示する
@@ -11,10 +11,10 @@ the other one is QoS performance comparing prior work.
 
 GPU using Real-world oriented applications\cite{hirabayashi:cpsna2013,tokamak} are executed cyclic.
 %今回の評価用アプリケーションは周期的に実行されるため，リアル・ワールドのアプリケーションと同等の処理フローであるとし評価で用いる．
-This evaluation applications are equivalent to the real-world oriented applications
+These evaluation applications are equivalent to the real-world oriented applications
 because GPU applications characteristics are these application on the single GPU kernel.
 %GPUを利用するリアル・ワールドのアプリケーション\cite{hirabayashi,tokamak}ではGPUタスクの多くは周期的に実行される．
-We will discuss in the next chapter for the difference between the functions and features to hold to it with a qualitative evaluation.
+We will discuss for the difference between the functions and features to hold to it with a qualitative evaluation in the next chapter.
 %定性的な評価としては関連する研究と保持する機能や特徴の差について次章でdiscussする。
 
 \TODO{GPUSyncと比較しなくて良いのか}
@@ -52,7 +52,7 @@ We compare consumption time from the start ISR until ISR is completion, it consu
 \label{fig:irq_overhead}
 \end{figure}
 
-Figure~\ref{irq_overhead} shows results of mesurements in the above setting.
+Figure~\ref{fig:irq_overhead} shows results of mesurements in the above setting.
 %Figure \ref{irq_overhead}は上記設定で測定した結果である。
 Raw ISR is execute ISR in the normal routine, ISR Intercept is only intercept our approach,
 ISR intecept w/Func is interception and processing functions that are identify the ISR and wakeup the scheduler thread.
@@ -63,11 +63,11 @@ ISR Intercept has overhead that is about 247 nano seconds.
 ISR Intercept w/Func also has overhead that is about 790 nano seconds.
 
 Intuitively, it value does not affect system since very small values,
-however, interrupt is occured frequently including such as timer interrupt, should be aware as disadvantages.
+however, interrupt is occur frequently including such as timer interrupt, should be aware as disadvantages.
 
 In addition, we evaluate comparing the response time of the ISR (top-half) and the tasklet (bottom-half) in an environment with noCPU load,
 it evaluate does measurement time until the responsible timing from the start of interrupt process which is $do\_IRQ$ function is called).
-it mesasurement result is shown in Figure~\ref{fig:bottomvstasklet}.
+it measurement result is shown in Figure~\ref{fig:bottomvstasklet}.
 
 \begin{figure}[t]
 \begin{center}
@@ -147,7 +147,7 @@ it is necessary to consider the overhead in a cycle of short application.
 \end{figure}
 
 We will evaluate scheduling overhead by using Linux-RTXG scheduler.
-We prepared three applications that are "vanilla", "mutex", and "rtx" for mesurement overheads.
+We prepared three applications that are "vanilla", "mutex", and "rtx" for measurement overheads.
 These applications is based common application based on Gdev's microbenchmark which has GPU looping function.
 Changes are arranged to generate multiple GPU tasks by the fork.
 Each tasks have 10 jobs, a job is included GPU data transferring and a GPU kernel execution.
@@ -156,7 +156,7 @@ The "rtx" application is scheduled by rtx.
 The "mutex" application  is limited to single kernel issue similar to scheduling environment.
 The "vanilla" application is not to change the base application.
 
-CPU scheduing policies is using the simple fixed-priority scheduling by Linux-RTXG similar to Linux's \textbf{SCHED\_FIFO} that difference is the presence or absence of the job management.
+CPU scheduling policies is using the simple fixed-priority scheduling by Linux-RTXG similar to Linux's \textbf{SCHED\_FIFO} that difference is the presence or absence of the job management.
 GPU scheduling policies is fixed-priority scheduling with resrouce reservation witch is BAND scheduling policy.
 The synchronization is using NOTIFY of independent synchronization mechanism.
 
@@ -193,36 +193,69 @@ The "sync" is time of untile synchronizationed from issued the GPU kernel launch
 Next experiments are evaluating QoS management performance.
 In this evaluate, we measure the utilization of each tasks on the several environments.
 Thereby, we indicates performance that is not falling by not modificate kernel.
-
 %次にGPUのバジェットエンフォースメントの性能を評価する。
 
 The application utilizes the same as those used in the previous experiment.
 In the performing QoS management, tasks are four generated as a setting.
-Each tasks assigned to VGPU one by one, and each VGPU is provided a GPU resource 25\%.
-
+E
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{img/dummy}
-\caption{Utilization of four tasks on the Linux-RTXG only priority scheduling. Each tasks are given different priorities.}
+\includegraphics[width=0.5\textwidth]{img/fifo_rtx_nvidia}
+\caption{Utilization of two tasks on the Linux-RTXG's FIFO VGPU scheduling and the using Nvidia drivers. Each tasks have a different workload. }
 \end{center}
-\label{fig:rtx_prio}
+\label{fig:fifo_rtx_nvidia}
 \end{figure}
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{img/rtx_qos.eps}
-\caption{Utilization of four tasks on the Linux-RTXG resource reservation. Each tasks are given different priorities and all tasks are fairly given resources which is 25\%}
+\includegraphics[width=0.5\textwidth]{img/band_rtx_nvidia}
+\caption{Utilization of two tasks on the Linux-RTXG's BAND VGPU scheduling and the using Nvidia driversc. Each tasks have a different workload and a different resources.}
 \end{center}
-\label{fig:qos_rtx}
+\label{fig:band_rtx_nvidia}
+\end{figure}ach tasks assigned to VGPU one by one, and each VGPU is provided a GPU resource 25\%.
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{img/fifo_rtx}
+\caption{Utilization of two tasks on the Linux-RTXG's FIFO VGPU scheduling. Each tasks have a different workload. }
+\end{center}
+\label{fig:fifo_rtx}
 \end{figure}
 
 \begin{figure}[t]
 \begin{center}
+\includegraphics[width=0.5\textwidth]{img/band_rtx}
+\caption{Utilization of two tasks on the Linux-RTXG's BAND VGPU scheduling. Each tasks have a different workload and a different resources.}
+\end{center}
+\label{fig:band_rtx}
+\end{figure}
+
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{img/band_rtx_fair}
+\caption{Utilization of four tasks on the Linux-RTXG's BAND VGPU scheduling. Each tasks have a fair workload and a fair resources.}
+\end{center}
+\label{fig:band_rtx_fair}
+\end{figure}
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{img/band_rtx_diff}
+\caption{Utilization of four tasks on the Linux-RTXG's BAND VGPU scheduling. Each tasks have a different workload and a different resources.}
+\end{center}
+\label{fig:band_rtx}
+\end{figure}
+
+\if 0
+\begin{figure}[t]
+\begin{center}
 \includegraphics[width=0.5\textwidth]{img/dummy}
-\caption{Utilization of four tasks on the Gdev resource resevation. All tasks are fairy given resources which is 25\%}
+\caption{Utilization of four tasks on the G. All tasks are fairy given resources which is 25\%}
 \end{center}
 \label{fig:qos_gdev}
 \end{figure}
+\fi
 The first, we experiment the utilization using only priority scheduling, we prepare four diffenre priorities GPU task.
 As a result is showed in Figure~\ref{fig:rtx_prio}.
 We can seen the the task has been used in order of priority in Figure~\ref{fig:rtx_prio}.
@@ -230,18 +263,17 @@ We can seen the the task has been used in order of priority in Figure~\ref{fig:r
 The second, we demonstrate performance of Linux-RTXG QoS management by using NVIDIA's proprietary software.
 Maximum utilization is Minimam 
 
-
 Next then, we demonstrate and compare the performance of the Linux-RTXG QoS management and the Gdev's QoS management by using Gdev's libray and Nouveau's open-source driver.
 Figure~\ref{fig:qos_rtx, fig:qos_rtx} show experimental results of each tasks utlization on the Linux-RTXG QoS management and the Gdev QoS management.
 
 A maximum utilization of Linux-RTXG is less than to x\%, while a minimum utilization of Linux-RTXG is more than to x\%.
 A maximum utilization of Gdev is less than to x\%, while a minimum utilization of Gdev is more than to x\%.
-Distribution of Linux-RTXG is \textbf{x}, the variance of Gdev is \textbf{x}.
-We can be seen that the performance is not nearly falling from the above results
+Distribution of Linux-RTXG is \textbf{x}.
+%the variance of Gdev is \textbf{x}.
+%We can be seen that the performance is not nearly falling from the above results
 %Linux−RTXGの振幅は◯％以下であり，Nouveauの振幅は◯％以下である．
 %Linux-RTXGの分散は◯であり，Nouveauの分散は◯なことから，性能はほぼ落ちていないことがわかる．
 %最後に非周期タスクが存在する環境下においても，QoS Managementによってリソース制限がかかっていることを示すことで，
-
 Therefore, the synchronization mechanism of Linux-RTXG excluding kernel modification,
 it is show that possible scheduling without sacrificing performance.
 

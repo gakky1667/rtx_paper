@@ -18,7 +18,7 @@ typically GPU application takes the following steps:
 (ii) \textit{cuMemAlloc} allocates memory spaces to device memory, 
 (iii) \textit{cuModuleLoad} and \textit{cuMemcpyHtoD} copy the data and the GPU kernel to the allocated device memory spaces from host memory spaces,
 (iv) \textit{cuLaunchGrid} invokes the GPU kernel, 
-(v) \textit{cuCtxSynchronize} synchronize waiting GPU task to that is completion of kernel, 
+(v) \textit{cuCtxSynchronize} synchronizes waiting GPU task to that is completion of kernel, 
 (vi) \textit{cuMemcpyDtoH} transfers resultant data to host memory from device memory, and
 (vii) \textit{cuMemFree}, \textit{cuModuleUnload}, and \textit{cuCtxDestroy} release allocated memory spaces and the GPU context.
 
@@ -28,8 +28,8 @@ typically GPU application takes the following steps:
 %GPU側で実行されるカーネルをGPUカーネルと定義する。
 
 \subsection{GPU Scheduling}
-Real-time OS (RTPS) researches~\cite{spring,readline,itron,rk} have been conducted for a long time.
-In among them, there are many existing studies concerning real-time OS based on Linux~\cite{litmus,prk,rtai,yodaiken1999rtlinux,kato2009loadable}.
+Real-time OS (RTOS) researches~\cite{spring,redline,itron,rk} have been conducted for a long time.
+In among them, there are many existing studies concerning RTOS based on Linux~\cite{litmus,prk,rtai,yodaiken1999rtlinux,kato2009loadable}.
 %リアルタイムOSは古来より多くの研究~\cite{spring,redline,itron,rk}が行われてきてい。
 %LinuxをベースとしたリアルタイムOSとしても数多く研究~\cite{prk,rtai,yodaiken1999rtlinux,litmus,kato:loadable}されている。
 %GPUを利用可能な環境はWindows, Mac OS, Linuxと限られており、リアルタイムという性質を追求するためにはLinuxの利用が最適であるため、今回我々はlinuxを利用する。
@@ -70,7 +70,7 @@ Recently, GPUSync target interdependence of CPU scheduler and GPU scheduler.
 
 %しかし，GPUSyncは$LITMUS^RT$に依存しており，パッチによるインストレーションを必要とする．
 %Section~\ref{sec:intro}で述べたとおり，カーネルにパッチを当てる作業は大きな負担になる．
-GPUs have some problems on using real-time environment, except  scheduling mechanisms.
+GPUs have some problems on real-time environment, except  scheduling mechanisms.
 GPUs runtime environments are black-box mechanisms results from GPU environments are provided only GPU vendors, and these environments are closed-source.
 TimeGraph and Gdev address this problem by ensure transparency using reverse engineering and an open-source driver.
 GPUSync achieve closed-source compatible by GPU resource management that approaches are the interrupt handling and the arbitrate runtime access.
