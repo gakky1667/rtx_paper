@@ -13,7 +13,7 @@ all:
 	bibtex $(TARGET)
 	$(TEX) $(TARGET)
 	$(TEX) $(TARGET)
-	dvipdfm $(TARGET).dvi
+	dvipdfmx $(TARGET).dvi
 	open $(TARGET).pdf
 
 bb:

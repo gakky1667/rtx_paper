@@ -5,7 +5,7 @@ This paper focuses on a system composed of multiple GPUs and multi-core CPUs.
 
 \subsection{GPU Task Model}
 In case of General Purpose GPU computing (GPGPU), CUDA and OpenCL are used to implement GPU applications.
-This paper focuses on CUDA, but it is possible to adapt the same approach to OpenCL.
+This paper focuses on CUDA, but this paper approach is possible to adapt the same approach to OpenCL.
 
 We define a GPU task as a process wich executes GPU,
 which cyclic executes unit is called GPU job,
@@ -33,8 +33,8 @@ In among them, there are many existing studies concerning RTOS based on Linux~\c
 %リアルタイムOSは古来より多くの研究~\cite{spring,redline,itron,rk}が行われてきてい。
 %LinuxをベースとしたリアルタイムOSとしても数多く研究~\cite{prk,rtai,yodaiken1999rtlinux,litmus,kato:loadable}されている。
 %GPUを利用可能な環境はWindows, Mac OS, Linuxと限られており、リアルタイムという性質を追求するためにはLinuxの利用が最適であるため、今回我々はlinuxを利用する。
-The available OS for GPUs are limited to Windows, Mac OS and Linux,
-we selected Linux in order to achieve real-time processing on GPU environments.
+The available OS for GPUs are limited to Windows, Mac OS and Linux.
+We selected Linux in order to achieve real-time processing on GPU environments.
 
 In order to meet real-time constraints on shared resource environment such as a multicore environment,
 there are two requirements for the scheduler as follows:
@@ -55,10 +55,9 @@ thus, we satisfy the two requirements similar to above multicore environment.
 %Therefore, in the system of including GPU is 
 %そのためGPUが含まれるシステムにおいても，リアルタイムを実現するためには上記二点を達成できればよい．
 Our previous works schedule only GPU accesses. 
-However, GPU kernel consumes CPU time because it driven by API.
-to truly support  the real-time scheduling, it is need to schedule a GPU task;
+However, GPU kernel consumes CPU time because GPU task driven by API.
 In order to truly support the real-time scheduling, scheduler is need to schedule GPU tasks of CPU cide.
-therefore the framework needs to have CPU's priority-based scheduler, GPU's priority-based scheduler, and GPU's resource reserbation mechanism to realize real-time GPU
+Therefore, the framework needs to have CPU's priority-based scheduler, GPU's priority-based scheduler, and GPU's resource reserbation mechanism to realize real-time GPU
 %我々がこれまで取り組んできたGPUリソースマネージメントに関する研究では，
 %GPUへのアクセスのみをスケジューリングしてきた．
 %しかしながらGPUカーネルはGPUタスクから発行されるAPIを起点に動作していることから，
@@ -91,7 +90,8 @@ GPU tasks suspend until it receives the results from invoking the processing to 
 %GPUを完全にリアルタイムに扱うことができないもっとも困難な問題は，GPUがI/Oデバイスとして扱われることに起因する．
 %GPUに処理を発行し，結果を受け取るまでの間，発行したタスクは自らサスペンドする．
 The self-suspension has been proven as a cause the NP-HARD problem in previous work~\cite{self-sus:1,self-sus:2},
-several researches~\cite{chattopadhyay2014limited,kim2013segment} are working on the scheduling analysis for self-suspension task, but it has not been solved yet completely.
+several researches~\cite{chattopadhyay2014limited,kim2013segment} are working on the scheduling analysis for self-suspension task,
+they have not been solved yet completely.
 
 Hence, the proposed scheduling framework aims at easier expansion and installation.
 %このself-suspensionはこれまでの研究~\cite{self-sus:1,self-sus:2}でNP-HARDな問題を発生させるとして証明されており，
@@ -103,34 +103,35 @@ Hence, the proposed scheduling framework aims at easier expansion and installati
 The synchronization must be considered for GPU system such as heterogeneous platform.
 GPU have two different synchronization technique.
 The first techniques is memory map based synchronization which is called FENCE,
-it sends GPU commands after the command to take action,
-then GPU microcontrollers will write the any value to memory-mapped space after action is completed.
-A GPU task monitors it mapped space value using such as polling,
-therefore task has an exclusive CPU resource,
+FENCE sends GPU commands after the command to take action,
+then GPU microcontrollers will write the any value to a memory-mapped space after action is completed.
+A GPU task monitors the mapped space value using such as polling.
+Therefore task has an exclusive CPU resource,
 but response time will be the fastest.
-The other one techniques is interruption based synchronization which is called NOTIFY.
-it sends GPU commands similar to FENCE,
+The other techniques is interruption based synchronization which is called NOTIFY.
+NOTIFY sends GPU commands similar to FENCE,
 then GPU microcontrollers will rise the interrupt and write any value to GPU I/O registers.
-A GPU task is suspending until interrupt,
-therefore a task is able to share the CPU resources with other tasks,
+A GPU task is suspending until interrupt.
+Therefore a task is able to share the CPU resources with other tasks,
 but a response time will be the slow.
-Detailed architecture is omitted in this paper,
-it has been described in the previous documents~\cite{kato:timegraph, kato:gdev, fujii:apsys2013}.
+A Detailed architecture is omitted in this paper,
+and the detailed architecture has been described in the previous documents~\cite{kato:timegraph, kato:gdev, fujii:apsys2013}.
 
 Gdev uses both techniques, NOTIFY and FENCE for wakeup the waiting task, 
 and NOTIFY is used by scheduler, FENCE is used by kernel synchronization. 
-In Gdev, synchronization implementation is the additional commands sends to GPU and the modification of device driver’s interrupt handler.
+In Gdev, synchronization implementation is the additional commands sends to GPU and the modification of device driver's interrupt handler.
 GPUSync uses NOTIFY technique by using tasklet intercept~\cite{elliott2012robust} on the proprietary software.
-Tasklet is linux’s soft-irq implementation.
+Tasklet is Linux's soft-irq implementation.
 GPUSync identifies the interrupt that is invoked kernel by callback pointer with a tasklet.
 
 \textbf{kernel free scheduler:}
-We must not modify the kernel code and the device driver code to achieve "kernel free".
+We must not modify the kernel code and the device driver code to achieve ``kernel free''.
 GPU scheduler is required to receive a notice of GPU kernel completion, for selection of next executing GPU kernel.
 It is realized by two methods that are API-driven method and Interrupt-driven method.
 The API-driven method is explicitly wakeup the scheduler after the synchronized by API such as $cuCtxSynchronize()$ provided runtime in the RGEM.
 The Interrupt-driven method is woken up by a trigger of the interrupt which is issued by using NOTIFY in the Gdev and TimeGraph.
-General utilized $cuCtxSynchronize()$ synchronize completion of all GPU kernels, therefore, API driven is able to use when a GPU context have issued only single kernel.
+General utilized $cuCtxSynchronize()$ synchronize completion of all GPU kernels.
+Therefore, API driven is able to use when a GPU context have issued only single kernel.
 Thus, if a GPU task invokes multiple kernels, we must use the Interrupt-driven method for not to guarantee overrun due to reduction of the response time.
 
 %GPU スケジューラは次に実行するカーネルの 選択のために,
@@ -138,8 +139,9 @@ Thus, if a GPU task invokes multiple kernels, we must use the Interrupt-driven m
 %この受 取には,API-driven と Interrupt-driven な方式が ある.RGEM ではこの API-driven を用いており, cuCtxSynchronize() などのランタイムによって 提供される API によってカーネルが同期された後 に,明示的にスケジューラを起動する API を発行 する.Gdev や TimeGraph では Interrupt-driven を利用しており,NOTIFY を利用する際に発行さ れる割込みをトリガーとしてスケジューラを起動 する.
 %一般的に用いられる cuCtxSynchroniza() は当 該コンテキストで現在発行されている全てのカー ネルが終了したタイミングで同期する.したがっ て API-driven では一つの GPU コンテキストから は一度に一つのカーネルが発行される場合のみに 対応可能である.
 %しかしながら,一つの GPU コンテキストから 連続して複数のカーネルが発行されるケースは, 多々発生すると考えられる. その影響から,カー ネル実行のレスポンスタイムが低下し,オーバラ ンの発生率を高める問題が発生する.
-The Interrupt-driven method can be synchronized for each kernel, it is required to modify the kernel or the device driver's ISR.
-Gdev has been achieved independent synchronization mechanisms on the proprietary soft-ware, it need to modify the kernel modification.
+The Interrupt-driven method can be synchronized for each kernel, and its method is required to modify the kernel or the device driver's ISR.
+Gdev has been achieved independent synchronization mechanisms on the proprietary soft-ware,
+the independent synchronization mechanisms are needed to modify the kernel modification.
 The challenge is realizing independent synchronization mechanisms without kernel modification
 
 %We define a GPU task which is to execute the GPU using above API flow,

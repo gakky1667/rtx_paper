@@ -71,6 +71,7 @@
 
 %private 
 \usepackage{color}
+\usepackage{xcolor}
 
 %
 \def\RED#1{{\color{red}#1}}%
@@ -401,13 +402,15 @@
 
 
 \begin{document}
-\title{Coordinating CPU and GPU Resources with Loadable Real-Time Schedulers}
+\title{Linux-RTXG: Coordinating CPU and GPU Resources with Loadable Real-Time Schedulers}
 \author{
 Yusuke~Fujii,~\IEEEmembership{Student Member,~IEEE,}
 Takuya~Azumi,
 Nobuhiko~Nishio,
 Tsuyoshi~Hamada,
 Shinpei~Kato,~\IEEEmembership{Member,~IEEE,}
+}
+\if 0
 \IEEEcompsocitemizethanks{
 \IEEEcompsocthanksitem Y. Fujii is with the Graduate School of Information Science and Engineering, Ritsumeikan University.
 \IEEEcompsocthanksitem T. Azumi is with the Graduate School of Information Science and Engineering, Osaka University.
@@ -415,10 +418,10 @@ Shinpei~Kato,~\IEEEmembership{Member,~IEEE,}
 \IEEEcompsocthanksitem T. Hamada is with the Advanced Computing Center, University of Nagasaki.
 \IEEEcompsocthanksitem S. Kato is with the School of Information Science, Nagoya University.
 }}
-
+\fi
 % The paper headers
-\markboth{Journal of \LaTeX\ Class Files,~Vol.~6, No.~1, January~2007}%
-{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Computer Society Journals}
+%\markboth{Journal of \LaTeX\ Class Files,~Vol.~6, No.~1, January~2007}%
+%{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Computer Society Journals}
 % The only time the second header will appear is for the odd numbered pages
 % after the title page when using the twoside option.
 % 
@@ -507,6 +510,7 @@ GPU, resource managmenet, scheduling, real-time system, operating system
 \input{conclusion.tex}
 
 
+\clearpage
 
 \appendices
 

@@ -36,7 +36,11 @@ These work have weak point that can not to provide fast supporting update archit
 %RGEM~\cite{kato:rgem}、Gdev~\cite{kato:gdev}ではGPGPUにフォーカスし、GPUで実行される単位であるカーネルとデータ転送をスケジューリングしている。
 %これらの研究はリバースエンジニアリングによって提供されており、アーキテクチャの更新や、全ての機能の提供が困難であるといったデメリットが存在している。
 
-Some GPU functions are provided API, processing is issued to GPU via library and device driver from the user application.
+%GPU using user application issue by API is provided 
+In the GPU environments,
+GPU functions are provided by the API of library and the Application binary interface (ABI) of device drivers.
+GPU functions consume CPU time to issue the GPU kernel by the API and the ABI.
+%Some GPU functions are provided API, processing is issued to GPU via library and device driver from the user application.
 %GPUの機能の多くはAPIによって提供されており、ユーザアプリケーションからライブラリを通じて、デバイスドライバ、GPUへと処理が発行される。
 Thus, if GPUs truly wants the real-time requirements,  there is a need to manage host side task as well as GPU resource management.
 %そのためリアルタイムを前提としたシステムにおいて、真にその要件を満たすためには、GPUのリソースマネージメントだけでなくホスト側のタスクについても管理してやる必要がある。
@@ -79,13 +83,19 @@ RESCH does not support GPU resource.
 %しかしながら、RESCHはGPUを保持するシステムのようなヘテロジニアスな環境には対応していない。
 
 \textbf{Contribution:}
-In this paper, we present linux real-time extension for CPU/GPU resource coordination called Linux-RTXG for CPU and GPU coordinated resource management, this extension is able to more easily re-configure the resource management policy and the installation.
+In this paper, we present linux loadable real-time extension for CPU and GPU resource coordination called Linux-RTXG.
+%for CPU and GPU coordinated resource management,
+This extension is able to more easily re-configure the resource management policy and the installation.
 Linux-RTXG's most contribution is to achieve real-time task scheduling on the using GPU environment without kernel modification.
 %Linux-RTXGの最大きな貢献は、OS機能を持ちながら、OSから独立することで、既存のGPU資源管理に関する研究において考慮されていないカーネル編集に伴う開発者、ユーザへの負担をなくしたことである。
-
 To achieve real-time task scheduling, 
-Linux-RTXG provide the CPU task scheduler, GPU kernel scheduler, and GPU kernel reservation mechanisms.
-\TODO{moutyotto}
+Linux-RTXG provide a CPU task scheduler, a GPU kernel scheduler, and a GPU kernel reservation mechanisms.
+The CPU task scheduler is based on the RESCH.
+The GPU kernel scheduler and the GPU kernel reservation mechanisms are based on the Gdev.
+They are integrated to Linux-RTXG by kernel free's approach.
+We define the kernel free that is do not modify kernel source codes and device drivers source codes.
+
+
 
 \textbf{Organization}
 This rest of the paper is organized as follows.

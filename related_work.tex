@@ -2,30 +2,30 @@
 
 \begin{table*}[t]
 \begin{center}
-\caption{Linux-RTXG vs prior work}
+\caption{Linux-RTXG vs Prior Work}
 \label{tab:comp:prior}
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|} \hline
- & \multicolumn{2}{|l|}{CPU} & \multicolumn{2}{|l|}{GPU} & Budget & Data/Comp. & Closed Src.& Kernel& OS & GPU Runtime \\ \cline{1-5}
-& FP & EDF & FP & EDF & Enforcement & Ovlp. & Compatible & Free & independent & independent \\ \hline
- RGEM       &   &   & x & &   &   & x & x & x &   \\ \hline
- Gdev       &   &   & x & & x & x &   &   &   &   \\ \hline
- PTask      &   &   & x & & x & x & x &   &   & x \\ \hline
- GPUSync    & x & x & ▲ & & x & x & x &   &   & x \\ \hline
- GPUSparc   & ▲ &   & x & &   & x & x &   & x &   \\ \hline
- Linux-RTXG & x & x & x & & x & x & x & x & x & x \\ \hline
+%\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|} \hline
+\begin{tabular}{ccccccccccc} \hline
+ & CPU & CPU & GPU Prio. & Budget & Data/Comp. & Closed Src.& Kernel& OS & GPU Runtime \\ 
+& FP & EDF & Sched. & Enforcement & Ovlp. & Compatible & Free & independent & independent \\ \hline
+ RGEM       &   &   & x &   &   & x & x & x &   \\ 
+ Gdev       &   &   & x & x & x &   &   &   &   \\ 
+ PTask      &   &   & x & x & x & x &   &   & x \\ 
+ GPUSync    & x & x & x & x & x & x &   &   & x \\ 
+ GPUSparc   & ▲ &   & x &   & x & x &   & x &   \\ 
+ Linux-RTXG & x & x & x & x & x & x & x & x & x \\ \hline
 \end{tabular}
 \end{center}
 \end{table*}
 
 RGEM and GPU-Sparc~\cite{sparc} have GPU resource management without modification of the kernel and device drivers.
-However, synchronization mechanism of these work depends on proprietary-software.
+However, synchronization mechanisms of these work depends on proprietary-software.
 TimeGraph, Gdev, Ptask, and GPUSync are realized independent synchronization mechanisms for modifying the kernel and devie drivers.
-To our knowledge, Linux-RTXG is the only real-time GPU framework using a synchronization mechanism that is independent of the runtime while it was not modificated the kernel and device drivers.
+To our knowledge, Linux-RTXG is the only real-time GPU framework using a synchronization mechanisms that is independent of the runtime while it was not modificated the kernel and device drivers.
 
 Table~\ref{tab:comp:prior} shows that result of comparing the Linux-RTXG and prior work.
 GPUSync mentioned that GPU task dependent to CPUs scheduling, and supports CPU scheduling policies that are the Fixed-Priority scheduling and the EDF scheduling.
 GPUSparc have setting of scheduling priorities that is Linux scheduling policies of $SCHED\_FIFO$.
-All exsisting researchs support to FP scheduling, but not support EDF.
 %GPUSyncはCPU and GPU間の依存についても言及している，
 %CPUスケジューリングとして，Fixed-priorityとEDFの両方に対応している．
 %GPUSparcはスケジューリングポリシーをSCHED\_FIFOとして設定する機構を備えており，
