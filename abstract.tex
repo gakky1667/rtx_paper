@@ -1,10 +1,9 @@
-Graphics processing units (GPUs) easily provide the benefits of high-performance computing.
-However, GPUs runtime environment is target to best-effort oriented application, and do not consider real-time.
-Previous work have contributed for real-time GPU, and depends kernel.
-Dependence on the kernel and the device driver gives the burden developers and users.
-We present Linux-RTXG which is cordinating CPU and GPU resources for real-time extending framework without kernel modification by loadable kernel modules approach. 
-Linux-RTXG has a CPU real-time scheduler, a GPU real-time scheduler, and a GPU reservation mechanism.
-To achieve framework without kernel modification, 
-we presents interrupt intercept mechanisms and independent interrupt mechanisms and to solved currently Linux kernel real-time scheduling problem.
-Experimental results indicate that overhead of GPU scheduling using Linux-RTXG framework,
-and kernel free's approach performances of QoS management had kept equivalent performance as compared with the existing kernel-dependent approach.
+Graphics processing units (GPUs) facilitate high-performance computing.
+However, GPU runtime environments target to best-effort oriented applications, and do not consider real-time applications.
+Previous work have contributed to real-time GPU, depends on the kernel.
+Dependence on the kernel and device driver gives incurs burden to developers and users.
+We present Linux-RTXG, a method that uses a loadable kernel module approach without kernel modification to coordinate CPU and GPU resources for a real-time scheduling framework.
+Linux-RTXG employs a CPU real-time scheduler, a GPU real-time scheduler, and GPU reservation mechanisms.
+To achieve the proposed framework without kernel modification,
+we present interrupt intercept mechanisms and independent interrupt mechanisms and to solved currently Linux kernel real-time scheduling problem.
+Experimental results indicate that the proposed kernel-free Linux-RTXG framework achieves, GPU scheduling overhead and quality of service management performance comparable to existing kernel-dependent approaches.

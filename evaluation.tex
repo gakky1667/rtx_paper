@@ -1,70 +1,23 @@
-\section{Evaluation}\label{sec:evaluation}
-We evaluate scheduling overhead and scheduling performance.
-Scheduling experiments are limited on the GPU scheduling since CPU scheduling performance is already experiments~\cite{kato2009loadable}.
-In this evaluation, we focus two point.
-The one is to indicate the Linux-RTXG disadvantages.
-The other is demonstrating QoS performance.
-%本実験では２点にフォーカスし評価を行う．
-%まず一つ目は，本Linux-RTXGを利用した際のオーバヘッドを定量的に計測し、利用に伴ってどれだけのデメリットを含んでいるかを提示する
-%２つ目に，シンクロナイゼーション方式がカーネル編集を含まない方式でどの程度のパフォーマンス維持が可能であるかを示す．
-
-Real-world oriented applications using GPU~\cite{hirabayashi:cpsna2013,tokamak} are executed periodically.
-%今回の評価用アプリケーションは周期的に実行されるため，リアル・ワールドのアプリケーションと同等の処理フローであるとし評価で用いる．
+\SECTION{Evaluation}\label{sec:evaluation}
+Here, we evaluate scheduling overhead and scheduling performance.
+Scheduling experiments are limited to GPU scheduling because CPU scheduling performance has already been examined experimentallys~\cite{kato2009loadable}.
+In this evaluation, we focus on two points,
+identifying Linux-RTXG’s disadvantages and demonstrating the quality of service (QoS) performance.
+\if 0
+Real-world oriented applications using GPUs~\cite{hirabayashi:cpsna2013,tokamak} were executed periodically.
 These evaluation applications are equivalent to the real-world oriented applications
 because GPU applications characteristics are these application on the single GPU kernel.
-%GPUを利用するリアル・ワールドのアプリケーション\cite{hirabayashi,tokamak}ではGPUタスクの多くは周期的に実行される．
-We will discuss comparing to hold the functions and features between the this work and previous works with a qualitative evaluation in the next chapter.
-%for the difference between the functions and features to hold to it with a qualitative evaluation in the next chapter.
-%定性的な評価としては関連する研究と保持する機能や特徴の差について次章でdiscussする。
-
-\subsection{Experimental Environment}
-Our experiments are conducted with the Linux kernel 3.16.0 on NVIDIA Geforce GTX680 graphics card and 3.40GHz Intel Core i7 2600, which contains 8 cores (including the two hyper-threading cores) and 8GB main memory.
-
-GPU programs are written in CUDA and compiled by NVCC v6.0.1.
-GPU drivers are used NVIDIA driver 331.62 and Nouveau driver Linux-3.16.0.
-CUDA libraries are used NVIDIA CUDA-6.0 and Gdev.
-%CPUはIntel Core i7 2600 3.40GHz、
-%4GB*2のメモリ、GPUはGeForce GTX680を用いる。
-%KernelはLinux kernel 3.16.0を用い、ディストリビューションはUbuntu 14.04である。
-%CUDAコンパイラはNVCC v6.0.1、CUDAランタイムはcuda-6.0 or Gdev、GPUドライバはNVIDIA (331.62)、Nouveau (linux-3.16.0)を用いる。
-%各ランタイム、ドライバは評価項目ごとに使い分ける。
-
-\subsection{Interrupt intercept overhead}
-We measured overhead of interrupt interception.
-%Interrupt interceptのオーバヘッドの測定を行う。
-We use GPU driver which is used the Nouveau in order to compare and identify the type of interrupt.
-We compared consumption time from begin of ISR to the end of ISR.
-
-%本評価では、GPUドライバはnouveauを用いる。
-%割り込み処理は、各割り込みの種類によって、処理時間が異なり、その分布は一様ではないため、単に測定して平均をとっても比較ができない。
-%そのため各割り込みの種類の判別のためにNouveauを用いて、割り込みの種類が同一のもので、カーネル内のdo\_IRQ関数内でハンドラが呼ばれてから終了までの時間を測定し
-%どの程度のオーバヘッドで割り込みの盗聴及び、盗聴した割り込みがいずれのカーネルに関連したものであるかの識別ができるかどうかを測定する。
-\if 0
-\begin{figure*}[!t]
-\begin{minipage}{0.33\hsize}
-\begin{center}
-\includegraphics[width=\hsize]{img/interrupt.pdf}
-\caption{\scriptsize{Interrupt intercept overhead}}
-\label{fig:irq_overhead}
-\end{center}
-\end{minipage}
-\begin{minipage}{0.33\hsize}
-\begin{center}
-\includegraphics[width=\hsize]{img/interrupt_response}
-\caption{\scriptsize{Comparison of the response time of the interrupt processing with intercept and the interrupt processing without intercept}}
-\label{fig:bottomvstasklet}
-\end{center}
-\end{minipage}
-\begin{minipage}{0.33\hsize}
-\begin{center}
-\includegraphics[width=0.33\hsize]{img/tasklet_vs_interrupt}
-\caption{Comparison of the response time of the interrupt top-half and bottom-half}
-\label{fig:bottomvstasklet}
-\end{center}
-\end{minipage}
-\end{figure*}
 \fi
+We compare the functions and features of the proposed method and previous methods in a qualitative evaluation in the next section.
+\SUBSECTION{Experimental Environment}
+Our experiments were conducted using Linux kernel 3.16.0, an NVIDIA Geforce GTX680 GPU, a 3.40 GHz Intel Core i7 2600 (8 cores, including two hyperthreadling cores), and 8 GB main memory.
+GPU programs were written in CUDA and compiled by NVCC v6.0.1.
+We used the NVIDIA 331.62 driver and Nouveau Linux-3.16.0 driver.
+In addition, we used NVIDIA CUDA-6.0 libraries and Gdev.
 
+\SUBSECTION{Interrupt intercept overhead}
+We measured the interrupt interception overhead using the Nouveau GPU driver to compare and identify the type of interrupt.
+We compared elapsed time from the beginning to the end of the ISR.
 
 \begin{figure}[t]
 \begin{center}
@@ -76,68 +29,51 @@ We compared consumption time from begin of ISR to the end of ISR.
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.4\textwidth]{img/interrupt_response}
-\caption{Comparison of the response time of the interrupt processing with intercept and the interrupt processing without intercept}
+\caption{Comparison of the response time of interrupt processing with and without intercept}
 \label{fig:response}
 \end{center}
 \end{figure}
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.4\textwidth]{img/tasklet_vs_interrupt}
-\caption{Comparison of the response time of the interrupt top-half and bottom-half}
+\caption{Comparison of the response time of the top-half and bottom-half of the interrupt handler}
 \label{fig:bottomvstasklet}
 \end{center}
 \end{figure}
 
-Figure~\ref{fig:irq_overhead} shows results of measurements in the above setting.
-%Figure \ref{irq_overhead}は上記設定で測定した結果である。
-Raw ISR is execute ISR in the original routine.
-ISR Intercept is only intercept our approach.
-ISR Intecept w/Func is interception with processing functions which are identify the ISR and wake-up the scheduler thread.
-They are showed the average times of 1000 times with error bar is indicate minimum and maximum.
+Figure~\ref{fig:irq_overhead} shows the results of measurements for the above setting.
+Here, Raw ISR is the ISR executed in the original routine.
+Note that ISR Intercept is the only intercept considered in our approach.
+ISR Intercept w/Func refers to interception with processing functions that identify the ISR and wake the scheduler thread.
+The results shown are average times (1000 executions); error bars indicate minimum and maximum values.
 
-As a result, the overhead exist certainly.
-ISR Intercept has overhead which is 247 nano seconds, and its overhead is 0.8\% of the entire Raw ISR process.
-ISR Intercept w/Func also has overhead that is 790 nano seconds, and its overhead is 2.6\% of the entire Raw ISR process.
-Intuitively, these overhead does not affect system since very small values,
-however, interrupt is occur frequently including such as timer interrupt, should be aware as disadvantages.
+From the results, it is evident that overhead exists.
+Overhead for ISR Intercept was 247 ns, which is 0.8\% of the total time required for the Raw ISR process.
+Overhead for ISR Intercept w/Func was 790 ns, which is 2.6\% of the total time required for the Raw ISR process.
+Intuitively, these overheads unlikely to affect the system because are very small values;
+however, interrupts (e.g., timer interrupts) occur frequently, and cumulatively are likely to be significant.
 
-Next, we compare response times as the interrupt impact of the interrupt itnercept.
-The response times are consumption times from start interrupt processing to processing for the type.
-We show the response times that are a ISR with intercept and a ISR without intercept, as a result show in Figure~\ref{fig:response}.
-If we use the interrupt interception, response time become about 1.4 times as compared to without intterupt interception.
-However, we targetting systems do not use the GPU runtime's resource management features.
-Therefore, We should aim to fast response time of intercepted ISR, and original ISR response time is slow there is not affected much.
+Next, we compare response times to determine the impact of the interrupt intercept.
+The response times are elapsed times from the start of interrupt processing to the end of identify the each interrupt type (e.g., timer, compute, FIFO, and GPIO).
+The response times for ISRs with and without intercepts are shown in Figure~\ref{fig:response}.
+Response times with intercepts were approximately 1.4 times longer than response times for interrupts without intercepts.
+However, we target systems that do not use the GPU runtime resource management features.
+Therefore, we should aim to fast response time of intercepted ISR, and original ISR response time is slow there is not affected much.
 
-In addition, we evaluate comparing response time of the ISR (top-half) and the tasklet (bottom-half) in an environment with non CPU load for comparing prior works approach.
-GPUSync intercept the $tasklet\_schedule()$ if $tasklet\_schedule()$ is called from the Nvidia driver.
-We confirm whether the fast response time of a tasklet intercept using GPUSync and the ISR intercept.
-This evaluation does measurement time until the responsible timing from the start of interrupt process which is $do\_IRQ$ function is called).
+We also evaluated response time of the ISR (top-half) and the tasklet (bottom-half) in an environment to compare our results with those of previous approaches.
+GPUSync intercepts the $tasklet\_schedule()$ if it is called by the NVIDIA driver.
+We compare the response times of a tasklet intercept using GPUSync and the ISR intercept.
+This evaluation measured response time until the responsible timing from the start of interrupt process which is $do\_IRQ$ function is called.
 Figure~\ref{fig:bottomvstasklet} shows the result of this evaluation.
-Tasklet interception response time is worse than ISR, as shown in Figure~\ref{fig:bottomvstasklet}.
-This result because the tasklet is generally called after the significant procesing in ISR.
+As can be seen, the tasklet interception response time is worse than the ISR time.
+This occurs because the tasklet is typically called after significant ISR processing.
 
-%%TODO なぜ
-
-%Raw ISRは通常のルーチンで実行されるISR、ISR Interceptは割り込みを盗聴するのみ、
-%ISR intercept w/Funcは盗聴した上でその割り込みが、いずれのカーネルに関連した割込みか識別しスケジューラを立ち上げる機能を実行した場合である。
-%それぞれ1000回の測定で平均値を取り、最小値と最大値についてエラーバーで示している。
-%この図から見て取れるように、オーバヘッドは確実に存在する。
-%ISR Interceptだと247nsのオーバヘッドであり、
-%ISR Intercept w/Funcでも790nsのオーバヘッドである。
-%この数値は直感的に考えると小さくシステム自体に影響を及ぼすほどではないと考えられ、
-%しかしその割込みが乱発することによる積み重ねによっては影響を与えることは、
-%本手法のデメリットとして意識しなければならない。
-
-\subsection{Independent Synchronization mechanism overhead}
-We evaluated the overhead according to using the independent synchronization mechanism.
-The mechanism is needed to call the $rtx\_nvrm\_notify()$ at the timing of requested synchronization (e.g. after the kernel launch issue) and $rtx\_nvrm\_init()$.
-%本稿では同期生成のためのオーバヘッドを測定する。
-%割込みの立ち上げは同期を求めるタイミング(e.g. カーネルラウンチ後)にrtx\_nvrm\_notify()を呼び出す必要がある。
-In vanilla environment, the APIs are not necessary.
-Therefore, the overhead includes the API execution time.
-%スケジューリングを行わないVanillaな状態ではこれらのAPIは必要ではないものであるため、これらのAPIにかかった時間はすべてオーバヘッドとなる。
-We measured the overhead by measuring API execution time between call and return of APIs.
-%そのためこれらのオーバヘッドの計測を行う。計測はAPIの呼び出しから戻るまでを測定する。
+\SUBSECTION{Independent Synchronization Mechanism Overhead}
+We evaluated the overhead relative to the use of an independent synchronization mechanism.
+Such a mechanism must call $rtx\_nvrm\_notify()$ at the time of requested synchronization (e.g., after the kernel launch request) and $rtx\_nvrm\_init()$.
+In vanilla environments, Linux-RTX’s APIs are not necessary.
+Therefore, overhead includes the API execution time.
+We measured overhead by measuring API execution time between each API call and return.
 
 \begin{figure}[!t]
 \begin{center}
@@ -147,26 +83,22 @@ We measured the overhead by measuring API execution time between call and return
 \end{center}
 \end{figure}
 
-Figure~\ref{fig:irq_rise_overhead} shows measurement result.
-Initialize is need to called the at awaken a Linux process for allocating an indirect buffer and registers several engines such as compute and copy to the device driver.
-Notify and Fence are GPU commands sending to GPU devices which called at timing of the need to synchronization such as after the kernel launch issues.
-Execution time of the methods have scatter that is affected by ioctl system call.
+Figure~\ref{fig:irq_rise_overhead} shows the measurement results.
+Initilize part is required to call a Linux process to allocate an indirect buffer and registers several engines such as compute and copy to the device driver.
+Notify part (NOTIFY and FENCE) insert commands into a command steram to GPU devices that are called when synchronization is required, such as after a kernel launch is issued.
+Execution time have scatters that are affected by an ioctl system call.
 %結果をFigure \ref{fig:irq_rise_overhead}に示す。
 %InitializeはIndirect Bufferはプロセスが立ち上がるたびに、
 %コマンド送信用のIndirect Bufferの確保や各エンジンの登録のために呼び出される必要がある。
 %Notifyはカーネル実行後や非同期メモリコピー実行後のような同期を発生させたいタイミングで呼び出される。
 %これらはioctlシステムコールによってユーザ空間とカーネル空間をまたいでる影響か、実行時間のバラ付きが大きく出ている。
+The average Initizalize time is approximately 4 ms.
+However, applications are not affected significantly because Initialize is only called once.
+Notify’s NOTIFY requires approximately 3.5 μs and FENCE requires approximately 2 μs.
+Consequently, the time required by these method is not a major consideration for applications.
+However, overhead must be considered in a shot application cycle.
 
-Initialize average time is about 4msec.
-However, application is not affected too much because above characteristics is only called once.
-%Initializeは比較的時間がかかっているが、1プロセスにつき一度しか呼ばれないため、アプリケーション全体への影響は少ないと考えられる。
-Notify is not taking much time that is about 3.5µsec.
-Fence likewise is not taking much time that is about 2µsec.
-Although may be not have to worry about for most applications.
-However, overhead is necessary to considered in a cycle of short application.
-
-
-\subsection{Scheduling Overhead}\label{sec:eval:sched_overhead}
+\SUBSECTION{Scheduling Overhead}\label{sec:eval:sched_overhead}
 
 \if 0
 \begin{figure}[t]
@@ -186,35 +118,33 @@ However, overhead is necessary to considered in a cycle of short application.
 \end{center}
 \end{figure}
 
-We evaluated scheduling overhead by using the Linux-RTXG scheduler.
-We prepared three applications that are ``vanilla'', ``mutex'', and ``rtx'' for measurement overheads.
-These applications are based common application based on Gdev's microbenchmark which has GPU looping function.
+We evaluated scheduling overhead using the proposed Linux-RTXG scheduler.
+We prepared three applications, i.e., vanilla, mutex, and rtx to measure overhead.
+These applications are based on a common application that is Gdev’s microbenchmark, which has a GPU looping function.
 %details
-Changes are arranged to generate multiple GPU tasks by the fork.
-Each tasks have 10 jobs, and a job is included GPU data transferring and a GPU kernel execution.
-
-The ``rtx'' application is scheduled by rtx.
-The ``mutex'' application  is limited to single kernel issue similar to scheduling environment.
-The ``vanilla'' application is not to change the base application.
-
-CPU scheduling policy is using the simple fixed-priority scheduling by Linux-RTXG similar to Linux's $SCHED\_FIFO$ that difference is the presence or absence of the job management.
-GPU scheduling policy is fixed-priority scheduling with resrouce reservation which is BAND scheduling policy.
-The synchronization is using NOTIFY of the independent synchronization mechanism.
+Changes were arranged to generate multiple GPU tasks by the $fork()$ systemcall.
+Each task has 10 jobs, and each job includs GPU data transfer and GPU kernel execution.
+The rtx application was scheduled by rtx.
+The mutex application was limited to a single kernel issue by exclusion control using mutex similar to rtx.
+The vanilla application was not changed.
+The CPU scheduling policy used in this evaluation was the simple fixed-priority scheduling of the proposed Linux-RTXG, which is similar to Linux’s $SCHED\_FIFO$. Note that the difference between these policies is the presence or absence of job management.
+The GPU scheduling policy is fixed-priority scheduling with resrouce reservation, i.e., BAND scheduling policy.
+Here, synchronization is used NOTIFY of the independent synchronization mechanism.
 
 We measured the average time in 100 times GPU task execution (1000 jobs).
 The result show in Figure~\ref{fig:fp_task_overhead}.
-%Figure~\ref{fig:fp_overhead} is each APIs execution average time.
-%Figure~\ref{fig:fp_task_overhead} is tasks execution average time.
-%計測結果をFigure~\ref{fig:fp_overhead}に示す。
-%アプリケーションに含まれるタスク数ごとにプロットしており、各ジョブ内のラウンチ要求から実行完了までにかかった時間の平均値を各処理毎に積み上げ式で示している。
-The ``launch\_advice'' is time of until GPU kernel launch request is accept on the Linux-RTXG.
-The ``mutex'' is time to get the mutex lock.
-The ``sync'' is time of untile synchronizationed from issued the GPU kernel launch issue.
+\if 0
+The launch\_advice is time of until GPU kernel launch request is accept on the Linux-RTXG.
+The mutex is time to get the mutex lock.
+The sync is time of untile synchronizationed from issued the GPU kernel launch issue.
+\fi
 
 Overhead increases in proportion as the number of tasks increases because task scheduling processing times is increased.
 Max overhead is 10\% at the eight tasks based on "vanilla" time.
-The most factors contained in the overhead is the API's overheads and scheduling algorithms (e.g. Band scheduling include yield times).
-If application periods is short, users are conscious of the overheads.
+
+%%
+%The most factors contained in the overhead is the API's overheads and scheduling algorithms (e.g. Band scheduling include yield times).
+%If application periods is short, users are conscious of the overheads.
 
 %launch\_adviceはrtx\_gpu\_launchによってGPU利用のためのリクエストを出してから、許可がでるまでを示しており、
 %get\_mutexはmutexによってロックを獲得するまでの時間、
@@ -235,19 +165,17 @@ If application periods is short, users are conscious of the overheads.
 %GPU側のスケジューリングは、Gdevで提案されたBANDスケジューラ、Linux-RTXでの同期は全てNOTIFYを用いて行う。
 
 
-\subsection{Performance of QoS management}
-Next experiments are evaluating QoS management performance.
-In this evaluate, we measure the utilization of each tasks on the several environments.
-Thereby, we indicates performance that is not falling by not modificate kernel.
-%次にGPUのバジェットエンフォースメントの性能を評価する。
-%ach tasks assigned to VGPU one by one, and each VGPU is provided a GPU resource 25\%.
+\SUBSECTION{Performance of QoS management}
+Experiments were also performed to evaluate QoS management performance.
+In this evaluation, we measured the utilization of each tasks in several environments,
+which indicates whether performance is affected by kernel modification.
 \begin{figure}[!t]
 \begin{center}
 \subfigure[FIFO Scheduling]{\includegraphics[width=0.4\textwidth]{img/fifo_rtx_nvidia}} 
 \label{fig:fifo_rtx_nvidia} \\
 \subfigure[BAND Scheduling]{\includegraphics[width=0.4\textwidth]{img/band_rtx_nvidia}}
 \label{fig:band_rtx_nvidia}
-\caption{Utilization of two tasks on the Linux RTXG scheudler and using Nvidia driver. Each tasks have different workloads and different resources (VGPU0 = 40\%, VGPU1 = 60\%).}
+\caption{Utilization of two tasks with the Linux RTXG scheduler (NVIDIA driver). Each task had different workloads and different resources allocations(VGPU0 = 40\%, VGPU1 = 60\%).}
 \label{fig:rtx_nvidia}
 \end{center}
 \end{figure}
@@ -258,7 +186,7 @@ Thereby, we indicates performance that is not falling by not modificate kernel.
 \label{fig:fifo_rtx} \\
 \subfigure[BAND Scheduling]{\includegraphics[width=0.4\textwidth]{img/band_rtx}}
 \label{fig:band_rtx}
-\caption{Utilization of two tasks on the Linux RTXG scheudler and using Nouveau driver. Each tasks have different workloads and different resources (VGPU0 = 40\%, VGPU1 = 60\%).}
+\caption{Utilization of two tasks with the Linux RTXG scheduler (Nouveau driver). Each task had different workloads and different resource allocations (VGPU0 = 40\%, VGPU1 = 60\%).}
 \label{fig:rtx_nouveau}
 \end{center}
 \end{figure}
@@ -266,7 +194,7 @@ Thereby, we indicates performance that is not falling by not modificate kernel.
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{img/band_rtx_fair}
-\caption{Utilization of four tasks on the Linux-RTXG's BAND VGPU scheduling. Each tasks have a fair workload and a fair resources.}
+\caption{Utilization of four tasks with the Linux-RTXG's BAND VGPU scheduling. Each tasks had a equal workload and a equal GPU resource allocation.}
 \label{fig:band_rtx_fair}
 \end{center}
 \end{figure}
@@ -275,7 +203,7 @@ Thereby, we indicates performance that is not falling by not modificate kernel.
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{img/band_rtx_diff}
-\caption{Utilization of four tasks on the Linux-RTXG's BAND VGPU scheduling. Each tasks have a different workload and a different resources.}
+\caption{Utilization of four tasks with the Linux-RTXG's BAND VGPU scheduling. Each tasks had a different workload and a different resources.}
 \end{center}
 \label{fig:band_rtx}
 \end{figure}
@@ -285,53 +213,40 @@ Thereby, we indicates performance that is not falling by not modificate kernel.
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{img/dummy}
-\caption{Utilization of four tasks on the G. All tasks are fairy given resources which is 25\%}
+\caption{Utilization of four tasks with the G. All tasks are fairy given resources which is 25\%}
 \end{center}
 \label{fig:qos_gdev}
 \end{figure}
 \fi
 
-We experiment task isolation performances on the Linux-RTXG's GPU scheduler with GPU driver which is used the Nvidia GPU driver and the Nouveau GPU driver.
-The first, we measure the utilization of the running two GPU tasks.
-The each GPU tasks have a different workload and a different resource.
-A GPU task is allocated VGPU0, and given the 40\% resource, and has about 1.2 times the workload of other tasks.
-The other GPU task is allocated VGPU1, and given the 60\% resource.
-VGPU1's task is to start after about 5 seconds of VGPU0's task.
+QoS performance use an indication of whether the task of the resource is guaranteed.
+We evaluate task isolation performances with Linux-RTXG’s GPU scheduler using the NVIDIA GPU driver and the Nouveau GPU driver to confirm the guaranteed resources.
+First, we measured the utilization when running two GPU tasks.
+Each GPU tasks had a different workload and a different GPU resource.
+One GPU task was allocated VGPU0, and given the 40\% GPU resource.
+This task has about 1.2 times the workload of other tasks.
+The other GPU task was allocated VGPU1 and given the 60\% GPU resource.
+VGPU1 task was scheduled to start approximately 5 safter the VGPU0 task.
 
-A Nvidia GPU driver's result is showed in Figures~\ref{fig:rtx_nvidia}.
-The FIFO scheduling policies shown in Figure~\ref{fig:rtx_nvidia}(a),
-and the BAND scheduling policies~\cite{kato:gdev} shown in Figure~\ref{fig:rtx_nvidia}(b).
-A Nouveau GPU driver's result is showed in Figures~\ref{fig:rtx_nouveau}.
+The NVIDIA GPU driver results are shown in Figures~\ref{fig:rtx_nvidia}.
+The FIFO scheduling policies are shown in Figure~\ref{fig:rtx_nvidia}(a),
+and the BAND scheduling policies are shown in Figure~\ref{fig:rtx_nvidia}(b).
+The Nouveau GPU driver results are shown in Figures~\ref{fig:rtx_nouveau}.
 The FIFO scheduling policies shown in Figure~\ref{fig:rtx_nouveau}(a),
 and the BAND scheduling policies shown in Figure~\ref{fig:rtx_nouveau}(b).
-Figure~\ref{fig:rtx_nvidia}(a),~\ref{fig:rtx_nouveau}(a) indicate that the GPU tasks performed in accordance with the workload by fair scheduling.
-On the other hand, Figure~\ref{fig:rtx_nvidia}(b),~\ref{fig:rtx_nouveau}(b) indicate that the GPU tasks performed in accordance with the utilization by resource reservation mechanisms.
-A VGPU1's maximum error is about 3\% in the starting BAND scheduling policies resource management using by Nvidia GPU driver, and a VGPU0's maximum error is about 5\%.
-A VGPU1's maximum error is about 2\% in the starting BAND scheduling policies resource management using by Nouveau GPU driver, and a VGPU0's maximum error is about 2\%.
-Large spikes are occured by GPU kernel's overrun.
-If the GPU scheduler need to large spike is reduced, the GPU scheduler is needed to runtime approachs such as making preemptive GPU kernel.
+The results shown in Figure~\ref{fig:rtx_nvidia}(a),~\ref{fig:rtx_nouveau}(a) indicate that the GPU tasks are performed in accordance with the workload by fair scheduling.
+The results shown in Figure~\ref{fig:rtx_nvidia}(b),~\ref{fig:rtx_nouveau}(b) indicate that the GPU tasks are performed in accordance with the utilization by resource reservation mechanisms.
+The VGPU1 taks’s maximum error was approximately 3\% for the initial BAND scheduling policies’ resource management using the NVIDIA GPU driver.
+The VGPU0 task’s maximum error was approximately 5\%.
+The VGPU1 task’s maximum error was approximately 2\% under the initial BAND scheduling policies' resource management using the Nouveau GPU driver.
+The VGPU0 task’s maximum error was approximately 2\%.
+Large spikes occurred due to GPU kernel overrun.
+If the GPU scheduler need to large spike is reduced, the GPU scheduler is needed for runtime approaches such as making preemptive GPU kernel.
 
-The second, we measure the utilization of the running four GPU tasks.
-The each GPU tasks have a same workload and same resources, and each GPU tasks allocate to each VGPUs.
-The BAND scheduling policies result shown in Figure~\ref{fig:band_rtx_fair}.
-A maximum error of these VGPUs is about 9\%, it values are happend by a timing of budget replenish and a synchronization latency.  
-%the variance of Gdev is \textbf{x}.
-%We can be seen that the performance is not nearly falling from the above results
-%Linux−RTXGの振幅は◯％以下であり，Nouveauの振幅は◯％以下である．
-%Linux-RTXGの分散は◯であり，Nouveauの分散は◯なことから，性能はほぼ落ちていないことがわかる．
-%最後に非周期タスクが存在する環境下においても，QoS Managementによってリソース制限がかかっていることを示すことで，
-Therefore, the synchronization mechanism of Linux-RTXG excluding kernel modification is show that possible scheduling without sacrificing performance.
+We then measured utilization running four GPU tasks.
+Each GPU tasks had equal workload and equal GPU resource allocation.
+In addition, each GPU task was allocated to each VGPU.
+Results for BAND scheduling policies are shown in Figure~\ref{fig:band_rtx_fair}.
+A maximum error of these VGPUs was appropriately 9\%, it values are occurred because of the timing of budget replenishment and a synchronization latency.  
 
-%つまり，Linux-RTXGのカーネル編集を除いたシンクロナイゼーションメカニズムにおいても，
-%性能を落とさずにスケジューリング可能なことを示せている．
-
-
-
-%ここでは、今回同一アルゴリズムでQoSマネージメントを行っているGdevとの比較を行い、
-%パッチを利用しない実装においても、性能をほぼ落とすこと無くできていることを示す。
-
-%比較対象は、本Linux-RTXGと同様のスケジューリングアルゴリズムが提供可能なGdevのモジュール版とで比較する。
-%評価に用いるスケジューリングポリシーはBANDスケジューラを用いる。
-%実験に利用するアプリケーションとして、\ref{sec:eval:sched_overhead}節で利用したものと同様のものでTaskを４つ生成し、各タスク毎に25\%のGPU利用権限を与える。
-%これらのタスクの実行中のGPU利用率を計測し、Gdevと同様のアルゴリズムを用いることで、今回提供するLinux−RTXGによるアプローチによってどれだけQoSマネージメントについてのパフォーマンスに影響するかを示す。
-%Gdevを用いることから、両者ともデバイスドライバはNouveauドライバを用いる.
+Therefore, the results show that the synchronization mechanism of the proposed Linux-RTXG can schedule tasks without sacrificing performance.

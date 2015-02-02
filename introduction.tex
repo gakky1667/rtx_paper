@@ -1,23 +1,16 @@
-\section{Introduction}
-Graphic Processing Units (GPUs) are become common as a device to accelerate the general purpose application.
-Its range of application that are navigation~\cite{cmu:routing} for autonomous drive, object detection~\cite{hirabayashi:cpsna2013},
-Tokamak control for an fusion reactor~\cite{tokamak},
-user-interactive application~\cite{kato:rtas2011}, databases~\cite{bakkum:sql}, and benchmarks~\cite{rodinia} that contains a lot of applications.
-GPUs performance has been demonstrated by these research.
-%GPUは汎目的アプリケーションを加速させるデバイスとして既に一般的になりつつある。
-%その応用範囲は自動運転に用いるナビゲーション~\cite{cmu:routing}や障害物検知~\cite{hirabayashi:cpsna2013}、
-%核融合炉に用いるTokamakの制御~\cite{tokamak}、
-%ユーザインタラクティブなアプリケーション~\cite{kato:rtas2011}、データベース~\cite{bakkum:sql}まで多岐にわたっており、
-%ベンチマークsuit~\cite{rodinia}に提供される。
+\SECTION{Introduction}
+Graphics Processing Units (GPUs) are being used at an increasing frequency to accelerate various applications,
+navigation~\cite{cmu:routing} for autonomous driving, object detection~\cite{hirabayashi:cpsna2013},
+tokamak control for fusion reactors~\cite{tokamak},
+user-interactive applications~\cite{kato:rtas2011}, databases~\cite{bakkum:sql}, and various benchmarks~\cite{rodinia} that contain many other applications.
+GPU performance has been demonstrated by such research.
 
-The past GPU applications should have been only ``real-fast'' since they were best-effort oriented.
-The recent GPU applications are required ``real-time'' and ``real-fast'' by the increasing real-time oriented application of targetting real-world.
-%in sysyem tight in the real-world. 
-%これまでのGPUアプリケーションはベストエフォートなアプリケーションが多く，ただ速ければよかった．
-%最近では，それだけでなく実社会に絡むアプリケーションでも速いを維持しつつリアルタイム性を要求することが増えてきた．
-GPUs runtime environments such as CUDA~\cite{nvidia:cuda_zone} and OpenCL~\cite{opencl} 
-mainly target a best-effort applications, they do not support real-time requirements.
-Therefore, GPU runtime environments are required to support real-time scheduling.
+Previously, GPU applications were required to be only ``real-fast'' because they were best effort oriented.
+Recent GPU applications are required to be both ``real-time'' and ''real-fast`` due to an increasing number of real-time oriented applications that target real-world problems.
+
+GPUs runtime environments, such as CUDA~\cite{nvidia:cuda_zone} and OpenCL~\cite{opencl} 
+primarily target  best-effort applications; thus, they do not support real-time requirements.
+Therefore, GPU runtime environments must support real-time scheduling.
 
 %より普及した要因としてはGPUが大量のプロセッシングコアを用いてデータ並列性のあるアプリケーションを実行することで高速な処理が可能であること、
 %それらを支えるCUDA~\cite{nvidia:cuda_zone}やOpenCL~\cite{opencl}などの言語やランタイムなどが統合されたプラットフォームがベンダーによって提供され始めたことが背景にある
@@ -28,80 +21,50 @@ Therefore, GPU runtime environments are required to support real-time scheduling
 %加えて、近年ではサイバーフィジカルシステムなどリアルタイム性を要求するシステムにおいてもGPUの利用が望まれており、汎用システム向けだけでなく、リアルタイムシステム向けの資源管理が求められる。
 %我々はこれまでに、いくつかのGPU resource management に関する研究を進めてきた。
 In our previous work,
-we showed how to support GPU resource management.
+we showed how to support GPU resource management\cite{kato:timegraph,kato:gdev}.
 TimeGraph~\cite{kato:timegraph} provides GPU scheduling and reservation mechanisms at the device driver level to queue and dispatch GPU commands based on task priorities.
-%RGEM~\cite{kato:rgem} provides GPU kernel scheduling and data transferring scheduling,
-Gdev~\cite{kato:gdev} is applied resource reservation.
-These work have weak point that can not to provide fast supporting update architecture and full-funciton because these work is based on reverse engineering.
-%RGEM~\cite{kato:rgem}、Gdev~\cite{kato:gdev}ではGPGPUにフォーカスし、GPUで実行される単位であるカーネルとデータ転送をスケジューリングしている。
-%これらの研究はリバースエンジニアリングによって提供されており、アーキテクチャの更新や、全ての機能の提供が困難であるといったデメリットが存在している。
+Gdev~\cite{kato:gdev} is a resource management system.
+However, these methods have a weak point; they do not provide fast update architecture and full-functionality
+because these methods are based on reverse engineering.
 
-%GPU using user application issue by API is provided 
-In the GPU environments,
-GPU functions are provided by the API of library and the Application binary interface (ABI) of device drivers.
-GPU functions consume CPU time to issue the GPU kernel by the API and the ABI.
-%Some GPU functions are provided API, processing is issued to GPU via library and device driver from the user application.
-%GPUの機能の多くはAPIによって提供されており、ユーザアプリケーションからライブラリを通じて、デバイスドライバ、GPUへと処理が発行される。
-Thus, if GPUs truly wants the real-time requirements,  there is a need to manage host side task as well as GPU resource management.
-%そのためリアルタイムを前提としたシステムにおいて、真にその要件を満たすためには、GPUのリソースマネージメントだけでなくホスト側のタスクについても管理してやる必要がある。
-We have confirmed the fact that a large amount of latency occur,
-when other tasks appropriative resources in the host side at studies~\cite{fujii:icpads2013} is evaluating the data transfer time between the host and the device.
+In GPU environments,
+GPU functions are provided by an API of a library and the application binary interface (ABI) of device drivers.
+Note that CPU time is comsumed when GPU kernels are issued by the API or ABI.
+Thus, if GPUs are to truly satisfy real-time requirements,
+host-side task management and GPU resource management are required.
+We have confirmed that a large amount of latency occurs
+when other tasks appropriate resources at the host side~\cite{fujii:icpads2013} evaluate the data transfer time between host memory and device memory.
 %我々がホストとデバイス間のデータ転送時間について~\cite{fujii:icpads2013}評価した研究では、CPU側で他のタスクがリソースを専有していた場合、
 %多量のレイテンシが発生することが実際に確認できている。
 
-GPUSync~\cite{elliott:gpusync13,elliott:explor14} by Elliot et al. providing CPU task scheduling and budget enforcement on the proprietary runtime,
-and it is realized configurable framework in order to verify the combination of policies of tasks allocation to multi-core and multi-processor CPUs and policies of GPU kernel allocation to multiple GPUs.
-%Elliottらの提案するGPUSync~\cite{elliott:gpusync13}~\cite{elliott:explor14}では資源管理システムを既存ランタイムから分離し、
-%アクセスの調停を行うことで、プロプライエタリ・ソフトウェアが行う資源管理をスルーした上で自身の資源管理を行っている。
-%GPUSyncでは上記のホスト側のタスクに関する資源管理についても言及しており、
-%GPU側の資源管理との組み合わせによる検証を行うためにコンフィギュアラブルなものを目指している。
+GPUSync~\cite{elliott:gpusync13,elliott:explor14} proposed by Elliott et al. provides CPU task scheduling for multiple GPU aware and budget enforcement on the proprietary runtime.
+GPUSync realizes a configurable framework that can verify the combination of task allocation policies for multi-core and multi-processor CPUs and GPU kernel allocaton policies for multiple GPUs.
 
-However, GPUSync is implemented on the $LITMUS^{RT}$~\cite{litmus}, it contains a large amount of changes to the kernel.
-Gdev also request a modification to the device driver.
-Many of these modifications are to required installation using patch to users.
-%しかしながらGPUSyncは$LITMUS^{RT}$~\cite{litmus}上に実装されており、カーネルへの変更を多分に含んでいる。
-%Gdevについても同様にデバイスドライバ自体の変更を必要としている。
-%これらの変更の多くはパッチを利用して、ユーザへインストレーションを要求する形が用いられるが、
-A big burden is given patch to both developers and users.
-Specifically, developers obligation that is maintenance of patch in order to catch up to the latest kernel release.
-However, if software is using basis in open source such as Linux are updated fast,
-in most cases, before developers to complete the porting work towards the latest kernel.
+However, GPUSync is implemented using $LITMUS^{RT}$~\cite{litmus}, which introduces a significant amount of changes to the kernel.
+Gdev also requires the modification of the device driver.
+Many of these modifications require the user install patches, which introduces a significant burden to both developers and users.
+Specifically, developers are obliged to maintain patches in order to stay up to date with the latest kernel releases.
+However, open source software (e.g., Linux) is commonly update before, developers can complete porting their work to the latest kernel.
 
-Linux supports a loadable kernel module (LKM) which is able to load/unload between running for providing function foreign kernel.
-We work the real-time extension by LKM, is called RESCH.
-RESCH is providing real-time scheduling framework while it not modify the kernel and device drivers.
-RESCH does not support GPU resource.
-
-%このパッチには開発者とユーザ両者に大きな負担を与える。
-%具体的には開発者は、常に最新のカーネルのリリースに追い付くために、パッチを維持していく義務がある。
-%しかしLinuxはその更新頻度が早く、開発者が最新のカーネルにむけてポーティング作業を完了させる前に、新しいバージョンのリリースが起きることが多い。そのためカーネルの選択について制限される傾向がある。
-
-%cpu側のことについて
-%Linuxにはローダブルカーネルモジュールという仕組みがある%．
-%カーネル外の機能を提供するために起動中にロード，アンロード可能なモジュールである．
-%我々はこれまでローダブルカーネルモジュールを用いてリアルタイムなスケジューラを実現するための拡張suitとしてRESCH~\cite{kato:}に取り組んでいる．
-%しかしながら、RESCHはGPUを保持するシステムのようなヘテロジニアスな環境には対応していない。
+Linux supports the loadable kernel module (LKM), which can load/unload kernel modules to provide additional kernel functions.
+We employ the LKM real-time extension called RESCH\cite{kato:loadable}.
+RESCH provides a ral-time scheduling framework but does not modify the kernel and device drivers.
+Note that RESCH does not support scheduling of GPU resources.
 
 \textbf{Contribution:}
-In this paper, we present linux loadable real-time extension for CPU and GPU resource coordination called Linux-RTXG.
-%for CPU and GPU coordinated resource management,
-This extension is able to more easily re-configure the resource management policy and the installation.
-Linux-RTXG's most contribution is to achieve real-time task scheduling on the using GPU environment without kernel modification.
-%Linux-RTXGの最大きな貢献は、OS機能を持ちながら、OSから独立することで、既存のGPU資源管理に関する研究において考慮されていないカーネル編集に伴う開発者、ユーザへの負担をなくしたことである。
-To achieve real-time task scheduling, 
-Linux-RTXG provide a CPU task scheduler, a GPU kernel scheduler, and a GPU kernel reservation mechanisms.
-The CPU task scheduler is based on the RESCH.
-The GPU kernel scheduler and the GPU kernel reservation mechanisms are based on the Gdev.
-They are integrated to Linux-RTXG by kernel free's approach.
-We define the kernel free that is do not modify kernel source codes and device drivers source codes.
-
-
+This paper presents a Linux loadable real-time extension for CPU and GPIU resource coordinaion
+called the Linux real-time extension including GPU resource management (Linux-RTXG).
+This extension can easily re-configure a resource management policy and easily install framework.
+Linux-RTXG's most significant contribution is the achievement of real-time task scheduling of a GPU environment without kernel modification.
+To achieve this, 
+Linux-RTXG providea a CPU task scheduler, a GPU kernel scheduler, and GPU kernel reservation mechanisms.
+The CPU task scheduler is based on RESCH.
+The GPU kernel scheduler and the GPU kernel reservation mechanisms are based on Gdev.
+They are integrated in Linux-RTXG using a kernel-free approach that does not modify the  kernel or device driver source code.
 
 \textbf{Organization}
-This rest of the paper is organized as follows.
-Section~\ref{sec:system_model} discusses the GPU real-time scheduling by kernel free approach.
-Section~\ref{sec:design_imple} shows Linux-RTXG design and implementations, especially focus on GPU scheduling.
-Section~\ref{sec:evaluation} indicates Linux-RTXG's advantages and dis-advantages,
-furthermore, demonstrates experimental results that are quantitative overheads and reservation performances.
-Section~\ref{sec:relatedwork} discusses related work.
-We provide our concluding remarks in Section~\ref{sec:conclusion}.
+The rest of this paper is as follows.
+Section~\ref{sec:system_model} discusses the kernel-free GPU real-time scheduling.
+Section~\ref{sec:design_imple} presents the design and implementation of Linux-RTXG with specific focus on GPU scheduling.
+Section~\ref{sec:evaluation} discusses Linux-RTXG’s advantages and dis-advantages, and presents experimental results(i.e., quantitative overhead and reservation performance).
+Section~\ref{sec:relatedwork} discusses related study, and we present concluding remarks in Section~\ref{sec:conclusion}.
