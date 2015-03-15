@@ -7,7 +7,11 @@ Note that the discussion of CPU scheduling is minimized because Linux-RTXG is ba
 \SUBSECTION{Linux-RTXG}
 \begin{figure}[t]
 \begin{center}
+\ifthesis
+\includegraphics[width=0.8\textwidth]{img/overview.pdf}
+\else
 \includegraphics[width=0.35\textwidth]{img/overview.pdf}
+\fi
 \caption{Overview of Linux-RTXG}
 \label{fig:overview}
 \end{center}
@@ -17,18 +21,22 @@ Figure~\ref{fig:overview} shows an overview of Linux-RTXG.
 Linux-RTXG is divided into two parts, the core and the library.
 The Linux-RTXG core has a CPU task scheduler, a GPU task scheduler, and a GPU resource reservation mechanism.
 The Linux-RTXG core is loaded into kernel-space; thus, it can use exported kernel functions, such as $schedule()$, $mod\_timer()$, $wake\_up\_process()$, and $set\_cpus\_allowed\_ptr()$.
-These interfaces are implemented using an input/putput control(ioctl) system call, which is a standard way of communicating with a driver.
+These interfaces are implemented using an input/output control(ioctl) system call, which is a standard way of communicating with a driver.
 The library includes an independent synchronization method.
 The independent synchronization method is used only on the NVIDIA driver.
-If using an open-source GPU driver, such as Nouveau\cite{nouveau}, GPU runtime must use part of Gdev.
+If using an open-source GPU driver, such as Nouveau~\cite{nouveau}, GPU runtime must use part of Gdev.
 Gdev can manage arbitrary interrupts of the GPU kernel in the user-space mode;
-therefore, the GPU scheudler does not require independent synchronization.
+therefore, the GPU scheduler does not require independent synchronization.
 \SUBSECTION{GPU Scheduling}
-\begin{table*}[t]
+\begin{table*}[!t]
 \begin{center}
 \caption{Basic Linux-RTXG APIs}
 \label{tab:rtx-api}
+\ifthesis
+\begin{tabular}{|l|p{25em}|} \hline
+\else
 \begin{tabular}{|l|p{50em}|} \hline
+\fi
 rtx\_gpu\_open() & Registers itself to Linux-RTXG and creates scheduling entity. It must be called first. \\ \hline
 rtx\_gpu\_device\_advice() & Obtains recommendations for which GPU devices to use. \\ \hline
 rtx\_gpu\_launch() & Controls GPU kernel launch timing, (i.e., a scheduling entry point). It must be called before the CUDA launch API. \\ \hline
@@ -43,14 +51,13 @@ Linux-RTXG is a scheduler that a combination of an API-driven and interrupt-driv
 The scheduler is invoked only when computation requests are submitted.
 The basic APIs supported by Linux-RTXG are listed in Table~\ref{tab:rtx-api}.
 Note that some APIs have arguments and others do not.
-Linux-RTXG does not modify the existing CUDA API to cope with proprietary software in order to be independent of runtime.
+Linux-RTXG does not modify the existing CUDA API to cope with proprietary software in order to be independent of GPU runtime.
 However, the user must add the Linux-RTXG API to existing CUDA applications to use the Linux-RTXG scheduler.
 
 Sample Linux-RTXG scheduler code is shown in Figure~\ref{fig:sample}.
-Note that except GPU scheduling code is omitted.
-GPU tasks are provided with a function by calling Linux-RTXG’s API at strategic points.
+GPU tasks are provided with a function by calling Linux-RTXG's API at strategic points.
 
-\begin{figure}[t]
+\begin{figure}[!t]
 \begin{center}
 \begin{tabular}{l}
 \hline\hline
@@ -69,7 +76,7 @@ GPU tasks are provided with a function by calling Linux-RTXG’s API at strategi
 {\scriptsize \verb|  rtx_gpu_notify(&handle); |}\\
 {\scriptsize \verb|  rtx_gpu_sync(&handle);   |}\\
 {\scriptsize \verb|  /* Memory copy to host from device */  |}\\
-{\scriptsize \verb|  /* Release allicated memory */  |}\\
+{\scriptsize \verb|  /* Release allocated memory */  |}\\
 {\scriptsize \verb|}|}\\
 \hline\hline
 \end{tabular}
@@ -78,9 +85,13 @@ GPU tasks are provided with a function by calling Linux-RTXG’s API at strategi
 \end{center}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[!t]
 \begin{center}
+\ifthesis
+\includegraphics[width=\textwidth]{img/gsched_controlflow.pdf}
+\else
 \includegraphics[width=0.5\textwidth]{img/gsched_controlflow.pdf}
+\fi
 \caption{GPU Scheduling control flow}
 \label{fig:controlflow}
 \end{center}
@@ -88,14 +99,14 @@ GPU tasks are provided with a function by calling Linux-RTXG’s API at strategi
 
 In Figure~\ref{fig:controlflow} is restricted to a single GPU kernel.
 A GPU task can control the timing of the GPU kernel execution by calling $rtx\_gpu\_launch()$.
-The task sleeps until it receives an interrupt because an additional GPU kernel cannot be issued until current task completes execution.
-When the current task’s GPU kernel completes execution, the Linux kernel handles the interrupt.
+The task sleeps until it receives an interrupt because an additional GPU kernel cannot be issued until a current task completes execution.
+When the current task's GPU kernel completes execution, the Linux kernel handles the interrupt.
 The interrupt interceptor then wakes the sleeping task.
 The woken task is issued the GPU kernel via a CUDA API, such as $cuLaunchGrid()$.
 After the GPU kernel is issued, the task registers NOTIFY to monitor interrupt,
 and is put to sleep until it receives an interrupt.
 Selection of the subsequent task is performed by the GPU scheduler caused by the interruption of GPU kernel finish.
-Linux-RTXG controls the order of task execution acoording to the above flow.
+Linux-RTXG controls the order of task execution according to the above flow.
 
 We present a hierarchal scheduling that includes group (virtual GPU) scheduling and GPU kernel scheduling.
 The virtual GPU scheduling uses a resource reservation mechanism.
@@ -113,7 +124,7 @@ $on\_completion$ is called by a scheduler thread when the execution of the GPU k
 $on\_completion$ selects up the next virtual GPU and the next GPU task.
 Next, $on\_completion$ wakes the selected GPU task.
 
-\begin{figure}[t]
+\begin{figure}[!t]
 \begin{center}
 \begin{tabular}{l}
 \hline
@@ -127,8 +138,7 @@ Next, $on\_completion$ wakes the selected GPU task.
 {\scriptsize \verb| while(!check_permit_se(se)){|}\\
 {\scriptsize \verb|   enqueue(se->vgpu,se); |}\\
 {\scriptsize \verb|   sleep_task(se->task); |}\\
-{\scriptsize \verb| }|}\\
-{\scriptsize \verb|}|}\\
+{\scriptsize \verb|}}|}\\
 {\scriptsize \verb|void on_completion(se) {|}\\
 {\scriptsize \verb| reset_the_permit(se->vgpu, se)|}\\
 {\scriptsize \verb| n_vgpu = pick_up_the_next_vgpu(se->vgpu->parent) |}\\
@@ -152,22 +162,20 @@ The independent synchronization mechanism invokes NOTIFY and FENCE without using
 The interrupt intercept realizes interrupt-driven wakeup of the scheduler without kernel modification.
 Linux-RTXG uses the independent synchronization mechanisms as much as possible
 because we do not want to use black--box resource management.
-%ラウンチされたカーネルが終了したタイミングをスケジューラはNOTIFYかFENCEによって取得する。
-%本ワーカースレッドは実行中のカーネルが終了した時点で次のタスクの選択を行う。
-%ワーカースレッドはタスクの選択後にCPU資源を他のタスクに明け渡すためにサスペンドに入る。
 
 \textbf{Independent synchronization mechanism from runtime:}
 We present an independent synchronization mechanism for NOTIFY and FENCE.
 The mechanism invokes an interrupt for NOTIFY, and writes the fence value with the GPU microcontrollers for FENCE.
-NVIDIA’s proprietary software uses the ioctl interface to communicate between the kernel-space and the user-space.
+NVIDIA's proprietary software uses the ioctl interface to communicate between the kernel-space and the user-space.
 These ioctl interfaces provide driver functions, such as device memory allocation, obtaining GPU information and memory mapping.
-Gdev builds infrastructure that can execute on NVIDIA’s driver using these ioctl interfaces.
-The proposed method uses an ioctl interface similar to Gdev’s method for sending commands.
+Gdev builds infrastructure that can execute on NVIDIA's driver using these ioctl interfaces.
+The proposed method uses an ioctl interface similar to Gdev's method for sending commands.
 Specifically, the proposed method is divided into two parts, Initialize and Notify.
 Initialize processess generate a dedicated GPU context.
 This processess include creating virtual address space, allocating an indirect buffer object for sending a command, and creating a context object is required to prepare the FIFO engine and includes, allocating a kernel memory object and mapping the FIFO engine register to host memory space using memory-mapped I/O.
 The FIFO engine is a GPU microcontroller that receives commands.
-The Notify processes send commands to the compute engine or the copu engine by $iowrite$ function to the mapped FIFO engine’s register.
+The Notify processes send commands to a compute engine or a copy engine by $iowrite$ function to the mapped FIFO engine's register.
+The compute engine and the copy engine do function that switching a GPU context for computing or data copy.
 This independent synchronization mechanism uses reverse engineering.
 Therefore, this method depends on the GPU device architecture and the proprietary software interfaces.
 
@@ -180,28 +188,16 @@ The Linux kernel has structures that hold interrupt parameters called $irq\_desc
 These structures have structures called $irq\_action$, including the ISR callback pointer.
 An $irq\_desc$ is allocated to global kernel memory space, and is freely accessible from kernel space.
 Linux loadable kernel modules can obtain an $irq\_desc$ and an ISR callback pointer.
-We obtain the GPU device driver's ISR callbacl pointer, and then we register an interrupt interception ISR to the kernel.
+We obtain the GPU device driver's ISR callback pointer, and then we register an interrupt interception ISR to the kernel.
 Thus, we obtain an interrupt interception from the interrupt interception ISR and retain the callback pointer.
-%Linuxでは、割込み番号ごとにirq\_descという割込みのパラメータを保持する構造体を持っている。
-%この構造体にはISRの関数ポインタを含むirq\_actionという構造体がリストで接続されている。
-%irq\_descはグローバルな領域に確保されており、カーネル空間からであれば誰でも参照可能である。
-%Linuxのローダブルカーネルモジュールはカーネル空間で動作しているため、このirq\_descを取得でき、
-%Interrupt handlerの関数ポインタも取得可能である。
-%我々はこの取得した関数ポインタを保持し、我々の傍受用ISRをカーネルに登録する。
-%そして傍受用ISRで、事前に保持しておいたGPUドライバの割込みハンドラの関数コールバック関数として呼び出すことで、通常の割込みハンドリングを実行する。
 In addition, I/O registers are mapped to kernel memory space by the device driver from the PCIe base address registers (BAR)~\cite{fujii:icpads2013,kato2013zero}.
 Therefore, Linux-RTXG remaps the BAR0 to our allocated space using $ioremap()$ when the ISR initialized.
 The interrupt interception identifies an interrupt by reading this mapped-space.
 
-%加えて我々のこれまでの研究\cite{fujii:icpads2013,kato2013zero}で、GPUのio registerはPCIeのBAR0によって指定されたアドレスから存在しておりカーネル空間にデバイスドライバによってマッピングされていることがわかっている。
-%そのためLinux-RTXGが傍受用ISRの初期化の際に$ioremap()$によってBAR０空間をマッピングしておき、傍受用ISRが呼び出された際にマッピングされたレジスタを読み込むことで、
-%割込みの識別を行う。
 \SUBSECTION{Scheduler Integration}
 The native Linux scheduler has various real-time scheduling policies, such as $SCHED\_DEADLINE$, $SCHED\_FIFO$ and $SCHED\_RR$.
 $SCHED\_DEADLINE$ is an implementation of a constant bandwidth server and a global earliest deadline first.
 $SCHED\_DEADLINE$ is included in the Linux 3.14.0 kernel.
-%特にSCHED\_DEADLINEはLinux 3.14よりメインラインに含まれたConstant Bandwidth ServerとGlobal-EDFの実装であり、
-%Linuxをリアルタイム拡張するにおいて有効に利用できるクラスである。
 However, synchronization does not work well with the SCHED\_DEADLINE scheduling policy for GPU tasks.
 Here there are two problems.
 The first is the implementation of $sched\_yield$---.$sched\_yield()$ uses $yield()$ in kernel space---.
@@ -209,26 +205,19 @@ The second is the implementation of waking from a sleeping state.
 
 The first problem occurs by releasing the CPU using $sched\_yield()$ while waiting for I/O in polling.
 Polling (spin) is the exclusive CPU; therefore, a task may once better to release the CPU can obtain good results.
-However, $sched\_yield$ will set the polling task’s remaining execution time to 0 by treating it as a parameter of $SCHED\_DEADLINE$.
-Thus, the task can not execute until the runtime is replenished in the next period.
-Therefore, the tasj cannot call $sched\_yield()$ between polling.
+However, $sched\_yield$ will set the polling task's remaining execution time to 0 by treating it as a parameter of $SCHED\_DEADLINE$.
+Thus, the task cannot execute until the runtime is replenished in the next period.
+Therefore, the task cannot call $sched\_yield()$ between polling.
 $sched yield()$ is frequently used by device drivers and libraries, as well as GPU environment, and such software is affected by this problem.
-Depending on the setting, even NVIDIA’s CUDA can be affected by this problem.
+Depending on the setting, even NVIDIA's CUDA can be affected by this problem.
 We address this problem by limiting the GPU synchronization method to NOTIFY in the $SCHED\_DEADLINE$ policies.
 
-%Linux-RTXGではSCHED\_DEADLINE時はNOTIFYを使うことを推奨し、sched\_yieldの利用を制限することで対応した。
-%sched\_yieldはGPUランタイムに限らず、デバイスドライバやライブラリなどで多く利用されており、
-%それら全てで、SCHED\_DEADLINEポリシー上では正常に動作しない結果が生じる可能性が高い。
-%NVIDIAのCUDAにおいても同期フラグの設定次第で本問題に影響を受ける。
-
-The second problem is subjected to a check equation (1) when restoring a task from the sleep state.
-If equation (1) holds, the runtime is replenished and absolute deadline is set to the next cycle deadline.
-%２つ目の問題はタスクが一度sleeping状態に入り、復帰時に式(1)を用いて実行可能性についてチェックを行う。
-%式(1)が真の時、runtimeが補充され、absolute deadlineが次の周期に設定される。
+The second problem is subjected to a check equation~\ref{eq} when restoring a task from the sleep state.
+If equation~\ref{eq} holds, the runtime is replenished and absolute deadline is set to the next cycle deadline.
 
 {\scriptsize
 \begin{equation}
-\frac{Absolute\_Deadline - Current\_Time}{Remaining\_Runtime} > \frac{Relative\_Deadline}{Period}
+\frac{Absolute\_Deadline - Current\_Time}{Remaining\_Runtime} > \frac{Relative\_Deadline}{Period} \label{eq}
 \end{equation}
 }
 

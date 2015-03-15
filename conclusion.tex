@@ -5,7 +5,7 @@ Linux-RTXG include CPU task scheduler, GPU task scheduler, and GPU resource rese
 The CPU task scheduling is based on RESCH.
 The GPU taskscheduling provides prioritized scheduling using our synchronization mechanisms.
 By intercepting interrupots in the top-half ISRs, the proposed synchronization mechanisms do not need to modify the kernel or device drivers.
-We indicated a unit of job overhead met within about x\%, and unit of task met overhead within x\%.
-In addition, the results of our experimental evaluations that compared Linux-RTXG and Gdev demonstrate taht effective QoS management performance can be achieved by the proposed method without kernel modification.
+We indicated a unit of task overhead met within about 10\% at the eighth tasks, and within about 4\% at the four tasks.
+In addition, the results of our experimental evaluations Linux-RTXG demonstrate that effective QoS management performance can be achieved by the proposed method without kernel modification.
 The proposed scheduling framework has realized real-time GPU computing.
 In future, we will address GPU function such as preemption, and peer-to-peer migration in order to handle more complex real-time problems.
