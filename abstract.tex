@@ -1,9 +1,25 @@
-Graphics processing units (GPUs) facilitate high-performance computing.
-However, GPU runtime environments target to best-effort oriented applications, and do not consider real-time applications.
-Previous work have contributed to real-time GPU, depends on the kernel.
-Dependence on the kernel and device driver gives incurs burden to developers and users.
-We present Linux-RTXG, a method that uses a loadable kernel module approach without kernel modification to coordinate CPU and GPU resources for a real-time scheduling framework.
-Linux-RTXG employs a CPU real-time scheduler, a GPU real-time scheduler, and GPU reservation mechanisms.
-To achieve the proposed framework without kernel modification,
-we present interrupt intercept mechanisms and independent interrupt mechanisms and to solved currently Linux kernel real-time scheduling problem.
-Experimental results indicate that the proposed kernel modification free Linux-RTXG framework achieves, GPU scheduling overhead and quality of service management performance comparable to existing kernel-dependent approaches.
+Graphics processing units (GPUs) are well-designed for high-performance
+computing.
+Programming frameworks are also getting matured for general-purpose
+computing on GPUs (GPGPU).
+Originally, runtime environments of GPU computing are tailored to
+accelerate particular best-effort applications.
+In recent years, however, GPU computing has been applied for real-time
+applications, improving resource management mechanisms of the operating
+system (OS) kernel.
+Unfortunately, such a system extension is often a complex undertaking
+for research and development, and the modifications to kernel source
+code often narrow down consistency of OS kernel and device driver.
+In this paper, we present Linux-RTXG, which is a loadable kernel module
+approach to coordinated CPU and GPU resource management.
+Linux-RTXG does not require the OS kernel to be modified at the source
+code level, instead adding resource management mechanisms by loadable
+kernel modules with user-space library support.
+To achieve coordinated CPU and GPU resource management in Linux-RTXG,
+such as real-time scheduling and resource reservation, we design and
+implement novel interrupt intercept mechanisms and independent interrupt
+mechanisms.
+Experimental results demonstrate that the presented system achieves
+real-time scheduling and resource reservation capabilities for
+GPU-accelerated systems, maintaining the system overhead comparable to
+existing kernel-dependent approaches.
