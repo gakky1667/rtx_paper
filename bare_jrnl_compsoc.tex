@@ -63,7 +63,8 @@
 %
 % The Computer Society usually requires 12pt for submissions.
 %
-\documentclass[12pt,journal,compsoc]{IEEEtran}
+ \documentclass[10pt, conference, compsocconf]{IEEEtran}
+ %\documentclass[12pt,journal,compsoc]{IEEEtran}
 %
 % If IEEEtran.cls has not been installed into the LaTeX system files,
 % manually specify the path to it like:
@@ -560,57 +561,6 @@ GPU, resource management, scheduling, real-time system, operating system
 
 \bibliographystyle{IEEEtranBST/IEEEtran}
 \bibliography{IEEEtranBST/IEEEabrv,bib/gpu_ap,bib/gpu_rm,bib/gpu,bib/os,bib/realtime}
-
-% biography section
-% 
-% If you have an EPS/PDF photo (graphicx package needed) extra braces are
-% needed around the contents of the optional argument to biography to prevent
-% the LaTeX parser from getting confused when it sees the complicated
-% \includegraphics command within an optional argument. (You could create
-% your own custom macro containing the \includegraphics command to make things
-% simpler here.)
-%\begin{biography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
-% or if you just want to reserve a space for a photo:
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{photo/fujii.jpg}}]{Yusuke Fujii}
-Yusuke Fujii received the BE degrees from the Ritsumeikan University in 2013.
-He has been with the Graduate School of Information Science and Engineering at the URitsumeikan University, where he is currently a master student.
-He has developed GPU microcontrollers firmware and development environment.
-His areas of interect include GPU and real-time systems on many-core, multi-core environment.
-\end{IEEEbiography}
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{photo/azumi.jpg}}]{Takuya Azumi}
-Takuya Azumi received his Ph.D. degree from the Graduate School of Information Science, Nagoya University in 2009.
-He is an Assistant Professor at the Graduate School of Engineering Science, Osaka University.
-He was a Visiting Researcher at the University of California, Irvine, in 2011.
-His research interests include real-time systems, component based development, and cyber-physical systems.
-\end{IEEEbiography}
-
-
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{photo/nishio.jpg}}]{Nobuhiko Nishio}
-Nobuhiko Nishio received BE and ME degrees in Department of Mathematical Engineering and Information Physics from the University of Tokyo, Tokyo, Japan, in 1986 and 1988, respectively, and the PhD defree in from the Keio University in 2000. 
-From 1993 till 2003, he worked at Keio University SFC.
-From 2007 till 2008, he worked Visiting Scientist at the Google Inc.
-Currently he is a professor of the College of Informaton Science and Engineering, Ritsumeikan University, Shiga, Japan.
-His current research interests are ubiquitous computing, long term human activitty recognition, real-time and embedded computing.
-\end{IEEEbiography}
-
-\if 0
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{photo/hamada.png}}]{Tsuyoshi Hamada}
-Tsuyoshi Hamada received PhD in 2006 from the University of Tokyo.
-From 2006 to 2008 he was a Special Postdoctoral Researcher at RIKEN in Japan. 
-In 2008 he became an assistant Professor at Nagasaki University, and was promoted to Associate Professor in 2010.
-Currently he is the head of the massively parallel computing division and deputy director of the Nagasaki Advanced Computing Center (NACC) and associate professor at Nagasaki University.
-He has developed large GPU cluster (DEGIMA), which led to the Gordon Bell prize for price/performance at SC'09.
-His paper has been selected as a Gordon Bell finalist for SC'10.
-\end{IEEEbiography}
-\fi
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{photo/kato.jpg}}]{Shinpei Kato}
-Shinpei Kato received BS, MS, and PhD degrees from Keio University in 2004, 2006, and 2008 respectively.
-After he graduated from Keio University, he became a JSPS postdoctoral research fellow (PD) at University of Tokyo, and worked in part as a member of the dependable embedded operating systems project directed by Prof. Yutaka Ishikawa. In the fall of 2009, he join Real-Time and Multimedia Systems Laboratory (RTML) at Carnegie Mellon University (CMU) through the summer of 2012. While he was at CMU, he took an initiative in research on GPU real-time computing, and now the autonomous vehicle developed in RTML, a.k.a. BOSS, is employing this cutting-edge GPU technology. In July 2012, he moved to Systems Research Laboratory (SRL) at University of California, Santa Cruz (UCSC). In SRL, he led the QoS-aware storage and GPU-accelerated RAID6 projects. As of April 2012, he has worked at Nagoya University as a tenured faculty member.
-His current research interests are cyber-physical systems, parallel and distributed systems with a particular emphasis on operating systems and system software.
-He is also working on autonomous driving car project currently.
-\end{IEEEbiography}
 
 % You can push biographies down or up by placing
 % a \vfill before or after them. The appropriate

@@ -10,7 +10,6 @@ all:
 	$(TEX) $(TARGET)
 	$(TEX) $(TARGET)
 	dvipdfmx $(TARGET).dvi
-	open $(TARGET).pdf
 
 bb:
 	extractbb images/*.pdf
