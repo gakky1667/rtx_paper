@@ -1,25 +1,47 @@
 \SECTION{System Model}\label{sec:system_model}
-Here, we explain the GPU task model employed in this work.
-In addition, we discuss GPU scheduling and previous works.
-Next, we describe the obstacles to implement GPU scheduling without kernel modification.
-Note that this work focuses on a system comprised of multiple GPUs and multi-core CPUs.
+This section describes the model of GPU programming and GPU scheduling
+assumed in this paper.
+We also introduce some existing work to highlight a unsolved problem of
+GPU resource management.
+In addition to the problem of GPU resource management, we argue the
+obstacle that has prevented GPU resource management from patch-free
+implementation. 
+Note that this work focuses on such systems that are composed of
+multiple GPUs and multi-core CPUs.
 
-\SUBSECTION{GPU Task Model}
-For general purpose GPU computing (GPGPU), CUDA and OpenCL are used to implement GPU applications.
-This study focuses on CUDA; however, it is possible to adapt the proposed approach to OpenCL.
-We define a GPU task as a process that executes GPU function whose cyclic executions unit is referred to as a GPU job,
-and a GPU kernel is a process to be executed by the GPU.
-Note that the proposed approach supports GPU applications with multiple tasks.
+\SUBSECTION{GPU Programming Model}
+General-purpose computing on GPUs (GPGPU) is supported by special
+programming languages, such as CUDA and OpenCL.
+This work assumes that GPU application programs are written in CUDA;
+however, the concept of GPU resource management studied in this paper is
+not limitted by programming languages, i.e., the contribution of this
+work is applidable to OpenCL.
+We define a GPU task as a process running on the CPU that executes a
+function to launch a GPU kernel to the GPU, whose cyclic execution unit
+is referred to as a GPU job.
+The GPU kernel is a process that is executed on the GPU. 
+Note that we also assume multi-tasking environments where multiple tasks
+of GPU applications are allowed to coexisit, though the current model of
+GPU programming does not allow multiple contexts to execute at the same
+time on the GPU but kernels from the same context.
+In other words, we can create and launch multiple GPU contexts, but they
+must be executed exclusively on the GPU by hardware nature.
 
-GPUs use a set of the API supported by the runtime environment such as CUDA.
-Typically, a GPU application has the following steps:
+GPU programming requires a set of APIs provided by runtime libraries
+such as CUDA Driver API or CUDA Runtime API.
+Typically, GPU application programs are executed through the following
+steps:
 (i) \textit{cuCtxCreate} creates a GPU context;
-(ii) \textit{cuMemAlloc} allocates memory spaces to device memory; 
-(iii) \textit{cuModuleLoad} and \textit{cuMemcpyHtoD} copy the data and the GPU kernel from the host memory to the allocated device memory spaces;
+(ii) \textit{cuMemAlloc} allocates memory space to the device memory; 
+(iii) \textit{cuModuleLoad} and \textit{cuMemcpyHtoD} copy the data and
+the GPU kernel from the host memory to the allocated device memory
+space;
 (iv) \textit{cuLaunchGrid} invokes the GPU kernel;
-(v) \textit{cuCtxSynchronize} synchronizes a waiting GPU task to that is completion of GPU kernel,
-(vi) \textit{cuMemcpyDtoH} transfers resultant data to host memory from device memory; and
-(vii) \textit{cuMemFree}, \textit{cuModuleUnload}, and \textit{cuCtxDestroy} release the allocated memory spaces and the GPU context.
+(v) \textit{cuCtxSynchronize} synchronizes a GPU task to wait for the
+completion of GPU kernel;
+(vi) \textit{cuMemcpyDtoH} transfers the data back to the host memory
+from the device memory; and
+(vii) \textit{cuMemFree}, \textit{cuModuleUnload}, and \textit{cuCtxDestroy} release the allocated memory space and the GPU context.
 
 \SUBSECTION{GPU Scheduling}
 Real-time operating system (RTOS) research~\cite{spring,redline,itron,rk} has been ongoing for a long time.
@@ -74,7 +96,7 @@ the architecture has been explained in~\cite{kato:timegraph, kato:gdev, fujii:ap
 
 Gdev uses both techniques, NOTIFY and FENCE to wakeup the waiting task.
 In addition, NOTIFY is used by the scheduler, and FENCE is used by kernel synchronization.
-In Gdev, synchronization implementation involves the additional commands sent to a GPU and modification of the device driver’s interrupt handler.
+In Gdev, synchronization implementation involves the additional commands sent to a GPU and modification of the device driver$B!G(Bs interrupt handler.
 GPUSync employs the NOTIFY technique using tasklet intercept~\cite{elliott2012robust} on the closed sourced GPU environments.
 Tasklet is Linux's soft-irq implementation.
 GPUSync identifies the interrupt that invokes a kernel using a callback pointer with a tasklet.
@@ -89,7 +111,7 @@ The general $cuCtxSynchronize()$ API synchronizes the completion of all GPU kern
 Therefore, the API-driven method can be used when a GPU context has issued only single kernel.
 Thus, if a GPU task invokes multiple kernels, we must use the interrupt-driven method to guarantee that no overrun occurs due to the reduction in response time.
 
-The Interrupt-driven method can be synchronized for each kernel; however, it must modify the kernel or the device driver’s interrupt service routine (ISR).
+The Interrupt-driven method can be synchronized for each kernel; however, it must modify the kernel or the device driver$B!G(Bs interrupt service routine (ISR).
 Gdev has achieved independent synchronization mechanisms on the proprietary soft-ware;
 however, independent synchronization mechanisms must also modify the kernel.
 The challenge is realizing independent synchronization mechanisms that do not modify the kernel.
