@@ -44,74 +44,155 @@ from the device memory; and
 (vii) \textit{cuMemFree}, \textit{cuModuleUnload}, and \textit{cuCtxDestroy} release the allocated memory space and the GPU context.
 
 \SUBSECTION{GPU Scheduling}
-Real-time operating system (RTOS) research~\cite{spring,redline,itron,rk} has been ongoing for a long time.
-Among such research, many studies have considered a Lonux-based RTOS~\cite{litmus,prk,rtai,yodaiken1999rtlinux,kato2009loadable}.
-The available OSs for GPUs are limited to Windows, Mac OS and Linux.
-We have selected Linux in order to achieve real-time processing in GPU environments.
+Resource management problems have been addressed in many types of
+real-time OSes (RTOSes)~\cite{spring,redline,itron,rk}.
+In particular, those in Linux-based RTOSes have received considerable
+attention~\cite{litmus,prk,rtai,yodaiken1999rtlinux,kato2009loadable}.
+GPUs are also supported in Linux.
+This work assumes that the design concept and function of OS are based
+on Linux, such as LKM.
 
-To meet meet real-time constraints in a shared resource environment, such as a multi-core environment,
-there are two requirements for the scheduler.
-\begin{itemize}
-\item The use of resources according to a specified order
-\item Limiting the use of shared resources
-\end{itemize}
-A basic approach to satisfy the first requirement in a previous study is priority-based scheduling (e.g. rate-monotonic~\cite{sched:rm} and earliest deadline first~\cite{sched:edf}) combined with a technique to prevent priority inversion.
-A basic approach to satisfy the second requirement is resource reservation-based scheduling(e.g. constant bandwidth server~\cite{rr:cbs}, total bandwidth server\cite{rr:tbs2} ).
-GPUs must handle data transfer bandwidth and a processing core as a shared resource; thus, we satisfy the two requirements in a manner that is similat to the above mentioned multi-core environment.
-Our previous study's Gdev involved only the scheduling of GPU access.
-However, a GPU kernel consumes CPU time because a GPU task is driven by an API.
-To support real-time scheduling, the scheduler must be able to schedule GPU tasks on the CPU side.
-Therefore, the framework must have a CPU priority-based scheduler, a GPU priority-based scheduler, and GPU resource reservation mechanisms to realize real-time GPU scheduling.
-Recently, GPUSync has targeted CPU scheduler and GPU scheduler interdependence.
-GPUs runtime environments are black-box mechanisms results from GPU environments are provided only GPU vendors, and these environments are closed-source.
-TimeGraph and Gdev address this problem by ensure transparency using reverse engineering and an open-source driver.
-GPUSync achieve closed-source compatible by GPU resource management that approaches are the interrupt handling and the arbitrate runtime access.
+To meet real-time requirements in shared resource environments, such as
+multi-core CPUs and GPUs, RTOSes should provide \textit{scheduling} and
+\textit{resource reservation} functions.
+Rate Monotonic (RM)~\cite{sched:rm} and Earliest Deadline First
+(EDF)~\cite{sched:edf}) are well-known algorithms of priority-based
+scheduling for real-time systems.
+There are also many variants for resource reservation algorithms.
+Examples include Constant Bandwidth Server (CBS)~\cite{rr:cbs} and Total
+Bandwidth Server (TBS)~\cite{rr:tbs2}.
 
-The other problem occurs by non-preemptive GPU executions and non-preemptive data transfers.
-Several researches~\cite{basaran:preemptive,sparc} have improvemed the response time by preventing overrun which occurs while dividing the kernel.
-However, these existing methods concerning real-time GPU are typically experimental, not practical enough.
-The most difficult problem is self-suspending because GPU is treated as an I/O device.
-GPU tasks suspend until it receives the results from invoking the processing to GPU, referred to as self-suspending.
-The self-suspension has been proven as a cause the NP-HARD problem in previous work~\cite{self-sus:1,self-sus:2},
-several researches~\cite{chattopadhyay2014limited,kim2013segment} are working on the scheduling analysis for self-suspension task,
-they have not been solved yet completely.
+GPU computing must deal with data transfer bandwidth and compute cores
+as a shared resource.
+Therefore, scheduling and resource reservation must also be considered
+for GPUs as well as CPUs in real-time systems.
+TimeGraph and Gdev are involved with GPU resource management problems
+but are not much aware of the fact that GPU tasks consume CPU time to
+drive APIs.
+To support GPUs in real-time systems, the OS scheduler must be able to
+manage GPU tasks together with CPU tasks on the host side, while taking
+care of GPU time for the device side.
+Therefore, we consider the problem of CPU scheduling and GPU scheduling
+with resource reservation mechanisms in a coordinated manner.
 
-Hence, the proposed scheduling framework aims at easier expansion and installation.
+The recently developed GPUSync system supports CPU scheduling and GPU
+scheduling.
+In GPUSync, the device driver and runtime library for GPU computing are
+proprietary black-box modules released by GPU vendors.
+On the other hand, TimeGraph and Gdev address this problem by using
+reverse-engineered open-source software.
+Both approaches are limited to some extent, respectively.
+Using black-box modules makes it difficult to manage the system in a
+fine-grained manner.
+Open-source software tends to lack some functionality due to
+incompletion of reverse engineering.
+GPUSync managed to incorporate black-box modules in scheduling and
+resource reservation by arbitrating interrupt handlers and runtime
+accesses.
+This GPUSync approach is preferred in a sense that we can utilize
+reliable proprietary driver and library, while we can still provide
+scheduling and resource reservation functions.
 
 \textbf{GPU Synchronization:}
-The synchronization must be considered for GPU system such as a heterogeneous system.
-GPUs have two different synchronization techniques.
-The first technique is memory map-based synchronization called FENCE.
-FENCE first sends commands to the GPU after the command to take a GPU kernel launch,
-and then GPU writes the values to memory-mapped space after the GPU kernel is completed.
-A GPU task monitors the value in the mapped space using polling.
-Therefore, the task has exclusive access to CPU resources; therefore, response time will be the fastest.
-The other technique is interruption-based synchronization called NOTIFY.
-NOTIFY sends GPU commands similar to FENCE,
-and then GPU will call the interrupt and write a value to the GPU I/O registers.
-A GPU task is then suspended until interrupt called.
-Therefore, a task can share CPU resources with other tasks; however, response time is reduced.
-A detailed architecture is omitted in this thesis;
-the architecture has been explained in~\cite{kato:timegraph, kato:gdev, fujii:apsys2013}.
+Given that the GPU is a coprocessor connected to the host CPU,
+synchronization between the GPU and the CPU must be considered to
+guarantee the correctness of execution logics.
+Most GPU architectures support two synchronization mechanisms.
+One is based on memory-mapped registers called FENCE.
+To use FENCE, we send special commands to the GPU when a GPU kernel is
+launched so that the GPU can write the specified value to this
+memory-mapped space when the GPU kernel is completed. 
+On the host side, a GPU task is polling to monitor this value via the
+mapped space.
+The other technique is interrupt-based synchronization called NOTIFY.
+To use NOTIFY, we also send special commands to the GPU similar to
+FENCE.
+Instead of writing to memory-mapped registers, NOTIFY raises the
+interrupt from the GPU to the CPU and at the same time writes some
+associated values to I/O registers of the GPU.
+On the host side, a GPU task is suspended to wait for the occurrence of
+interrupt.
+NOTIFY allows other tasks to use CPU resources when the GPU task is
+waiting for completion of its GPU kernel, though the scheduling overhead
+is involved.
+FENCE is easier to use and is more responsive than NOTIFY but is
+implemented at the expense of CPU utilization.
+More details about GPU architectures can be found in previous
+work~\cite{kato:timegraph, kato:gdev, fujii:apsys2013}.
 
-Gdev uses both techniques, NOTIFY and FENCE to wakeup the waiting task.
-In addition, NOTIFY is used by the scheduler, and FENCE is used by kernel synchronization.
-In Gdev, synchronization implementation involves the additional commands sent to a GPU and modification of the device driver’s interrupt handler.
-GPUSync employs the NOTIFY technique using tasklet intercept~\cite{elliott2012robust} on the closed sourced GPU environments.
-Tasklet is Linux's soft-irq implementation.
-GPUSync identifies the interrupt that invokes a kernel using a callback pointer with a tasklet.
+Gdev supports both NOTIFY and FENCE to synchronize the CPU and the GPU.
+NOTIFY is primarily used for scheduling of GPU tasks, while FENCE is
+used in driver-level synchronization. 
+In Gdev, the implementation of GPU synchronization involves additional
+commands to the GPU as aforementioned, which requires some modification
+to the device driver.
+GPUSync indirectly utilizes the NOTIFY technique with tasklet
+interception~\cite{elliott2012robust} on top of the proprietary
+black-box modules.
+Tasklet refers to Linux's soft-irq implementation.
+GPUSync identifies the interrupt that has invoked a GPU kernel using a
+callback pointer with a tasklet.
 
-\textbf{Kernel Modification Free Scheduler:}
-We must not modify the kernel and the device driver code to achieve the target kernel modification free characteristic.
-To select the next GPU kernel to execute, the GPU scheduler must receive a GPU kernel completion notification.
-This is realized by two methods, i.e., an API driven method and an interrupt-driven method.
-The API-driven method explicitly wakes the scheduler after the synchronized by API such as $cuCtxSynchronize()$ provided GPU runtime which is used by RGEM\cite{kato:rgem} .
-The interrupt-driven method is awaken by an interrupt trigger that is issued by NOTIFY which is used by Gdev, TimeGraph, and GPU Sync.
-The general $cuCtxSynchronize()$ API synchronizes the completion of all GPU kernels.
-Therefore, the API-driven method can be used when a GPU context has issued only single kernel.
-Thus, if a GPU task invokes multiple kernels, we must use the interrupt-driven method to guarantee that no overrun occurs due to the reduction in response time.
+\textbf{Loadable Kernel Modules:}
+The main concept of our system is to enable both the CPU and GPU to be
+managed by the OS scheduler without any code changes to the OS kernel
+and device drivers.
+CPU scheduling has already been demonstrated by
+RESCH~\cite{kato2009loadable, asberg2012exsched} under this constraint.
+In order to schedule GPU tasks, we must be able to hook the scheduling
+points where the preceding GPU kernel is completed and the active
+context is switched to the next GPU kernel.
+The scheduling points can be hooked by two methods.
+The API-driven method presented by RGEM~\cite{kato:rgem} explicitly
+awakens the scheduler after GPU synchronization invoked by the API, such
+as $cuCtxSynchronize()$.
+The interrupt-driven method presented by TimeGraph and Gdev, on the
+other hand, uses interrupts that can be configured by NOTIFY.
+GPUSync is also based on this interrupt-driven method.
+Especially in CUDA, the standard $cuCtxSynchronize()$ API synchronizes
+completion of all GPU kernels.
+Therefore, the API-driven method can be used if a GPU context issues no
+more than one GPU kernel.
+In other words, if a GPU task invokes multiple GPU kernels, the
+interrupt-driven method is more approapriate to realize real-time
+capabilities.
 
-The Interrupt-driven method can be synchronized for each kernel; however, it must modify the kernel or the device driver’s interrupt service routine (ISR).
-Gdev has achieved independent synchronization mechanisms on the proprietary soft-ware;
-however, independent synchronization mechanisms must also modify the kernel.
-The challenge is realizing independent synchronization mechanisms that do not modify the kernel.
+The interrupt-driven method forced TimeGraph, Gdev, and GPUSync to
+modify the code of either the Linux kernel or device drivers.
+This is because the interrupt service routine (ISR) must be managed to
+create the scheduling points.
+Gdev has developed independent synchronization mechanisms on top of the
+proprietary software; however, Gdev still needs some modification to the
+Linux kernel for scheduling and resource reservation.
+As a result, the available release versions of the Linux kernel and
+device drivers for TimeGraph, Gdev, and GPUSync are very limited.
+A core challenge of this paper is to develop independent synchronization
+mechanisms that do not require any modification to the OS kernel and
+device drivers so that we can utilize the coordinated CPU and GPU
+resource management scheme with a wide range of the Linux kernel and
+device drivers. 
+
+\textbf{Scope and Limitation:}
+GPU resource management is involved with non-preemptive nature.
+For example, the execution of GPU kernels is non-preemptive.
+The data transfer between the CPU and the GPU is also non-preemptive.
+Some previous work have addressed the problem of response time by
+preventing overrun that occurs while dividing the
+kernel~\cite{basaran:preemptive,sparc}.
+The most difficult problem is the scheduling of self-suspending tasks
+because the GPU is treated as an I/O device in the system. 
+For example, GPU tasks are suspending until their GPU kernels are
+completed.
+The self-suspending problem was presented as a NP-HARD problem in
+previous work~\cite{self-sus:1,self-sus:2}.
+There are a lot of ongoing work on the scheduling of self-suspending
+tasks~\cite{chattopadhyay2014limited,kim2013segment}.
+
+Such a schedulability problem of GPU scheduling is not the scope of this
+paper.
+We rather focus on the design and implementation of GPU scheduling and
+resource reservation with existing algorithms.
+Our prototype system is limited to the Linux system and the CUDA
+environment, but the concept of our method is applicable to other OSes
+and programming languages, as far as they support the aforementioned
+NOTIFY mechanism.
