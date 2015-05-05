@@ -1,8 +1,11 @@
 \SECTION{Design and Implementation}\label{sec:design_imple}
 In this section, we present the design and implementation of Linux-RTXG,
-which achieves a real-time GPU scheduling framework without kernel modification.
-We describe the main contribution of the GPU scheduler and its integration to a CPU scheduler.
-Note that the discussion of CPU scheduling is minimized because Linux-RTXG is based on RESCH.
+which provides a framework of coordinated CPU and GPU resource
+management with LKMs.
+We describe our approach to GPU scheduling and its integration to CPU
+scheduling.
+Due to a space constraint, the detail of LKM-based CPU scheduling is
+referred to the RESCH project~\cite{kato2009loadable, asberg2012exsched}.
 
 \SUBSECTION{Linux-RTXG}
 \begin{figure}[t]
@@ -12,25 +15,36 @@ Note that the discussion of CPU scheduling is minimized because Linux-RTXG is ba
 \else
 \includegraphics[width=0.35\textwidth]{img/overview.pdf}
 \fi
-\caption{Overview of Linux-RTXG}
+\caption{Architectural overview of Linux-RTXG.}
 \label{fig:overview}
 \end{center}
 \end{figure}
 
-Figure~\ref{fig:overview} shows an overview of Linux-RTXG.
-Linux-RTXG is divided into two parts, the core and the library.
-The Linux-RTXG core has a CPU task scheduler, a GPU task scheduler, and a GPU resource reservation mechanism.
-The Linux-RTXG core is loaded into kernel-space; thus, it can use exported kernel functions, such as $schedule()$, $mod\_timer()$, $wake\_up\_process()$, and $set\_cpus\_allowed\_ptr()$.
-These interfaces are implemented using an input/output control(ioctl) system call, which is a standard way of communicating with a driver.
-The library includes an independent synchronization method.
-The independent synchronization method is used only on the NVIDIA driver.
-If using an open-source GPU driver, such as Nouveau~\cite{nouveau}, GPU runtime must use part of Gdev.
-Gdev can manage arbitrary interrupts of the GPU kernel in the user-space mode;
-therefore, the GPU scheduler does not require independent synchronization.
+Figure~\ref{fig:overview} shows an architectural overview of
+Linux-RTXG.
+The system architecture of Linux-RTXG falls into two parts.
+First, the Linux-RTXG core contains a CPU scheduler and a GPU scheduler
+with a resource reservation mechanism.
+The implementation of the Linux-RTXG core is provided in the kernel
+space by an LKM.
+Thus, it can use exported Linux kernel functions, such as $schedule()$,
+$mod\_timer()$, $wake\_up\_process()$, and $set\_cpus\_allowed\_ptr()$.
+These functions can be called from the user space interface using the
+input/output control (ioctl) system call, which is a standard system
+call for device drivers.
+Secondly, the Linux-RTXG library contains an independent synchronization
+method for coordinated CPU and GPU resource management.
+The independent synchronization method can be used on top of a
+proprietary driver~\cite{nvidia:cuda_zone} as well as an open-source
+driver~\cite{nouveau}.
+Note that this method is required to manage interrupts for GPU
+scheduling without any code modification to the OS kernel and device
+drivers.
+
 \SUBSECTION{GPU Scheduling}
 \begin{table*}[!t]
 \begin{center}
-\caption{Basic Linux-RTXG APIs}
+\caption{A basic set of APIs for Linux-RTXG.}
 \label{tab:rtx-api}
 \ifthesis
 \begin{tabular}{|l|p{25em}|} \hline
@@ -47,15 +61,20 @@ rtx\_gpu\_close() & Releases scheduling entity.\\ \hline
 \end{center}
 \end{table*}
 
-Linux-RTXG is a scheduler that a combination of an API-driven and interrupt-driven.
+Linux-RTXG is based on the interrupt-driven method for GPU
+synchronization but is also partly based on the API-driven method.
 The scheduler is invoked only when computation requests are submitted.
 The basic APIs supported by Linux-RTXG are listed in Table~\ref{tab:rtx-api}.
-Note that some APIs have arguments and others do not.
-Linux-RTXG does not modify the existing CUDA API to cope with proprietary software in order to be independent of GPU runtime.
-However, the user must add the Linux-RTXG API to existing CUDA applications to use the Linux-RTXG scheduler.
+Note that some APIs have arguments whereas others do not.
+Linux-RTXG does not modify the existing CUDA API to cope with
+proprietary software, being independent of GPU runtimes. 
+However, CUDA application programs must add the Linux-RTXG APIs to use
+the functionality of Linux-RTXG.
 
-Sample Linux-RTXG scheduler code is shown in Figure~\ref{fig:sample}.
-GPU tasks are provided with a function by calling Linux-RTXG's API at strategic points.
+The sample code including the Linux-RTXG APIs is shown in
+Figure~\ref{fig:sample}.
+GPU tasks are provided with function calls to Linux-RTXG at strategic
+points.
 
 \begin{figure}[!t]
 \begin{center}
@@ -80,56 +99,74 @@ GPU tasks are provided with a function by calling Linux-RTXG's API at strategic 
 {\scriptsize \verb|}|}\\
 \hline\hline
 \end{tabular}
-\caption{sample code of using Linux-RTXG scheduler}
+\caption{Sample code with the Linux-RTXG APIs.}
 \label{fig:sample}
 \end{center}
 \end{figure}
 
 \begin{figure}[!t]
 \begin{center}
-\ifthesis
-\includegraphics[width=\textwidth]{img/gsched_controlflow.pdf}
-\else
-\includegraphics[width=0.5\textwidth]{img/gsched_controlflow.pdf}
-\fi
-\caption{GPU Scheduling control flow}
-\label{fig:controlflow}
+ \ifthesis
+ \includegraphics[width=\textwidth]{img/gsched_controlflow.pdf}
+ \else
+ \includegraphics[width=0.5\textwidth]{img/gsched_controlflow.pdf}
+ \fi
+ \caption{Execution flow of the GPU task.}
+ \label{fig:controlflow}
 \end{center}
 \end{figure}
 
-In Figure~\ref{fig:controlflow} is restricted to a single GPU kernel.
-A GPU task can control the timing of the GPU kernel execution by calling $rtx\_gpu\_launch()$.
-The task sleeps until it receives an interrupt because an additional GPU kernel cannot be issued until a current task completes execution.
-When the current task's GPU kernel completes execution, the Linux kernel handles the interrupt.
-The interrupt interceptor then wakes the sleeping task.
-The woken task is issued the GPU kernel via a CUDA API, such as $cuLaunchGrid()$.
-After the GPU kernel is issued, the task registers NOTIFY to monitor interrupt,
-and is put to sleep until it receives an interrupt.
-Selection of the subsequent task is performed by the GPU scheduler caused by the interruption of GPU kernel finish.
-Linux-RTXG controls the order of task execution according to the above flow.
+The execution flow of the GPU task managed by the Linux-RTXG APIs is
+described in Figure~\ref{fig:controlflow}.
+Note that this example is restricted to a single GPU kernel.
+The GPU task can control the timing of GPU kernel invocation by calling
+$rtx\_gpu\_launch()$.
+After this function call, the task is suspended until it receives an
+interrupt so that other GPU kernels can be launched.
+When some GPU kernel is completed, an interrupt is raised by the GPU and
+the corresponding interrupt handler is executed by the Linux kernel.
+The interrupt interceptor awakens some suspending task according to the
+priority.
+The awakened task proceeds to launch the GPU kernel using the CUDA API,
+such as $cuLaunchGrid()$.
+After the GPU kernel is launched, the task is going to register NOTIFY
+to set up an interrupt, and is again put to the sleep mode until it
+receives the interrupt.
+Dispatching of the subsequent task is performed by the GPU scheduler,
+which is called upon the interrupt from the GPU.
+Linux-RTXG manages the order of task execution according to this flow.
 
-We present a hierarchal scheduling that includes group (virtual GPU) scheduling and GPU kernel scheduling.
-The virtual GPU scheduling uses a resource reservation mechanism.
-The GPU kernel scheduling uses a fixed-priority scheduling.
-Specifically, GPU kernel execution is associated with each scheduling entity while Linux-RTXG groups scheduling entity to virtual GPUs.
-The virtual GPUs can belong to any of the physical GPUs.
-In Linux-RTXG, resources are distributed to virtual GPUs.
+We now present a hierarchal scheduling mechanism that uses the concept
+of virtual GPUs to combine specified GPU tasks by a group.
+The virtual GPUs are realized by a resource reservation mechanism, while
+GPU scheduling uses a priority mechanism.
+Specifically, each GPU kernel invocation is associated with a scheduling
+entity, and Linux-RTXG allocates the scheduling entities to virtual GPUs. 
+The virtual GPUs can belong to any physical GPUs.
+In Linux-RTXG, computing resources are distributed to virtual GPUs.
 
-Figure~\ref{fig:scheduling} shows pseudo-code of the scheduling mechanism.
-Here, $on\_arrival$ is called when a GPU task is requested GPU kernel launch.
-In $on\_arrival$, a GPU task checks whether the given executions permission to virtual GPU of task itself, and then check the $se$ permit.
-If a virtual GPU to which the GPU task belongs has not executing permission, the GPU task is queued to wait\_queue and is suspended (i.e., it is put to sleep).
-If the virtual GPU has execution permission, the GPU task is launched.
-$on\_completion$ is called by a scheduler thread when the execution of the GPU kernel is complete.
-$on\_completion$ selects up the next virtual GPU and the next GPU task.
-Next, $on\_completion$ wakes the selected GPU task.
+Figure~\ref{fig:scheduling} shows the pseudo-code of the Linux-RTXG
+scheduler.
+This code works under the assumption that $on\_arrival$ is called when
+some GPU task requests to launch the GPU kernel.
+In $on\_arrival$, the GPU task checks whether the given execution
+permission is held by the allocated virtual GPU and is also held by the
+allocated scheduling entity.
+If the virtual GPU to which the GPU task belongs does not own the
+execution permission, the GPU task is enqueued to $wait\_queue$ and is
+suspended.
+Else, the GPU task can launch the GPU kernel.
+After a while, $on\_completion$ is called by the scheduler thread when
+the launched GPU kernel is completed, and we can select the next set of
+a virtual GPU and a GPU task. 
+At the end of $on\_completion$, the selected GPU task is waken up.
 
 \begin{figure}[!t]
 \begin{center}
 \begin{tabular}{l}
 \hline
 {\scriptsize \verb| se: The scheduling entity |}\\
-{\scriptsize \verb| se->vgpu: The group that is belonged se|}\\
+{\scriptsize \verb| se->vgpu: The group that belongs to se|}\\
 {\scriptsize \verb| se->task: The task that is associated with se |}\\
 {\scriptsize \verb| vgpu->parent: The physical GPU identification|}\\
 \hline
@@ -151,7 +188,7 @@ Next, $on\_completion$ wakes the selected GPU task.
 {\scriptsize \verb|}|}\\
 \hline
 \end{tabular}
-\caption{Scheduling mechanisms of high-level pseudo-code}
+\caption{High-level pseudo-code of the Linux-RTXG scheduler.}
 \label{fig:scheduling}
 \end{center}
 \end{figure}
