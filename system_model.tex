@@ -192,9 +192,15 @@ Such a schedulability problem of GPU scheduling is not the scope of this
 paper.
 We rather focus on the design and implementation of GPU scheduling and
 resource reservation with existing algorithms.
-In this paper, we also restrict our attention to time resources but not
+The scope of this paper is also restricted to time resources but not
 memory resources.
-Our prototype system is limited to the Linux system and the CUDA
-environment, but the concept of our method is applicable to other OSes
-and programming languages, as far as they support the aforementioned
-NOTIFY mechanism.
+In other words, we consider GPU scheduling problems but not device
+memory allocation problems.
+
+We support efficient data transfer between the CPU and the GPU using
+GPU microcontrollers~\cite{fujii:icpads2013}, but is not considered as
+the contribution of this paper.
+Finally, our prototype system is limited to the Linux system and the
+CUDA environment, but the concept of our method is applicable to other
+OSes and programming languages, as far as they support the
+aforementioned FENCE and NOTIFY primitives.

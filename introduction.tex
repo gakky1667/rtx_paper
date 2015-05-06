@@ -1,100 +1,91 @@
 \SECTION{Introduction}
-Graphics processing units (GPUs) are becoming mature computing platforms
-for various data-parallel and compute-intensive applications.
-Although the primary use of GPUs is to accelerate high-performance
-computing (HPC) applications, the performance advantage of GPUs is more
-and more recognized in real-time applications.
+Graphics processing units (GPUs) are now common platforms for various
+data-parallel and compute-intensive applications.
+Although GPUs are primarily used to accelerate high-performance
+computing (HPC) applications, their performance advantage is more and
+more recognized in real-time systems.
 Examples include route navigation for autonomous
 vehicles~\cite{cmu:routing}, object
 detection~\cite{hirabayashi:cpsna2013}, plasma control for fusion 
 reactors~\cite{tokamak}, windowing applications~\cite{kato:rtas2011},
 and database operators~\cite{bakkum:sql}.
-Benchmarking suites are also well prepared for other various pieces of
+Benchmarking suites are also well deployed for various pieces of
 workload~\cite{rodinia}.
 
 GPU applications were often best-effort oriented, whose main purpose is
 to accelerate particular computing blocks.
-Conventional system software for GPU computing, therefore, is
-particularly designed for individual data-parallel and compute-intensive
-workload. 
-However, due to emergence of cyber-physical systems or streaming
-applications in recent years, system software support for real-time and
-multi-tasking environments is becoming a more significant challenge for
-GPU computing.
-Since the standard system software provided by GPU vendors and
+Therefore, conventional GPU technologies are particularly designed for
+individual data-parallel and compute-intensive workload.
+However, due to emergence of real-time systems using GPUs, system
+software support for real-time GPU resource management is becoming a
+more significant problem.
+Since the standard system software released by GPU vendors and
 communities, such as CUDA~\cite{nvidia:cuda_zone} and
-OpenCL~\cite{opencl}, is not tailored to support real-time multi-tasking
-environments, a complex undertaking is functional extension of system
-software including the operating system (OS), device drivers, and
-runtime libraries is required even in state-of-the-art research and
-development to use GPUs in such environments.
+OpenCL~\cite{opencl}, is not tailored to support real-time systems, a
+complex undertaking is required to extend the system software including
+the operating system (OS) kernel and device drivers.
 
-In previous work, GPU resource management has been presented in terms of
-real-time and/or multi-tasking environments.
+In previous work, GPU resource management has been developed for
+real-time systems.
 TimeGraph~\cite{kato:timegraph} provides GPU scheduling and resource
-reservation mechanisms at the device driver level to multiplex GPU
-commands, supporting real-time multi-tasking GPU applications.
+reservation capabilities at the device driver level, multiplexing GPU
+commands to support priorities and quality of service (QoS) for GPU
+applications.
 Gdev~\cite{kato:gdev} is a rich set of runtime libraries and device
-drivers to multiplex GPU computations and CPU-GPU data transfers,
-achieving first-class GPU resource management.
-The main drawback of these approaches is that they require non-trivial
-detailed information on internal implementation of GPU runtime libraries
+drivers to achieve first-class GPU resource management, where GPU
+contexts are fully managed in the OS space.
+The main drawback of these work is that they require detailed
+information on the implementation of GPU runtime libraries 
 and device drivers, mostly obtained based on reverse engineering.
 
-Traditionally, GPU software stack is encapsulated by an application
-programming interfance (API) in user-space libraries and an application
+In general, the GPU software stack is encapsulated by an application
+programming interfance (API) in runtime libraries and an application
 binary interface (ABI) in device drivers.
 This means that modifications to system software on top of the API and
-ABI layers allow the entire software stack to be loadable, resulting in
-more flexible solutions.
-CPU resource management also needs to be considered given that CPU time
-is still consumed while GPU kernels are issued and executed via the API
-and ABI layers.
+ABI layers allow the entire software stack to be loadable, enabling more
+sustainable solutions.
+CPU scheduling is also important for GPU applications, because CPU time
+is consumed when GPU functions are launched from the API and ABI layers.
 In order to satisfy real-time requirements in GPU computing, therefore,
-resource management mechanisms for both the CPU and GPU must be
-coordinated.
-For example, the data transfer overhead for GPU computing is highly
-dominated by the coordination of CPU and GPU resource
-management~\cite{fujii:icpads2013}.
+CPU and GPU resources must be managed in coordination.
 
-As one of notable work on coordinated CPU and GPU resource management
-for real-time multi-tasking environments, GPUSync was presented by
-Elliott et al.~\cite{elliott:gpusync13,elliott:explor14} to extend CPU
-scheduling for multiple GPU-aware contexts with budget enforcement,
-which was built on top of on the proprietary API and ABI layers.
-GPUSync provides a configurable framework that can verify the
-combination of task allocation policies for multicore CPUs as well as
-GPU kernel allocaton policies for multiple GPUs.
+One of notable work on coordinated CPU and GPU resource management for
+real-time systems is GPUSync~\cite{elliott:gpusync13,elliott:explor14},
+which was presented by Elliott et al. to extend CPU scheduling for
+multiple GPU-aware contexts with budget enforcement.
+GPUSync was built on top of on the API and ABI layers of proprietary
+software, providing a configurable framework that can verify the
+combination of task allocation policies for multicore CPUs and GPU
+resource allocaton policies for multiple GPUs.
 
 GPUSync is implemented using $LITMUS^{RT}$~\cite{litmus}, which
 introduces a significant amount of changes to the OS kernel.
 TimeGraph and Gdev also make some modifications to the device driver.
-Those customized approaches to the OS or device drivers require users to
-install patches, or developers are obliged to maintain patches in order
-to stay up to date with the latest OS kernel releases.
-This porting work indeed kills productivity of research and development,
-given that especially open-source software, such as Linux, is frequently
-updated with signficant code changes.
+Those built-in approaches to the OS kernel and device drivers require
+users to install patches, or developers are obliged to maintain patches
+in order to stay up to date with the latest version releases.
+This porting work is a complex undertaking against research and
+development and is not sustainable, given that especially open-source
+software, such as Linux, is frequently updated with non-trivial code
+changes.
 
 Linux supports the loadable kernel module (LKM), which can load and
-unload kernel modules to add and remove kernel functions.
-Many Linux-based real-time OSes use the LKM to extend real-time
+unload kernel modules to add and remove supplementary kernel functions.
+Existing Linux-based real-time OSes use the LKM to extend real-time
 capabilities of Linux.
 In particular, RESCH~\cite{kato2009loadable, asberg2012exsched} provides
-a real-time scheduling framework called ExSched, which does not require
-any modification to the OS kernel and device drivers.
+a real-time scheduling framework called ExSched, which is completely
+independent of code modifications to the OS kernel and device drivers.
 Unfortunately, RESCH does not support GPU resource management.
-It has never been demonstrated that GPU resource management and its
-coordination with CPU resource management for real-time systems can be
-fully implemented using the LKM, without making modifications to the OS
-kernel and device drivers.
+It has never been demonstrated that GPU resource management for
+real-time systems can be fully implemented by the LKM, without making
+any modification to the OS kernel and device drivers.
 
 \textbf{Contribution:}
 This paper presents Linux-RTXG (Linux Real-Time eXtention with GPUs),
-which provides LKM-based real-time extension for coordinated CPU and GPU
-resource management in Linux.
+which provides LKM-based real-time GPU resource management in Linux.
 Linux-RTXG allows the system to easily re-configure scheduling
-algorithms and install their modules at runtime.
+algorithms and install their modules at runtime for GPU applications.
 The most significant contribution of Linux-RTXG is that resource
 management modules for not only CPUs but also GPUs can be added to Linux
 without any modification to the OS kernel and device drivers.
