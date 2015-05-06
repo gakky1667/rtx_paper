@@ -165,17 +165,18 @@ At the end of $on\_completion$, the selected GPU task is waken up.
 \begin{center}
 \begin{tabular}{l}
 \hline
-{\scriptsize \verb| se: The scheduling entity |}\\
-{\scriptsize \verb| se->vgpu: The group that belongs to se|}\\
-{\scriptsize \verb| se->task: The task that is associated with se |}\\
-{\scriptsize \verb| vgpu->parent: The physical GPU identification|}\\
+{\scriptsize \verb| se: Scheduling entity |}\\
+{\scriptsize \verb| se->vgpu: Group that belongs to se|}\\
+{\scriptsize \verb| se->task: Task that is associated with se |}\\
+{\scriptsize \verb| vgpu->parent: Physical GPU identifier|}\\
 \hline
 {\scriptsize \verb|void on_arrival(se) {|}\\
 {\scriptsize \verb| check_permit_vgpu(se->vgpu)    |}\\
 {\scriptsize \verb| while(!check_permit_se(se)){|}\\
 {\scriptsize \verb|   enqueue(se->vgpu,se); |}\\
 {\scriptsize \verb|   sleep_task(se->task); |}\\
-{\scriptsize \verb|}}|}\\
+{\scriptsize \verb| }|}\\
+{\scriptsize \verb|}|}\\
 {\scriptsize \verb|void on_completion(se) {|}\\
 {\scriptsize \verb| reset_the_permit(se->vgpu, se)|}\\
 {\scriptsize \verb| n_vgpu = pick_up_the_next_vgpu(se->vgpu->parent) |}\\
@@ -194,63 +195,125 @@ At the end of $on\_completion$, the selected GPU task is waken up.
 \end{figure}
 
 \SUBSECTION{GPU Synchronization}
-Here, we describe the independent synchronization mechanism and the interrupt intercept.
-The independent synchronization mechanism invokes NOTIFY and FENCE without using a GPU runtime API.
-The interrupt intercept realizes interrupt-driven wakeup of the scheduler without kernel modification.
-Linux-RTXG uses the independent synchronization mechanisms as much as possible
-because we do not want to use black--box resource management.
+We next describe the independent synchronization mechanism and the
+interrupt interception approach.
+The independent synchronization mechanism invokes NOTIFY and FENCE
+without using the GPU runtime API.
+The interrupt interception enables interrupt-driven invocation of the
+scheduler without making any modification to the OS kernel and device
+drivers.
+By this means, Linux-RTXG does not require to modify the OS kernel and
+device drivers, while being able to create the scheduling points for GPU
+tasks. 
 
-\textbf{Independent synchronization mechanism from runtime:}
-We present an independent synchronization mechanism for NOTIFY and FENCE.
-The mechanism invokes an interrupt for NOTIFY, and writes the fence value with the GPU microcontrollers for FENCE.
-NVIDIA's proprietary software uses the ioctl interface to communicate between the kernel-space and the user-space.
-These ioctl interfaces provide driver functions, such as device memory allocation, obtaining GPU information and memory mapping.
-Gdev builds infrastructure that can execute on NVIDIA's driver using these ioctl interfaces.
-The proposed method uses an ioctl interface similar to Gdev's method for sending commands.
-Specifically, the proposed method is divided into two parts, Initialize and Notify.
-Initialize processess generate a dedicated GPU context.
-This processess include creating virtual address space, allocating an indirect buffer object for sending a command, and creating a context object is required to prepare the FIFO engine and includes, allocating a kernel memory object and mapping the FIFO engine register to host memory space using memory-mapped I/O.
-The FIFO engine is a GPU microcontroller that receives commands.
-The Notify processes send commands to a compute engine or a copy engine by $iowrite$ function to the mapped FIFO engine's register.
-The compute engine and the copy engine do function that switching a GPU context for computing or data copy.
-This independent synchronization mechanism uses reverse engineering.
-Therefore, this method depends on the GPU device architecture and the proprietary software interfaces.
+\textbf{Independent Synchronization Mechanism:}
+We now present the independent synchronization mechanism using NOTIFY
+and FENCE.
+This mechanism invokes an interrupt using NOTIFY, and writes the fence
+value using the GPU microcontrollers and FENCE.
+NVIDIA's proprietary software uses the ioctl interface to communicate
+with the kernel space and the user space. 
+These ioctl interfaces provide driver functions, such as device memory
+allocation, obtaining GPU states and memory mapping. 
+Gdev contains a runtime library that can control the GPU on top of
+NVIDIA's proprietary driver using these ioctl interfaces. 
+Our mechanism also uses an ioctl interface similar to Gdev in order to
+send commands to the GPU.
+Specifically, our mechanism is divided into two parts, (i)
+initialization and (ii) notification.
 
-\textbf{Interrupt interception:}
-Interrupts are handled by the ISR registered to the kernel by the device driver.
-In addition, a scheduler is required to receive the interrupt and to identify the interrupt by reading the GPU status register.
-The GPU status register must be read before the original ISR resets the GPU status register.
+The initialization process generates a dedicated GPU context.
+This process creates virtual address space, allocates an indirect buffer
+object for commands, and creates a context object that is required to
+employ the FIFO engine, followed by the allocation of a kernel memory
+object and the mapping of the FIFO engine registers to host memory space
+through memory-mapped I/O (MMIO). 
+The FIFO engine is a GPU microcontroller that decodes and dispatches the
+commands sent from the host CPU side.
 
-The Linux kernel has structures that hold interrupt parameters called $irq\_desc$ for each interrupt number.
-These structures have structures called $irq\_action$, including the ISR callback pointer.
-An $irq\_desc$ is allocated to global kernel memory space, and is freely accessible from kernel space.
-Linux loadable kernel modules can obtain an $irq\_desc$ and an ISR callback pointer.
-We obtain the GPU device driver's ISR callback pointer, and then we register an interrupt interception ISR to the kernel.
-Thus, we obtain an interrupt interception from the interrupt interception ISR and retain the callback pointer.
-In addition, I/O registers are mapped to kernel memory space by the device driver from the PCIe base address registers (BAR)~\cite{fujii:icpads2013,kato2013zero}.
-Therefore, Linux-RTXG remaps the BAR0 to our allocated space using $ioremap()$ when the ISR initialized.
-The interrupt interception identifies an interrupt by reading this mapped-space.
+The notification process sends commands to a GPU compute engine or a GPU
+data-copy engine by the $iowrite$ function associated with the mapped
+FIFO engine registers so that an interrupt will be raised from the GPU
+to the CPU.
+The compute engine and the data-copy engine are such GPU
+microcontrollers that control the states of GPU computation and data
+transfer.
+They are also used to switch GPU contexts on the GPU computation and
+data transfer.
+Note that this independent synchronization mechanism requires the
+information of ioctl interfaces.
+Therefore, it depends on the GPU architecture and implementation of
+device drivers.
+
+\textbf{Interrupt Interception:}
+Interrupts are handled by the ISR that is registered to the Linux kernel
+by the device driver.
+The scheduler function is required to receive the interrupts and
+identify them by reading the GPU status register.
+The GPU status register must be read by the OS scheduler before it is
+reset by the ISR.
+
+The Linux kernel has a structure that holds interrupt parameters called
+$irq\_desc$ for each interrupt number.
+This structure has an internal structure called $irq\_action$,
+including the ISR callback pointer.
+The $irq\_desc$ structure is allocated to the global kernel memory
+space, and is freely accessible from the kernel space.
+Therefore, not only the Linux kernel but also external LKMs can obtain
+the information of $irq\_desc$ and the ISR callback pointer.
+We obtain the ISR callback pointer associated with the GPU device
+driver, and register a new interrupt interception ISR to the Linux
+kernel.
+Finally, we can intercept interrupts from the GPU through the ISR and
+retain the callback pointer.
+In addition, I/O registers are mapped to the kernel memory space by the
+device driver from the PCIe base address registers
+(BAR)~\cite{fujii:icpads2013,kato2013zero}.
+Therefore, Linux-RTXG remaps the BAR0 to our allocated space using
+$ioremap()$ when the ISR is initialized. 
+The interrupt interception mechanism can identify the source of every
+interrupt by reading this remapped space.
 
 \SUBSECTION{Scheduler Integration}
-The native Linux scheduler has various real-time scheduling policies, such as $SCHED\_DEADLINE$, $SCHED\_FIFO$ and $SCHED\_RR$.
-$SCHED\_DEADLINE$ is an implementation of a constant bandwidth server and a global earliest deadline first.
-$SCHED\_DEADLINE$ is included in the Linux 3.14.0 kernel.
-However, synchronization does not work well with the SCHED\_DEADLINE scheduling policy for GPU tasks.
-Here there are two problems.
-The first is the implementation of $sched\_yield$---.$sched\_yield()$ uses $yield()$ in kernel space---.
-The second is the implementation of waking from a sleeping state.
+The mainline Linux scheduler implements a few real-time scheduling
+policies:
+\begin{itemize}
+ \item $SCHED\_DEADLINE$
+ \item $SCHED\_FIFO$
+ \item $SCHED\_RR$
+\end{itemize}
 
-The first problem occurs by releasing the CPU using $sched\_yield()$ while waiting for I/O in polling.
-Polling (spin) is the exclusive CPU; therefore, a task may once better to release the CPU can obtain good results.
-However, $sched\_yield$ will set the polling task's remaining execution time to 0 by treating it as a parameter of $SCHED\_DEADLINE$.
-Thus, the task cannot execute until the runtime is replenished in the next period.
-Therefore, the task cannot call $sched\_yield()$ between polling.
-$sched yield()$ is frequently used by device drivers and libraries, as well as GPU environment, and such software is affected by this problem.
-Depending on the setting, even NVIDIA's CUDA can be affected by this problem.
-We address this problem by limiting the GPU synchronization method to NOTIFY in the $SCHED\_DEADLINE$ policies.
+$SCHED\_DEADLINE$ is the implementation of CBS and EDF, which is the
+latest real-time scheduler for Linux introduced in the version 3.14.0,
+while $SCHED\_FIFO$ and $SCHED\_RR$ represent fixed-priority
+scheduling.
+Unfortunately, synchronization does not work with the SCHED\_DEADLINE
+scheduling policy for GPU tasks.
+Let us describe two problems.
+The first problem is attributed to the implementation of
+$sched\_yield$.
+Note that $sched\_yield()$ uses $yield()$ in the kernel space.
+Releasing the CPU by $sched\_yield()$ while waiting for I/O in polling,
+we can utilize CPU time more efficiently.
+However, $sched\_yield$ will set the remaining execution time of the
+polling task to zero by treating it as a parameter of $SCHED\_DEADLINE$.
+As a result, the task cannot execute until the runtime is replenished in
+the next period.
+This means that $sched\_yield()$ should not be called while polling in
+$SCHED\_DEADLINE$.
+However, $sched yield()$ is frequently used by device drivers and
+libraries.
+Real-time performance of GPU computing, even in CUDA, could be affected
+by this problem.
+We address this problem by limiting the GPU synchronization method to
+NOTIFY, eliminating the potential of FENCE, in the $SCHED\_DEADLINE$
+scheduling policy.
 
-The second problem is subjected to a check equation~\ref{eq} when restoring a task from the sleep state.
-If equation~\ref{eq} holds, the runtime is replenished and absolute deadline is set to the next cycle deadline.
+The second problem is subject to the implementation of wake-up and sleep
+functions, particularly the check equation~\ref{eq} when restoring a
+task from the sleep state.
+If the equation~\ref{eq} holds, the runtime is replenished and the
+absolute deadline is set to the next cycle deadline.
 
 {\scriptsize
 \begin{equation}
@@ -258,4 +321,6 @@ If equation~\ref{eq} holds, the runtime is replenished and absolute deadline is 
 \end{equation}
 }
 
-We implement this check by subtracting GPU execution time from $Remaining Runtime$ when a task is restored by GPU kernel execution, with the exception of a task that is restored by period.
+We revise this check condition so that the GPU execution time is
+substracted from $Remaining Runtime$ when a task is restored by the GPU
+kernel execution, except when a task is restored by the period.
