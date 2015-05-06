@@ -15,18 +15,21 @@ maintained at the desired frame rate even in the presence of high CPU
 load.
 
 Experiments are limited to GPU scheduling performance given that CPU
-scheduling performance has already been examined in previous
+scheduling performance has already been demonstrated in previous
 work~\cite{kato2009loadable}.
 Considering the results of this work and those from the previous work,
 it is clarified that both emerging GPU applications and traditional CPU
-applications can be managed by the real-time scheduler, without
-modifying the OS kernel and device drivers.
+applications can be scheduled according to priorities and resource
+reserves using LKMs, without modifying the Linux kernel and device
+drivers.
 
-\SUBSECTION{Evaluation Environment}
-Our experiments were conducted using Linux kernel 3.16.0, an NVIDIA Geforce GTX680 GPU, a 3.40 GHz Intel Core i7 2600 (8 cores, including two hyperthreadling cores), and 8 GB main memory.
-GPU programs were written in CUDA and compiled by NVCC v6.0.1.
-We used the NVIDIA 331.62 driver and Nouveau Linux-3.16.0 driver.
-In addition, we used NVIDIA CUDA-6.0 libraries and Gdev.
+\SUBSECTION{Experimental Setup}
+Our experiments were conducted using the Linux kernel 3.16.0, an NVIDIA
+Geforce GTX680 GPU, a 3.40 GHz Intel Core i7 2600 (eight cores including
+two hyperthreadling cores), and 8 GB main memory.  
+GPU application programs were written in CUDA and compiled by NVCC v6.0.1.
+We used the NVIDIA 331.62 driver and Nouveau Linux-3.16.0 driver with
+NVIDIA CUDA 6.0 and Gdev. 
 
 \SUBSECTION{Interrupt Intercept Overhead}
 We measured the interrupt interception overhead using the Nouveau GPU driver to compare and identify the type of interrupt.
