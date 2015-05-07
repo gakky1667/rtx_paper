@@ -31,115 +31,147 @@ GPU application programs were written in CUDA and compiled by NVCC v6.0.1.
 We used the NVIDIA 331.62 driver and Nouveau Linux-3.16.0 driver with
 NVIDIA CUDA 6.0 and Gdev. 
 
-\SUBSECTION{Interrupt Intercept Overhead}
-We measured the interrupt interception overhead using the Nouveau GPU driver to compare and identify the type of interrupt.
-We compared elapsed time from the beginning to the end of the ISR.
+\SUBSECTION{Interrupt Interception Overhead}
+We measured the interrupt interception overhead using the Nouveau GPU
+driver to quantify the overhead of interception in varied interrupt
+types. 
+As performance metrics, we adopted elapsed time from the beginning to
+the end of the ISR.
 
 \begin{figure*}[!t]
 \begin{minipage}[t]{0.33\hsize}
 \begin{center}
 \raisebox{-3mm}{\includegraphics[width=62mm]{img/interrupt}}
 \end{center}
-\caption{\small{Interrupt intercept overhead \newline \,}}
+\caption{\small{Interrupt interception overhead. \newline \,}}
 \label{fig:irq_overhead}
 \end{minipage}
 \begin{minipage}[t]{0.33\hsize}
 \begin{center}
 \raisebox{-1mm}{\includegraphics[width=62mm]{img/interrupt_response}}
 \end{center}
-\caption{\small{Response time of interrupt w/o and w/ intercept}}
+\caption{\small{Impact of interrupt interception.}}
 \label{fig:response}
 \end{minipage}
 \begin{minipage}[t]{0.33\hsize}
 \begin{center}
 \includegraphics[width=62mm]{img/tasklet_vs_interrupt}
 \end{center}
-\caption{\small{Response time of the top-half intercept and bottom-half intercept}}
+\caption{\small{Comparison of ISR and tasklet.}}
 \label{fig:bottomvstasklet}
 \end{minipage}
 \end{figure*}
 
-Figure~\ref{fig:irq_overhead} shows the results of measurements for the above setting.
-Here, Raw ISR is the ISR executed in the original routine.
-Note that ISR Intercept is the only intercept considered in our approach.
-ISR Intercept w/Func refers to interception with processing functions that identify the ISR and wake the scheduler thread.
-The results shown are average times (1000 executions); error bars indicate minimum and maximum values.
+Figure~\ref{fig:irq_overhead} shows the overhead of interrupt interception.
+``Raw ISR'' represents the original implementation of ISR.
+``ISR Intercept'' represents the modified ISR with the interrupt
+interception mechanism, while ``ISR Intercept w/Func'' includes the
+overhead of identifying the ISR and calling the scheduler thread in
+addition to ``ISR Intercept''.
+The average execution time in 1000 executions is presented with error
+bars.
 
-From the results, it is evident that overhead exists.
-Overhead for ISR Intercept was 247 ns, which is 0.8\% of the total time required for the Raw ISR process.
-Overhead for ISR Intercept w/Func was 790 ns, which is 2.6\% of the total time required for the Raw ISR process.
-Intuitively, these overheads unlikely to affect the system because are very small values;
-however, interrupts (e.g., timer interrupts) occur frequently, and cumulatively are likely to be significant.
+Comparing Raw ISR and ISR Intercept, the overhead of introducing the
+interrupt interception mechanism was $247ns$, which is only $0.8\%$ of
+Raw ISR.
+Similarly, the overhead for ISR Intercept w/Func was $790ns$, which is
+only $2.6\%$ of Raw ISR.
+This result indicates that the interrupt interception overhead is not
+significant at all for total performance.
 
-Next, we compare response times to determine the impact of the interrupt intercept.
-The response times are elapsed times from the start of interrupt processing to the end of identify the each interrupt type (e.g., timer, compute, FIFO, and GPIO).
-The response times for ISRs with and without intercepts are shown in Figure~\ref{fig:response}.
-Response times with intercepts were approximately 1.4 times longer than response times for interrupts without intercepts.
-However, we target systems that do not use the GPU runtime resource management features.
-Therefore, we should aim to fast response time of intercepted ISR, and original ISR response time is slow there is not affected much.
+We next compare response times of ISR with and without interrupt
+interception, as shown in Figure~\ref{fig:response}.
+The response time is defined by the elapsed time from the beginning of
+interrupt processing to the point where the interrupt type (e.g., timer,
+compute, FIFO, and GPIO) is identified. 
+According to the result, the impact of interrupt interception brings
+1.4x longer response times.
 
-We also evaluated response time of the ISR (top-half) and the tasklet (bottom-half) in an environment to compare our results with those of previous approaches.
-GPUSync intercepts the $tasklet\_schedule()$ if it is called by the NVIDIA driver.
-We compare the response times of a tasklet intercept using GPUSync and the ISR intercept.
-This evaluation measured response time until the responsible timing from the start of interrupt process which is $do\_IRQ$ function is called.
-Figure~\ref{fig:bottomvstasklet} shows the result of this evaluation.
-As can be seen, the tasklet interception response time is worse than the ISR time.
-This occurs because the tasklet is typically called after significant ISR processing.
+We also compared response times when interrupt interception is
+self-contained in the ISR (top-half) and when it is expanded to the
+tasklet (bottom-half).
+This comparison differentiates Linux-RTXG from GPUSync in performance,
+since GPUSync intercepts the $tasklet\_schedule()$ on top of the
+proprietary driver, while Linux-RTXG realized ISR-based interception.
+In this case, the start time of measuring the response time is set at
+the function call to $do\_IRQ$.
+Figure~\ref{fig:bottomvstasklet} shows the result of this comparison.
+As can be seen, the tasklet-based approach requires about 5x longer
+response times than the IRQ-based approach.
+This occurs because the tasklet is typically called after significant
+ISR processings.
 
-\SUBSECTION{Independent Synchronization Mechanism Overhead}
-We evaluated the overhead relative to the use of an independent synchronization mechanism.
-Such a mechanism must call $rtx\_nvrm\_notify()$ at the time of requested synchronization (e.g., after the kernel launch request) and $rtx\_nvrm\_init()$.
-In vanilla environments, Linux-RTX's APIs are not necessary.
-Therefore, overhead includes the API execution time.
-We measured overhead by measuring API execution time between each API call and return.
+\SUBSECTION{Independent Synchronization Overhead}
+We next quantify the overhead of the independent synchronization
+mechanism.
+This mechanism must call $rtx\_gpu\_notify()$ at the time of requested
+synchronization (e.g., after launching a GPU kernel).
+To use this mechanism, some initialization procesure is also required.
+In this measurement, the overhead is defined by the execution time of
+corresponding APIs.
 
 \begin{figure}[!t]
 \begin{center}
-\subfigure[Part of Initialize]{\includegraphics[width=0.23\textwidth]{img/irq_rise_init.eps}}\subfigure[Part of notify]{\includegraphics[width=0.22\textwidth]{img/irq_rise_notify.eps}}
-\caption{Interrupt raised method overhead}
+\subfigure[Overhead of initialization]{\includegraphics[width=0.23\textwidth]{img/irq_rise_init.eps}}\subfigure[Overhead of notification]{\includegraphics[width=0.22\textwidth]{img/irq_rise_notify.eps}}
+\caption{Independent synchronization overhead.}
 \label{fig:irq_rise_overhead}
 \end{center}
 \end{figure}
 
-Figure~\ref{fig:irq_rise_overhead} shows the measurement results.
-Initilize part is required to call a Linux process to allocate an indirect buffer and registers several engines such as compute and copy to the device driver.
-Notification ($rtx\_gpu\_notify()$) insert commands into a command steram to GPU devices that are called when synchronization is required, such as after a kernel launch is issued.
-Execution time have scatters that are affected by an ioctl system call.
-The average Initizalize time is approximately 4 millseconds.
-However, applications are not affected significantly because Initialize is only called once.
-Notification's NOTIFY requires approximately 3.5 microseconds and FENCE requires approximately 2 microseconds.
-Consequently, the time required by these method is not a major consideration for applications.
-However, overhead must be considered in a shot application cycle.
+Figure~\ref{fig:irq_rise_overhead} shows that the initialization
+overhead could reach 5000$us$, whereas the notification overhead is no
+more than a few microseconds.
+The initilization procedure calls a Linux process to allocate indirect
+buffers and control registers for several GPU engines.
+Albeit a significant overhead, the application program is not much
+affected by this procedure, since it is called only once at the
+beginning.
+On the other hand, the notification overhead is not a major
+consideration for the application program, though it is a little
+scattered due to an ioctl system call.
+When NOTIFY is used to set notificaiton, the overhead was $3.5us$, while
+it was reduced to $2us$ when FENCE is used.
 
 \SUBSECTION{Scheduling Overhead}\label{sec:eval:sched_overhead}
 
 \begin{figure}[!t]
 \begin{center}
 \includegraphics[width=.44\textwidth]{img/sum_task.eps}
-\caption{Scheduling overhead (Time of entire task)}
+\caption{Scheduling overhead.}
 \label{fig:fp_task_overhead}
 \end{center}
 \end{figure}
 
-We evaluated scheduling overhead using the proposed Linux-RTXG scheduler.
-We prepared three applications, i.e., vanilla, mutex, and rtx to measure overhead.
-These applications are based on a common application that is Gdev's microbenchmark, which has a GPU looping function.
+We now evaluate the scheduling overhead posed by the presented
+Linux-RTXG scheduler.
+We executed three synthetic tasks -- (i) vanilla, (ii) mutex, and (iii)
+rtx -- to measure the overhead. 
+These tasks are based on the microbenchmark program provided by the Gdev
+project, which tests a GPU loop function.
 %details
-Changes were arranged to generate multiple GPU tasks by the $fork()$ systemcall.
-Each task has 10 jobs, and each job includes GPU data transfer and GPU kernel execution.
-The rtx application was scheduled by rtx.
-The mutex application was limited to a single kernel issue by exclusion control using mutex similar to rtx.
-The vanilla application was not changed.
-The CPU scheduling policy used in this evaluation was the simple fixed-priority scheduling of the proposed Linux-RTXG, which is similar to Linux's $SCHED\_FIFO$. Note that the difference between these policies is the presence or absence of job management.
-The GPU scheduling policy is the fixed-priority scheduling with resource reservation, i.e., BAND scheduling policy.
-Here, synchronization is used NOTIFY of the independent synchronization mechanism.
+We modified this program to generate multiple GPU tasks by the $fork()$
+system call.
+Each task releases a job ten times periodically, each of which includes
+the data transfer between the CPU and the GPU, followed by GPU kernel
+execution.
+The rtx task was scheduled by Linux-RTXG.
+The mutex task was limited to a single GPU kernel by using explicit
+mutual exclusion control similar to the rtx task.
+The vanilla task was not changed from the original microbenchmark
+program.
+The CPU scheduling policy was set to $SCHED\_FIFO$, while the GPU
+scheduling policy is also based on fixed priorities with GPU resource
+reservation, called the BAND scheduling policy~\cite{kato:gdev}.
+The independent synchronization mechanism is employed with NOTIFY.
 
-We measured the average time in 100 times GPU task execution (1000 jobs).
-The result shows in Figure~\ref{fig:fp_task_overhead}.
-Overhead increases in proportion as the number of tasks increases because task scheduling processing times is increased.
-Max overhead is 10\% at the eight tasks based on "vanilla" time.
+We measured the average time in 100 times of GPU task execution (1000 jobs).
+The result is provided in Figure~\ref{fig:fp_task_overhead}.
+The scheduling overhead increases in proportion as the number of tasks,
+because the time consumed in queueing GPU tasks is increased. 
+The maximum overhead correponds to $10\%$ of the vanilla task at eight
+tasks.
 
-\SUBSECTION{Performance of QoS management}
+\SUBSECTION{QoS Performance}
 Experiments were also performed to evaluate QoS management performance.
 In this evaluation, we measured the utilization of each tasks in several environments,
 which indicates whether performance is affected by kernel modification.

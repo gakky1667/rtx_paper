@@ -1,7 +1,7 @@
 \SECTION{Design and Implementation}\label{sec:design_imple}
 In this section, we present the design and implementation of Linux-RTXG,
-which provides a framework of coordinated CPU and GPU resource
-management with LKMs.
+which provides a framework of  CPU and GPU coordinated scheduling based
+on the LKM.
 We describe our approach to GPU scheduling and its integration to CPU
 scheduling.
 Due to a space constraint, the detail of LKM-based CPU scheduling is
@@ -291,17 +291,17 @@ Unfortunately, synchronization does not work with the SCHED\_DEADLINE
 scheduling policy for GPU tasks.
 Let us describe two problems.
 The first problem is attributed to the implementation of
-$sched\_yield$.
+$sched\_yield()$.
 Note that $sched\_yield()$ uses $yield()$ in the kernel space.
 Releasing the CPU by $sched\_yield()$ while waiting for I/O in polling,
 we can utilize CPU time more efficiently.
-However, $sched\_yield$ will set the remaining execution time of the
+However, $sched\_yield()$ will set the remaining execution time of the
 polling task to zero by treating it as a parameter of $SCHED\_DEADLINE$.
 As a result, the task cannot execute until the runtime is replenished in
 the next period.
 This means that $sched\_yield()$ should not be called while polling in
 $SCHED\_DEADLINE$.
-However, $sched yield()$ is frequently used by device drivers and
+However, $sched\_yield()$ is frequently used by device drivers and
 libraries.
 Real-time performance of GPU computing, even in CUDA, could be affected
 by this problem.
