@@ -1,6 +1,4 @@
-\SECTION{Discussion}\label{sec:relatedwork}
-Here, we discuss the comparing between proposed Linux-RTXG framework and previous work.
-
+\SECTION{Related Work}\label{sec:relatedwork}
 \begin{table*}[t]
 \begin{center}
 \caption{Linux-RTXG vs Prior Work}
@@ -25,29 +23,40 @@ Here, we discuss the comparing between proposed Linux-RTXG framework and previou
 \end{center}
 \end{table*}
 
-RGEM and GPU-Sparc~\cite{sparc} have GPU resource management without kernel and device driver modification.
-However, the synchronization mechanisms of these methods depends on proprietary-software.
-TimeGraph, Gdev, Ptask, and GPUSync realize independent synchronization mechanisms that do modify the kernel and device drivers.
-To the best of our knowledge, the proposed Linux-RTXG is the only real-time GPU framework that uses a synchronization mechanisms
-that are independent of runtime and do not modifiy the kernel and device drivers.
+RGEM~\cite{kato:rgem} and GPU-Sparc~\cite{sparc} provide real-time GPU
+resource management without the OS kernel and device driver
+modifications.
+However, their synchronization mechanism depends on proprietary
+software.
+TimeGraph~\cite{kato:timegraph}, Gdev~\cite{kato:gdev},
+Ptask~\cite{ptask}, and GPUSync~\cite{elliott:gpusync13} realize
+independent synchronization mechanisms but require modifying the OS
+kernel and device drivers.
+To the best of our knowledge, Linux-RTXG is the only solution that can
+provide real-time GPU resource management with a synchronization
+mechanism, without modifying the OS kernel and device drivers.
 
-Table~\ref{tab:comp:prior} shows a comparison of the proposed Linux-RTXG and previous methods.
-GPU sync supports the fixed-priority and EDF CPU scheduling policies.
-GPUSparc employs the $SCHED\_FIFO$ Linux scheduling policies.
-Note that Linux-RTXG demonstrates all features shown in Table~\ref{tab:comp:prior}.
-In particular, Linux-RTXG is both GPU runtime independendt and OS independent.
+Table~\ref{tab:comp:prior} shows a comparison of Linux-RTXG and previous
+work.
+GPUSync supports the fixed-priority and the EDF scheduling policies for
+CPU tasks, while GPUSparc employs the $SCHED\_FIFO$ scheduling policy.
+Note that Linux-RTXG has demonstrated all features shown in
+Table~\ref{tab:comp:prior}.
+In particular, the resource management modules of Linux-RTXG are all
+loadable and are freed from the detailed implementation of runtime
+libraries, device drivers, and the OS kernel.
 
-More in-depth resource management would require detailed information about the execution mechanisms in black--box GPU stacks.
-Menychtas et al. presented enabling to GPU using OS reserach by inferring interactions in a black--box GPU stack~\cite{menychtas2013enabling}.
-We have presented information about GPU microcontrollers~\cite{fujii:apsys2013} and an open-source GPGPU runtime~\cite{kato:gdev}.
-In addition, GPUSync verifies proprietary runtime chanism infomation.
-The Nouveau project provide an open-source GPU driver~\cite{nouveau}.
+More in-depth resource management would require detailed information
+about the execution mechanisms in black-box GPU stacks.
+Menychtas et al. presented enabling GPU resource management by inferring
+interactions in the black-box GPU stack~\cite{menychtas2013enabling}. 
+GPU resource management using GPU
+microcontrollers~\cite{fujii:apsys2013} and in-kernel runtime
+functions~\cite{kato:gdev} has also been demonstrated to manage the
+GPU.
+For these pieces of open-source work, the Nouveau project has been
+used as a baseline driver~\cite{nouveau}.
 
-The more-depth resource management would require the detail executing mechanisms in the black-box GPU stack.
-Menychtas et al. present enabling GPU using OS research by inferring interaction in the black-box GPU stack~\cite{menychtas2013enabling}.
-We present information of GPU microcontrollers~\cite{fujii:apsys2013} and an open-source GPGPU runtime~\cite{kato:gdev}.
-GPUSync presents details verification information on the proprietary runtime mechanisms.
-Nouveau project provides an open-source GPU driver~\cite{nouveau}.
 %These works are very important, and we will also views of the further development of resource management their researches.
 
 %In order to more growth the GPU as a powerful device,

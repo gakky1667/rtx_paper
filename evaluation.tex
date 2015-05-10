@@ -171,26 +171,28 @@ because the time consumed in queueing GPU tasks is increased.
 The maximum overhead correponds to $10\%$ of the vanilla task at eight
 tasks.
 
-\SUBSECTION{QoS Performance}
-Experiments were also performed to evaluate QoS management performance.
-In this evaluation, we measured the utilization of each tasks in several environments,
-which indicates whether performance is affected by kernel modification.
+\SUBSECTION{Prioritization and QoS Performance}
+Experiments were also performed to evaluate prioritization and QoS
+performance for GPU applications provided by Linux-RTXG.
+We evaluated these pieces of performance of Linux-RTXG on both the
+proprietary driver (NVIDIA) and the open-source driver (Nouveau), as
+compared to the built-in kernel approach (Gdev).
 
 \begin{figure*}[!t]
 \begin{minipage}[t]{0.33\hsize}
 \begin{center}
-\subfigure[{\small FIFO with NVIDIA}]{\includegraphics[width=62mm]{img/fifo_rtx_nvidia}} 
+\subfigure[{\small FIFO on NVIDIA}]{\includegraphics[width=62mm]{img/fifo_rtx_nvidia}} 
 \label{fig:fifo_rtx_nvidia} \\
-\subfigure[{\small BAND with NVIDIA}]{\includegraphics[width=62mm]{img/band_rtx_nvidia}}
+\subfigure[{\small BAND on NVIDIA}]{\includegraphics[width=62mm]{img/band_rtx_nvidia}}
 \label{fig:band_rtx_nvidia}
 \label{fig:rtx_nvidia}
 \end{center}
 \end{minipage}
 \begin{minipage}[t]{0.33\hsize}
 \begin{center}
-\subfigure[{\small FIFO with Nouveau}]{\includegraphics[width=62mm]{img/fifo_rtx}}
+\subfigure[{\small FIFO on Nouveau}]{\includegraphics[width=62mm]{img/fifo_rtx}}
 \label{fig:fifo_rtx} \\
-\subfigure[{\small BAND with Nouveau}]{\includegraphics[width=62mm]{img/band_rtx}}
+\subfigure[{\small BAND on Nouveau}]{\includegraphics[width=62mm]{img/band_rtx}}
 \label{fig:band_rtx}
 \label{fig:rtx_nouveau}
 \end{center}
@@ -204,7 +206,9 @@ which indicates whether performance is affected by kernel modification.
 \label{fig:gdev_usage}
 \end{center}
 \end{minipage}
-\caption{Utilization of two tasks with each scheduler. Each task had different workloads and different resource allocations (VGPU0 = 40\%, VGPU1 = 60\%).}
+\caption{GPU utilization of two tasks. Each task executes different
+types of GPU-intensive workloads with specified GPU reserves (VGPU0 =
+ 40\%, VGPU1 = 60\%).}
 \label{fig:utilize}
 \end{figure*}
 
@@ -216,101 +220,126 @@ which indicates whether performance is affected by kernel modification.
 \end{center}
 \end{figure}
 
-QoS performance use an indication of whether the task of the resource is guaranteed.
-We evaluate task isolation performances with Linux-RTXG's GPU scheduler using the NVIDIA GPU driver and the Nouveau GPU driver to confirm the guaranteed resources.
-First, we measured the utilization when running two GPU tasks.
-Each GPU tasks had a different workload and a different GPU resource.
-One GPU task was allocated VGPU0, and given the 40\% GPU resource.
-This task has about 1.2 times the workload of other tasks.
-The other GPU task was allocated VGPU1 and given the 60\% GPU resource.
-VGPU1 task was scheduled to start approximately 5 safter the VGPU0 task.
+QoS management indicates if GPU time of the corresponding task is
+guaranteed.
+We evaluated QoS performance by observing how well the tasks are
+isolated.
+First, we measured GPU utilization when running two GPU tasks.
+Each GPU task has a unique workload with a different size of GPU
+reserve.
+One task was allocated to VGPU0, and given $40\%$ of GPU reserve.
+This task with a high priority has $1.2$ times higher workload than the
+other, which was allocated to VGPU1 with $60\%$ of GPU reserve.
+The VGPU1 task was scheduled to start approximately $5s$ after the VGPU0
+task.
 
-Figure~\ref{fig:utilize}(a) shows result of FIFO scheduling policies on the NVIDIA Driver,
-and the BAND scheduling policies is shown in Figure~\ref{fig:utilize}(b).
+Figure~\ref{fig:utilize} (a) shows the result obtained under the FIFO
+scheduling policy on the NVIDIA Driver, while that under the BAND
+scheduling policy is shown in Figure~\ref{fig:utilize}(b).
+The corresponding results on the Nouveau GPU driver are shown in
+Figures~\ref{fig:utilize} (c) and (d).
 
-The Nouveau GPU driver results are shown in Figures~\ref{fig:utilize}(c) and (d).
-The FIFO scheduling policies shown in Figure~\ref{fig:utilize}(c),
-and the BAND scheduling policies shown in Figure~\ref{fig:utilize}(d).
+Since VGPU0 has higher workload than VGPU1, the GPU tasks are performed
+in accordance with their workload as shown in Figures~\ref{fig:utilize}
+(a) and (c).
+On the other hand, the GPU resource reservation mechanism provided by
+Linux-RTXG can successfully perform the GPU tasks in accordance with
+their reserves as indicated in Figures~\ref{fig:utilize} (b) and (d).
+It is important to remind that these prioritization and resource
+reservation for GPU applications can be achieved without modifying the
+OS kernel and device drivers in Linux-RTXG.
 
-The results shown in Figure~\ref{fig:utilize}(a) and (c) indicate that the GPU tasks are performed in accordance with the workload by fair scheduling.
-The results shown in Figure~\ref{fig:utilize}(b) and \ref{fig:utilize}(d) indicate that the GPU tasks are performed in accordance with the utilization by resource reservation mechanisms.
+The maximum error of the VGPU1 task was approximately $3\%$ under the
+BAND scheduling policy on the NVIDIA driver, while that of the VGPU0
+task was approximately $5\%$.
+Using the Nouveau driver, those numbers were $2\%$ and $6\%$,
+respectively.
+The large spikes occurred due to GPU kernel overruns.
 
-The VGPU1 task's maximum error was approximately 3\% for the initial BAND scheduling policies' resource management using the NVIDIA GPU driver.
-The VGPU0 task's maximum error was approximately 5\%.
-The VGPU1 task's maximum error was approximately 2\% under the initial BAND scheduling policies' resource management using the Nouveau GPU driver.
-The VGPU0 task's maximum error was approximately 2\%.
-Large spikes occurred due to GPU kernel overrun.
-If the GPU scheduler need to large spike is reduced, the GPU scheduler is needed for runtime approaches such as making preemptive GPU kernel.
+In addition to our loadable kernel approach, we compared performance
+with the prior work, Gdev.
+The Gdev scheduling results are shown in Figures~\ref{fig:utilize} (e)
+and (f).
+Almost no performance loss is imposed on Linux-RTXG as compared to
+Gdev.
+In detail, using the Gdev scheduler, the maximum error of the VGPU1 task
+was approximately $3\%$ under the BAND scheduling policy, while that of
+the VGPU0 task was $5\%$.
+There is also a large variation on a time basis when using the Gdev
+scheduler.
+This is because the runtime functions of Gdev must be called in the
+kernel space, where other system calls can easily block their operation.
 
-In addition, we compare performance with prior work that is Gdev.
-The Gdev scheduling results are shown in Figures~\ref{fig:utilize}(e) and (f).
-Linux-RTXG is seen almost no performance degradation as compared with Gdev.
-In details, the VGPU1 task's maximum error was approximately 3\% for the initial BAND scheduling policies' resource management using the Gdev scheduler.
-The VGPU0 task's maximum error was approximately 5\%.
-We guess that there is a large variation caused by runtime specification of the Gdev function must through the kernel module using Gdev scheduler.
-
-We then measured utilization running four GPU tasks.
-Each GPU tasks had equal workload and equal GPU resource allocation.
-In addition, each GPU task was allocated to each VGPU.
-Results for BAND scheduling policies are shown in Figure~\ref{fig:band_rtx_fair}.
-A maximum error of these VGPUs was appropriately 9\%, it values are occurred because of the timing of budget replenishment and a synchronization latency.  
-
-Therefore, the results show that the synchronization mechanism of the proposed Linux-RTXG can schedule tasks without sacrificing performance.
+We next measured GPU utilization running four GPU tasks.
+Each GPU task has the same workload and the same GPU reserve on a
+different VGPU.
+Figure~\ref{fig:band_rtx_fair} shows the isolation result of this
+scenario.
+The maximum error of VGPUs was at most appropriately 9\%, which is
+incurred due to the timing of budget replenishment and synchronization
+latency.
+In fact, this result almost matches the previous work from
+Gdev~\cite{kato:gdev} using the built-in kernel approach.
+As a result, the independent synchronization mechanism employed in
+Linux-RTXG does not sacrifice scheduling performance.
 
 \begin{figure*}[!t]
 \begin{minipage}[t]{0.33\hsize}
 \begin{center}
-\subfigure[{\small NULL}]{\includegraphics[width=62mm]{img/real_null_null_withoutload}}
+\subfigure[{\small NULL.}]{\includegraphics[width=62mm]{img/real_null_null_withoutload}}
 \label{fig:real-null_null}
-\subfigure[{\small FP}]{\includegraphics[width=62mm]{img/real_prio_null_withoutload}}
+\subfigure[{\small FP.}]{\includegraphics[width=62mm]{img/real_prio_null_withoutload}}
 \label{fig:real-prio_null}
 \end{center}
 \end{minipage}
 \begin{minipage}[t]{0.33\hsize}
 \begin{center}
-\subfigure[{\small BAND}]{\includegraphics[width=62mm]{img/real_prio_band_withoutload}}
+\subfigure[{\small BAND.}]{\includegraphics[width=62mm]{img/real_prio_band_withoutload}}
 \label{fig:real-prio_band}
-\subfigure[{\small BAND with high CPU load}]{\includegraphics[width=62mm]{img/real_prio_band_withhighload}}
+\subfigure[{\small BAND with high CPU load.}]{\includegraphics[width=62mm]{img/real_prio_band_withhighload}}
 \label{fig:real-prio_band-hiload}
 \end{center}
 \end{minipage}
 \begin{minipage}[t]{0.33\hsize}
 \begin{center}
-\subfigure[{\small NULL with high CPU load}]{\includegraphics[width=62mm]{img/real_null_null_withhiload}}
+\subfigure[{\small NULL with high CPU load.}]{\includegraphics[width=62mm]{img/real_null_null_withhiload}}
 \label{fig:real-null_null-hiload}
-\subfigure[{\small G-RM and BAND with high CPU load}]{\includegraphics[width=62mm]{img/real_prio_band_withhighload_cpu}}
+\subfigure[{\small FP and BAND with high CPU load.}]{\includegraphics[width=62mm]{img/real_prio_band_withhighload_cpu}}
 \label{fig:real-prio_band_cpu-hiload}
 \end{center}
 \end{minipage}
-\caption{Elapse times of object detection applications on various situation.}
+\caption{Execution time of the GPU-accelerated object detection program.}
 \label{fig:elapse_time_all}
 \end{figure*}
 
-\SUBSECTION{Real-world Application}
-Here, we demonstrate scheduling performance using real-world oriented application.
-We employed real-world oriented application which is object detection application using the HOG features.
-We run four tasks are assumed to recognize the four directions that are forward, backward, right, and left.
+\SUBSECTION{Real-World Application}
+We finally demonstrate the performance of Linux-RTXG on a real-world
+application.
+We tested with the GPU-accelerated object detection
+program~\cite{hirabayashi:cpsna2013} based on the well-known DPM and HOG
+algorithms.
+We assume a monitoring system covering the four different directions to
+East, West, South, and North.
 
-Algorithms and implementation of the applications are described in the previous work~\cite{hirabayashi:cpsna2013}.
+We measure the execution time per frame in six different setups, as
+shown in Figure~\ref{fig:elapse_time_all}, where no scheduling is
+applied (a); fixed priorities are applied with GPU scheduling (b); GPU
+resource reservation is further applied with the BAND scheduling policy
+(c); and high CPU load is contending (d, e, f) with the $SCHED\_OTHER$
+hackbench task.
+The GPU tasks are allocated with $60\%$, $20\%$, $10\%$, and $10\%$ of
+GPU reserves, respectively.
 
-We measure the elapse time of processing one frame image in six situations.
-Each situation results are shown in Figure~\ref{fig:elapse_time_all}.
-Each GPU tasks are allocated difference resources are given 60\%, 20\%, 10\%, and 10\% respectively.
-Figure~\ref{fig:elapse_time_all}(a) is shown result of executing four tasks without scheduling.
-All tasks are performed equally on its situation.
-Figure~\ref{fig:elapse_time_all}(b) is shown result on executing four task runnning with a fixed-priority GPU kernel scheduling (FP).
-If a scheduler only uses fixed-priority GPU kernel scheduling, tasks are almost the same as the Figure~\ref{fig:elapse_time_all}(a).
-Figure~\ref{fig:elapse_time_all}(c) is addition of the BAND VGPU scheduling from the Figure~\ref{fig:elapse_time_all}(b) situation.
-In this case, the tasks have been adapted the priority of each tasks for which can suppress the GPU kernel execution.
-Figures~\ref{fig:elapse_time_all}(d) and (e) are shown result of the high CPU load environment.
-Note that high CPU load is generated by hackbench tasks as known as an UNIX's standard stress test tool.
-High CPU load tasks policy is Linux's $SCHED\_OTHER$.
-If an OS has some high-CPU load tasks, GPU tasks do not work well using only GPU scheduling
-because GPU tasks can not acquire the CPU to issue an API due to other tasks.
-Such a high-CPU load environment to occur well in autonomouse driving car systems because the systems require a lot of applications (e.g., SLAM, Navigation, and Car control) despite limit the resources.
-Linux-RTXG can provide real-time CPU scheduling and GPU scheduling.
-Therefore, Linux-RTXG can solves problem due to other CPU tasks.
-The result show in Figure~\ref{fig:elapse_time_all}(f).
-As can be seen, applications are not affected high-CPU load task by fixed-priority CPU scheduling (G-RM:Glocbal Rate-monotonic).
-These experimental results indicate that Linux-RTX making the adequate performance for real-world oriented applications.
+What we can obtain from this experiment is that if a high-CPU load task
+exists, GPU tasks could be woefully affected in performance, since GPU
+tasks can not acquire CPU time needed to execute the GPU API.
+Linux-RTXG can provide both CPU scheduling and GPU scheduling with
+resource reservation capabilities to solve this problem, as shown in
+Figure~\ref{fig:elapse_time_all} (f).
+As can be seen, the target programs are not affected by the high CPU
+load task thanks to the $SCHED\_FIFO$ scheduling, while the GPU
+execution can also be maintained at the desired frame rate thanks to the
+GPU scheduling and resource reservation capabilities.
+These results demonstrate that Linux-RTXG can supply prioritization and
+QoS performance to real-world applications.
 

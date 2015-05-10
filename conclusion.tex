@@ -1,11 +1,19 @@
 \SECTION{Conclusion}\label{sec:conclusion}
-This paper has presented Linux-RTXG, a Linux-based real-time extension for CPU/GPU resource coordination.
-We have focused on a system that accomplishes GPU resource management without modifying the kernel.
-Linux-RTXG include CPU task scheduler, GPU task scheduler, and GPU resource reservation mechanisms.
-The CPU task scheduling is based on RESCH.
-The GPU taskscheduling provides prioritized scheduling using our synchronization mechanisms.
-By intercepting interrupots in the top-half ISRs, the proposed synchronization mechanisms do not need to modify the kernel or device drivers.
-We indicated a unit of task overhead met within about 10\% at the eighth tasks, and within about 4\% at the four tasks.
-In addition, the results of our experimental evaluations Linux-RTXG demonstrate that effective QoS management performance can be achieved by the proposed method without kernel modification.
-The proposed scheduling framework has realized real-time GPU computing.
-In future, we will address GPU function such as preemption, and peer-to-peer migration in order to handle more complex real-time problems.
+This paper has presented Linux-RTXG, a Linux extention with the
+LKM-based real-time GPU resource management module.
+Linux-RTXG accomplished GPU resource management without modifying the OS
+kernel and device drivers in addition to CPU resource management from
+the previsou work~\cite{kato2009loadable, asberg2012exsched}.
+We also developed new schemes for GPU resource management.
+By intercepting the interrupts from the GPU in the top-half ISRs, the
+developed synchronization mechanism can wait for completion of specific
+GPU kernels, without the need of modifying the OS kernel and device
+drivers.
+The experiments indicated a unit of task overhead met within about
+$10\%$ at eight tasks, while within about $4\%$ at four tasks. 
+Furthermore, the prioritization and QoS performance of Linux-RTXG were
+demonstrated with a real-world object detection application, where GPU
+programs can be protected from high CPU load, while successfully
+maintaining the desired frame rate on the GPU.
+To the best of our knowledge, this is the first complete work that
+achieved GPU resource management with loadable kernel modules.
