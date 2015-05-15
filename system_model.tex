@@ -6,7 +6,7 @@ In addition to that problem, factors that have prevented GPU resource management
 As for the model, the system is assumed to be composed of multiple GPUs and multi-core CPUs.
 
 \SUBSECTION{GPU Programming Model}
-General-purpose computing on GPUs (GPGPUs) is supported by special programming languages such as CUDA and OpenCL.
+General-purpose computing on GPUs (GPGPU) is supported by special programming languages such as CUDA and OpenCL.
 In this work, it is assumed that GPU application programs are written in CUDA; however, the concept of GPU resource management studied in this work is not limited by programming languages.
 Conceptually, the contribution of this work is applicable to OpenCL and other languages.
 A GPU task is defined as a process running on the CPU that launches a GPU kernel to the GPU, whose cyclic execution unit is referred to as a ``GPU job.''

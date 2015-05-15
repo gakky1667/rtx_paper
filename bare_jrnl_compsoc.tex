@@ -407,17 +407,18 @@
 \author{
 \IEEEauthorblockN{
 Yusuke Fujii\IEEEauthorrefmark{1}, 
-Takuya Azumi\IEEEauthorrefmark{3},
+Takuya Azumi\IEEEauthorrefmark{2},
 Nobuhiko Nishio\IEEEauthorrefmark{1}, and
-Shinpei Kato\IEEEauthorrefmark{2}
+Shinpei Kato\IEEEauthorrefmark{3}
 }
 \\
 \IEEEauthorblockA{\IEEEauthorrefmark{1}
 Graduate School of Information Science and Engineering, Ritsumeikan University}
 \IEEEauthorblockA{\IEEEauthorrefmark{2}
-Graduate School of Information Science, Nagoya University}
-\IEEEauthorblockA{\IEEEauthorrefmark{3}
 Graduate School of Engineering Science, Osaka University}
+\IEEEauthorblockA{\IEEEauthorrefmark{3}
+Graduate School of Information Science, Nagoya University}
+
 }
 
 % The paper headers
@@ -506,9 +507,11 @@ Operating Systems, Linux
 % creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
 
-\def\SECTION{\section}
-\def\SUBSECTION{\subsection}
-
+%\def\SECTION{\section}
+\def\SECTION{\vspace{-4mm}\section}
+%\def\SUBSECTION{\subsection}
+\def\SUBSECTION{\vspace{-2mm}\subsection}
+\vspace{4mm}
 \input{introduction.tex}
 \input{system_model.tex}
 \input{design_imple.tex}
@@ -565,6 +568,7 @@ Operating Systems, Linux
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
 
+\vspace{-2mm}
 \bibliographystyle{IEEEtranBST/IEEEtran}
 \bibliography{IEEEtranBST/IEEEabrv,bib/gpu_ap,bib/gpu_rm,bib/gpu,bib/os,bib/realtime}
 

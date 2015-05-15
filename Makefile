@@ -14,5 +14,8 @@ all:
 bb:
 	extractbb images/*.pdf
 
+pdf:
+	dvipdfmx $(TARGET).dvi
+
 clean:
 	rm -fr *~ *.aux *.ps *.dvi *.log *.bbl *.blg

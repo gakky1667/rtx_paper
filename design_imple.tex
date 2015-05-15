@@ -13,6 +13,7 @@ Due to a space constraint, the detail of LKM-based CPU scheduling is referred to
 \includegraphics[width=0.35\textwidth]{img/overview.pdf}
 \fi
 \caption{Architectural overview of Linux-RTXG.}
+\vspace{-4mm}
 \label{fig:overview}
 \end{center}
 \end{figure}
@@ -23,7 +24,7 @@ First, the Linux-RTXG core contains a CPU scheduler and a GPU scheduler with a r
 The implementation of the Linux-RTXG core is provided in the kernel space by an LKM.
 It can thus use exported Linux kernel functions, such as $schedule()$, $mod\_timer()$, $wake\_up\_process()$, and $set\_cpus\_allowed\_ptr()$.
 These functions can be called from the user-space interface by using the input/output control (ioctl) system call, which is a standard system call for device drivers.
-Secondly, the Linux-RTXG library contains an independent synchronization method for coordinated management of CPU and GPU resources.
+Secondly, the Linux-RTXG library provides an independent synchronization method for coordinated management of CPU and GPU resources.
 The independent synchronization method can be used on top of a proprietary driver~\cite{nvidia:cuda_zone} as well as an open-source driver~\cite{nouveau}.
 Note that this method is required to manage interrupts for GPU scheduling without modifying any codes of the OS kernel and device drivers.
 
@@ -35,7 +36,7 @@ Note that this method is required to manage interrupts for GPU scheduling withou
 \ifthesis
 \begin{tabular}{|l|p{25em}|} \hline
 \else
-\begin{tabular}{|l|p{50em}|} \hline
+\begin{tabular}{|l|p{53em}|} \hline
 \fi
 rtx\_gpu\_open() & Registers itself to Linux-RTXG and creates a scheduling entity. It must be called first. \\ \hline
 rtx\_gpu\_device\_advice() & Obtains recommendations for which GPU devices to use. \\ \hline
@@ -45,6 +46,7 @@ rtx\_gpu\_notify() & Sends a NOTIFY/FENCE command to the GPU. Either FENCE or NO
 rtx\_gpu\_close() & Releases the scheduling entity.\\ \hline
 \end{tabular}
 \end{center}
+\vspace{-4mm}
 \end{table*}
 
 As well as being mostly based on the interrupt-driven method for GPU synchronization, Linux-RTXG is partly based on the API-driven method.
@@ -82,6 +84,7 @@ GPU tasks are provided with function calls to Linux-RTXG at strategic points.
 \hline\hline
 \end{tabular}
 \caption{Sample code with the Linux-RTXG APIs.}
+\vspace{-2mm}
 \label{fig:sample}
 \end{center}
 \end{figure}
@@ -93,7 +96,8 @@ GPU tasks are provided with function calls to Linux-RTXG at strategic points.
  \else
  \includegraphics[width=0.5\textwidth]{img/gsched_controlflow.pdf}
  \fi
-\caption{Execution flow of the GPU task.}
+\caption{Execution flow of a GPU task.}
+\vspace{-4mm}
 \label{fig:controlflow}
 \end{center}
 \end{figure}
@@ -153,6 +157,7 @@ At the end of $on\_completion$, the selected GPU task is woken up.
 \hline
 \end{tabular}
 \caption{High-level pseudo-code of the Linux-RTXG scheduler.}
+\vspace{-4mm}
 \label{fig:scheduling}
 \end{center}
 \end{figure}
@@ -207,7 +212,7 @@ The mainline Linux scheduler implements the following three real-time scheduling
 $SCHED\_DEADLINE$ is the implementation of CBS and EDF, which is the latest real-time scheduler for Linux introduced in version 3.
 14.0, while $SCHED\_FIFO$ and $SCHED\_RR$ represent fixed-priority scheduling.
 Unfortunately, synchronization does not work with the SCHED\_DEADLINE scheduling policy for GPU tasks.
-Two problems concerning [something?] must therefore be solved.
+Two problems concerning implementation must therefore be solved.
 The first problem is attributed to the implementation of $sched\_yield()$.
 Note that $sched\_yield()$ uses $yield()$ in the kernel space.
 Releasing the CPU by $sched\_yield()$ while waiting for I/O in polling makes it possible to utilize CPU time more efficiently.
