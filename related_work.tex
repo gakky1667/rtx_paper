@@ -23,65 +23,17 @@
 \end{center}
 \end{table*}
 
-RGEM~\cite{kato:rgem} and GPU-Sparc~\cite{sparc} provide real-time GPU
-resource management without the OS kernel and device driver
-modifications.
-However, their synchronization mechanism depends on proprietary
-software.
-TimeGraph~\cite{kato:timegraph}, Gdev~\cite{kato:gdev},
-Ptask~\cite{ptask}, and GPUSync~\cite{elliott:gpusync13} realize
-independent synchronization mechanisms but require modifying the OS
-kernel and device drivers.
-To the best of our knowledge, Linux-RTXG is the only solution that can
-provide real-time GPU resource management with a synchronization
-mechanism, without modifying the OS kernel and device drivers.
+RGEM~\cite{kato:rgem} and GPU-Sparc~\cite{sparc} provide real-time GPU resource management without the OS kernel and device driver modifications.
+However, their synchronization mechanism depends on proprietary software.
+TimeGraph~\cite{kato:timegraph}, Gdev~\cite{kato:gdev}, Ptask~\cite{ptask}, and GPUSync~\cite{elliott:gpusync13} realize independent synchronization mechanisms but require modifying the OS kernel and device drivers.
+To the best of our knowledge, Linux-RTXG is the only solution that can provide real-time GPU resource management with a synchronization mechanism, without modifying the OS kernel and device drivers.
 
-Table~\ref{tab:comp:prior} shows a comparison of Linux-RTXG and previous
-work.
-GPUSync supports the fixed-priority and the EDF scheduling policies for
-CPU tasks, while GPUSparc employs the $SCHED\_FIFO$ scheduling policy.
-Note that Linux-RTXG has demonstrated all features shown in
-Table~\ref{tab:comp:prior}.
-In particular, the resource management modules of Linux-RTXG are all
-loadable and are freed from the detailed implementation of runtime
-libraries, device drivers, and the OS kernel.
+Table~\ref{tab:comp:prior} shows a comparison of Linux-RTXG and previous work.
+GPUSync supports the fixed-priority and the EDF scheduling policies for CPU tasks, while GPUSparc employs the $SCHED\_FIFO$ scheduling policy.
+Note that Linux-RTXG has demonstrated all features shown in Table~\ref{tab:comp:prior}.
+In particular, the resource management modules of Linux-RTXG are all loadable and are freed from the detailed implementation of runtime libraries, device drivers, and the OS kernel.
 
-More in-depth resource management would require detailed information
-about the execution mechanisms in black-box GPU stacks.
-Menychtas et al. presented enabling GPU resource management by inferring
-interactions in the black-box GPU stack~\cite{menychtas2013enabling}. 
-GPU resource management using GPU
-microcontrollers~\cite{fujii:apsys2013} and in-kernel runtime
-functions~\cite{kato:gdev} has also been demonstrated to manage the
-GPU.
-For these pieces of open-source work, the Nouveau project has been
-used as a baseline driver~\cite{nouveau}.
-
-%These works are very important, and we will also views of the further development of resource management their researches.
-
-%In order to more growth the GPU as a powerful device,
-%The challenges are efficiency compler, efficiency runtime, efficiency system such as treatment PCI.
-
-%我々はこれまでいくつかのGPUの資源管理に関する研究~\cite{kato:timegraph,kato:rtas2011,kato:rgem,kato:gdev}を行ってきた。
-%TimeGraphはGPUに送信されるコマンドをスケジューリングすることでCUDAにかぎらず、OpenGLなど、
-%全てのGPUを利用に関する資源管理を行っている。
-%しかしながらGPUのコマンドは処理の実行だけでなく、データ転送、割込み処理登録などの処理時にも送信されており、
-%本当にスケジューリングするべき単位でのスケジューリングには向いていないことがわかっている。
-%そのため、RGEMはGPGPUに特化し、GPUカーネル実行単位でのスケジューリングを目指し、固定優先度でのスケジューリングを実現してる。
-%加えて、データ転送のセグメント分けによってノンプリエンプティブな特性にもたらされるデメリットを最小限にし、
-%レスポンスタイムの向上を目指している。
-%GdevはRGEMの発展形であり、仮想GPUとResource ReservationによるQoS制御や、OS空間でのCUDA実行などを実現している。
-%加えてデータ転送とカーネル実行をオーバラップさせることで実行時間自体の縮小を実現している。
-%
-%PTask~\cite{ptask} is an OS abstraction for GPU applications that optimizes data transfers and GPU scheduler.
-%
-%Elliott et al. present GPUSync~\cite{elliott2013gpusync,elliott:explor14}.
-%GPUSyncではホストからGPUへのデータ転送開始から、GPUでの処理、GPUからホストへのデータ転送までをクリティカルセクションと設定し、
-%runtimeへのアクセスはクリティカルセクションを区切りとして単一のアクセスとなるように調停を行っている。
-%これによってクローズドソースなランタイムを利用しつつ、自身のGPU資源管理を実現可能としている。
-%GPUSyncはアクセス調停の手法としてk-exclusion lockの拡張を利用している。
-%加えて各GPUごとにResource ReservationによるQoS担保を行っており、各GPU間のP2P migrationも実現しており、MultipleGPUへの自動割り当ても行っている。
-
-%Han et al. show GPU-SPARC~\cite{sparc}.
-%GPU-Sparc support to automatically split and run the GPU kernel concurrently over multi-GPU, and then they supported priority queue based scheduling.
-
+More in-depth resource management would require detailed information about the execution mechanisms in black-box GPU stacks.
+Menychtas et al. presented enabling GPU resource management by inferring interactions in the black-box GPU stack~\cite{menychtas2013enabling}. 
+GPU resource management using GPU microcontrollers~\cite{fujii:apsys2013} and in-kernel runtime functions~\cite{kato:gdev} has also been demonstrated to manage the GPU.
+For these pieces of open-source work, the Nouveau project has been used as a baseline driver~\cite{nouveau}.

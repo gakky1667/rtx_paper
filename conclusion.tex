@@ -1,19 +1,8 @@
-\SECTION{Conclusion}\label{sec:conclusion}
-This paper has presented Linux-RTXG, a Linux extention with the
-LKM-based real-time GPU resource management module.
-Linux-RTXG accomplished GPU resource management without modifying the OS
-kernel and device drivers in addition to CPU resource management from
-the previsou work~\cite{kato2009loadable, asberg2012exsched}.
-We also developed new schemes for GPU resource management.
-By intercepting the interrupts from the GPU in the top-half ISRs, the
-developed synchronization mechanism can wait for completion of specific
-GPU kernels, without the need of modifying the OS kernel and device
-drivers.
-The experiments indicated a unit of task overhead met within about
-$10\%$ at eight tasks, while within about $4\%$ at four tasks. 
-Furthermore, the prioritization and QoS performance of Linux-RTXG were
-demonstrated with a real-world object detection application, where GPU
-programs can be protected from high CPU load, while successfully
-maintaining the desired frame rate on the GPU.
-To the best of our knowledge, this is the first complete work that
-achieved GPU resource management with loadable kernel modules.
+Linux-RTXG, a Linux extension with a LKM-based real-time GPU-resource-management module, was proposed and evaluated.
+Linux-RTXG can manage GPU resources without having to modify the OS kernel and device drivers.
+In addition, it is compared to CPU-resource management proposed in a previous work~\cite{kato2009loadable, asberg2012exsched}.
+New schemes for GPU-resource management were also developed.
+By intercepting the interrupts from the GPU in the top-half ISRs, the developed synchronization mechanism can wait for completion of execution of specific GPU kernels without the need of modifying the OS kernel and device drivers.
+Experimental evaluation of Linux-RTXG indicated the chosen performance unit (task overhead) varied within about $10\%$ for eight tasks and within about $4\%$ for four tasks.
+Furthermore, superior prioritization and QoS performance of Linux-RTXG were demonstrated with a real-world object-detection application, where GPU programs can be protected from high CPU load while the desired frame rate on the GPU is successfully maintained.
+To the best of our knowledge, this is the first complete work Linux extension that can manage GPU resources with loadable kernel modules.

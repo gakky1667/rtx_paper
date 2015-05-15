@@ -1,26 +1,9 @@
-Graphics processing units (GPUs) are increasingly well-designed for
-high-performance computing.
-GPU programming environments have also become matured for
-general-purpose computing on GPUs (GPGPU).
-Originally, the GPU software stack is tailored to accelerate
-particular best-effort applications.
-In recent years, however, GPU technologies have been applied for
-real-time systems, extending the operating system (OS) modules to
-support real-time GPU resource management.
-Unfortunately, such a system extension makes it difficult to maintain
-the system with version updates, since the OS kernel and device drivers
-need to be modified at the source code level, preventing continuous
-research and development of GPU technologies for real-time systems.
-In this paper, we present a loadable kernel module (LKM) framework
-called Linux-RTXG, which implements real-time GPU resource management in
-Linux without making any modification to the OS kernel and device
-drivers.
-Linux-RTXG provides novel interrupt interception and independent
-synchronization mechanisms to achieve real-time scheduling and resource
-reservation capabilities for GPU applications on top of existing device
-drivers and runtime libraries.
-Experimental results demonstrate that the overhead of introducing
-Linux-RTXG is comparable to existing kernel-dependent approaches, and
-multiple GPU applications can be successfully scheduled by Linux-RTXG to
-meet their priority and quality of service (QoS) requirements in
-real-time.
+Graphics processing units (GPUs) are increasingly well designed for high-performance computing.
+GPU programming environments have also become matured for general-purpose computing on GPUs (GPGPUs).
+Originally, the GPU software stack is tailored to accelerate particular best-effort applications.
+In recent years, however, GPU technologies have been applied for real-time systems, extending the operating system (OS) modules to support real-time GPU-resource management.
+Unfortunately, such a system extension makes it difficult to maintain the system with version updates, since the OS kernel and device drivers need to be modified at the source-code level, preventing continuous research and development of GPU technologies for real-time systems.
+A loadable-kernel-module (LKM) framework, called ``Linux-RTXG,'' for managing real-time GPU resources on Linux without having to modify the OS kernel and device drivers is proposed and experimentally evaluated.
+Linux-RTXG provides novel mechanisms for interrupt interception and independent synchronization to achieve real-time scheduling and resource reservation capabilities for GPU applications on top of existing device drivers and runtime libraries.
+The results of an experimental evaluation of Linux-RTXG demonstrate that the overhead incurred by introducing Linux-RTXG is comparable to that for introducing existing kernel-dependent approaches.
+Moreover, they demonstrate that multiple GPU applications can be successfully scheduled by Linux-RTXG to meet their priority and quality-of-service (QoS) requirements in real-time.
