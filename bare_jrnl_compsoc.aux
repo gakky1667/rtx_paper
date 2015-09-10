@@ -1,0 +1,188 @@
+\relax 
+\citation{cmu:routing}
+\citation{hirabayashi:cpsna2013}
+\citation{tokamak}
+\citation{kato:rtas2011}
+\citation{bakkum:sql}
+\citation{rodinia}
+\citation{nvidia:cuda_zone}
+\citation{opencl}
+\citation{kato:timegraph}
+\citation{kato:gdev}
+\citation{elliott:gpusync13}
+\citation{elliott:explor14}
+\citation{litmus}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
+\citation{kato2009loadable}
+\citation{asberg2012exsched}
+\citation{spring}
+\citation{redline}
+\citation{itron}
+\citation{rk}
+\citation{litmus}
+\citation{prk}
+\citation{rtai}
+\citation{yodaiken1999rtlinux}
+\citation{kato2009loadable}
+\citation{sched:ll}
+\citation{rr:cbs}
+\citation{rr:tbs2}
+\@writefile{toc}{\contentsline {section}{\numberline {II}System Model}{2}}
+\newlabel{sec:system_model}{{II}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}GPU Programming Model}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}GPU Scheduling}{2}}
+\citation{kato:timegraph}
+\citation{kato:gdev}
+\citation{fujii:apsys2013}
+\citation{elliott2012robust}
+\citation{kato2009loadable}
+\citation{asberg2012exsched}
+\citation{kato:rgem}
+\citation{basaran:preemptive}
+\citation{sparc}
+\citation{self-sus:1}
+\citation{self-sus:2}
+\citation{chattopadhyay2014limited}
+\citation{kim2013segment}
+\citation{fujii:icpads2013}
+\citation{kato2009loadable}
+\citation{asberg2012exsched}
+\citation{nvidia:cuda_zone}
+\citation{nouveau}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Design and Implementation}{3}}
+\newlabel{sec:design_imple}{{III}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Linux-RTXG}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Architectural overview of Linux-RTXG.}}{4}}
+\newlabel{fig:overview}{{1}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}GPU Scheduling}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Sample code with the Linux-RTXG APIs.}}{4}}
+\newlabel{fig:sample}{{2}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Execution flow of a GPU task.}}{4}}
+\newlabel{fig:controlflow}{{3}{4}}
+\citation{fujii:icpads2013}
+\citation{kato2013zero}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces A basic set of APIs for Linux-RTXG.}}{5}}
+\newlabel{tab:rtx-api}{{I}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces High-level pseudo-code of the Linux-RTXG scheduler.}}{5}}
+\newlabel{fig:scheduling}{{4}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}GPU Synchronization}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-D}}Scheduler Integration}{5}}
+\citation{kato2009loadable}
+\newlabel{eq}{{1}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Evaluation}{6}}
+\newlabel{sec:evaluation}{{IV}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Experimental Setup}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Interrupt-interception Overhead}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}Independent-synchronization Overhead}{6}}
+\citation{kato:gdev}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \relax \fontsize  {9}{10pt}\selectfont  {Interrupt interception overhead. \newline  \tmspace  +\thinmuskip {.1667em}}}}{7}}
+\newlabel{fig:irq_overhead}{{5}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \relax \fontsize  {9}{10pt}\selectfont  {Impact of interrupt interception.}}}{7}}
+\newlabel{fig:response}{{6}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces \relax \fontsize  {9}{10pt}\selectfont  {Comparison of ISR and tasklet.}}}{7}}
+\newlabel{fig:bottomvstasklet}{{7}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Overhead for independent synchronization.}}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Overhead for initialization}}}{7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Overhead for notification}}}{7}}
+\newlabel{fig:irq_rise_overhead}{{8}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Scheduling overhead.}}{7}}
+\newlabel{fig:fp_task_overhead}{{9}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}Scheduling Overhead}{7}}
+\newlabel{sec:eval:sched_overhead}{{\unhbox \voidb@x \hbox {IV-D}}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}}Prioritization and QoS Performance}{7}}
+\citation{kato:gdev}
+\citation{hirabayashi:cpsna2013}
+\newlabel{fig:fifo_rtx_nvidia}{{\unhbox \voidb@x \hbox {IV-E}}{8}}
+\newlabel{fig:band_rtx_nvidia}{{\unhbox \voidb@x \hbox {IV-E}}{8}}
+\newlabel{fig:rtx_nvidia}{{\unhbox \voidb@x \hbox {IV-E}}{8}}
+\newlabel{fig:fifo_rtx}{{\unhbox \voidb@x \hbox {IV-E}}{8}}
+\newlabel{fig:band_rtx}{{\unhbox \voidb@x \hbox {IV-E}}{8}}
+\newlabel{fig:rtx_nouveau}{{\unhbox \voidb@x \hbox {IV-E}}{8}}
+\newlabel{fig:fifo_gdev}{{\unhbox \voidb@x \hbox {IV-E}}{8}}
+\newlabel{fig:band_gdev}{{\unhbox \voidb@x \hbox {IV-E}}{8}}
+\newlabel{fig:gdev_usage}{{\unhbox \voidb@x \hbox {IV-E}}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces GPU utilization of two tasks. Each task executes different types of GPU-intensive workloads with specified GPU reserves (VGPU0 = 40\%; VGPU1 = 60\%).}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\relax \fontsize {9}{10pt}\selectfont FIFO on NVIDIA}}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {{\relax \fontsize {9}{10pt}\selectfont BAND on NVIDIA} }}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {\relax \fontsize {9}{10pt}\selectfont FIFO on Nouveau}}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {\relax \fontsize {9}{10pt}\selectfont BAND on Nouveau}}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {\relax \fontsize {9}{10pt}\selectfont FIFO on Gdev}}}{8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {\relax \fontsize {9}{10pt}\selectfont BAND on Gdev}}}{8}}
+\newlabel{fig:utilize}{{10}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Utilization of four tasks with the Linux-RTXG's BAND VGPU scheduling. Each task had an equal workload and an equal GPU-resource allocation.}}{8}}
+\newlabel{fig:band_rtx_fair}{{11}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-F}}Real-world Application}{8}}
+\citation{kato:rgem}
+\citation{sparc}
+\citation{kato:timegraph}
+\citation{kato:gdev}
+\citation{ptask}
+\citation{elliott:gpusync13}
+\citation{menychtas2013enabling}
+\citation{v }
+\citation{kato:gdev}
+\citation{nouveau}
+\citation{kato2009loadable}
+\citation{asberg2012exsched}
+\newlabel{fig:real-null_null}{{\unhbox \voidb@x \hbox {IV-E}}{9}}
+\newlabel{fig:real-prio_null}{{\unhbox \voidb@x \hbox {IV-E}}{9}}
+\newlabel{fig:real-prio_band}{{\unhbox \voidb@x \hbox {IV-E}}{9}}
+\newlabel{fig:real-prio_band-hiload}{{\unhbox \voidb@x \hbox {IV-E}}{9}}
+\newlabel{fig:real-null_null-hiload}{{\unhbox \voidb@x \hbox {IV-E}}{9}}
+\newlabel{fig:real-prio_band_cpu-hiload}{{\unhbox \voidb@x \hbox {IV-E}}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Execution time of the GPU-accelerated object-detection program.}}{9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {\relax \fontsize {9}{10pt}\selectfont NULL.}}}{9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {\relax \fontsize {9}{10pt}\selectfont FP.}}}{9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {\relax \fontsize {9}{10pt}\selectfont BAND.}}}{9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {\relax \fontsize {9}{10pt}\selectfont BAND with high CPU load.}}}{9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(e)}{\ignorespaces {\relax \fontsize {9}{10pt}\selectfont NULL with high CPU load.}}}{9}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(f)}{\ignorespaces {\relax \fontsize {9}{10pt}\selectfont FP and BAND with high CPU loads.}}}{9}}
+\newlabel{fig:elapse_time_all}{{12}{9}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Related Work}{9}}
+\newlabel{sec:relatedwork}{{V}{9}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusion}{9}}
+\newlabel{sec:conclusion}{{VI}{9}}
+\bibstyle{IEEEtranBST/IEEEtran}
+\bibdata{IEEEtranBST/IEEEabrv,bib/gpu_ap,bib/gpu_rm,bib/gpu,bib/os,bib/realtime}
+\bibcite{cmu:routing}{1}
+\bibcite{hirabayashi:cpsna2013}{2}
+\bibcite{tokamak}{3}
+\bibcite{kato:rtas2011}{4}
+\bibcite{bakkum:sql}{5}
+\bibcite{rodinia}{6}
+\bibcite{nvidia:cuda_zone}{7}
+\bibcite{opencl}{8}
+\bibcite{kato:timegraph}{9}
+\bibcite{kato:gdev}{10}
+\bibcite{elliott:gpusync13}{11}
+\bibcite{elliott:explor14}{12}
+\bibcite{litmus}{13}
+\bibcite{kato2009loadable}{14}
+\bibcite{asberg2012exsched}{15}
+\bibcite{spring}{16}
+\bibcite{redline}{17}
+\bibcite{itron}{18}
+\bibcite{rk}{19}
+\bibcite{prk}{20}
+\bibcite{rtai}{21}
+\bibcite{yodaiken1999rtlinux}{22}
+\bibcite{sched:ll}{23}
+\bibcite{rr:cbs}{24}
+\bibcite{rr:tbs2}{25}
+\bibcite{fujii:apsys2013}{26}
+\bibcite{elliott2012robust}{27}
+\bibcite{kato:rgem}{28}
+\bibcite{basaran:preemptive}{29}
+\bibcite{sparc}{30}
+\bibcite{self-sus:1}{31}
+\bibcite{self-sus:2}{32}
+\bibcite{chattopadhyay2014limited}{33}
+\bibcite{kim2013segment}{34}
+\bibcite{fujii:icpads2013}{35}
+\bibcite{nouveau}{36}
+\bibcite{kato2013zero}{37}
+\bibcite{ptask}{38}
+\bibcite{menychtas2013enabling}{39}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Linux-RTXG vs Prior Work}}{10}}
+\newlabel{tab:comp:prior}{{II}{10}}
+\@writefile{toc}{\contentsline {section}{References}{10}}

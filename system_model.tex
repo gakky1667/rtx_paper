@@ -18,12 +18,12 @@ GPU programming requires a set of APIs, such as CUDA Driver API and CUDA Runtime
 A typical approach to GPU programming follows several steps: (i) \textit{cuCtxCreate} creates a GPU context; (ii) \textit{cuMemAlloc} allocates memory space to the device memory; (iii) \textit{cuModuleLoad} and \textit{cuMemcpyHtoD} copy the data and the GPU kernel from the host memory to the memory space of the allocated device; (iv) \textit{cuLaunchGrid} invokes the GPU kernel; (v) \textit{cuCtxSynchronize} synchronizes a GPU task to wait for the completion of GPU kernel; (vi) \textit{cuMemcpyDtoH} transfers the data back to the host memory from the device memory; and (vii) \textit{cuMemFree}, \textit{cuModuleUnload}, and \textit{cuCtxDestroy} release the allocated memory space and the GPU context.
 
 \SUBSECTION{GPU Scheduling}
-Problems concerning resource management in many variants of real-time OSes (RTOSes)~\cite{spring,redline,itron,rk} have been addressed.
-Of particular interest includes those with Linux-based RTOSes~\cite{litmus,prk,rtai,yodaiken1999rtlinux,kato2009loadable}.
+Problems concerning resource management in many variants of real-time OSs (RTOSs)~\cite{spring,redline,itron,rk} have been addressed.
+Of particular interest includes those with Linux-based RTOSs~\cite{litmus,prk,rtai,yodaiken1999rtlinux,kato2009loadable}.
 GPUs are also supported in Linux.
 It is assumed in this work that the OS architecture refers to Linux.
 
-To meet real-time requirements in multi-tasking environments, RTOSes should provide \textit{scheduling} and \textit{resource reservation} capabilities.
+To meet real-time requirements in multi-tasking environments, RTOSs should provide \textit{scheduling} and \textit{resource reservation} capabilities.
 Rate Monotonic (RM) and Earliest Deadline First (EDF)~\cite{sched:ll} are well-known algorithms for priority-driven scheduling for real-time systems.
 Resource-reservation algorithms come in many variants, such as Constant Bandwidth Server (CBS)~\cite{rr:cbs} and Total Bandwidth Server (TBS)~\cite{rr:tbs2}.
 
@@ -99,4 +99,4 @@ The scope of this work is also restricted to time resources (but not to memory r
 In other words, GPU-scheduling problems, not device-memory-allocation problems, are considered in the following.
 
 The proposed system supports efficient data transfer between the CPU and the GPU by using GPU microcontrollers~\cite{fujii:icpads2013}, but that support is not considered as a contribution of this work.
-Finally, our prototype system is limited to a Linux system and CUDA environment; however, the concept of our method is applicable to other OSes and programming languages, as far as they support the aforementioned FENCE and NOTIFY primitives.
+Finally, our prototype system is limited to a Linux system and CUDA environment; however, the concept of our method is applicable to other OSs and programming languages, as far as they support the aforementioned FENCE and NOTIFY primitives.

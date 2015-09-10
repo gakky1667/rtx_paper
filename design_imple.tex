@@ -68,7 +68,7 @@ GPU tasks are provided with function calls to Linux-RTXG at strategic points.
 {\scriptsize \verb| /* variable initialization */ |}\\
 {\scriptsize \verb| /* calling RESCH API */ |}\\
 {\scriptsize \verb| dev_id = rtx_gpu_device_advice(dev_id); |}\\
-{\scriptsize \verb| cuDeviceGet(&dev, dev\_id); |}\\
+{\scriptsize \verb| cuDeviceGet(&dev, dev_id); |}\\
 {\scriptsize \verb| cuCtxCreate(&ctx, SYNC_FLAG, dev); |}\\
 {\scriptsize \verb| rtx_gpu_open(&handle, vdev_id); |}\\
 {\scriptsize \verb| /* Module load and set kernel function */ |}\\
@@ -109,12 +109,12 @@ After this function call, the task is suspended until it receives an interrupt s
 When execution of the GPU kernel is completed, an interrupt is raised by the GPU, and the corresponding interrupt handler is executed by the Linux kernel.
 The interrupt interceptor awakens some suspended tasks according to the priority.
 The awakened task proceeds to launch the GPU kernel by using the CUDA API, such as $cuLaunchGrid()$.
-After the GPU kernel is launched, the task is going to register NOTIFY to set up an interrupt, and it is put into sleep mode again until it receives the interrupt.
+After the GPU kernel is launched, the task is going to register NOTIFY to set up an interrupt by $rtx\_gpu\_notify()$, and it is put into sleep mode again until it receives the interrupt by $rtx\_gpu\_sync()$.
 Dispatching the subsequent task is performed by the GPU scheduler, which is called upon by the interrupt from the GPU.
 Linux-RTXG manages the order of task execution according to this flow.
 
 
-A hierarchal scheduling mechanism that applies the concept of virtual GPUs to combine specified GPU tasks by a group is presented in the following.
+A hierarchical scheduling mechanism that applies the concept of virtual GPUs to combine specified GPU tasks by a group is presented in the following.
 The virtual GPUs are created by a resource-reservation mechanism, while GPU scheduling uses a priority mechanism.
 Specifically, each invocation of the GPU kernel is associated with a scheduling entity, and Linux-RTXG allocates the scheduling entities to virtual GPUs.
 The virtual GPUs can belong to any physical GPUs.
@@ -223,8 +223,8 @@ However, $sched\_yield()$ is frequently used by device drivers and libraries.
 Real-time performance of GPU computing, even in CUDA, could be affected by this problem.
 This problem is addressed by limiting the GPU synchronization method to NOTIFY, namely, eliminating the potential of FENCE, in the $SCHED\_DEADLINE$ scheduling policy.
 
-The second problem is subject to the implementation of wake-up and sleep functions, particularly the check equation~\ref{eq} when restoring a task from the sleep state.
-If ~\ref{eq} holds, the runtime is replenished, and the absolute deadline is set to the next cycle deadline.
+The second problem is subject to the implementation of wake-up and sleep functions, particularly the check equation~\eqref{eq} when restoring a task from the sleep state.
+If equation ~\eqref{eq} holds, the runtime is replenished, and the absolute deadline is set to the next cycle deadline.
 
 {\scriptsize
 \begin{equation}

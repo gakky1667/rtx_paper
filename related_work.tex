@@ -8,14 +8,14 @@
 \scalebox{0.65}{
 \fi
 \begin{tabular}{ccccccccccc} \hline
- & CPU & CPU & GPU Prio. & Budget & Data/Comp. & Closed Src.& Kernel& OS & GPU Runtime \\ 
-& FP & EDF & Sched. & Enforcement & Ovlp. & Compatible & Free & independent & independent \\ \hline
- RGEM       &   &   & x &   &   & x & x & x &   \\ 
- Gdev       &   &   & x & x & x &   &   &   &   \\ 
- PTask      &   &   & x & x & x & x &   &   & x \\ 
- GPUSync    & x & x & x & x & x & x &   &   & x \\ 
- GPUSparc   & ▲ &   & x &   & x & x &   & x &   \\ 
- Linux-RTXG & x & x & x & x & x & x & x & x & x \\ \hline
+ & CPU & CPU & GPU Prio. & Budget & Data/Comp. & Closed Src.& Patch & GPU Runtime \\ 
+& FP & EDF & Sched. & Enforcement & Ovlp. & Compatible & Free & independent \\ \hline
+ RGEM       &   &   & x &   &   & x & x &   \\ 
+ Gdev       &   &   & x & x & x &   &   &  \\ 
+ PTask      &   &   & x & x & x & x &  & x \\ 
+ GPUSync    & x & x & x & x & x & x &   & x \\ 
+ GPUSparc   & ▲ &   & x &   & x & x &  &   \\ 
+ Linux-RTXG & x & x & x & x & x & x & x & x \\ \hline
 \end{tabular}
 \ifthesis
 }
@@ -36,5 +36,5 @@ In particular, the resource management modules of Linux-RTXG are all loadable an
 
 More in-depth resource management would require detailed information about the execution mechanisms in black-box GPU stacks.
 Menychtas et al. presented enabling GPU resource management by inferring interactions in the black-box GPU stack~\cite{menychtas2013enabling}. 
-GPU resource management using GPU microcontrollers~\cite{fujii:apsys2013} and in-kernel runtime functions~\cite{kato:gdev} has also been demonstrated to manage the GPU.
+GPU resource management using GPU microcontrollers~\cite{v	} and in-kernel runtime functions~\cite{kato:gdev} has also been demonstrated to manage the GPU.
 For these pieces of open-source work, the Nouveau project has been used as a baseline driver~\cite{nouveau}.

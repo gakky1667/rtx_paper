@@ -1,0 +1,625 @@
+This is e-pTeX, Version 3.14159265-p3.6-141210-2.6 (utf8.euc) (TeX Live 2015) (preloaded format=platex 2015.5.24)  10 SEP 2015 15:22
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**bare_jrnl_compsoc.tex
+(./bare_jrnl_compsoc.tex
+pLaTeX2e <2006/11/10> (based on LaTeX2e <2015/01/01> patch level 0)
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+(./IEEEtran.cls
+Document Class: IEEEtran 2012/11/21 V1.8c by Harald Hanche-Olsen and Anders Chr
+istensen
+-- Based on V1.7a by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+\@IEEEtrantmpdimenA=\dimen118
+\@IEEEtrantmpdimenB=\dimen119
+\@IEEEtrantmpcountA=\count81
+\@IEEEtrantmpcountB=\count82
+\@IEEEtrantmptoksA=\toks15
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 373.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+-- Using 8.5in x 11in (letter) paper.
+-- Using DVI output.
+\@IEEEnormalsizeunitybaselineskip=\dimen120
+-- This is a 10 point document.
+\CLASSINFOnormalsizebaselineskip=\dimen121
+\CLASSINFOnormalsizeunitybaselineskip=\dimen122
+\IEEEnormaljot=\dimen123
+(I search kanjifont definition file: . . )
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <5> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <5> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+
+
+LaTeX Font Warning: Font shape `JT1/mc/m/it' undefined
+(Font)              using `JT1/mc/m/n' instead on input line 731.
+
+
+LaTeX Font Warning: Font shape `JY1/mc/m/it' undefined
+(Font)              using `JY1/mc/m/n' instead on input line 731.
+
+
+LaTeX Font Warning: Font shape `JT1/mc/bx/it' undefined
+(Font)              using `JT1/mc/bx/n' instead on input line 731.
+
+
+LaTeX Font Warning: Font shape `JY1/mc/bx/it' undefined
+(Font)              using `JY1/mc/bx/n' instead on input line 731.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <7> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <7> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <7> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <7> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <8> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <8> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <8> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <8> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <9> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <9> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <9> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <9> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <10> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <10> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <11> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <11> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <11> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <11> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <12> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <12> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <12> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <17> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <17> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <17> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <17> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <20> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <20> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <20> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <20> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <24> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <24> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <24> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <24> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 731.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 731.
+\IEEEilabelindentA=\dimen124
+\IEEEilabelindentB=\dimen125
+\IEEEilabelindent=\dimen126
+\IEEEelabelindent=\dimen127
+\IEEEdlabelindent=\dimen128
+\IEEElabelindent=\dimen129
+\IEEEiednormlabelsep=\dimen130
+\IEEEiedmathlabelsep=\dimen131
+\IEEEiedtopsep=\skip41
+\c@section=\count83
+\c@subsection=\count84
+\c@subsubsection=\count85
+\c@paragraph=\count86
+\c@IEEEsubequation=\count87
+\abovecaptionskip=\skip42
+\belowcaptionskip=\skip43
+\c@figure=\count88
+\c@table=\count89
+\@IEEEeqnnumcols=\count90
+\@IEEEeqncolcnt=\count91
+\@IEEEtmpitemindent=\dimen132
+\c@IEEEbiography=\count92
+\@IEEEtranrubishbin=\box41
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2014/10/28 v1.1a Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: dvips.def on input line 142.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 2014/10/14 v3.0j Driver-dependent file (DPC,SPQR)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2014/10/14 v3.0j Driver-dependent file (DPC,SPQR)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: dvips.def on input line 225.
+LaTeX Info: Redefining \color on input line 702.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip44
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks16
+\ex@=\dimen133
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen134
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count93
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count94
+\leftroot@=\count95
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count96
+\DOTSCASE@=\count97
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box42
+\strutbox@=\box43
+\big@size=\dimen135
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count98
+\c@MaxMatrixCols=\count99
+\dotsspace@=\muskip10
+\c@parentequation=\count100
+\dspbrk@lvl=\count101
+\tag@help=\toks17
+\row@=\count102
+\column@=\count103
+\maxfields@=\count104
+\andhelp@=\toks18
+\eqnshift@=\dimen136
+\alignsep@=\dimen137
+\tagshift@=\dimen138
+\tagwidth@=\dimen139
+\totwidth@=\dimen140
+\lineht@=\dimen141
+\@envbody=\toks19
+\multlinegap=\skip45
+\multlinetaggap=\skip46
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks21
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: dvipdfmx.def on input line 94.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/dvipdfmx-def/dvipdfmx.def
+File: dvipdfmx.def 2015/03/26 v4.04 LaTeX color/graphics driver for dvipdfmx (T
+eX Live/ChoF)
+))
+\Gin@req@height=\dimen142
+\Gin@req@width=\dimen143
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count105
+\float@exts=\toks22
+\float@box=\box44
+\@float@everytoks=\toks23
+\@floatcapt=\box45
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks24
+\c@algorithm=\count106
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count107
+\c@ALG@rem=\count108
+\c@ALG@nested=\count109
+\ALG@tlm=\skip47
+\ALG@thistlm=\skip48
+\c@ALG@Lnr=\count110
+\c@ALG@blocknr=\count111
+\c@ALG@storecount=\count112
+\c@ALG@tmpcounter=\count113
+\ALG@tmplength=\skip49
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen144
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip50
+\subfigcapskip=\skip51
+\subfigcaptopadj=\dimen145
+\subfigbottomskip=\skip52
+\subfigcapmargin=\dimen146
+\subfiglabelskip=\skip53
+\c@subfigure=\count114
+\c@lofdepth=\count115
+\c@subtable=\count116
+\c@lotdepth=\count117
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2015/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip54
+\subfig@bottom=\skip55
+)
+
+LaTeX Warning: Unused global option(s):
+    [compsocconf].
+
+(./bare_jrnl_compsoc.aux)
+\openout1 = `bare_jrnl_compsoc.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 408.
+LaTeX Font Info:    ... okay on input line 408.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 408.
+LaTeX Font Info:    ... okay on input line 408.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 408.
+LaTeX Font Info:    ... okay on input line 408.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 408.
+LaTeX Font Info:    ... okay on input line 408.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 408.
+LaTeX Font Info:    ... okay on input line 408.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 408.
+LaTeX Font Info:    ... okay on input line 408.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 408.
+LaTeX Font Info:    ... okay on input line 408.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 408.
+LaTeX Font Info:    ... okay on input line 408.
+LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <5> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 408.
+LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <5> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 408.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 489.
+ (./abstract.tex) (./introduction.tex
+
+LaTeX Font Warning: Font shape `JT1/mc/m/sc' undefined
+(Font)              using `JT1/mc/m/n' instead on input line 1.
+
+
+LaTeX Font Warning: Font shape `JY1/mc/m/sc' undefined
+(Font)              using `JY1/mc/m/n' instead on input line 1.
+
+[1
+
+
+]) (./system_model.tex [2]) (./design_imple.tex
+File: img/overview.pdf Graphic file (type pdf)
+ <img/overview.pdf>
+Underfull \hbox (badness 1902) in paragraph at lines 21--30
+[]\OT1/ptm/m/n/10 An ar-chi-tec-tural overview of Linux-RTXG is shown
+ []
+
+
+Underfull \hbox (badness 1460) in paragraph at lines 21--30
+\OT1/ptm/m/n/10 be di-vided into two parts. First, the Linux-RTXG core
+ []
+
+[3] (I search kanjifont definition file: . . ) (I search font definition file:
+. . . . . . . )
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 67.
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+File: img/gsched_controlflow.pdf Graphic file (type pdf)
+<img/gsched_controlflow.pdf>
+Overfull \hbox (9.0pt too wide) in paragraph at lines 97--99
+ [] 
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 166--170
+\OT1/ptm/m/n/10 mech-a-nisms are de-scribed next. The independent-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--178
+[]\OT1/ptm/b/n/10 Independent-synchronization Mech-a-nism: \OT1/ptm/m/n/10 The
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--178
+\OT1/ptm/m/n/10 independent-synchronization mech-a-nism us-ing NO-TIFY
+ []
+
+
+Underfull \hbox (badness 1478) in paragraph at lines 171--178
+\OT1/ptm/m/n/10 ker-nel space and the user space. These ioctl in-ter-faces
+ []
+
+
+Underfull \hbox (badness 3189) in paragraph at lines 212--225
+\OT1/ptm/m/n/10 in-tro-duced in ver-sion 3. 14.0, while $\OML/cmm/m/it/10 SCHED
+[]FIFO$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--225
+\OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 SCHED[]RR$ \OT1/ptm/m/n/10 rep-re-sent fi
+xed-priority schedul-ing.
+ []
+
+
+Underfull \hbox (badness 3219) in paragraph at lines 212--225
+\OT1/ptm/m/n/10 Un-for-tu-nately, syn-chro-niza-tion does not work with the
+ []
+
+
+Underfull \hbox (badness 3657) in paragraph at lines 212--225
+\OT1/ptm/m/n/10 SCHED[]DEADLINE schedul-ing pol-icy for GPU tasks.
+ []
+
+[5]) (./evaluation.tex
+File: img/interrupt.pdf Graphic file (type pdf)
+ <img/interrupt.pdf>
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 25--26
+ [] 
+ []
+
+File: img/interrupt_response.eps Graphic file (type eps)
+<img/interrupt_response.eps>
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 32--33
+ [] 
+ []
+
+File: img/tasklet_vs_interrupt.eps Graphic file (type eps)
+<img/tasklet_vs_interrupt.eps>
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 39--40
+ [] 
+ []
+
+
+Underfull \hbox (badness 3439) in paragraph at lines 64--70
+[]\OT1/ptm/m/n/10 Response times when in-ter-rupt in-ter-cep-tion is self-
+ []
+
+
+Underfull \hbox (badness 2941) in paragraph at lines 73--79
+\OT1/ptm/m/n/10 a-nism was quan-ti-fied next. This mech-a-nism must call
+ []
+
+File: img/irq_rise_init.eps Graphic file (type eps)
+<img/irq_rise_init.eps>
+File: img/irq_rise_notify.eps Graphic file (type eps)
+ <img/irq_rise_notify.eps> [6]
+File: img/sum_task.eps Graphic file (type eps)
+ <img/sum_task.eps>
+File: img/fifo_rtx_nvidia.eps Graphic file (type eps)
+
+<img/fifo_rtx_nvidia.eps>
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 136--137
+ [] 
+ []
+
+File: img/band_rtx_nvidia.eps Graphic file (type eps)
+<img/band_rtx_nvidia.eps>
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 139--142
+ [][] 
+ []
+
+File: img/fifo_rtx.eps Graphic file (type eps)
+<img/fifo_rtx.eps>
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 147--148
+ [] 
+ []
+
+File: img/band_rtx.eps Graphic file (type eps)
+<img/band_rtx.eps>
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 150--153
+ [][] 
+ []
+
+File: img/fifo_gdev.eps Graphic file (type eps)
+<img/fifo_gdev.eps>
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 158--159
+ [] 
+ []
+
+File: img/band_gdev.eps Graphic file (type eps)
+<img/band_gdev.eps>
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 161--164
+ [][] 
+ []
+
+File: img/band_rtx_fair.eps Graphic file (type eps)
+<img/band_rtx_fair.eps> [7]
+File: img/real_null_null_withoutload.eps Graphic file (type eps)
+ <img/real_null_null_withoutload.eps>
+File: img/real_prio_null_withoutload.eps Graphic file (type eps)
+
+<img/real_prio_null_withoutload.eps>
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 223--228
+ [] 
+ []
+
+
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 223--228
+ [][] 
+ []
+
+File: img/real_prio_band_withoutload.eps Graphic file (type eps)
+<img/real_prio_band_withoutload.eps>
+File: img/real_prio_band_withhighload.eps Graphic file (type eps)
+ <img/real_prio_band_withhighload.eps>
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 233--238
+ [] 
+ []
+
+
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 233--238
+ [][] 
+ []
+
+File: img/real_null_null_withhiload.eps Graphic file (type eps)
+<img/real_null_null_withhiload.eps>
+File: img/real_prio_band_withhighload_cpu.eps Graphic file (type eps)
+ <img/real_prio_band_withhighload_cpu.eps>
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 243--248
+ [] 
+ []
+
+
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 243--248
+ [][] 
+ []
+
+[8]) (./related_work.tex
+
+LaTeX Warning: Citation `v ' on page 9 undefined on input line 39.
+
+) (./conclusion.tex) [9] (./bare_jrnl_compsoc.bbl
+
+LaTeX Font Warning: Font shape `JT1/gt/m/it' undefined
+(Font)              using `JT1/gt/m/n' instead on input line 27.
+
+
+LaTeX Font Warning: Font shape `JY1/gt/m/it' undefined
+(Font)              using `JY1/gt/m/n' instead on input line 27.
+
+)
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+[10] (./bare_jrnl_compsoc.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 3593 strings out of 493777
+ 51570 string characters out of 6151334
+ 127022 words of memory out of 5000000
+ 6984 multiletter control sequences out of 15000+600000
+ 40957 words of font info for 117 fonts, out of 8000000 for 9000
+ 932 hyphenation exceptions out of 8191
+ 32i,13n,35p,982b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on bare_jrnl_compsoc.dvi (10 pages, 80452 bytes).
