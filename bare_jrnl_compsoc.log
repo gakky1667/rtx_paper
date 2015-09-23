@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.6-141210-2.6 (utf8.euc) (TeX Live 2015) (preloaded format=platex 2015.5.24)  10 SEP 2015 16:12
+This is e-pTeX, Version 3.14159265-p3.6-141210-2.6 (utf8.euc) (TeX Live 2015) (preloaded format=platex 2015.5.24)  23 SEP 2015 12:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -580,11 +580,7 @@ Overfull \hbox (3.4532pt too wide) in paragraph at lines 243--248
  [][] 
  []
 
-[8]) (./related_work.tex
-
-LaTeX Warning: Citation `v ' on page 9 undefined on input line 39.
-
-) (./conclusion.tex) [9] (./bare_jrnl_compsoc.bbl
+[8]) (./related_work.tex) (./conclusion.tex) [9] (./bare_jrnl_compsoc.bbl
 
 LaTeX Font Warning: Font shape `JT1/gt/m/it' undefined
 (Font)              using `JT1/gt/m/n' instead on input line 27.
@@ -593,7 +589,7 @@ LaTeX Font Warning: Font shape `JT1/gt/m/it' undefined
 LaTeX Font Warning: Font shape `JY1/gt/m/it' undefined
 (Font)              using `JY1/gt/m/n' instead on input line 27.
 
-)
+[10])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -605,21 +601,20 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[10] (./bare_jrnl_compsoc.aux)
+[11
+
+] (./bare_jrnl_compsoc.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-
-LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
  3593 strings out of 493777
- 51570 string characters out of 6151334
+ 51572 string characters out of 6151334
  127022 words of memory out of 5000000
  6984 multiletter control sequences out of 15000+600000
  40957 words of font info for 117 fonts, out of 8000000 for 9000
  932 hyphenation exceptions out of 8191
  32i,13n,35p,982b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on bare_jrnl_compsoc.dvi (10 pages, 80444 bytes).
+Output written on bare_jrnl_compsoc.dvi (11 pages, 81036 bytes).

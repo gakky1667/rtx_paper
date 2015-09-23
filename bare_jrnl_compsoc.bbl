@@ -212,4 +212,8 @@ K.~Menychtas, K.~Shen, and M.~L. Scott, ``{Enabling OS Research by Inferring
   Interactions in the Black-Box GPU Stack.}'' in \emph{Proc. USENIX ATC}, 2013,
   pp. 291--296.
 
+\bibitem{neon}
+------, ``{Disengaged Scheduling for Fair, Protected Access to Fast
+  Computational Accelerators.}'' in \emph{Proc. ASPLOS}, 2014, pp. 301--316.
+
 \end{thebibliography}

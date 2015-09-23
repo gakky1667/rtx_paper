@@ -1,10 +1,6 @@
 This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: bare_jrnl_compsoc.aux
-White space in argument---line 122 of file bare_jrnl_compsoc.aux
- : \citation{v
- :             }
-I'm skipping whatever remains of this command
 The style file: IEEEtranBST/IEEEtran.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -23,45 +19,45 @@ Database file #6: bib/realtime.bib
 Warning--missing institution in sparc
 
 Done.
-You've used 39 entries,
+You've used 40 entries,
             4039 wiz_defined-function locations,
-            1410 strings with 21129 characters,
-and the built_in function-call counts, 30183 in all, are:
-= -- 2334
-> -- 743
-< -- 231
-+ -- 398
-- -- 130
-* -- 1415
-:= -- 4329
-add.period$ -- 96
-call.type$ -- 39
-change.case$ -- 41
-chr.to.int$ -- 555
-cite$ -- 40
-duplicate$ -- 2201
-empty$ -- 2671
-format.name$ -- 166
-if$ -- 7074
+            1414 strings with 21239 characters,
+and the built_in function-call counts, 31092 in all, are:
+= -- 2404
+> -- 764
+< -- 240
++ -- 410
+- -- 133
+* -- 1456
+:= -- 4449
+add.period$ -- 98
+call.type$ -- 40
+change.case$ -- 42
+chr.to.int$ -- 579
+cite$ -- 41
+duplicate$ -- 2263
+empty$ -- 2752
+format.name$ -- 170
+if$ -- 7292
 int.to.chr$ -- 0
-int.to.str$ -- 39
-missing$ -- 404
-newline$ -- 140
-num.names$ -- 37
-pop$ -- 1011
+int.to.str$ -- 40
+missing$ -- 414
+newline$ -- 143
+num.names$ -- 38
+pop$ -- 1037
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2346
+skip$ -- 2419
 stack$ -- 0
-substring$ -- 1364
-swap$ -- 1721
-text.length$ -- 46
+substring$ -- 1421
+swap$ -- 1772
+text.length$ -- 47
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 39
+type$ -- 40
 warning$ -- 1
-while$ -- 143
-width$ -- 41
-write$ -- 380
-(There was 1 error message)
+while$ -- 148
+width$ -- 42
+write$ -- 389
+(There was 1 warning)
