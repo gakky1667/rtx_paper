@@ -8,14 +8,15 @@
 \scalebox{0.65}{
 \fi
 \begin{tabular}{ccccccccccc} \hline
- & CPU & CPU & GPU Prio. & Budget & Data/Comp. & Closed Src.& Patchless & GPU Runtime \\ 
-& FP & EDF & Sched. & Enforcement & Ovlp. & Compatible &  & independent \\ \hline
+ & CPU & CPU & GPU Priority & Budget & Data/Computing & Closed Source& Patchless & GPU Runtime \\ 
+& FP & EDF & Scheduling & Enforcement & Overlap & Compatible &  & independent \\ \hline
  RGEM       &   &   & x &   &   & x & x &   \\ 
  Gdev       &   &   & x & x & x &   &   &  \\ 
  PTask      &   &   & x & x & x & x &  & x \\ 
- NEON & & & x &  & x & x & & x \\
+ NEON & & & x &  & x & x & x &  \\
  GPUSync    & x & x & x & x & x & x &   & x \\ 
- GPU-Sparc   & ▲ &   & x &   & x & x & x &   \\ 
+ %GPU-Sparc   & x & & x &   & x & x & x &   \\ 
+ GPU-Sparc   & ▲ &   & x &   & x & x & x &   \\
  Linux-RTXG & x & x & x & x & x & x & x & x \\ \hline
 \end{tabular}
 \ifthesis
@@ -31,8 +32,9 @@ TimeGraph~\cite{kato:timegraph}, Gdev~\cite{kato:gdev}, Ptask~\cite{ptask}, and 
 To the best of our knowledge, Linux-RTXG is the only solution that can provide real-time GPU resource management with a synchronization mechanism, without modifying the OS kernel and device drivers.
 
 Table~\ref{tab:comp:prior} shows a comparison of Linux-RTXG and previous work.
+Note that Data/Computing Overlap indicates whether perform the data transfer and computing simultaneously, and Closed Source Compatible indicates whether use an NVIDIA  CUDA.
 GPUSync supports the fixed-priority and the EDF scheduling policies for CPU tasks, while GPU-Sparc employs the $SCHED\_FIFO$ scheduling policy.
-Note that Linux-RTXG has demonstrated all features shown in Table~\ref{tab:comp:prior}.
+As shown from this table, Linux-RTXG has demonstrated all features shown in Table~\ref{tab:comp:prior}.
 In particular, the resource management modules of Linux-RTXG are all loadable and are freed from the detailed implementation of runtime libraries, device drivers, and the OS kernel.
 
 More in-depth resource management would require detailed information about the execution mechanisms in black-box GPU stacks. Menychtas et al. presented interception-based OS-level GPU scheduling, called NEON, without modifying software stack by using state machine inferencing approach in the black-box GPU stack ~\cite{menychtas2013enabling},~\cite{neon}. 

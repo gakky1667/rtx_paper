@@ -11,7 +11,7 @@ Considering the results of this work and those from the previous work, it is cla
 
 \SUBSECTION{Experimental Setup}
 Experiments were conducted using the Linux kernel 3.16.0, an NVIDIA GeForce GTX680 GPU, a 3.
-40-GHz Intel Core i7 2600 (eight cores including two hyper-threadling cores), and 8-GB main memory.
+40-GHz Intel Core i7 2600 (eight cores including two hyper-threading cores), and 8-GB main memory.
 GPU application programs were written in CUDA and compiled by NVCC v6.0.1. A NVIDIA 331.62 driver and a Nouveau Linux-3.16.0 driver with NVIDIA CUDA 6.0 and Gdev were used.
 
 \SUBSECTION{Interrupt-interception Overhead} 
@@ -94,7 +94,7 @@ As shown in Figure~\ref{fig:irq_rise_overhead}, the initialization overhead coul
 The initialization procedure calls a Linux process to allocate indirect buffers and control registers for several GPU engines.
 Albeit a significant overhead, the application program is not much affected by this procedure, since it is called only once at the beginning.
 On the other hand, the notification overhead is not a major consideration for the application program, though it is a little scattered due to an ioctl system call.
-When NOTIFY is used to set notification, the overhead was $3.5us$, while it was reduced to $2us$ when FENCE is used.
+When NOTIFY is used to set the notification, the overhead was $3.5us$, while it was reduced to $2us$ when FENCE is used.
 
 \SUBSECTION{Scheduling Overhead}
 \label{sec:eval:sched_overhead}
@@ -112,7 +112,7 @@ The scheduling overhead incurred by the presented Linux-RTXG scheduler was evalu
 Three synthetic tasks -- (i) vanilla, (ii) mutex, and (iii) rtx -- to measure the overhead were executed.
 These tasks are based on the microbenchmark program provided by the Gdev project, which tests a GPU loop function.
 The program was modified to generate multiple GPU tasks by using the $fork()$ system call.
-Each task releases a job ten times periodically, each of which includes data transfer between the CPU and the GPU, followed by execution of the GPU kernel.
+Each task releases a job ten times periodically, each of which includes data transfer between the CPU and the GPU, followed by the execution of the GPU kernel.
 The rtx task was scheduled by Linux-RTXG.
 The mutex task was limited to a single GPU kernel by using explicit mutual-exclusion control similar to the rtx task.
 The vanilla task was not changed from the original microbenchmark program.
@@ -190,7 +190,7 @@ The result obtained under the FIFO scheduling policy on the NVIDIA Driver is sho
 The corresponding results on the Nouveau GPU driver are shown in Figures~\ref{fig:utilize} (c) and (d).
 
 
-Since VGPU0 has higher workload than VGPU1, the GPU tasks are performed in accordance with their workload, as shown in Figures~\ref{fig:utilize} (a) and (c).
+Since VGPU0 has a higher workload than VGPU1, the GPU tasks are performed in accordance with their workload, as shown in Figures~\ref{fig:utilize} (a) and (c).
 On the other hand, the GPU resource-reservation mechanism provided by Linux-RTXG can successfully perform the GPU tasks in accordance with their reserves as indicated in Figures~\ref{fig:utilize} (b) and (d).
 It is important to note that these prioritization and resource reservations for GPU applications can be achieved without modifying the OS kernel and device drivers in Linux-RTXG.
 

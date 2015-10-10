@@ -2,7 +2,7 @@
 \label{sec:system_model}
 A model of GPU programming and GPU scheduling is assumed and described as follows.
 To highlight an unsolved problem concerning GPU resource management, existing work is introduced first.
-In addition to that problem, factors that have prevented GPU resource management from patch-free implementation are described.
+In addition to that problem, factors that have prevented GPU resource management from patchless implementation are described.
 As for the model, the system is assumed to be composed of multiple GPUs and multi-core CPUs.
 
 \SUBSECTION{GPU Programming Model}
@@ -90,7 +90,7 @@ The data transfer between the CPU and the GPU is also non-preemptive.
 Previous works have addressed the problem of response time by preventing overrun that occurs while the kernel is being divided~\cite{basaran:preemptive,sparc}.
 The most difficult problem is scheduling of self-suspending tasks because the GPU is treated as an I/O device in the system.
 For example, GPU tasks are suspended until their GPU kernels are completed.
-This ``self-suspending'' problem was presented as a NP-HARD problem in previous works~\cite{self-sus:1,self-sus:2}.
+This ``self-suspending'' problem was presented as an NP-hard problem in previous works~\cite{self-sus:1,self-sus:2}.
 A lot of work on the scheduling of self-suspending tasks, however, is ongoing~\cite{chattopadhyay2014limited,kim2013segment}.
 
 Such a ``schedulability'' problem of GPU scheduling out of the scope of this work.
