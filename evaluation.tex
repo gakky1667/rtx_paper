@@ -3,10 +3,10 @@
 The runtime overhead and real-time performance of Linux-RTXG was evaluated.
 The runtime overhead is classified into interrupt interception, independent synchronization, and priority-driven scheduling in Linux.
 It is demonstrated in the following that the overhead of the LKM-based real-time scheduler for GPU applications is acceptable.
-The real-time performance is verified in terms of QoS management and prioritization using both synthetic workload and real-world applications on top of three different device drivers, namely, NVIDIA, Nouveau, and Gdev.
+The real-time performance is verified in terms of QoS management and prioritization using both synthetic workloads and real-world applications on top of three different device drivers, namely, NVIDIA, Nouveau, and Gdev.
 It is also demonstrated that multiple GPU applications co-scheduled by the LKM-based real-time scheduler are successfully prioritized and maintained at the desired frame rate even under high CPU load.
 
-Given that CPU scheduling performance has already been demonstrated in a previous work~\cite{kato2009loadable}, only GPU scheduling performance was experimentally evaluated in this work.
+Given that CPU scheduling performance has already been demonstrated in previous work~\cite{kato2009loadable}, only GPU scheduling performance was experimentally evaluated in this work.
 Considering the results of this work and those from the previous work, it is clarified that both emerging GPU applications and traditional CPU applications can be scheduled according to priorities and resource reserves by using LKMs, without modifying the Linux kernel and device drivers.
 
 \SUBSECTION{Experimental Setup}
@@ -24,28 +24,34 @@ As performance metrics, elapsed time from the beginning to the end of the ISR wa
 \begin{center}
 \raisebox{-3mm}{\includegraphics[width=62mm]{img/interrupt}}
 \end{center}
+\vspace{-3mm}
 \caption{\small{Interrupt interception overhead. \newline \,}}
+\vspace{-3mm}
 \label{fig:irq_overhead}
 \end{minipage}
 \begin{minipage}[t]{0.33\hsize}
 \begin{center}
 \raisebox{-1mm}{\includegraphics[width=62mm]{img/interrupt_response}}
 \end{center}
+\vspace{-4mm}
 \caption{\small{Impact of interrupt interception.}}
+\vspace{-3mm}
 \label{fig:response}
 \end{minipage}
 \begin{minipage}[t]{0.33\hsize}
 \begin{center}
 \includegraphics[width=62mm]{img/tasklet_vs_interrupt}
 \end{center}
+\vspace{-5mm}
 \caption{\small{Comparison of ISR and tasklet.}}
+
 \label{fig:bottomvstasklet}
 \end{minipage}
 \end{figure*}
 
 The overhead for interrupt interception is shown in Figure~\ref{fig:irq_overhead}. ``Raw ISR'' represents the original implementation of ISR.
 ``ISR Intercept'' represents the modified ISR with the interrupt interception mechanism, while ``ISR Intercept w/Func'' includes the overhead for identifying the ISR and calling the scheduler thread in addition to ``ISR Intercept''.
-The average execution time for 1000 executions is presented with error bars.
+The average execution time for 1,000 executions is presented with error bars.
 
 
 Comparing Raw ISR and ISR Intercept indicates that the overhead for introducing the interrupt-interception mechanism was $247ns$, which is only $0.
@@ -75,22 +81,25 @@ This mechanism must call $rtx\_gpu\_notify()$ at the time of requested synchroni
 g.
 , after launching a GPU kernel).
 To use this mechanism, an initialization procedure is required.
-In this measurement, the overhead is defined by the execution time of corresponding APIs.
+In the measurement of the initialization overhead, the overhead is defined by the execution time of corresponding APIs.
 
 
 \begin{figure}[!t]
 \begin{center}
 \subfigure[Overhead for initialization]
-{\includegraphics[width=0.23\textwidth]{img/irq_rise_init.eps}}
+%{\includegraphics[width=0.23\textwidth]{img/irq_rise_init.eps}}
+{\includegraphics[height=0.24\textwidth]{img/temp.pdf}}
 \subfigure[Overhead for notification]
-{\includegraphics[width=0.22\textwidth]{img/irq_rise_notify.eps}}
+%{\includegraphics[width=0.23\textwidth]{img/irq_rise_notify.eps}}
+{\includegraphics[height=0.24\textwidth]{img/irq_rise_notify.eps}}
+\vspace{-2mm}
 \caption{Overhead for independent synchronization.}
-\vspace{-4mm}
+\vspace{-6mm}
 \label{fig:irq_rise_overhead}
 \end{center}
 \end{figure}
 
-As shown in Figure~\ref{fig:irq_rise_overhead}, the initialization overhead could reach 5000$us$, whereas the notification overhead is no more than a few microseconds.
+As shown in Figure~\ref{fig:irq_rise_overhead}, the initialization overhead could reach 5,000$us$, whereas the notification overhead is no more than a few microseconds.
 The initialization procedure calls a Linux process to allocate indirect buffers and control registers for several GPU engines.
 Albeit a significant overhead, the application program is not much affected by this procedure, since it is called only once at the beginning.
 On the other hand, the notification overhead is not a major consideration for the application program, though it is a little scattered due to an ioctl system call.
@@ -101,9 +110,11 @@ When NOTIFY is used to set the notification, the overhead was $3.5us$, while it 
 
 \begin{figure}[!t]
 \begin{center}
-\includegraphics[width=.44\textwidth]{img/sum_task.eps}
-\caption{Scheduling overhead.}
+%\includegraphics[width=.44\textwidth]{img/sum_task.eps}
+\includegraphics[width=.44\textwidth]{img/temp2.pdf}
 \vspace{-4mm}
+\caption{Scheduling overhead.}
+\vspace{-8mm}
 \label{fig:fp_task_overhead}
 \end{center}
 \end{figure}
@@ -119,7 +130,7 @@ The vanilla task was not changed from the original microbenchmark program.
 The CPU scheduling policy was set to $SCHED\_FIFO$, while the GPU scheduling policy was based on fixed priorities with GPU-resource reservation, called the BAND scheduling policy~\cite{kato:gdev}.
 The independent synchronization mechanism is employed with NOTIFY.
 
-Average time in 100 times of GPU task execution (1000 jobs) We measured.
+We measured average time in 100 times of GPU task execution (1,000 jobs).
 The result is provided in Figure~\ref{fig:fp_task_overhead}.
 The scheduling overhead increases in proportion as the number of tasks, because the time consumed in queueing GPU tasks is increased.
 The maximum overhead corresponds to $10\%$ of the vanilla task for eight tasks.
@@ -172,7 +183,7 @@ These performances of Linux-RTXG were evaluated on both the proprietary driver (
 \begin{center}
 \includegraphics[width=0.4\textwidth]{img/band_rtx_fair}
 \caption{Utilization of four tasks with the Linux-RTXG's BAND VGPU scheduling. Each task had an equal workload and an equal GPU-resource allocation.}
-\vspace{-4mm}
+\vspace{-8mm}
 \label{fig:band_rtx_fair}
 \end{center}
 \end{figure}
@@ -182,11 +193,11 @@ QoS performance was evaluated by observing how well the tasks are isolated.
 First, GPU utilization when running two GPU tasks was measured.
 Each GPU task has a unique workload with a different size of GPU reserve.
 One task was allocated to VGPU0, and given $40\%$ of GPU reserve.
-This task (with a high priority) has $1.2$ times higher workload than the other, which was allocated to VGPU1 with $60\%$ of GPU reserve.
+This task (with a high priority) has $1.2$ times the higher workload than the other, which was allocated to VGPU1 with $60\%$ of GPU reserve.
 The VGPU1 task was scheduled to start approximately $5s$ after the VGPU0 task.
 
 
-The result obtained under the FIFO scheduling policy on the NVIDIA Driver is shown in Figure~\ref{fig:utilize} (a), while that under the BAND scheduling policy is shown in Figure~\ref{fig:utilize}(b).
+The result obtained under the FIFO scheduling policy on the NVIDIA Driver is shown in Figure~\ref{fig:utilize} (a), while that under the BAND scheduling policy is shown in Figure~\ref{fig:utilize} (b).
 The corresponding results on the Nouveau GPU driver are shown in Figures~\ref{fig:utilize} (c) and (d).
 
 
@@ -202,7 +213,7 @@ These large increases occurred due to GPU kernel overruns.
 
 In addition to the performance of the proposed loadable-kernel approach, the performance was compared with that of a prior work, Gdev.
 The Gdev scheduling results are shown in Figures~\ref{fig:utilize} (e) and (f).
-Almost no performance loss is imposed on Linux-RTXG as compared to Gdev.
+Almost no performance loss is imposed by Linux-RTXG as compared to Gdev.
 In detail, when the Gdev scheduler was used, the maximum error of the VGPU1 task was approximately $3\%$ under the BAND scheduling policy, while that of the VGPU0 task was $5\%$.
 There is also a large variation on a time basis when the Gdev scheduler was used.
 This is because the runtime functions of Gdev must be called in the kernel space, where other system calls can easily block their operation.
@@ -212,7 +223,7 @@ GPU utilization running four GPU tasks was measured next.
 Each GPU task has the same workload and the same GPU reserve on a different VGPU.
 The isolation result for this scenario is shown in Figure~\ref{fig:band_rtx_fair}.
 The maximum error of VGPUs was at most 9\%, which is incurred due to the timing of budget replenishment and synchronization latency.
-In fact, this result almost matches that reported in a previous work on Gdev~\cite{kato:gdev} using the built-in kernel approach.
+In fact, this result almost matches that reported in previous work on Gdev~\cite{kato:gdev} using the built-in kernel approach.
 As a result, the independent-synchronization mechanism employed in Linux-RTXG does not sacrifice scheduling performance.
 
 
@@ -242,7 +253,7 @@ As a result, the independent-synchronization mechanism employed in Linux-RTXG do
 \subfigure[{\small NULL with high CPU load.}]
 {\includegraphics[width=62mm]{img/real_null_null_withhiload}}
 \label{fig:real-null_null-hiload}
-\subfigure[{\small FP and BAND with high CPU loads.}]
+\subfigure[{\small FP and BAND with high CPU load.}]
 {\includegraphics[width=62mm]{img/real_prio_band_withhighload_cpu}}
 \label{fig:real-prio_band_cpu-hiload}
 \end{center}

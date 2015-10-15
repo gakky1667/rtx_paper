@@ -63,7 +63,8 @@
 %
 % The Computer Society usually requires 12pt for submissions.
 %
- \documentclass[10pt, conference, compsocconf]{IEEEtran}
+% \documentclass[10pt, conference, compsocconf]{IEEEtran}
+  \documentclass[10pt, conference, compsocconf]{IEEEtran}
  %\documentclass[12pt,journal,compsoc]{IEEEtran}
 %
 % If IEEEtran.cls has not been installed into the LaTeX system files,
@@ -74,10 +75,10 @@
 \usepackage{color}
 \usepackage{xcolor}
 
-%gakky add
+%gakky add 
 \usepackage{amsmath}
 
-%
+% 
 \def\RED#1{{\color{red}#1}}%
 \def\TODO#1{TODO:\RED#1}
 \def\TS#1{\AddToContLine{lots}{#1}#1}%
@@ -204,6 +205,7 @@
 %
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+
 % algorithmic.sty was written by Peter Williams and Rogerio Brito.
 % This package provides an algorithmic environment fo describing algorithms.
 % You can use the algorithmic environment in-text or within a figure
@@ -511,11 +513,11 @@ Operating Systems, Linux
 % creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
 
-%\def\SECTION{\section}
-\def\SECTION{\vspace{-4mm}\section}
+\def\SECTION{\section}
+\def\SECTION{\vspace{-2mm}\section} 
 %\def\SUBSECTION{\subsection}
-\def\SUBSECTION{\vspace{-2mm}\subsection}
-\vspace{4mm}
+\def\SUBSECTION{\vspace{-2mm}\subsection} 
+%\vspace{4mm} 
 \input{introduction.tex}
 \input{system_model.tex}
 \input{design_imple.tex}
@@ -572,7 +574,7 @@ Operating Systems, Linux
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
 
-\vspace{-2mm}
+\vspace{-2mm} 
 \bibliographystyle{IEEEtranBST/IEEEtran}
 \bibliography{IEEEtranBST/IEEEabrv,bib/gpu_ap,bib/gpu_rm,bib/gpu,bib/os,bib/realtime}
 

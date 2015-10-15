@@ -9,14 +9,14 @@
 \fi
 \begin{tabular}{ccccccccccc} \hline
  & CPU & CPU & GPU Priority & Budget & Data/Computing & Closed Source& Patchless & GPU Runtime \\ 
-& FP & EDF & Scheduling & Enforcement & Overlap & Compatible &  & independent \\ \hline
+& Fixed-Priority & EDF & Scheduling & Enforcement & Overlap & Compatible &  & independent \\ \hline
  RGEM       &   &   & x &   &   & x & x &   \\ 
  Gdev       &   &   & x & x & x &   &   &  \\ 
  PTask      &   &   & x & x & x & x &  & x \\ 
- NEON & & & x &  & x & x & x &  \\
+ NEON & & & x &  & x & x &  & x \\
  GPUSync    & x & x & x & x & x & x &   & x \\ 
- %GPU-Sparc   & x & & x &   & x & x & x &   \\ 
- GPU-Sparc   & ▲ &   & x &   & x & x & x &   \\
+ GPU-Sparc   & x & & x &   & x & x & x &   \\ 
+ %GPU-Sparc   & ▲ &   & x &   & x & x & x &   \\
  Linux-RTXG & x & x & x & x & x & x & x & x \\ \hline
 \end{tabular}
 \ifthesis
@@ -25,7 +25,6 @@
 \end{center}
 \vspace{-4mm}
 \end{table*}
-
 RGEM~\cite{kato:rgem} and GPU-Sparc~\cite{sparc} provide real-time GPU resource management without the OS kernel and device driver modifications.
 However, their synchronization mechanism depends on proprietary software.
 TimeGraph~\cite{kato:timegraph}, Gdev~\cite{kato:gdev}, Ptask~\cite{ptask}, and GPUSync~\cite{elliott:gpusync13} realize independent synchronization mechanisms but require modifying the OS kernel and device drivers.
@@ -37,6 +36,6 @@ GPUSync supports the fixed-priority and the EDF scheduling policies for CPU task
 As shown from this table, Linux-RTXG has demonstrated all features shown in Table~\ref{tab:comp:prior}.
 In particular, the resource management modules of Linux-RTXG are all loadable and are freed from the detailed implementation of runtime libraries, device drivers, and the OS kernel.
 
-More in-depth resource management would require detailed information about the execution mechanisms in black-box GPU stacks. Menychtas et al. presented interception-based OS-level GPU scheduling, called NEON, without modifying software stack by using state machine inferencing approach in the black-box GPU stack ~\cite{menychtas2013enabling},~\cite{neon}. 
+More in-depth resource management would require detailed information about the execution mechanisms in the black-box GPU stack. Menychtas et al. presented interception-based OS-level GPU scheduling, called NEON, without modifying software stack by using state machine inferencing~\cite{menychtas2013enabling},~\cite{neon}. 
 GPU resource management using GPU microcontrollers~\cite{fujii:apsys2013} and in-kernel runtime functions~\cite{kato:gdev} has also been demonstrated to manage the GPU.
 For these pieces of open-source work, the Nouveau project has been used as a baseline driver~\cite{nouveau}.

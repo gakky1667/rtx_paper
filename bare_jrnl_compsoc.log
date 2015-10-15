@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.6-141210-2.6 (utf8.euc) (TeX Live 2015) (preloaded format=platex 2015.5.24)  11 OCT 2015 06:21
+This is e-pTeX, Version 3.14159265-p3.6-141210-2.6 (utf8.euc) (TeX Live 2015) (preloaded format=platex 2015.5.24)  15 OCT 2015 09:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -367,27 +367,27 @@ LaTeX Warning: Unused global option(s):
 (./bare_jrnl_compsoc.aux)
 \openout1 = `bare_jrnl_compsoc.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 408.
-LaTeX Font Info:    ... okay on input line 408.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 408.
-LaTeX Font Info:    ... okay on input line 408.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 408.
-LaTeX Font Info:    ... okay on input line 408.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 408.
-LaTeX Font Info:    ... okay on input line 408.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 408.
-LaTeX Font Info:    ... okay on input line 408.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 408.
-LaTeX Font Info:    ... okay on input line 408.
-LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 408.
-LaTeX Font Info:    ... okay on input line 408.
-LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 408.
-LaTeX Font Info:    ... okay on input line 408.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 410.
+LaTeX Font Info:    ... okay on input line 410.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 410.
+LaTeX Font Info:    ... okay on input line 410.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 410.
+LaTeX Font Info:    ... okay on input line 410.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 410.
+LaTeX Font Info:    ... okay on input line 410.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 410.
+LaTeX Font Info:    ... okay on input line 410.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 410.
+LaTeX Font Info:    ... okay on input line 410.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 410.
+LaTeX Font Info:    ... okay on input line 410.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 410.
+LaTeX Font Info:    ... okay on input line 410.
 LaTeX Font Info:    Font shape `JT1/mc/bx/it' in size <5> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 408.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 410.
 LaTeX Font Info:    Font shape `JY1/mc/bx/it' in size <5> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 408.
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 489.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 410.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 491.
  (./abstract.tex) (./introduction.tex
 
 LaTeX Font Warning: Font shape `JT1/mc/m/sc' undefined
@@ -403,70 +403,70 @@ LaTeX Font Warning: Font shape `JY1/mc/m/sc' undefined
 ]) (./system_model.tex [2]) (./design_imple.tex
 File: img/overview.pdf Graphic file (type pdf)
  <img/overview.pdf>
-Underfull \hbox (badness 1902) in paragraph at lines 21--30
+Underfull \hbox (badness 1902) in paragraph at lines 24--33
 []\OT1/ptm/m/n/10 An ar-chi-tec-tural overview of Linux-RTXG is shown
  []
 
 
-Underfull \hbox (badness 1460) in paragraph at lines 21--30
+Underfull \hbox (badness 1460) in paragraph at lines 24--33
 \OT1/ptm/m/n/10 be di-vided into two parts. First, the Linux-RTXG core
  []
 
 [3] (I search kanjifont definition file: . . ) (I search font definition file:
 . . . . . . . )
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 67.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 70.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-File: img/gsched_controlflow.pdf Graphic file (type pdf)
-<img/gsched_controlflow.pdf>
-Overfull \hbox (9.0pt too wide) in paragraph at lines 97--99
+File: img/temp3.pdf Graphic file (type pdf)
+<img/temp3.pdf>
+Overfull \hbox (9.0pt too wide) in paragraph at lines 102--104
  [] 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 166--170
+Underfull \hbox (badness 10000) in paragraph at lines 171--175
 \OT1/ptm/m/n/10 mech-a-nisms are de-scribed next. The independent-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--178
+Underfull \hbox (badness 10000) in paragraph at lines 176--183
 []\OT1/ptm/b/n/10 Independent-synchronization Mech-a-nism: \OT1/ptm/m/n/10 The
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--178
+Underfull \hbox (badness 10000) in paragraph at lines 176--183
 \OT1/ptm/m/n/10 independent-synchronization mech-a-nism us-ing NO-TIFY
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 171--178
+Underfull \hbox (badness 1478) in paragraph at lines 176--183
 \OT1/ptm/m/n/10 ker-nel space and the user space. These ioctl in-ter-faces
  []
 
-
-Underfull \hbox (badness 3189) in paragraph at lines 212--225
+[5]
+Underfull \hbox (badness 3189) in paragraph at lines 217--230
 \OT1/ptm/m/n/10 in-tro-duced in ver-sion 3. 14.0, while $\OML/cmm/m/it/10 SCHED
 []FIFO$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--225
+Underfull \hbox (badness 10000) in paragraph at lines 217--230
 \OT1/ptm/m/n/10 and $\OML/cmm/m/it/10 SCHED[]RR$ \OT1/ptm/m/n/10 rep-re-sent fi
 xed-priority schedul-ing.
  []
 
 
-Underfull \hbox (badness 3219) in paragraph at lines 212--225
+Underfull \hbox (badness 3219) in paragraph at lines 217--230
 \OT1/ptm/m/n/10 Un-for-tu-nately, syn-chro-niza-tion does not work with the
  []
 
 
-Underfull \hbox (badness 3657) in paragraph at lines 212--225
+Underfull \hbox (badness 3657) in paragraph at lines 217--230
 \OT1/ptm/m/n/10 SCHED[]DEADLINE schedul-ing pol-icy for GPU tasks.
  []
 
-[5]) (./evaluation.tex
+) (./evaluation.tex
 File: img/interrupt.pdf Graphic file (type pdf)
  <img/interrupt.pdf>
 Overfull \hbox (3.4532pt too wide) in paragraph at lines 25--26
@@ -475,66 +475,67 @@ Overfull \hbox (3.4532pt too wide) in paragraph at lines 25--26
 
 File: img/interrupt_response.eps Graphic file (type eps)
 <img/interrupt_response.eps>
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 32--33
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 34--35
  [] 
  []
 
 File: img/tasklet_vs_interrupt.eps Graphic file (type eps)
 <img/tasklet_vs_interrupt.eps>
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 39--40
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 43--44
  [] 
  []
 
 
-Underfull \hbox (badness 3439) in paragraph at lines 64--70
+Underfull \hbox (badness 3439) in paragraph at lines 70--76
 []\OT1/ptm/m/n/10 Response times when in-ter-rupt in-ter-cep-tion is self-
  []
 
 
-Underfull \hbox (badness 2941) in paragraph at lines 73--79
+Underfull \hbox (badness 2941) in paragraph at lines 79--85
 \OT1/ptm/m/n/10 a-nism was quan-ti-fied next. This mech-a-nism must call
  []
 
-File: img/irq_rise_init.eps Graphic file (type eps)
-<img/irq_rise_init.eps>
+[6]
+File: img/temp.pdf Graphic file (type pdf)
+ <img/temp.pdf>
 File: img/irq_rise_notify.eps Graphic file (type eps)
- <img/irq_rise_notify.eps> [6]
-File: img/sum_task.eps Graphic file (type eps)
- <img/sum_task.eps>
+ <img/irq_rise_notify.eps>
+File: img/temp2.pdf Graphic file (type pdf)
+ <img/temp2.pdf>
 File: img/fifo_rtx_nvidia.eps Graphic file (type eps)
 
 <img/fifo_rtx_nvidia.eps>
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 136--137
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 147--148
  [] 
  []
 
 File: img/band_rtx_nvidia.eps Graphic file (type eps)
 <img/band_rtx_nvidia.eps>
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 139--142
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 150--153
  [][] 
  []
 
 File: img/fifo_rtx.eps Graphic file (type eps)
 <img/fifo_rtx.eps>
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 147--148
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 158--159
  [] 
  []
 
 File: img/band_rtx.eps Graphic file (type eps)
 <img/band_rtx.eps>
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 150--153
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 161--164
  [][] 
  []
 
 File: img/fifo_gdev.eps Graphic file (type eps)
 <img/fifo_gdev.eps>
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 158--159
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 169--170
  [] 
  []
 
 File: img/band_gdev.eps Graphic file (type eps)
 <img/band_gdev.eps>
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 161--164
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 172--175
  [][] 
  []
 
@@ -545,12 +546,12 @@ File: img/real_null_null_withoutload.eps Graphic file (type eps)
 File: img/real_prio_null_withoutload.eps Graphic file (type eps)
 
 <img/real_prio_null_withoutload.eps>
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 223--228
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 234--239
  [] 
  []
 
 
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 223--228
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 234--239
  [][] 
  []
 
@@ -558,12 +559,12 @@ File: img/real_prio_band_withoutload.eps Graphic file (type eps)
 <img/real_prio_band_withoutload.eps>
 File: img/real_prio_band_withhighload.eps Graphic file (type eps)
  <img/real_prio_band_withhighload.eps>
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 233--238
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 244--249
  [] 
  []
 
 
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 233--238
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 244--249
  [][] 
  []
 
@@ -571,16 +572,21 @@ File: img/real_null_null_withhiload.eps Graphic file (type eps)
 <img/real_null_null_withhiload.eps>
 File: img/real_prio_band_withhighload_cpu.eps Graphic file (type eps)
  <img/real_prio_band_withhighload_cpu.eps>
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 243--248
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 254--259
  [] 
  []
 
 
-Overfull \hbox (3.4532pt too wide) in paragraph at lines 243--248
+Overfull \hbox (3.4532pt too wide) in paragraph at lines 254--259
  [][] 
  []
 
-[8]) (./related_work.tex) (./conclusion.tex) [9] (./bare_jrnl_compsoc.bbl
+[8]) (./related_work.tex) (./conclusion.tex
+Underfull \hbox (badness 1796) in paragraph at lines 39--1
+\OT1/ptm/m/n/10 based OS-level GPU schedul-ing, called NEON, with-out
+ []
+
+) [9] (./bare_jrnl_compsoc.bbl
 
 LaTeX Font Warning: Font shape `JT1/gt/m/it' undefined
 (Font)              using `JT1/gt/m/n' instead on input line 27.
@@ -607,14 +613,17 @@ Before submitting the final camera ready copy, remember to:
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 3593 strings out of 493777
- 51572 string characters out of 6151334
+ 3594 strings out of 493777
+ 51542 string characters out of 6151334
  127022 words of memory out of 5000000
  6984 multiletter control sequences out of 15000+600000
  40957 words of font info for 117 fonts, out of 8000000 for 9000
  932 hyphenation exceptions out of 8191
  32i,13n,35p,982b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on bare_jrnl_compsoc.dvi (11 pages, 81304 bytes).
+Output written on bare_jrnl_compsoc.dvi (11 pages, 81232 bytes).

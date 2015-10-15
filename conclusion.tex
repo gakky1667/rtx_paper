@@ -1,8 +1,8 @@
 \SECTION{Conclusion}\label{sec:conclusion}
-Linux-RTXG, a Linux extension with an LKM-based real-time GPU-resource-management module, was proposed and evaluated.
+Linux-RTXG, a Linux extension with the LKM-based real-time GPU-resource-management module, was proposed and evaluated.
 Linux-RTXG can manage GPU resources without having to modify the OS kernel and device drivers.
-In addition, it is compared to CPU-resource management proposed in a previous work~\cite{kato2009loadable, asberg2012exsched}.
-New schemes for GPU-resource management were also developed.
+In addition, it is compared to CPU-resource management proposed in previous work~\cite{kato2009loadable, asberg2012exsched}.
+A new scheme for GPU-resource management was also developed.
 By intercepting the interrupts from the GPU in the top-half ISRs, the developed synchronization mechanism can wait for completion of execution of specific GPU kernels without the need of modifying the OS kernel and device drivers.
 Experimental evaluation of Linux-RTXG indicated the chosen performance unit (task overhead) varied within about $10\%$ for eight tasks and within about $4\%$ for four tasks.
 Furthermore, superior prioritization and QoS performance of Linux-RTXG were demonstrated with a real-world object-detection application, where GPU programs can be protected from high CPU load while the desired frame rate on the GPU is successfully maintained.

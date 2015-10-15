@@ -21,14 +21,14 @@ Warning--missing institution in sparc
 Done.
 You've used 40 entries,
             4039 wiz_defined-function locations,
-            1414 strings with 21239 characters,
+            1414 strings with 21228 characters,
 and the built_in function-call counts, 31092 in all, are:
 = -- 2404
 > -- 764
 < -- 240
 + -- 410
 - -- 133
-* -- 1456
+* -- 1459
 := -- 4449
 add.period$ -- 98
 call.type$ -- 40
@@ -48,7 +48,7 @@ pop$ -- 1037
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2419
+skip$ -- 2416
 stack$ -- 0
 substring$ -- 1421
 swap$ -- 1772

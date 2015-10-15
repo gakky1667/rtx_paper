@@ -18,9 +18,9 @@ GPU programming requires a set of APIs, such as CUDA Driver API and CUDA Runtime
 A typical approach to GPU programming follows several steps: (i) \textit{cuCtxCreate} creates a GPU context; (ii) \textit{cuMemAlloc} allocates memory space to the device memory; (iii) \textit{cuModuleLoad} and \textit{cuMemcpyHtoD} copy the data and the GPU kernel from the host memory to the memory space of the allocated device; (iv) \textit{cuLaunchGrid} invokes the GPU kernel; (v) \textit{cuCtxSynchronize} synchronizes a GPU task to wait for the completion of GPU kernel; (vi) \textit{cuMemcpyDtoH} transfers the data back to the host memory from the device memory; and (vii) \textit{cuMemFree}, \textit{cuModuleUnload}, and \textit{cuCtxDestroy} release the allocated memory space and the GPU context.
 
 \SUBSECTION{GPU Scheduling}
-Problems concerning resource management in many variants of real-time OSs (RTOSs)~\cite{spring,redline,itron,rk} have been addressed.
+Problems concerning resource management in many variants of real-time OSs (RTOSs) \cite{spring,redline,itron,rk} have been addressed.
 Of particular interest includes those in Linux-based RTOSs~\cite{litmus,prk,rtai,yodaiken1999rtlinux,kato2009loadable}.
-GPUs are also supported in Linux.
+GPUs are also supported by Linux.
 It is assumed in this work that the OS architecture refers to Linux.
 
 To meet real-time requirements in multi-tasking environments, RTOSs should provide \textit{scheduling} and \textit{resource reservation} capabilities.
@@ -30,11 +30,11 @@ Resource-reservation algorithms come in many variants, such as Constant Bandwidt
 GPU computing must deal with the data-transfer bandwidth and compute cores as shared resources.
 In case of real-time systems, therefore, scheduling and resource reservation for the GPU as well as the CPU must be considered.
 TimeGraph and Gdev are involved in solving problems concerning GPU resource management, but they are not much aware of the fact that GPU tasks consume CPU time to drive APIs.
-To support GPUs in real-time systems, the OS scheduler must be able to manage GPU tasks in coordination with CPU tasks on the host side, while monitoring GPU time for GPU kernels.
+To support GPUs in real-time systems, the OS scheduler must be able to manage GPU tasks in coordination with CPU tasks on the host side, while monitoring GPU time for completion ofGPU kernels.
 Therefore, the problem of CPU and GPU coordinated scheduling is considered in term of resource-reservation mechanisms.
 
 The recently developed GPUSync framework indeed employs CPU and GPU coordinated scheduling.
-In GPUSync, the device driver and runtime library for GPU computing are hidden in black-box modules released by GPU vendors.
+In the case of fGPUSync, the device driver and runtime library for GPU computing are hidden in black-box modules released by GPU vendors.
 On the other hand, TimeGraph and Gdev address this problem by using reverse-engineered open-source software.
 Both approaches are limited to some extent.
 That is to say, using black-box modules makes it difficult to manage the system in a fine-grained manner.
@@ -58,7 +58,7 @@ More details about GPU architectures can be found in a previous work~\cite{kato:
 
 To synchronize the CPU and the GPU, Gdev supports both NOTIFY and FENCE.
 NOTIFY is primarily used for scheduling of GPU tasks, while FENCE is used in driver-level synchronization.
-In Gdev, as aforementioned, the implementation of GPU synchronization involves additional commands to the GPU.
+In the case of Gdev, as aforementioned, the implementation of GPU synchronization involves additional commands to the GPU.
 The device driver must thus be modified to a certain extent.
 GPUSync indirectly utilizes the NOTIFY technique with tasklet interception~\cite{elliott2012robust} on top of the proprietary black-box modules.
 ``Tasklet'' refers to Linux's softirq implementation.
@@ -87,10 +87,10 @@ A core challenge of this work is to develop independent synchronization mechanis
 GPU resource management has a ``non-preemptive'' nature.
 For example, the execution of GPU kernels is non-preemptive.
 The data transfer between the CPU and the GPU is also non-preemptive.
-Previous works have addressed the problem of response time by preventing overrun that occurs while the kernel is being divided~\cite{basaran:preemptive,sparc}.
+Previous work has addressed the problem of response time by preventing overrun that occurs while the kernel is being divided~\cite{basaran:preemptive,sparc}.
 The most difficult problem is scheduling of self-suspending tasks because the GPU is treated as an I/O device in the system.
 For example, GPU tasks are suspended until their GPU kernels are completed.
-This ``self-suspending'' problem was presented as an NP-hard problem in previous works~\cite{self-sus:1,self-sus:2}.
+This ``self-suspending'' problem was presented as an NP-hard problem in previous work~\cite{self-sus:1,self-sus:2}.
 A lot of work on the scheduling of self-suspending tasks, however, is ongoing~\cite{chattopadhyay2014limited,kim2013segment}.
 
 Such a ``schedulability'' problem of GPU scheduling out of the scope of this work.
@@ -99,4 +99,4 @@ The scope of this work is also restricted to time resources (but not to memory r
 In other words, GPU-scheduling problems, not device-memory-allocation problems, are considered in the following.
 
 The proposed system supports efficient data transfer between the CPU and the GPU by using GPU microcontrollers~\cite{fujii:icpads2013}, but that support is not considered as a contribution of this work.
-Finally, our prototype system is limited to a Linux system and CUDA environment; however, the concept of our method is applicable to other OSs and programming languages, as far as they support the aforementioned FENCE and NOTIFY primitives.
+Our prototype system is limited to a Linux system and CUDA environment; however, the concept of our method is applicable to other OSs and programming languages, as far as they support the aforementioned FENCE and NOTIFY primitives.

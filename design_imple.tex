@@ -9,8 +9,11 @@ Due to a space constraint, the detail of LKM-based CPU scheduling is referred to
 \begin{center}
 \ifthesis
 \includegraphics[width=0.8\textwidth]{img/overview.pdf}
+%\includegraphics[width=1.0\textwidth]{img/overview.pdf}
 \else
-\includegraphics[width=0.35\textwidth]{img/overview.pdf}
+%\includegraphics[width=0.35\textwidth]{img/overview.pdf}
+\includegraphics[width=0.47\textwidth]{img/overview.pdf}
+
 \fi
 \caption{Architectural overview of Linux-RTXG.}
 \vspace{-4mm}
@@ -92,9 +95,11 @@ GPU tasks are provided with function calls to Linux-RTXG at strategic points.
 \begin{figure}[!t]
 \begin{center}
  \ifthesis
- \includegraphics[width=\textwidth]{img/gsched_controlflow.pdf}
+ %\includegraphics[width=\textwidth]{img/gsched_controlflow.pdf}
+ \includegraphics[width=\textwidth]{img/temp3.pdf}
  \else
- \includegraphics[width=0.5\textwidth]{img/gsched_controlflow.pdf}
+% \includegraphics[width=0.5\textwidth]{img/gsched_controlflow.pdf}
+ \includegraphics[width=0.5\textwidth]{img/temp3.pdf}
  \fi
 \caption{Execution flow of a GPU task.}
 \vspace{-4mm}
@@ -108,7 +113,7 @@ The GPU task can control the timing that the GPU kernel is invoked by calling $r
 After this function call, the task is suspended until it receives an interrupt so that other GPU kernels can be launched.
 When execution of the GPU kernel is completed, an interrupt is raised by the GPU, and the corresponding interrupt handler is executed by the Linux kernel.
 The interrupt interceptor awakens some suspended tasks according to the priority.
-The awakened task proceeds to launch the GPU kernel by using the CUDA API, such as $cuLaunchGrid()$.
+The awakened task proceeds to launch the GPU kernel by using a CUDA API, such as $cuLaunchGrid()$.
 After the GPU kernel is launched, the task is going to register NOTIFY to set up an interrupt by $rtx\_gpu\_notify()$, and it is put into sleep mode again until it receives the interrupt by $rtx\_gpu\_sync()$.
 Dispatching the subsequent task is performed by the GPU scheduler, which is called upon by the interrupt from the GPU.
 Linux-RTXG manages the order of task execution according to this flow.
@@ -157,7 +162,7 @@ At the end of $on\_completion$, the selected GPU task is woken up.
 \hline
 \end{tabular}
 \caption{High-level pseudo-code of the Linux-RTXG scheduler.}
-\vspace{-4mm}
+\vspace{-8mm}
 \label{fig:scheduling}
 \end{center}
 \end{figure}
@@ -172,7 +177,7 @@ By this means, Linux-RTXG is not required to modify the OS kernel and device dri
 This mechanism invokes an interrupt using NOTIFY, and writes the fence value using the GPU microcontrollers and FENCE.
 NVIDIA's proprietary software uses the ioctl interface to communicate with the kernel space and the user space.
 These ioctl interfaces provide driver functions, such as device-memory allocation, obtaining GPU states and memory mapping.
-Gdev contains a runtime library that can control the GPU on top of NVIDIA's proprietary driver by using these ioctl interfaces.
+Gdev provides a runtime library that can control the GPU on top of NVIDIA's proprietary driver by using these ioctl interfaces.
 The mechanism also uses an ioctl interface similar to Gdev in order to send commands to the GPU.
 Specifically, the mechanism is divided into two processes: (i) initialization and (ii) notification.
 

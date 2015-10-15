@@ -59,8 +59,8 @@ S.~Che, M.~Boyer, J.~Meng, D.~Tarjan, J.~W. Sheaffer, S.-H. Lee, and
   accessed January 12, 2015.
 
 \bibitem{opencl}
-J.~E. Stone, D.~Gohara, and G.~Shi, ``{OpenCL: A Parallel Programming Standard
-  for Heterogeneous Computing Systems},'' \emph{{IEEE} Des. Test. Comput.},
+J.~E. Stone, D.~Gohara, and G.~Shi, ``Opencl: A parallel programming standard
+  for heterogeneous computing systems,'' \emph{{IEEE} Des. Test. Comput.},
   vol.~12, no.~3, pp. 66--73, 2010.
 
 \bibitem{kato:timegraph}
@@ -69,8 +69,8 @@ S.~Kato, K.~Lakshmanan, R.~R. Rajkumar, and Y.~Ishikawa, ``{TimeGraph: GPU
   ATC}, 2011, p.~17.
 
 \bibitem{kato:gdev}
-S.~Kato, M.~McThrow, C.~Maltzahn, and S.~A. Brandt, ``{Gdev: First-Class GPU
-  Resource Management in the Operating System.}'' in \emph{Proc. USENIX ATC},
+S.~Kato, M.~McThrow, C.~Maltzahn, and S.~A. Brandt, ``Gdev: First-class {GPU}
+  resource management in the operating system.'' in \emph{Proc. USENIX ATC},
   2012, pp. 401--412.
 
 \bibitem{elliott:gpusync13}
@@ -79,22 +79,22 @@ G.~A. Elliott, B.~C. Ward, and J.~H. Anderson, ``{GPUSync: A framework for
   0.4em\relax IEEE, 2013, pp. 33--44.
 
 \bibitem{elliott:explor14}
-G.~A. Elliott and J.~H. Anderson, ``{Exploring the Multitude of Real-Time
-  Multi-GPU Configurations},'' in \emph{Proc. RTSS}.\hskip 1em plus 0.5em minus
-  0.4em\relax IEEE, 2014.
+G.~A. Elliott and J.~H. Anderson, ``Exploring the multitude of real-time
+  multi-{GPU} configurations,'' in \emph{Proc. RTSS}.\hskip 1em plus 0.5em
+  minus 0.4em\relax IEEE, 2014.
 
 \bibitem{litmus}
 J.~Calandrino, H.~Leontyev, A.~Block, U.~Devi, and J.~Anderson,
-  ``{$LITMUS^{RT}$ : A Testbed for Empirically Comparing Real-Time
-  Multiprocessor Schedulers},'' in \emph{Proc. RTSS}, 2006, pp. 111--126.
+  ``{$LITMUS^{RT}$} : A testbed for empirically comparing real-time
+  multiprocessor schedulers,'' in \emph{Proc. RTSS}, 2006, pp. 111--126.
 
 \bibitem{kato2009loadable}
 S.~Kato, R.~Rajkumar, and Y.~Ishikawa, ``{A loadable real-time scheduler suite
   for multicore platforms},'' Tech. Rep. CMU-ECE-TR09-12, Tech. Rep., 2009.
 
 \bibitem{asberg2012exsched}
-M.~Asberg, T.~Nolte, S.~Kato, R.~Rajkumar, and Y.~Ishikawa, ``{ExSched: An
-  External CPU Scheduler Framework for Real-Time Systems},'' Tech. Rep.
+M.~Asberg, T.~Nolte, S.~Kato, R.~Rajkumar, and Y.~Ishikawa, ``Exsched: An
+  external {CPU} scheduler framework for real-time systems,'' Tech. Rep.
   CMU-ECE-TR09-12, Tech. Rep., 2009.
 
 \bibitem{spring}
@@ -102,8 +102,8 @@ J.~A. Stankovic and K.~Ramamritham, ``{The spring kernel: A new paradigm for
   real-time systems},'' \emph{{IEEE} Softw.}, vol.~8, no.~3, pp. 62--72, 1991.
 
 \bibitem{redline}
-T.~Yang, T.~Liu, E.~D. Berger, S.~F. Kaplan, and J.~E.~B. Moss, ``{Redline:
-  First Class Support for Interactivity in Commodity Operating Systems.}'' in
+T.~Yang, T.~Liu, E.~D. Berger, S.~F. Kaplan, and J.~E.~B. Moss, ``Redline:
+  First class support for interactivity in commodity operating systems,'' in
   \emph{Proc. OSDI}, vol.~8, 2008, pp. 73--86.
 
 \bibitem{itron}
@@ -127,7 +127,7 @@ P.~Mantegazza, E.~Dozio, and S.~Papacharalambous, ``{RTAI: Real time
   application interface},'' \emph{Linux J.}, vol. 2000, no. 72es, p.~10, 2000.
 
 \bibitem{yodaiken1999rtlinux}
-V.~Yodaiken, ``{The RTLinux Manifesto},'' in \emph{Proc. Fifth Linux Expo},
+V.~Yodaiken, ``The {RTLinux} manifesto,'' in \emph{Proc. Fifth Linux Expo},
   1999.
 
 \bibitem{sched:ll}
@@ -145,8 +145,8 @@ M.~Spuri and G.~Buttazzo, ``{Scheduling aperiodic tasks in dynamic priority
   systems},'' \emph{Real-Time Systems}, vol.~10, no.~2, pp. 179--210, 1996.
 
 \bibitem{fujii:apsys2013}
-Y.~Fujii, T.~Azumi, N.~Nishio, and S.~Kato, ``{Exploring microcontrollers in
-  GPUs},'' in \emph{Proc. APSys}.\hskip 1em plus 0.5em minus 0.4em\relax ACM,
+Y.~Fujii, T.~Azumi, N.~Nishio, and S.~Kato, ``Exploring microcontrollers in
+  {GPUs},'' in \emph{Proc. APSys}.\hskip 1em plus 0.5em minus 0.4em\relax ACM,
   2013, p.~2.
 
 \bibitem{elliott2012robust}
@@ -160,12 +160,12 @@ S.~Kato, K.~Lakshmanan, A.~Kumar, M.~Kelkar, Y.~Ishikawa, and R.~Rajkumar,
   57--66.
 
 \bibitem{basaran:preemptive}
-C.~Basaran and K.-D. Kang, ``{Supporting Preemptive Task Executions and Memory
-  Copies in GPGPUs},'' in \emph{Proc. ECRTS}, 2012, pp. 287--296.
+C.~Basaran and K.-D. Kang, ``Supporting preemptive task executions and memory
+  copies in {GPGPUs},'' in \emph{Proc. ECRTS}, 2012, pp. 287--296.
 
 \bibitem{sparc}
-W.~Han, H.~Bae, H.~Kim, J.~Lee, and I.~Shin, ``{GPU-SPARC: Accelerating
-  Parallelism in Multi-GPU Real-Time Systems},'' Tech. Rep., 2014.
+W.~Han, H.~Bae, H.~Kim, J.~Lee, and I.~Shin, ``Gpu-sparc: Accelerating
+  parallelism in multi-{GPU} real-time systems,'' Tech. Rep., 2014.
 
 \bibitem{self-sus:1}
 F.~Ridouard, P.~Richard, and F.~Cottet, ``{Negative results for scheduling
@@ -178,14 +178,14 @@ K.~Lakshmanan, S.~Kato, and R.~R. Rajkumar, ``{Open problems in scheduling
   Seminar}, 2010.
 
 \bibitem{chattopadhyay2014limited}
-B.~Chattopadhyay and S.~Baruah, ``{Limited-Preemption Scheduling on
-  Multiprocessors},'' in \emph{Proc. Int. Conf. RTNS}.\hskip 1em plus 0.5em
+B.~Chattopadhyay and S.~Baruah, ``Limited-preemption scheduling on
+  multiprocessors,'' in \emph{Proc. Int. Conf. RTNS}.\hskip 1em plus 0.5em
   minus 0.4em\relax ACM, 2014, p. 225.
 
 \bibitem{kim2013segment}
-J.~Kim, B.~Andersson, D.~d. Niz, and R.~R. Rajkumar, ``{Segment-Fixed Priority
-  Scheduling for Self-Suspending Real-Time Tasks},'' in \emph{Proc.
-  RTSS}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2013, pp. 246--257.
+J.~Kim, B.~Andersson, D.~d. Niz, and R.~R. Rajkumar, ``Segment-fixed priority
+  scheduling for self-suspending real-time tasks,'' in \emph{Proc. RTSS}.\hskip
+  1em plus 0.5em minus 0.4em\relax IEEE, 2013, pp. 246--257.
 
 \bibitem{fujii:icpads2013}
 Y.~Fujii, T.~Azumi, N.~Nishio, S.~Kato, and M.~Edahiro, ``{Data transfer
@@ -208,12 +208,12 @@ C.~J. Rossbach, J.~Currey, M.~Silberstein, B.~Ray, and E.~Witchel, ``{PTask:
   233--248.
 
 \bibitem{menychtas2013enabling}
-K.~Menychtas, K.~Shen, and M.~L. Scott, ``{Enabling OS Research by Inferring
-  Interactions in the Black-Box GPU Stack.}'' in \emph{Proc. USENIX ATC}, 2013,
-  pp. 291--296.
+K.~Menychtas, K.~Shen, and M.~L. Scott, ``Enabling {OS} research by inferring
+  interactions in the black-box {GPU} stack,'' in \emph{Proc. USENIX ATC},
+  2013, pp. 291--296.
 
 \bibitem{neon}
-------, ``{Disengaged Scheduling for Fair, Protected Access to Fast
-  Computational Accelerators.}'' in \emph{Proc. ASPLOS}, 2014, pp. 301--316.
+------, ``Disengaged scheduling for fair, protected access to fast
+  computational accelerators,'' in \emph{Proc. ASPLOS}, 2014, pp. 301--316.
 
 \end{thebibliography}
